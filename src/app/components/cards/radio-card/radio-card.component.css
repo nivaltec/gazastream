@@ -1,0 +1,622 @@
+/* ============================================================
+   GAZA STREAM
+   RADIO STATION
+   COMPACT HORIZONTAL CARD
+   ============================================================ */
+
+.gaza-radio-card {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 10px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.065);
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018));
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.14);
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.22s ease,
+    background 0.22s ease,
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+
+/* ============================================================
+   HOVER
+   ============================================================ */
+
+.gaza-radio-card:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(255, 255, 255, 0.12);
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.025));
+
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.22);
+}
+
+
+/* ============================================================
+   ACTIVE
+   ============================================================ */
+
+.gaza-radio-card.is-active {
+  border-color:
+    rgba(8, 207, 255, 0.32);
+
+  background:
+    linear-gradient(145deg,
+      rgba(8, 207, 255, 0.075),
+      rgba(255, 255, 255, 0.018));
+
+  box-shadow:
+    0 8px 28px rgba(8, 207, 255, 0.08);
+}
+
+
+/* ============================================================
+   COVER
+   ============================================================ */
+
+.gaza-radio-card__cover {
+  position: relative;
+
+  width: 76px;
+  height: 76px;
+
+  flex: 0 0 76px;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+
+  background: #090911;
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, 0.28);
+}
+
+
+.gaza-radio-card__cover img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.45s ease,
+    filter 0.35s ease;
+}
+
+
+.gaza-radio-card:hover .gaza-radio-card__cover img {
+  transform: scale(1.07);
+}
+
+
+.gaza-radio-card.is-active .gaza-radio-card__cover img {
+  filter: brightness(0.72);
+}
+
+
+/* ============================================================
+   PLAYING OVERLAY
+   ============================================================ */
+
+.gaza-radio-card__playing {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  background:
+    rgba(5, 5, 12, 0.28);
+
+  backdrop-filter: blur(2px);
+}
+
+
+.gaza-radio-card__playing span {
+  width: 3px;
+
+  border-radius: 3px;
+
+  background: #08cfff;
+
+  animation:
+    radio-bars 0.8s ease-in-out infinite;
+}
+
+
+.gaza-radio-card__playing span:nth-child(1) {
+  height: 9px;
+
+  animation-delay: -0.2s;
+}
+
+
+.gaza-radio-card__playing span:nth-child(2) {
+  height: 17px;
+
+  animation-delay: -0.4s;
+}
+
+
+.gaza-radio-card__playing span:nth-child(3) {
+  height: 12px;
+
+  animation-delay: -0.1s;
+}
+
+
+@keyframes radio-bars {
+
+  0%,
+  100% {
+    transform: scaleY(0.55);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.gaza-radio-card__main {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+/* ============================================================
+   TOP ROW
+   ============================================================ */
+
+.gaza-radio-card__top {
+  display: flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-bottom: 4px;
+}
+
+
+/* ============================================================
+   LIVE
+   ============================================================ */
+
+.gaza-radio-card__live {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.12em;
+}
+
+
+.gaza-radio-card__live i {
+  width: 5px;
+  height: 5px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.25);
+}
+
+
+.gaza-radio-card.is-active .gaza-radio-card__live {
+  color: #08cfff;
+}
+
+
+.gaza-radio-card.is-active .gaza-radio-card__live i {
+  background: #08cfff;
+
+  box-shadow:
+    0 0 0 3px rgba(8, 207, 255, 0.10);
+}
+
+
+/* ============================================================
+   GENRE
+   ============================================================ */
+
+.gaza-radio-card__genre {
+  padding-left: 7px;
+
+  border-left:
+    1px solid rgba(255, 255, 255, 0.10);
+
+  color:
+    rgba(255, 255, 255, 0.30);
+
+  font-size: 7px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.gaza-radio-card__main h3 {
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, 0.94);
+
+  font-size: 14px;
+
+  font-weight: 750;
+
+  line-height: 1.25;
+
+  letter-spacing: -0.015em;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.gaza-radio-card__main p {
+  margin: 3px 0 0;
+
+  max-width: 360px;
+
+  color:
+    rgba(255, 255, 255, 0.35);
+
+  font-size: 9px;
+
+  line-height: 1.35;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+
+/* ============================================================
+   META
+   ============================================================ */
+
+.gaza-radio-card__meta {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin-top: 6px;
+
+  min-height: 12px;
+
+  color:
+    rgba(255, 255, 255, 0.27);
+
+  font-size: 7px;
+
+  font-weight: 650;
+}
+
+
+.gaza-radio-card__meta>span {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+.gaza-radio-card__meta i {
+  font-size: 7px;
+}
+
+
+/* ============================================================
+   NOW PLAYING
+   ============================================================ */
+
+.gaza-radio-card__now {
+  color:
+    rgba(8, 207, 255, 0.75);
+}
+
+
+/* ============================================================
+   BUTTON
+   ============================================================ */
+
+.gaza-radio-card__button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  margin-right: 2px;
+
+  padding: 0;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+
+.gaza-radio-card__button i {
+  font-size: 10px;
+}
+
+
+.gaza-radio-card__button .fa-play {
+  margin-left: 2px;
+}
+
+
+.gaza-radio-card__button:hover {
+  transform: scale(1.08);
+
+  border-color:
+    rgba(8, 207, 255, 0.30);
+
+  background:
+    rgba(8, 207, 255, 0.10);
+
+  color: #08cfff;
+}
+
+
+.gaza-radio-card__button.is-playing {
+  border-color:
+    rgba(8, 207, 255, 0.30);
+
+  background: #08cfff;
+
+  color: #080810;
+
+  box-shadow:
+    0 4px 14px rgba(8, 207, 255, 0.18);
+}
+
+
+.gaza-radio-card__button.is-playing:hover {
+  background: #24d6ff;
+
+  transform: scale(1.08);
+}
+
+
+/* ============================================================
+   ACTIVE ACCENT
+   ============================================================ */
+
+.gaza-radio-card.is-active::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 14px;
+  bottom: 14px;
+
+  width: 2px;
+
+  border-radius: 0 3px 3px 0;
+
+  background: #08cfff;
+
+  box-shadow:
+    0 0 12px rgba(8, 207, 255, 0.45);
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+  .gaza-radio-card {
+    gap: 11px;
+
+    padding: 8px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-radio-card__cover {
+    width: 62px;
+    height: 62px;
+
+    flex-basis: 62px;
+
+    border-radius: 9px;
+  }
+
+
+  .gaza-radio-card__main h3 {
+    font-size: 12px;
+  }
+
+
+  .gaza-radio-card__main p {
+    font-size: 8px;
+  }
+
+
+  .gaza-radio-card__meta {
+    margin-top: 4px;
+
+    font-size: 6.5px;
+  }
+
+
+  .gaza-radio-card__button {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+
+  .gaza-radio-card__button i {
+    font-size: 9px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-radio-card {
+    gap: 9px;
+  }
+
+
+  .gaza-radio-card__cover {
+    width: 56px;
+    height: 56px;
+
+    flex-basis: 56px;
+  }
+
+
+  .gaza-radio-card__main h3 {
+    font-size: 11px;
+  }
+
+
+  .gaza-radio-card__main p {
+    display: none;
+  }
+
+
+  .gaza-radio-card__meta {
+    margin-top: 5px;
+  }
+
+
+  .gaza-radio-card__button {
+    width: 32px;
+    height: 32px;
+
+    flex-basis: 32px;
+  }
+
+
+  .gaza-radio-card__genre {
+    display: none;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-radio-card,
+  .gaza-radio-card *,
+  .gaza-radio-card__playing span {
+    animation: none !important;
+
+    transition: none !important;
+  }
+
+}

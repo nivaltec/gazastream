@@ -1,0 +1,1127 @@
+/* ============================================================
+   GAZA STREAM
+   TOPBAR
+   ============================================================ */
+
+:host {
+  display: block;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   TOPBAR
+   ============================================================ */
+
+.gaza-topbar {
+  position: relative;
+  z-index: 100;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  min-height: 76px;
+
+  padding: 14px 24px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(15, 18, 24, 0.96),
+      rgba(15, 18, 24, 0.88)
+    );
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   LEFT
+   ============================================================ */
+
+.gaza-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  min-width: 0;
+}
+
+
+/* ============================================================
+   MOBILE MENU
+   ============================================================ */
+
+.gaza-mobile-menu {
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  color: rgba(255, 255, 255, 0.82);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gaza-mobile-menu:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  border-color: rgba(255, 255, 255, 0.12);
+
+  color: #fff;
+}
+
+.gaza-mobile-menu:active {
+  transform: scale(0.95);
+}
+
+.gaza-mobile-menu i {
+  font-size: 17px;
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.gaza-search {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: min(520px, 42vw);
+  min-width: 260px;
+  height: 46px;
+
+  margin: 0;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  border: 1px solid rgba(255, 255, 255, 0.075);
+  border-radius: 14px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.gaza-search:focus-within {
+  background: rgba(255, 255, 255, 0.075);
+
+  border-color: rgba(255, 255, 255, 0.14);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.025);
+}
+
+
+/* ============================================================
+   SEARCH ICON
+   ============================================================ */
+
+.gaza-search-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  min-width: 44px;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  pointer-events: none;
+}
+
+.gaza-search-icon i {
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   SEARCH INPUT
+   ============================================================ */
+
+.gaza-search input {
+  width: 100%;
+  height: 100%;
+
+  padding: 0 44px 0 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color: #fff;
+
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+
+  box-sizing: border-box;
+}
+
+.gaza-search input::placeholder {
+  color: rgba(255, 255, 255, 0.38);
+}
+
+.gaza-search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+
+/* ============================================================
+   SEARCH CLEAR
+   ============================================================ */
+
+.gaza-search-clear {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 28px;
+  height: 28px;
+
+  padding: 0;
+
+  transform: translateY(-50%);
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.45);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.gaza-search-clear:hover {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #fff;
+}
+
+.gaza-search-clear i {
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   RIGHT ACTIONS
+   ============================================================ */
+
+.gaza-topbar-actions {
+  display: flex;
+  align-items: center;
+
+  min-width: 0;
+}
+
+
+/* ============================================================
+   TOPBAR BUTTON
+   ============================================================ */
+
+.gaza-topbar-button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.68);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gaza-topbar-button:hover {
+  background: rgba(255, 255, 255, 0.06);
+
+  color: #fff;
+}
+
+.gaza-topbar-button:active {
+  transform: scale(0.94);
+}
+
+.gaza-topbar-button i {
+  font-size: 18px;
+}
+
+
+/* ============================================================
+   NOTIFICATION BADGE
+   ============================================================ */
+
+.gaza-notification-dot {
+  position: absolute;
+  top: 5px;
+  right: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 17px;
+  height: 17px;
+
+  padding: 0 4px;
+
+  border: 2px solid #0f1218;
+  border-radius: 999px;
+
+  background: #e5484d;
+
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 700;
+  line-height: 1;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   DIVIDER
+   ============================================================ */
+
+.gaza-topbar-divider {
+  width: 1px;
+  height: 30px;
+
+  margin: 0 14px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ============================================================
+   PROFILE
+   ============================================================ */
+
+.gaza-profile {
+  position: relative;
+}
+
+
+/* ============================================================
+   USER BUTTON
+   ============================================================ */
+
+.gaza-user-button {
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-width: 0;
+
+  padding: 5px 7px 5px 5px;
+
+  border: 1px solid transparent;
+  border-radius: 14px;
+
+  background: transparent;
+
+  color: #fff;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.gaza-user-button:hover,
+.gaza-user-button.is-open {
+  background: rgba(255, 255, 255, 0.055);
+
+  border-color: rgba(255, 255, 255, 0.07);
+}
+
+
+/* ============================================================
+   USER AVATAR
+   ============================================================ */
+
+.gaza-user-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  overflow: hidden;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.045)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.gaza-user-avatar img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.gaza-user-avatar i {
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   USER INFO
+   ============================================================ */
+
+.gaza-user-info {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  text-align: left;
+
+  line-height: 1.2;
+}
+
+.gaza-user-info strong {
+  max-width: 150px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.92);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-user-info small {
+  max-width: 150px;
+
+  margin-top: 3px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 11px;
+  font-weight: 400;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   USER ARROW
+   ============================================================ */
+
+.gaza-user-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  transition: transform 0.2s ease;
+}
+
+.gaza-user-button.is-open .gaza-user-arrow {
+  transform: rotate(180deg);
+}
+
+.gaza-user-arrow i {
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   PROFILE MENU
+   ============================================================ */
+
+.gaza-profile-menu {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+
+  width: 320px;
+
+  padding: 8px;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(25, 29, 37, 0.98),
+      rgba(17, 20, 27, 0.98)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.085);
+  border-radius: 18px;
+
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.42),
+    0 8px 24px rgba(0, 0, 0, 0.25);
+
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+
+  animation: gaza-profile-menu-in 0.18s ease-out;
+
+  box-sizing: border-box;
+}
+
+@keyframes gaza-profile-menu-in {
+
+  from {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+}
+
+
+/* ============================================================
+   PROFILE MENU HEADER
+   ============================================================ */
+
+.gaza-profile-menu__header {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 12px;
+}
+
+
+/* ============================================================
+   PROFILE MENU AVATAR
+   ============================================================ */
+
+.gaza-profile-menu__avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  flex: 0 0 46px;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.13),
+      rgba(255, 255, 255, 0.04)
+    );
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.gaza-profile-menu__avatar img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.gaza-profile-menu__avatar i {
+  font-size: 17px;
+}
+
+
+/* ============================================================
+   PROFILE IDENTITY
+   ============================================================ */
+
+.gaza-profile-menu__identity {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.gaza-profile-menu__identity strong {
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.94);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-profile-menu__identity span {
+  margin-top: 4px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   MENU DIVIDER
+   ============================================================ */
+
+.gaza-profile-menu__divider {
+  height: 1px;
+
+  margin: 7px 4px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+
+/* ============================================================
+   MENU ITEM
+   ============================================================ */
+
+.gaza-profile-menu__item {
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+
+  gap: 12px;
+
+  padding: 11px 10px;
+
+  border: 0;
+  border-radius: 12px;
+
+  background: transparent;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.gaza-profile-menu__item:hover {
+  background: rgba(255, 255, 255, 0.055);
+
+  color: #fff;
+}
+
+
+/* ============================================================
+   MENU ITEM ICON
+   ============================================================ */
+
+.gaza-profile-menu__item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  flex: 0 0 36px;
+
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.045);
+
+  color: rgba(255, 255, 255, 0.62);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.gaza-profile-menu__item:hover
+.gaza-profile-menu__item-icon {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: #fff;
+}
+
+.gaza-profile-menu__item-icon i {
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   MENU ITEM CONTENT
+   ============================================================ */
+
+.gaza-profile-menu__item-content {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+
+  min-width: 0;
+}
+
+.gaza-profile-menu__item-content strong {
+  color: rgba(255, 255, 255, 0.86);
+
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.gaza-profile-menu__item-content small {
+  margin-top: 3px;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 10px;
+  font-weight: 400;
+}
+
+
+/* ============================================================
+   MENU ITEM ARROW
+   ============================================================ */
+
+.gaza-profile-menu__item > .fa-chevron-right {
+  margin-left: auto;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 10px;
+
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
+}
+
+.gaza-profile-menu__item:hover
+> .fa-chevron-right {
+  transform: translateX(2px);
+
+  color: rgba(255, 255, 255, 0.55);
+}
+
+
+/* ============================================================
+   DANGER ITEM
+   ============================================================ */
+
+.gaza-profile-menu__item--danger {
+  color: rgba(255, 100, 105, 0.82);
+}
+
+.gaza-profile-menu__item--danger:hover {
+  background: rgba(229, 72, 77, 0.08);
+
+  color: #ff7478;
+}
+
+.gaza-profile-menu__item--danger
+.gaza-profile-menu__item-icon {
+  background: rgba(229, 72, 77, 0.08);
+
+  color: rgba(255, 100, 105, 0.8);
+}
+
+.gaza-profile-menu__item--danger:hover
+.gaza-profile-menu__item-icon {
+  background: rgba(229, 72, 77, 0.13);
+
+  color: #ff7478;
+}
+
+.gaza-profile-menu__item--danger
+.gaza-profile-menu__item-content strong {
+  color: inherit;
+}
+
+
+/* ============================================================
+   FOCUS STATES
+   ============================================================ */
+
+.gaza-mobile-menu:focus-visible,
+.gaza-topbar-button:focus-visible,
+.gaza-user-button:focus-visible,
+.gaza-profile-menu__item:focus-visible,
+.gaza-search-clear:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.45);
+
+  outline-offset: 2px;
+}
+
+
+/* ============================================================
+   LARGE TABLET
+   ============================================================ */
+
+@media (max-width: 1100px) {
+
+  .gaza-topbar {
+    padding: 13px 18px;
+  }
+
+  .gaza-search {
+    width: min(440px, 38vw);
+  }
+
+  .gaza-user-info strong,
+  .gaza-user-info small {
+    max-width: 120px;
+  }
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .gaza-topbar {
+    min-height: 70px;
+
+    padding: 12px 16px;
+  }
+
+  .gaza-mobile-menu {
+    display: flex;
+  }
+
+  .gaza-topbar-left {
+    gap: 12px;
+
+    flex: 1;
+  }
+
+  .gaza-search {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .gaza-user-info {
+    display: none;
+  }
+
+  .gaza-user-button {
+    padding-right: 4px;
+  }
+
+  .gaza-profile-menu {
+    width: 300px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .gaza-topbar {
+    min-height: 64px;
+
+    padding: 10px 12px;
+  }
+
+  .gaza-topbar-left {
+    flex: 1;
+
+    min-width: 0;
+  }
+
+  .gaza-mobile-menu {
+    width: 40px;
+    height: 40px;
+
+    flex: 0 0 40px;
+  }
+
+  .gaza-search {
+    height: 42px;
+
+    border-radius: 12px;
+  }
+
+  .gaza-search-icon {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  .gaza-search input {
+    padding-right: 38px;
+
+    font-size: 13px;
+  }
+
+  .gaza-search input::placeholder {
+    font-size: 12px;
+  }
+
+  .gaza-topbar-actions {
+    gap: 2px;
+  }
+
+  .gaza-topbar-divider {
+    height: 26px;
+
+    margin: 0 5px;
+  }
+
+  .gaza-topbar-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gaza-user-avatar {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+  }
+
+  .gaza-user-arrow {
+    display: none;
+  }
+
+  .gaza-profile-menu {
+    position: fixed;
+
+    top: 68px;
+    right: 10px;
+
+    width: min(320px, calc(100vw - 20px));
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+  .gaza-topbar {
+    padding: 9px 10px;
+  }
+
+  .gaza-topbar-left {
+    gap: 8px;
+  }
+
+  .gaza-mobile-menu {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+  }
+
+  .gaza-search {
+    height: 40px;
+  }
+
+  .gaza-search-icon {
+    width: 36px;
+    min-width: 36px;
+  }
+
+  .gaza-search-icon i {
+    font-size: 13px;
+  }
+
+  .gaza-search input {
+    padding-right: 34px;
+
+    font-size: 12px;
+  }
+
+  .gaza-search input::placeholder {
+    font-size: 11px;
+  }
+
+  .gaza-topbar-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .gaza-user-avatar {
+    width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+  }
+
+  .gaza-topbar-divider {
+    display: none;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 350px) {
+
+  .gaza-topbar {
+    padding: 8px;
+  }
+
+  .gaza-mobile-menu {
+    width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+  }
+
+  .gaza-search {
+    height: 38px;
+  }
+
+  .gaza-search-icon {
+    width: 34px;
+    min-width: 34px;
+  }
+
+  .gaza-search input::placeholder {
+    content: "Search...";
+  }
+
+  .gaza-topbar-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .gaza-user-avatar {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+  }
+
+  .gaza-profile-menu {
+    top: 62px;
+    right: 8px;
+
+    width: calc(100vw - 16px);
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-search,
+  .gaza-search-clear,
+  .gaza-mobile-menu,
+  .gaza-topbar-button,
+  .gaza-user-button,
+  .gaza-user-arrow,
+  .gaza-profile-menu,
+  .gaza-profile-menu__item,
+  .gaza-profile-menu__item-icon,
+  .gaza-profile-menu__item > .fa-chevron-right {
+    transition: none;
+    animation: none;
+  }
+
+}

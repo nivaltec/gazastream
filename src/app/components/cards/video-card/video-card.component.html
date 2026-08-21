@@ -1,0 +1,178 @@
+<article
+  class="gaza-video-card"
+  [class.is-active]="isActive"
+  [class.is-playing]="isPlaying"
+  [attr.aria-label]="video.title"
+  (click)="playVideo()"
+>
+
+
+  <!-- ==========================================================
+       VIDEO MEDIA
+  =========================================================== -->
+
+  <div class="gaza-video-card__media">
+
+
+    <!-- ========================================================
+         ARTWORK
+    ========================================================= -->
+
+    <img
+      *ngIf="video?.artwork"
+      class="gaza-video-card__image"
+      [src]="video.artwork"
+      [alt]="video.title"
+      loading="lazy"
+    />
+
+
+    <!-- ========================================================
+         FALLBACK
+    ========================================================= -->
+
+    <div
+      *ngIf="!video?.artwork"
+      class="gaza-video-card__fallback"
+    >
+
+      <i class="fa-solid fa-video"></i>
+
+    </div>
+
+
+    <!-- ========================================================
+         OVERLAY
+    ========================================================= -->
+
+    <div
+      class="gaza-video-card__overlay"
+      aria-hidden="true"
+    ></div>
+
+
+    <!-- ========================================================
+         PLAY / PAUSE
+    ========================================================= -->
+
+    <button
+      type="button"
+      class="gaza-video-card__play"
+      [class.is-playing]="isPlaying"
+      [attr.aria-label]="
+        isPlaying
+          ? 'Pause ' + video.title
+          : 'Play ' + video.title
+      "
+      (click)="$event.stopPropagation(); playVideo()"
+    >
+
+      <i
+        class="fa-solid"
+        [ngClass]="playIcon"
+      ></i>
+
+    </button>
+
+
+    <!-- ========================================================
+         PLAYING INDICATOR
+    ========================================================= -->
+
+    <div
+      *ngIf="isPlaying"
+      class="gaza-video-card__playing"
+      aria-hidden="true"
+    >
+
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+
+    <!-- ========================================================
+         DURATION
+    ========================================================= -->
+
+    <span
+      *ngIf="durationLabel"
+      class="gaza-video-card__duration"
+    >
+
+      {{ durationLabel }}
+
+    </span>
+
+
+    <!-- ========================================================
+         VIDEO LABEL
+    ========================================================= -->
+
+    <span
+      class="gaza-video-card__type"
+    >
+
+      <i class="fa-solid fa-video"></i>
+
+      Video
+
+    </span>
+
+  </div>
+
+
+  <!-- ==========================================================
+       INFORMATION
+  =========================================================== -->
+
+  <div class="gaza-video-card__content">
+
+
+    <!-- ========================================================
+         TITLE
+    ========================================================= -->
+
+    <h3
+      class="gaza-video-card__title"
+      [title]="video.title"
+    >
+
+      {{ video.title }}
+
+    </h3>
+
+
+    <!-- ========================================================
+         ARTIST
+    ========================================================= -->
+
+    <p
+      *ngIf="video.artist"
+      class="gaza-video-card__artist"
+      [title]="video.artist"
+    >
+
+      {{ video.artist }}
+
+    </p>
+
+
+    <!-- ========================================================
+         DESCRIPTION
+    =========================================================
+
+    <p
+      *ngIf="video.description"
+      class="gaza-video-card__description"
+      [title]="video.description"
+    >
+
+      {{ video.description }}
+
+    </p>-->
+
+  </div>
+
+</article>

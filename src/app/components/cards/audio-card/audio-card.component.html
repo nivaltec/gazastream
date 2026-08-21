@@ -1,0 +1,136 @@
+<article class="gaza-audio-card" [class.is-playing]="isPlaying" [attr.aria-label]="audio.title" (click)="onOpen()">
+
+  <!-- ========================================================
+       ARTWORK / VINYL
+  ========================================================= -->
+
+  <div class="gaza-audio-card__artwork">
+
+    <div class="gaza-audio-card__disc">
+
+      <!-- ARTWORK -->
+      <img *ngIf="audio.artwork" [src]="audio.artwork" [alt]="audio.title" loading="lazy" />
+
+      <!-- FALLBACK -->
+      <div *ngIf="!audio.artwork" class="gaza-audio-card__artwork-fallback">
+        <i class="fa-solid fa-music"></i>
+      </div>
+
+      <!-- VINYL RINGS -->
+      <span class="gaza-audio-card__ring gaza-audio-card__ring--1"></span>
+      <span class="gaza-audio-card__ring gaza-audio-card__ring--2"></span>
+      <span class="gaza-audio-card__ring gaza-audio-card__ring--3"></span>
+
+      <!-- DARK EDGE -->
+      <div class="gaza-audio-card__disc-overlay" aria-hidden="true"></div>
+
+      <!-- CENTER -->
+      <div class="gaza-audio-card__center" aria-hidden="true">
+        <span></span>
+      </div>
+
+    </div>
+
+
+    <!-- PLAY BUTTON -->
+
+    <button type="button" class="gaza-audio-card__play" [class.is-playing]="isPlaying" [attr.aria-label]="
+        isPlaying
+          ? 'Pause ' + audio.title
+          : 'Play ' + audio.title
+      " (click)="togglePlay($event)">
+
+      <i class="fa-solid" [class.fa-play]="!isPlaying" [class.fa-pause]="isPlaying"></i>
+
+    </button>
+
+
+    <!-- PLAYING INDICATOR -->
+
+    <div *ngIf="isPlaying" class="gaza-audio-card__playing" aria-hidden="true">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================
+       CONTENT
+  ========================================================= -->
+
+  <div class="gaza-audio-card__content">
+
+    <!-- META -->
+
+    <div class="gaza-audio-card__meta">
+
+      <span class="gaza-audio-card__type">
+
+        <i class="fa-solid fa-music"></i>
+
+        MUSIC
+
+      </span>
+
+      <span *ngIf="audio.genre" class="gaza-audio-card__genre">
+        {{ audio.genre }}
+      </span>
+
+    </div>
+
+
+    <!-- TITLE -->
+
+    <h3 class="gaza-audio-card__title" [title]="audio.title">
+      {{ audio.title }}
+    </h3>
+
+
+    <!-- ARTIST -->
+
+    <p class="gaza-audio-card__artist" [title]="audio.artist">
+      {{ audio.artist }}
+    </p>
+
+
+    <!-- FOOTER -->
+
+    <div class="gaza-audio-card__footer">
+
+      <span class="gaza-audio-card__duration">
+
+        <i class="fa-regular fa-clock"></i>
+
+        {{
+        audio.duration
+        ? (audio.duration | number:'1.0-0') + ' sec'
+        : '--:--'
+        }}
+
+      </span>
+
+
+      <button type="button" class="gaza-audio-card__favourite" [class.active]="audio.isFavourite" [attr.aria-label]="
+          audio.isFavourite
+            ? 'Remove from favourites'
+            : 'Add to favourites'
+        " (click)="toggleFavourite($event)">
+
+        <i [class]="
+            audio.isFavourite
+              ? 'fa-solid fa-heart'
+              : 'fa-regular fa-heart'
+          "></i>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</article>

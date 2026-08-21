@@ -1,0 +1,412 @@
+<!-- ============================================================
+     GAZA STREAM — GLOBAL MEDIA PLAYER
+============================================================ -->
+
+<div
+  class="gaza-player"
+  [class.gaza-player--video]="isVideo"
+  *ngIf="currentMedia"
+>
+
+
+  <!-- ==========================================================
+       FLOATING VIDEO PLAYER
+  =========================================================== -->
+
+  <div
+    class="gaza-player__video"
+    *ngIf="isVideo"
+  >
+
+    <!-- ========================================================
+         VIDEO CLOSE BUTTON
+    ========================================================= -->
+
+    <button
+      type="button"
+      class="gaza-player__video-close"
+      aria-label="Close video"
+      title="Close video"
+      (click)="closeVideo()"
+    >
+
+      <i class="fa-solid fa-xmark"></i>
+
+    </button>
+
+
+    <!-- ========================================================
+         YOUTUBE
+    ========================================================= -->
+
+    <iframe
+      *ngIf="youtubeEmbedUrl"
+      class="gaza-player__youtube"
+      [src]="youtubeEmbedUrl"
+      title="Gaza Stream YouTube Video"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+    ></iframe>
+
+
+    <!-- ========================================================
+         VIDEO FALLBACK
+    ========================================================= -->
+
+    <div
+      class="gaza-player__video-fallback"
+      *ngIf="!youtubeEmbedUrl"
+    >
+
+      <i class="fa-solid fa-video-slash"></i>
+
+      <span>
+        Video unavailable
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================================
+       AUDIO / RADIO MINI PLAYER
+
+       Completely hidden when isVideo === true
+  =========================================================== -->
+
+  <ng-container *ngIf="!isVideo">
+
+
+    <!-- ========================================================
+         LEFT — MEDIA INFORMATION
+    ========================================================= -->
+
+    <div class="gaza-player__main">
+
+
+      <!-- ======================================================
+           ARTWORK
+      ======================================================= -->
+
+      <div class="gaza-player__cover">
+
+        <img
+          *ngIf="currentMedia.artwork"
+          [src]="currentMedia.artwork"
+          [alt]="currentMedia.title"
+        />
+
+
+        <!-- ARTWORK FALLBACK -->
+
+        <div
+          class="gaza-player__cover-fallback"
+          *ngIf="!currentMedia.artwork"
+        >
+
+          <i
+            class="fa-solid"
+            [ngClass]="currentMedia.mediaIcon"
+          ></i>
+
+        </div>
+
+
+        <!-- PLAYING INDICATOR -->
+
+        <span
+          class="gaza-player__live-indicator"
+          *ngIf="isPlaying"
+        ></span>
+
+      </div>
+
+
+      <!-- ======================================================
+           INFORMATION
+      ======================================================= -->
+
+      <div class="gaza-player__info">
+
+        <div
+          class="gaza-player__title"
+          [title]="currentMedia.title"
+        >
+          {{ currentMedia.title }}
+        </div>
+
+
+        <div
+          class="gaza-player__artist"
+          [title]="currentMedia.artist"
+        >
+          {{ currentMedia.artist }}
+        </div>
+
+      </div>
+
+
+      <!-- ======================================================
+           FAVOURITE
+      ======================================================= -->
+
+      <button
+        type="button"
+        class="gaza-player__favourite"
+        aria-label="Favourite"
+        title="Favourite"
+      >
+
+        <i class="fa-regular fa-heart"></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- ========================================================
+         CENTER — PLAYBACK CONTROLS
+    ========================================================= -->
+
+    <div class="gaza-player__center">
+
+
+      <!-- ======================================================
+           CONTROLS
+      ======================================================= -->
+
+      <div class="gaza-player__controls">
+
+
+        <!-- SHUFFLE -->
+
+        <button
+          type="button"
+          class="gaza-player__control"
+          aria-label="Shuffle"
+          title="Shuffle"
+        >
+
+          <i class="fa-solid fa-shuffle"></i>
+
+        </button>
+
+
+        <!-- PREVIOUS / RESTART -->
+
+        <button
+          type="button"
+          class="gaza-player__control"
+          aria-label="Restart"
+          title="Restart"
+          (click)="playerService.seekToPercentage(0)"
+        >
+
+          <i class="fa-solid fa-backward-step"></i>
+
+        </button>
+
+
+        <!-- PLAY / PAUSE -->
+
+        <button
+          type="button"
+          class="gaza-player__play"
+          aria-label="Play or pause"
+          title="Play or pause"
+          (click)="togglePlay()"
+        >
+
+          <i
+            class="fa-solid"
+            [ngClass]="{
+              'fa-play': !isPlaying,
+              'fa-pause': isPlaying
+            }"
+          ></i>
+
+        </button>
+
+
+        <!-- NEXT -->
+
+        <button
+          type="button"
+          class="gaza-player__control"
+          aria-label="Next"
+          title="Next"
+          disabled
+        >
+
+          <i class="fa-solid fa-forward-step"></i>
+
+        </button>
+
+
+        <!-- REPEAT -->
+
+        <button
+          type="button"
+          class="gaza-player__control"
+          aria-label="Repeat"
+          title="Repeat"
+        >
+
+          <i class="fa-solid fa-repeat"></i>
+
+        </button>
+
+      </div>
+
+
+      <!-- ======================================================
+           DESKTOP PROGRESS
+      ======================================================= -->
+
+      <div class="gaza-player__progress">
+
+        <span>
+          {{ formatTime(currentTime) }}
+        </span>
+
+
+        <input
+          type="range"
+          class="gaza-player__progress-range"
+          min="0"
+          max="100"
+          step="0.1"
+          [value]="progress"
+          (input)="seek($event)"
+          aria-label="Media progress"
+        />
+
+
+        <span>
+          {{ formatTime(duration) }}
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         RIGHT — PLAYER OPTIONS
+    ========================================================= -->
+
+    <div class="gaza-player__right">
+
+
+      <!-- QUEUE -->
+
+      <button
+        type="button"
+        class="gaza-player__right-button"
+        aria-label="Queue"
+        title="Queue"
+      >
+
+        <i class="fa-solid fa-list"></i>
+
+      </button>
+
+
+      <!-- MUTE -->
+
+      <button
+        type="button"
+        class="gaza-player__right-button"
+        aria-label="Mute"
+        title="Mute"
+        (click)="toggleMute()"
+      >
+
+        <i
+          class="fa-solid"
+          [ngClass]="{
+
+            'fa-volume-high':
+              !isMuted &&
+              volume > 0.5,
+
+            'fa-volume-low':
+              !isMuted &&
+              volume > 0 &&
+              volume <= 0.5,
+
+            'fa-volume-xmark':
+              isMuted ||
+              volume === 0
+
+          }"
+        ></i>
+
+      </button>
+
+
+      <!-- VOLUME -->
+
+      <input
+        type="range"
+        class="gaza-player__volume"
+        min="0"
+        max="1"
+        step="0.01"
+        [value]="volume"
+        (input)="changeVolume($event)"
+        aria-label="Volume"
+      />
+
+
+      <!-- CLOSE PLAYER -->
+
+      <button
+        type="button"
+        class="gaza-player__right-button"
+        aria-label="Close player"
+        title="Close player"
+        (click)="close()"
+      >
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- ========================================================
+         MOBILE PROGRESS
+    ========================================================= -->
+
+    <div class="gaza-player__mobile-progress">
+
+      <span>
+        {{ formatTime(currentTime) }}
+      </span>
+
+
+      <input
+        type="range"
+        class="gaza-player__progress-range"
+        min="0"
+        max="100"
+        step="0.1"
+        [value]="progress"
+        (input)="seek($event)"
+        aria-label="Media progress"
+      />
+
+
+      <span>
+        {{ formatTime(duration) }}
+      </span>
+
+    </div>
+
+  </ng-container>
+
+</div>

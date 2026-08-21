@@ -1,0 +1,26 @@
+<article class="gaza-genre-card" [attr.aria-label]="'View ' + genre.name + ' tracks'" (click)="selectGenre()"
+  (keydown.enter)="selectGenre()" (keydown.space)="selectGenre()" tabindex="0" role="button">
+
+  <div class="gaza-genre-artwork">
+
+    <img [src]="genre.artwork" [alt]="genre.name" loading="lazy" />
+
+  </div>
+
+  <div class="gaza-genre-overlay"></div>
+
+  <div class="gaza-genre-glow"></div>
+
+  <div class="gaza-genre-content">
+
+    <h3 class="gaza-genre-title">
+      {{ genre.name }}
+    </h3>
+
+    <span class="gaza-genre-count">
+      {{ genre.trackCount || 0 | number }} tracks
+    </span>
+
+  </div>
+
+</article>

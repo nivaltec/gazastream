@@ -1,0 +1,1840 @@
+/* ============================================================
+   GAZA STREAM
+   PROFILE PAGE
+   ============================================================ */
+
+.gaza-profile-page {
+  min-width: 0;
+  min-height: 100%;
+
+  padding-bottom: 60px;
+
+  color: var(--text-primary);
+
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   CONTAINER
+   ============================================================ */
+
+.gaza-profile-container {
+  width: min(
+    1100px,
+    calc(100% - 48px)
+  );
+
+  margin-inline: auto;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.gaza-profile-hero {
+  position: relative;
+
+  min-height: 240px;
+
+  display: flex;
+  align-items: flex-end;
+
+  margin-bottom: 18px;
+
+  padding: 38px 40px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .07);
+
+  border-radius:
+    0
+    0
+    24px
+    24px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108, 36, 255, .30),
+      rgba(8, 207, 255, .10) 55%,
+      rgba(255, 255, 255, .025)
+    );
+
+  box-shadow:
+    0 20px 60px
+    rgba(0, 0, 0, .18);
+}
+
+
+/* ============================================================
+   HERO GLOW
+   ============================================================ */
+
+.gaza-profile-hero__glow {
+  position: absolute;
+
+  width: 360px;
+  height: 360px;
+
+  right: -120px;
+  top: -180px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(108, 36, 255, .18);
+
+  filter: blur(10px);
+
+  pointer-events: none;
+}
+
+
+.gaza-profile-hero::after {
+  content: "";
+
+  position: absolute;
+
+  width: 220px;
+  height: 220px;
+
+  right: 160px;
+  bottom: -170px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(8, 207, 255, .09);
+
+  filter: blur(5px);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+
+.gaza-profile-hero__content {
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 650px;
+}
+
+
+.gaza-profile-eyebrow {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 7px;
+
+  padding: 7px 11px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .10);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, .055);
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.gaza-profile-eyebrow i {
+  font-size: 9px;
+}
+
+
+.gaza-profile-hero h1 {
+  margin:
+    15px
+    0
+    7px;
+
+  color: #fff;
+
+  font-size:
+    clamp(30px, 4vw, 44px);
+
+  font-weight: 800;
+
+  line-height: 1.05;
+
+  letter-spacing: -.035em;
+}
+
+
+.gaza-profile-hero p {
+  margin: 0;
+
+  max-width: 560px;
+
+  color:
+    rgba(255, 255, 255, .60);
+
+  font-size: 13px;
+
+  line-height: 1.65;
+}
+
+
+/* ============================================================
+   PROFILE IDENTITY
+   ============================================================ */
+
+.gaza-profile-identity {
+  display: flex;
+  align-items: center;
+
+  gap: 17px;
+
+  min-width: 0;
+
+  margin-bottom: 18px;
+
+  padding: 17px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .065);
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, .025);
+
+  box-shadow:
+    0 12px 35px
+    rgba(0, 0, 0, .12);
+}
+
+
+/* ============================================================
+   PROFILE AVATAR
+   ============================================================ */
+
+.gaza-profile-avatar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  flex: 0 0 70px;
+
+  padding: 0;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .13);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--gaza-gradient)
+    );
+
+  color: #fff;
+
+  font-size: 20px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 10px 25px
+    rgba(108, 36, 255, .20);
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+
+/* ============================================================
+   AVATAR IMAGE
+   ============================================================ */
+
+.gaza-profile-avatar img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: inherit;
+}
+
+
+/* ============================================================
+   AVATAR ICON
+   ============================================================ */
+
+.gaza-profile-avatar > i {
+  font-size: 20px;
+
+  color: rgba(255, 255, 255, .9);
+}
+
+
+/* ============================================================
+   AVATAR HOVER
+   ============================================================ */
+
+.gaza-profile-avatar:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(8, 207, 255, .45);
+
+  box-shadow:
+    0 14px 35px
+    rgba(108, 36, 255, .30);
+}
+
+
+/* ============================================================
+   AVATAR OVERLAY
+   ============================================================ */
+
+.gaza-profile-avatar__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  background:
+    rgba(0, 0, 0, .58);
+
+  color: #fff;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  opacity: 0;
+
+  transition:
+    opacity .2s ease;
+
+  backdrop-filter: blur(3px);
+}
+
+
+.gaza-profile-avatar:hover
+.gaza-profile-avatar__overlay {
+  opacity: 1;
+}
+
+
+.gaza-profile-avatar__overlay i {
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   PROFILE IMAGE INPUT
+   ============================================================ */
+
+.gaza-profile-image-input {
+  display: none;
+}
+
+
+/* ============================================================
+   IDENTITY CONTENT
+   ============================================================ */
+
+.gaza-profile-identity__info {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.gaza-profile-name-row {
+  display: flex;
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+
+.gaza-profile-name-row h2 {
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size: 17px;
+  font-weight: 750;
+
+  line-height: 1.2;
+}
+
+
+.gaza-profile-identity__info > p {
+  margin:
+    5px
+    0
+    6px;
+
+  overflow: hidden;
+
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.gaza-profile-member {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  color:
+    rgba(255, 255, 255, .38);
+
+  font-size: 9px;
+}
+
+
+.gaza-profile-member i {
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   VERIFIED
+   ============================================================ */
+
+.gaza-profile-verified {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 4px;
+
+  padding:
+    4px
+    7px;
+
+  border-radius: 6px;
+
+  background:
+    rgba(34, 197, 94, .08);
+
+  color:
+    #5ee58a;
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+
+.gaza-profile-verified i {
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   PROFILE ACTIONS
+   ============================================================ */
+
+.gaza-profile-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  flex: 0 0 auto;
+}
+
+
+/* ============================================================
+   EDIT / SAVE / CANCEL BUTTON
+   ============================================================ */
+
+.gaza-profile-edit-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 36px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, .045);
+
+  color:
+    var(--text-secondary);
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform .18s ease,
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    box-shadow .18s ease;
+}
+
+
+.gaza-profile-edit-button:hover {
+  color: #fff;
+
+  border-color:
+    rgba(255, 255, 255, .15);
+
+  background:
+    rgba(255, 255, 255, .09);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.gaza-profile-edit-button:active {
+  transform:
+    translateY(0);
+}
+
+
+.gaza-profile-edit-button i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   PRIMARY SAVE BUTTON
+   ============================================================ */
+
+.gaza-profile-edit-button--primary {
+  border-color:
+    rgba(108, 36, 255, .45);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108, 36, 255, .85),
+      rgba(8, 207, 255, .65)
+    );
+
+  color: #fff;
+
+  box-shadow:
+    0 8px 22px
+    rgba(108, 36, 255, .20);
+}
+
+
+.gaza-profile-edit-button--primary:hover {
+  border-color:
+    rgba(8, 207, 255, .55);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(108, 36, 255, .95),
+      rgba(8, 207, 255, .78)
+    );
+
+  box-shadow:
+    0 10px 28px
+    rgba(108, 207, 255, .18);
+}
+
+
+/* ============================================================
+   CANCEL BUTTON
+   ============================================================ */
+
+.gaza-profile-edit-button--cancel {
+  color:
+    var(--text-muted);
+
+  background:
+    rgba(255, 255, 255, .025);
+}
+
+
+.gaza-profile-edit-button--cancel:hover {
+  color:
+    #fff;
+
+  background:
+    rgba(255, 255, 255, .07);
+}
+
+
+/* ============================================================
+   CONTENT CARD
+   ============================================================ */
+
+.gaza-profile-card {
+  margin-bottom: 14px;
+
+  padding: 20px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .06);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, .022);
+
+  box-shadow:
+    0 10px 30px
+    rgba(0, 0, 0, .08);
+
+  transition:
+    border-color .2s ease,
+    background .2s ease;
+}
+
+
+/* ============================================================
+   EDITING CARD
+   ============================================================ */
+
+.gaza-profile-card--editing {
+  border-color:
+    rgba(108, 36, 255, .22);
+
+  background:
+    rgba(108, 36, 255, .025);
+}
+
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+
+.gaza-profile-card__header {
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+
+  margin-bottom: 20px;
+}
+
+
+.gaza-profile-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  border-radius: 9px;
+
+  background:
+    rgba(108, 36, 255, .10);
+
+  color:
+    #b999ff;
+
+  font-size: 11px;
+}
+
+
+.gaza-profile-card__header h3 {
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size: 12px;
+
+  font-weight: 750;
+}
+
+
+.gaza-profile-card__header p {
+  margin:
+    3px
+    0
+    0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   SENSITIVE BADGE
+   ============================================================ */
+
+.gaza-sensitive-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 5px;
+
+  margin-left: auto;
+
+  padding:
+    5px
+    8px;
+
+  border-radius: 7px;
+
+  background:
+    rgba(8, 207, 255, .06);
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+
+  font-weight: 700;
+}
+
+
+.gaza-sensitive-badge i {
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   FORM GRID
+   ============================================================ */
+
+.gaza-profile-form-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(0, 1fr)
+    );
+
+  gap: 14px;
+}
+
+
+/* ============================================================
+   FIELD
+   ============================================================ */
+
+.gaza-profile-field {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+
+  gap: 6px;
+}
+
+
+.gaza-profile-field--full {
+  grid-column: 1 / -1;
+}
+
+
+.gaza-profile-field > span {
+  color:
+    rgba(255, 255, 255, .45);
+
+  font-size: 9px;
+
+  font-weight: 650;
+}
+
+
+/* ============================================================
+   INPUT WRAPPER
+   ============================================================ */
+
+.gaza-profile-input {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  height: 42px;
+
+  padding:
+    0
+    11px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .065);
+
+  border-radius: 10px;
+
+  background:
+    rgba(0, 0, 0, .13);
+
+  transition:
+    border-color .18s ease,
+    background .18s ease,
+    box-shadow .18s ease,
+    opacity .18s ease;
+}
+
+
+/* ============================================================
+   READ-ONLY STATE
+   ============================================================ */
+
+.gaza-profile-input--readonly {
+  background:
+    rgba(255, 255, 255, .018);
+
+  border-color:
+    rgba(255, 255, 255, .045);
+}
+
+
+.gaza-profile-input--readonly:hover {
+  border-color:
+    rgba(255, 255, 255, .07);
+}
+
+
+/* ============================================================
+   READ-ONLY LOCK ICON
+   ============================================================ */
+
+.gaza-profile-input--readonly::after {
+  content: "\f023";
+
+  margin-left: auto;
+
+  color:
+    rgba(255, 255, 255, .18);
+
+  font-family:
+    "Font Awesome 6 Free";
+
+  font-size: 8px;
+
+  font-weight: 900;
+}
+
+
+/* ============================================================
+   EDITABLE INPUT
+   ============================================================ */
+
+.gaza-profile-input:not(.gaza-profile-input--readonly):hover {
+  border-color:
+    rgba(255, 255, 255, .12);
+}
+
+
+.gaza-profile-input:not(.gaza-profile-input--readonly):focus-within {
+  border-color:
+    rgba(108, 36, 255, .55);
+
+  background:
+    rgba(255, 255, 255, .025);
+
+  box-shadow:
+    0 0 0 3px
+    rgba(108, 36, 255, .07);
+}
+
+
+/* ============================================================
+   INPUT ICON
+   ============================================================ */
+
+.gaza-profile-input > i {
+  flex: 0 0 auto;
+
+  color:
+    rgba(255, 255, 255, .28);
+
+  font-size: 10px;
+}
+
+
+.gaza-profile-input:focus-within > i {
+  color:
+    var(--gaza-cyan);
+}
+
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+.gaza-profile-input input {
+  width: 100%;
+  min-width: 0;
+
+  height: 100%;
+
+  padding: 0;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+
+  color:
+    var(--text-primary);
+
+  font-family: inherit;
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   READONLY INPUT
+   ============================================================ */
+
+.gaza-profile-input input:read-only {
+  cursor: default;
+
+  color:
+    rgba(255, 255, 255, .58);
+}
+
+
+.gaza-profile-input input:not(:read-only) {
+  cursor: text;
+}
+
+
+/* ============================================================
+   PLACEHOLDER
+   ============================================================ */
+
+.gaza-profile-input input::placeholder {
+  color:
+    rgba(255, 255, 255, .28);
+}
+
+
+/* ============================================================
+   DATE INPUT
+   ============================================================ */
+
+.gaza-profile-input input[type="date"] {
+  color-scheme: dark;
+}
+
+
+/* ============================================================
+   SECURITY
+   ============================================================ */
+
+.gaza-security-card {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  margin-top: 18px;
+
+  padding: 19px;
+
+  border:
+    1px solid
+    rgba(8, 207, 255, .08);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(8, 207, 255, .035),
+      rgba(108, 36, 255, .045)
+    );
+}
+
+
+/* ============================================================
+   SECURITY ICON
+   ============================================================ */
+
+.gaza-security-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+
+  flex: 0 0 40px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(8, 207, 255, .08);
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   SECURITY CONTENT
+   ============================================================ */
+
+.gaza-security-card__content {
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.gaza-security-card__eyebrow {
+  color:
+    var(--gaza-cyan);
+
+  font-size: 7px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+}
+
+
+.gaza-security-card h3 {
+  margin:
+    4px
+    0;
+
+  color:
+    var(--text-primary);
+
+  font-size: 12px;
+
+  font-weight: 750;
+}
+
+
+.gaza-security-card p {
+  max-width: 580px;
+
+  margin: 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   SECURITY BUTTON
+   ============================================================ */
+
+.gaza-security-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  flex: 0 0 auto;
+
+  height: 35px;
+
+  padding:
+    0
+    13px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, .05);
+
+  color:
+    var(--text-secondary);
+
+  font-family: inherit;
+
+  font-size: 9px;
+
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    color .18s ease,
+    border-color .18s ease,
+    transform .18s ease;
+}
+
+
+.gaza-security-button:hover {
+  color: #fff;
+
+  border-color:
+    rgba(8, 207, 255, .18);
+
+  background:
+    rgba(8, 207, 255, .07);
+
+  transform:
+    translateY(-1px);
+}
+
+
+.gaza-security-button:active {
+  transform:
+    translateY(0);
+}
+
+
+.gaza-security-button i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .gaza-profile-container {
+    width:
+      calc(100% - 32px);
+  }
+
+
+  .gaza-profile-hero {
+    padding: 32px;
+  }
+
+
+  .gaza-profile-avatar {
+    width: 64px;
+    height: 64px;
+
+    flex-basis: 64px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 650px) {
+
+  .gaza-profile-container {
+    width:
+      calc(100% - 20px);
+  }
+
+
+  .gaza-profile-hero {
+    min-height: 210px;
+
+    padding:
+      27px
+      21px;
+  }
+
+
+  .gaza-profile-identity {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+
+  .gaza-profile-identity__info {
+    min-width: calc(100% - 90px);
+  }
+
+
+  .gaza-profile-actions {
+    width: 100%;
+  }
+
+
+  .gaza-profile-actions
+  .gaza-profile-edit-button {
+    flex: 1;
+  }
+
+
+  .gaza-profile-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+
+  .gaza-profile-field--full {
+    grid-column: auto;
+  }
+
+
+  .gaza-security-card {
+    align-items: flex-start;
+
+    flex-wrap: wrap;
+  }
+
+
+  .gaza-security-button {
+    width: 100%;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 400px) {
+
+  .gaza-profile-container {
+    width:
+      calc(100% - 14px);
+  }
+
+
+  .gaza-profile-hero {
+    min-height: 190px;
+
+    padding:
+      23px
+      16px;
+
+    border-radius:
+      0
+      0
+      18px
+      18px;
+  }
+
+
+  .gaza-profile-hero h1 {
+    font-size: 27px;
+  }
+
+
+  .gaza-profile-hero p {
+    font-size: 11px;
+  }
+
+
+  .gaza-profile-identity {
+    gap: 12px;
+
+    padding: 13px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-profile-avatar {
+    width: 53px;
+    height: 53px;
+
+    flex-basis: 53px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-profile-avatar__overlay {
+    font-size: 7px;
+  }
+
+
+  .gaza-profile-avatar__overlay i {
+    font-size: 8px;
+  }
+
+
+  .gaza-profile-name-row h2 {
+    font-size: 14px;
+  }
+
+
+  .gaza-profile-card {
+    padding: 15px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-profile-card__header {
+    margin-bottom: 15px;
+  }
+
+
+  .gaza-profile-form-grid {
+    gap: 10px;
+  }
+
+
+  .gaza-profile-input {
+    height: 40px;
+  }
+
+
+  .gaza-profile-edit-button {
+    min-height: 34px;
+
+    font-size: 8px;
+  }
+
+
+  .gaza-security-card {
+    padding: 15px;
+
+    border-radius: 14px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 340px) {
+
+  .gaza-profile-hero h1 {
+    font-size: 24px;
+  }
+
+
+  .gaza-profile-eyebrow {
+    font-size: 8px;
+  }
+
+
+  .gaza-profile-avatar {
+    width: 48px;
+    height: 48px;
+
+    flex-basis: 48px;
+  }
+
+
+  .gaza-profile-name-row h2 {
+    font-size: 13px;
+  }
+
+
+  .gaza-profile-card__header h3 {
+    font-size: 11px;
+  }
+
+
+  .gaza-profile-input input {
+    font-size: 9px;
+  }
+
+
+  .gaza-profile-edit-button {
+    padding-inline: 10px;
+
+    font-size: 8px;
+  }
+
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) {
+
+  .gaza-profile-avatar:hover {
+    transform: none;
+  }
+
+
+  .gaza-profile-avatar:hover
+  .gaza-profile-avatar__overlay {
+    opacity: 0;
+  }
+
+
+  .gaza-profile-edit-button:hover,
+  .gaza-security-button:hover {
+    transform: none;
+  }
+
+}
+
+/* ============================================================
+   PROFILE ACTIONS
+   ============================================================ */
+
+.gaza-profile-actions {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+
+  margin-left: auto;
+
+  flex: 0 0 auto;
+}
+
+
+/* ============================================================
+   PROFILE AVATAR
+   ============================================================ */
+
+.gaza-profile-avatar {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 62px;
+  height: 62px;
+
+  flex: 0 0 62px;
+
+  padding: 0;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, .13);
+
+  border-radius: 16px;
+
+  background:
+    linear-gradient(
+      145deg,
+      var(--gaza-gradient)
+    );
+
+  color: #fff;
+
+  font-size: 19px;
+
+  cursor: default;
+
+  box-shadow:
+    0 10px 25px
+    rgba(108, 36, 255, .20);
+
+  transition:
+    transform .2s ease,
+    border-color .2s ease,
+    box-shadow .2s ease;
+}
+
+
+/*
+   Locked state
+*/
+
+.gaza-profile-avatar:disabled {
+  opacity: 1;
+
+  cursor: default;
+}
+
+
+/*
+   Editable state
+*/
+
+.gaza-profile-avatar--editable {
+  cursor: pointer;
+
+  border-color:
+    rgba(8, 207, 255, .35);
+
+  box-shadow:
+    0 10px 30px
+    rgba(8, 207, 255, .14);
+}
+
+
+.gaza-profile-avatar--editable:hover {
+  transform: translateY(-2px);
+
+  border-color:
+    rgba(8, 207, 255, .65);
+
+  box-shadow:
+    0 14px 35px
+    rgba(8, 207, 255, .20);
+}
+
+
+/* ============================================================
+   PROFILE IMAGE
+   ============================================================ */
+
+.gaza-profile-avatar__image {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+}
+
+
+/* ============================================================
+   IMAGE OVERLAY
+   Only exists in edit mode
+   ============================================================ */
+
+.gaza-profile-avatar__overlay {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 3px;
+
+  background:
+    rgba(0, 0, 0, .58);
+
+  color: #fff;
+
+  opacity: 0;
+
+  transition:
+    opacity .2s ease;
+}
+
+
+.gaza-profile-avatar--editable:hover
+.gaza-profile-avatar__overlay {
+  opacity: 1;
+}
+
+
+.gaza-profile-avatar__overlay i {
+  font-size: 14px;
+}
+
+
+.gaza-profile-avatar__overlay small {
+  font-size: 7px;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: .08em;
+}
+
+
+/* ============================================================
+   HIDDEN FILE INPUT
+   ============================================================ */
+
+.gaza-profile-image-input {
+  display: none;
+}
+
+
+/* ============================================================
+   SAVE BUTTON
+   ============================================================ */
+
+.gaza-profile-save-button,
+.gaza-profile-cancel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 34px;
+
+  padding: 0 12px;
+
+  border-radius: 9px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background .18s ease,
+    border-color .18s ease,
+    color .18s ease,
+    transform .18s ease;
+}
+
+
+.gaza-profile-save-button {
+  border:
+    1px solid
+    rgba(8, 207, 255, .22);
+
+  background:
+    rgba(8, 207, 255, .08);
+
+  color:
+    var(--gaza-cyan);
+}
+
+
+.gaza-profile-save-button:hover {
+  transform: translateY(-1px);
+
+  background:
+    rgba(8, 207, 255, .14);
+
+  border-color:
+    rgba(8, 207, 255, .40);
+
+  color: #fff;
+}
+
+
+.gaza-profile-cancel-button {
+  border:
+    1px solid
+    rgba(255, 255, 255, .08);
+
+  background:
+    rgba(255, 255, 255, .035);
+
+  color:
+    var(--text-muted);
+}
+
+
+.gaza-profile-cancel-button:hover {
+  background:
+    rgba(255, 255, 255, .08);
+
+  color: #fff;
+
+  border-color:
+    rgba(255, 255, 255, .14);
+}
+
+
+/* ============================================================
+   EDIT NOTICE
+   ============================================================ */
+
+.gaza-profile-edit-notice {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  margin:
+    -6px
+    0
+    16px;
+
+  padding:
+    9px
+    12px;
+
+  border:
+    1px solid
+    rgba(8, 207, 255, .10);
+
+  border-radius: 9px;
+
+  background:
+    rgba(8, 207, 255, .035);
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+}
+
+
+.gaza-profile-edit-notice i {
+  color:
+    var(--gaza-cyan);
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   LOCKED INPUTS
+   ============================================================ */
+
+.gaza-profile-input:has(input:disabled) {
+  background:
+    rgba(255, 255, 255, .018);
+
+  border-color:
+    rgba(255, 255, 255, .045);
+
+  cursor: default;
+}
+
+
+.gaza-profile-input input:disabled {
+  color:
+    var(--text-secondary);
+
+  cursor: default;
+
+  opacity: .78;
+}
+
+
+.gaza-profile-input:has(input:disabled) > i {
+  color:
+    rgba(255, 255, 255, .20);
+}
+
+
+/* ============================================================
+   EDIT MODE INPUTS
+   ============================================================ */
+
+.gaza-profile-input:not(:has(input:disabled)) {
+  border-color:
+    rgba(255, 255, 255, .09);
+}
+
+
+/* ============================================================
+   MOBILE ACTIONS
+   ============================================================ */
+
+@media (max-width: 650px) {
+
+  .gaza-profile-actions {
+    width: 100%;
+
+    margin-left: 0;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .gaza-profile-actions
+  button {
+    width: 100%;
+  }
+
+}
+
+
+@media (max-width: 400px) {
+
+  .gaza-profile-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .gaza-profile-avatar {
+    width: 53px;
+    height: 53px;
+
+    flex-basis: 53px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-profile-page *,
+  .gaza-profile-page *::before,
+  .gaza-profile-page *::after {
+    transition: none !important;
+
+    animation: none !important;
+  }
+
+}

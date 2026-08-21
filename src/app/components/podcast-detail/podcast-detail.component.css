@@ -1,0 +1,1742 @@
+/* ============================================================
+   GAZASTREAM
+   PODCAST DETAIL
+============================================================ */
+
+.gaza-podcast-detail {
+
+  --podcast-bg: #07080c;
+  --podcast-surface: #101217;
+
+  --podcast-white: #ffffff;
+  --podcast-soft: rgba(255, 255, 255, 0.68);
+  --podcast-muted: rgba(255, 255, 255, 0.42);
+
+  --podcast-border: rgba(255, 255, 255, 0.075);
+
+  --podcast-cyan: var(--gaza-cyan, #08cfff);
+  --podcast-purple: #7138ff;
+
+  min-width: 0;
+
+  color: var(--podcast-white);
+}
+
+
+
+/* ============================================================
+   HERO
+============================================================ */
+
+.gaza-podcast-hero {
+
+  position: relative;
+
+  min-height: 470px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  background:
+    #090b11;
+}
+
+
+
+/* ============================================================
+   HERO BACKGROUND
+============================================================ */
+
+.gaza-podcast-hero__background {
+
+  position: absolute;
+
+  inset: -20%;
+
+  z-index: -3;
+
+  background:
+
+    radial-gradient(ellipse at 15% 55%,
+      rgba(113, 56, 255, 0.38),
+      transparent 32%),
+
+    radial-gradient(ellipse at 65% 10%,
+      rgba(8, 207, 255, 0.16),
+      transparent 28%),
+
+    radial-gradient(ellipse at 85% 75%,
+      rgba(113, 56, 255, 0.14),
+      transparent 30%);
+
+  filter: blur(65px);
+
+  transform: scale(1.15);
+
+  pointer-events: none;
+}
+
+
+
+/* ============================================================
+   NOISE
+============================================================ */
+
+.gaza-podcast-hero__noise {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.025;
+
+  background-image:
+
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"
+    );
+
+  pointer-events: none;
+}
+
+
+
+/* ============================================================
+   HERO FADE
+============================================================ */
+
+.gaza-podcast-hero__fade {
+
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  height: 170px;
+
+  z-index: -1;
+
+  background:
+
+    linear-gradient(to bottom,
+      transparent,
+      var(--podcast-bg));
+
+  pointer-events: none;
+}
+
+
+
+/* ============================================================
+   HERO INNER
+============================================================ */
+
+.gaza-podcast-hero__inner {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 55px;
+
+  width:
+    min(1180px,
+      calc(100% - 60px));
+
+  min-height: 470px;
+
+  margin: 0 auto;
+
+  padding:
+    60px 0;
+}
+
+
+
+/* ============================================================
+   ARTWORK
+============================================================ */
+
+.gaza-podcast-hero__artwork {
+
+  position: relative;
+
+  flex:
+    0 0 285px;
+
+  width: 285px;
+  height: 285px;
+}
+
+
+
+/* ============================================================
+   ARTWORK GLOW
+============================================================ */
+
+.gaza-podcast-hero__artwork-glow {
+
+  position: absolute;
+
+  inset: 20px;
+
+  background:
+
+    linear-gradient(135deg,
+      var(--podcast-purple),
+      var(--podcast-cyan));
+
+  border-radius: 30px;
+
+  filter: blur(40px);
+
+  opacity: 0.35;
+
+  pointer-events: none;
+}
+
+
+
+/* ============================================================
+   ARTWORK FRAME
+============================================================ */
+
+.gaza-podcast-hero__artwork-frame {
+
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+
+  border-radius: 25px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.14);
+
+  background:
+    #15171d;
+
+  box-shadow:
+    0 35px 80px rgba(0, 0, 0, 0.55);
+
+  transform:
+    rotate(-2deg);
+
+  transition:
+    transform .45s ease,
+    box-shadow .45s ease;
+}
+
+
+.gaza-podcast-hero__artwork:hover .gaza-podcast-hero__artwork-frame {
+
+  transform:
+    rotate(0deg) scale(1.025);
+
+  box-shadow:
+    0 45px 100px rgba(0, 0, 0, 0.65);
+}
+
+
+
+/* ============================================================
+   ARTWORK IMAGE
+============================================================ */
+
+.gaza-podcast-hero__artwork-frame img {
+
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+
+/* ============================================================
+   ARTWORK FALLBACK
+============================================================ */
+
+.gaza-podcast-hero__artwork-fallback {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  background:
+
+    radial-gradient(circle at center,
+      #2b2f38,
+      #111318);
+}
+
+
+.gaza-podcast-hero__artwork-fallback i {
+
+  color:
+    rgba(255, 255, 255, 0.2);
+
+  font-size: 5rem;
+}
+
+
+
+/* ============================================================
+   FLOATING ICON
+============================================================ */
+
+.gaza-podcast-hero__floating-icon {
+
+  position: absolute;
+
+  right: -13px;
+  bottom: -13px;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 58px;
+  height: 58px;
+
+  color: #111;
+
+  background: #fff;
+
+  border:
+    5px solid #090b11;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+
+.gaza-podcast-hero__floating-icon i {
+
+  font-size: 17px;
+}
+
+
+
+/* ============================================================
+   HERO CONTENT
+============================================================ */
+
+.gaza-podcast-hero__content {
+
+  flex: 1;
+
+  min-width: 0;
+
+  max-width: 700px;
+}
+
+
+
+/* ============================================================
+   EYEBROW
+============================================================ */
+
+.gaza-podcast-hero__eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  color:
+    var(--podcast-cyan);
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing: .18em;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-podcast-hero__eyebrow-line {
+
+  width: 24px;
+  height: 2px;
+
+  background:
+    var(--podcast-cyan);
+
+  border-radius: 999px;
+}
+
+
+
+/* ============================================================
+   TITLE
+============================================================ */
+
+.gaza-podcast-hero__content h1 {
+
+  max-width: 720px;
+
+  margin:
+    15px 0 13px;
+
+  color: #fff;
+
+  font-size:
+    clamp(38px,
+      5.2vw,
+      68px);
+
+  font-weight: 850;
+
+  line-height: .98;
+
+  letter-spacing:
+    -.055em;
+}
+
+
+
+/* ============================================================
+   ARTIST
+============================================================ */
+
+.gaza-podcast-hero__artist {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  color:
+    var(--podcast-soft);
+
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+
+.gaza-podcast-hero__artist-icon {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+
+  color:
+    var(--podcast-cyan);
+
+  background:
+    rgba(8, 207, 255, .08);
+
+  border-radius: 50%;
+}
+
+
+.gaza-podcast-hero__artist-icon i {
+
+  font-size: 10px;
+}
+
+
+
+/* ============================================================
+   DESCRIPTION
+============================================================ */
+
+.gaza-podcast-hero__description {
+
+  max-width: 610px;
+
+  margin:
+    19px 0 0;
+
+  color:
+    var(--podcast-muted);
+
+  font-size: 13px;
+
+  line-height: 1.75;
+
+  display:
+    -webkit-box;
+
+  -webkit-box-orient: vertical;
+
+  -webkit-line-clamp: 3;
+
+  overflow: hidden;
+}
+
+
+
+/* ============================================================
+   HERO STATS
+============================================================ */
+
+.gaza-podcast-hero__stats {
+
+  display: flex;
+
+  align-items: center;
+
+  margin-top: 28px;
+}
+
+
+
+/* ============================================================
+   STAT
+============================================================ */
+
+.gaza-podcast-hero__stat {
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 75px;
+}
+
+
+.gaza-podcast-hero__stat strong {
+
+  color: #fff;
+
+  font-size: 21px;
+
+  font-weight: 800;
+
+  line-height: 1;
+}
+
+
+.gaza-podcast-hero__stat span {
+
+  color:
+    var(--podcast-muted);
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+
+/* ============================================================
+   STAT DIVIDER
+============================================================ */
+
+.gaza-podcast-hero__stat-divider {
+
+  width: 1px;
+  height: 32px;
+
+  margin:
+    0 23px;
+
+  background:
+    rgba(255, 255, 255, .1);
+}
+
+
+
+/* ============================================================
+   EPISODES SECTION
+============================================================ */
+
+.gaza-podcast-episodes {
+
+  width:
+    min(1180px,
+      calc(100% - 60px));
+
+  margin: 0 auto;
+
+  padding:
+    45px 0 110px;
+}
+
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.gaza-podcast-episodes__header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 30px;
+}
+
+
+
+/* ============================================================
+   HEADING
+============================================================ */
+
+.gaza-podcast-episodes__heading h2 {
+
+  margin:
+    9px 0 5px;
+
+  color: #fff;
+
+  font-size: 30px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing:
+    -.035em;
+}
+
+
+.gaza-podcast-episodes__heading p {
+
+  margin: 0;
+
+  color:
+    var(--podcast-muted);
+
+  font-size: 11px;
+}
+
+
+.gaza-podcast-episodes__heading p strong {
+
+  color:
+    var(--podcast-soft);
+
+  font-weight: 600;
+}
+
+
+
+/* ============================================================
+   SECTION EYEBROW
+============================================================ */
+
+.gaza-section-eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  color:
+    var(--podcast-cyan);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .14em;
+
+  text-transform: uppercase;
+}
+
+
+
+/* ============================================================
+   FILTERS
+============================================================ */
+
+.gaza-podcast-filters {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 3px;
+
+  padding: 4px;
+
+  background:
+    rgba(255, 255, 255, .035);
+
+  border:
+    1px solid var(--podcast-border);
+
+  border-radius: 14px;
+
+  backdrop-filter:
+    blur(15px);
+
+  -webkit-backdrop-filter:
+    blur(15px);
+}
+
+
+
+/* ============================================================
+   FILTER BUTTON
+============================================================ */
+
+.gaza-podcast-filters button {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  height: 34px;
+
+  padding:
+    0 13px;
+
+  color:
+    var(--podcast-muted);
+
+  background:
+    transparent;
+
+  border: 0;
+
+  border-radius: 10px;
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    color .25s ease,
+    background .25s ease,
+    transform .2s ease;
+}
+
+
+.gaza-podcast-filters button:hover {
+
+  color: #fff;
+
+  background:
+    rgba(255, 255, 255, .05);
+}
+
+
+.gaza-podcast-filters button:active {
+
+  transform:
+    scale(.96);
+}
+
+
+.gaza-podcast-filters button.active {
+
+  color: #fff;
+
+  background:
+
+    linear-gradient(135deg,
+      rgba(113, 56, 255, .9),
+      rgba(8, 207, 255, .6));
+
+  box-shadow:
+    0 6px 18px rgba(113, 56, 255, .18);
+}
+
+
+.gaza-podcast-filters button b {
+
+  color: inherit;
+
+  opacity: .45;
+
+  font-size: 9px;
+
+  font-weight: 700;
+}
+
+
+.gaza-podcast-filters button.active b {
+
+  opacity: .85;
+}
+
+
+
+/* ============================================================
+   MEDIA
+============================================================ */
+
+.gaza-podcast-media {
+
+  width: 100%;
+}
+
+
+
+/* ============================================================
+   ALL — LIST
+============================================================ */
+
+.gaza-podcast-list {
+
+  display: flex;
+
+  flex-direction: column;
+
+  overflow: hidden;
+
+  background:
+    rgba(255, 255, 255, .018);
+
+  border:
+    1px solid rgba(255, 255, 255, .07);
+
+  border-radius: 18px;
+}
+
+
+
+/* ============================================================
+   LIST ITEM
+============================================================ */
+
+.gaza-podcast-list__item {
+
+  display: grid;
+
+  grid-template-columns:
+    45px 42px minmax(0, 1fr) 80px 42px;
+
+  align-items: center;
+
+  gap: 15px;
+
+  min-height: 76px;
+
+  padding:
+    10px 18px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, .055);
+
+  transition:
+    background .2s ease;
+}
+
+
+.gaza-podcast-list__item:last-child {
+
+  border-bottom: 0;
+}
+
+
+.gaza-podcast-list__item:hover {
+
+  background:
+    rgba(255, 255, 255, .035);
+}
+
+
+
+/* ============================================================
+   NUMBER
+============================================================ */
+
+.gaza-podcast-list__number {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color:
+    rgba(255, 255, 255, .25);
+
+  font-size: 10px;
+
+  font-weight: 700;
+
+  font-variant-numeric:
+    tabular-nums;
+}
+
+
+
+/* ============================================================
+   MEDIA TYPE
+============================================================ */
+
+.gaza-podcast-list__type {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 11px;
+
+  font-size: 12px;
+}
+
+
+.gaza-podcast-list__type--audio {
+
+  color:
+    var(--podcast-cyan);
+
+  background:
+    rgba(8, 207, 255, .08);
+}
+
+
+.gaza-podcast-list__type--video {
+
+  color:
+    #9d7aff;
+
+  background:
+    rgba(113, 56, 255, .1);
+}
+
+
+
+/* ============================================================
+   LIST INFORMATION
+============================================================ */
+
+.gaza-podcast-list__info {
+
+  min-width: 0;
+}
+
+
+.gaza-podcast-list__info h3 {
+
+  overflow: hidden;
+
+  margin: 0;
+
+  color:
+    rgba(255, 255, 255, .92);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  line-height: 1.35;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+.gaza-podcast-list__info p {
+
+  overflow: hidden;
+
+  max-width: 650px;
+
+  margin:
+    4px 0 0;
+
+  color:
+    rgba(255, 255, 255, .38);
+
+  font-size: 10px;
+
+  line-height: 1.4;
+
+  text-overflow:
+    ellipsis;
+
+  white-space:
+    nowrap;
+}
+
+
+
+/* ============================================================
+   LIST TYPE
+============================================================ */
+
+.gaza-podcast-list__meta {
+
+  display: flex;
+
+  justify-content: flex-end;
+}
+
+
+.gaza-podcast-list__meta span {
+
+  padding:
+    5px 8px;
+
+  color:
+    rgba(255, 255, 255, .4);
+
+  background:
+    rgba(255, 255, 255, .035);
+
+  border:
+    1px solid rgba(255, 255, 255, .05);
+
+  border-radius: 6px;
+
+  font-size: 8px;
+
+  font-weight: 700;
+
+  letter-spacing: .05em;
+
+  text-transform: uppercase;
+}
+
+
+
+/* ============================================================
+   PLAY BUTTON
+============================================================ */
+
+.gaza-podcast-list__play {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  color: #fff;
+
+  background:
+    rgba(255, 255, 255, .055);
+
+  border:
+    1px solid rgba(255, 255, 255, .07);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    transform .2s ease;
+}
+
+
+.gaza-podcast-list__play:hover {
+
+  color: #fff;
+
+  background:
+
+    linear-gradient(135deg,
+      rgba(113, 56, 255, .9),
+      rgba(8, 207, 255, .7));
+
+  transform:
+    scale(1.08);
+}
+
+
+.gaza-podcast-list__play i {
+
+  margin-left: 2px;
+
+  font-size: 9px;
+}
+
+
+
+/* ============================================================
+   CARD GRID
+============================================================ */
+
+.gaza-podcast-media-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(auto-fill,
+      minmax(200px, 1fr));
+
+  gap: 20px;
+
+  align-items: start;
+}
+
+
+
+/* ============================================================
+   EMPTY STATE
+============================================================ */
+
+.gaza-podcast-empty {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 25px;
+
+  min-height: 250px;
+
+  padding: 35px;
+
+  background:
+
+    radial-gradient(circle at 20% 50%,
+      rgba(8, 207, 255, .04),
+      transparent 35%),
+
+    rgba(255, 255, 255, .015);
+
+  border:
+    1px dashed rgba(255, 255, 255, .09);
+
+  border-radius: 20px;
+}
+
+
+
+/* ============================================================
+   EMPTY ICON
+============================================================ */
+
+.gaza-podcast-empty__visual {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex:
+    0 0 auto;
+
+  width: 65px;
+  height: 65px;
+
+  color:
+    var(--podcast-cyan);
+
+  background:
+    rgba(8, 207, 255, .07);
+
+  border:
+    1px solid rgba(8, 207, 255, .1);
+
+  border-radius: 18px;
+}
+
+
+.gaza-podcast-empty__visual i {
+
+  font-size: 22px;
+}
+
+
+
+/* ============================================================
+   EMPTY CONTENT
+============================================================ */
+
+.gaza-podcast-empty__content span {
+
+  color:
+    var(--podcast-cyan);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: .12em;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-podcast-empty__content h3 {
+
+  margin:
+    5px 0;
+
+  color: #fff;
+
+  font-size: 18px;
+}
+
+
+.gaza-podcast-empty__content p {
+
+  margin: 0;
+
+  color:
+    var(--podcast-muted);
+
+  font-size: 11px;
+}
+
+
+
+/* ============================================================
+   LOADING
+============================================================ */
+
+.gaza-podcast-loading {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 250px;
+
+  gap: 12px;
+
+  color:
+    var(--podcast-muted);
+
+  font-size: 11px;
+}
+
+
+.gaza-podcast-loading__icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 50px;
+  height: 50px;
+
+  color:
+    var(--podcast-cyan);
+
+  background:
+    rgba(8, 207, 255, .07);
+
+  border-radius: 50%;
+
+  animation:
+    gaza-podcast-pulse 1.5s ease-in-out infinite;
+}
+
+
+.gaza-podcast-loading__icon i {
+
+  font-size: 17px;
+}
+
+
+
+/* ============================================================
+   LOADING ANIMATION
+============================================================ */
+
+@keyframes gaza-podcast-pulse {
+
+  0%,
+  100% {
+
+    transform:
+      scale(1);
+
+    opacity:
+      .55;
+  }
+
+  50% {
+
+    transform:
+      scale(1.08);
+
+    opacity:
+      1;
+  }
+
+}
+
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 900px) {
+
+  .gaza-podcast-hero__inner {
+
+    gap: 35px;
+  }
+
+
+  .gaza-podcast-hero__artwork {
+
+    flex-basis: 220px;
+
+    width: 220px;
+    height: 220px;
+  }
+
+
+  .gaza-podcast-hero__content h1 {
+
+    font-size: 46px;
+  }
+
+
+  .gaza-podcast-media-grid {
+
+    grid-template-columns:
+      repeat(auto-fill,
+        minmax(180px, 1fr));
+
+    gap: 15px;
+  }
+
+}
+
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-podcast-hero__inner {
+
+    align-items: flex-start;
+
+    width:
+      calc(100% - 36px);
+
+    min-height: auto;
+
+    padding:
+      40px 0;
+  }
+
+
+  .gaza-podcast-hero__artwork {
+
+    flex-basis: 165px;
+
+    width: 165px;
+    height: 165px;
+  }
+
+
+  .gaza-podcast-hero__content h1 {
+
+    font-size: 34px;
+  }
+
+
+  .gaza-podcast-episodes {
+
+    width:
+      calc(100% - 36px);
+
+    padding-top: 35px;
+  }
+
+
+  .gaza-podcast-episodes__header {
+
+    align-items: flex-start;
+
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+
+  .gaza-podcast-filters {
+
+    width: 100%;
+  }
+
+
+  .gaza-podcast-filters button {
+
+    flex: 1;
+  }
+
+
+  .gaza-podcast-list__item {
+
+    grid-template-columns:
+      30px 38px minmax(0, 1fr) 38px;
+
+    gap: 10px;
+
+    padding:
+      9px 12px;
+  }
+
+
+  .gaza-podcast-list__meta {
+
+    display: none;
+  }
+
+
+  .gaza-podcast-list__info h3 {
+
+    font-size: 12px;
+  }
+
+
+  .gaza-podcast-list__info p {
+
+    max-width: 100%;
+
+    font-size: 9px;
+  }
+
+}
+
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 540px) {
+
+  .gaza-podcast-hero__inner {
+
+    flex-direction: column;
+
+    align-items: center;
+
+    width:
+      calc(100% - 24px);
+
+    padding:
+      30px 0 45px;
+
+    text-align: center;
+  }
+
+
+  .gaza-podcast-hero__artwork {
+
+    width: 195px;
+    height: 195px;
+
+    flex-basis: 195px;
+  }
+
+
+  .gaza-podcast-hero__floating-icon {
+
+    right: -8px;
+    bottom: -8px;
+
+    width: 50px;
+    height: 50px;
+  }
+
+
+  .gaza-podcast-hero__content {
+
+    width: 100%;
+  }
+
+
+  .gaza-podcast-hero__eyebrow {
+
+    justify-content: center;
+  }
+
+
+  .gaza-podcast-hero__content h1 {
+
+    font-size: 31px;
+
+    letter-spacing:
+      -.045em;
+  }
+
+
+  .gaza-podcast-hero__artist {
+
+    justify-content: center;
+  }
+
+
+  .gaza-podcast-hero__description {
+
+    max-width: 430px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    font-size: 11px;
+  }
+
+
+  .gaza-podcast-hero__stats {
+
+    justify-content: center;
+  }
+
+
+  .gaza-podcast-episodes {
+
+    width:
+      calc(100% - 20px);
+
+    padding:
+      30px 0 80px;
+  }
+
+
+  .gaza-podcast-episodes__heading h2 {
+
+    font-size: 23px;
+  }
+
+
+  .gaza-podcast-media-grid {
+
+    grid-template-columns:
+      repeat(2,
+        minmax(0, 1fr));
+
+    gap: 10px;
+  }
+
+
+  .gaza-podcast-list {
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-podcast-list__item {
+
+    grid-template-columns:
+      25px 36px minmax(0, 1fr) 34px;
+
+    gap: 8px;
+
+    min-height: 68px;
+
+    padding:
+      8px 9px;
+  }
+
+
+  .gaza-podcast-list__number {
+
+    font-size: 8px;
+  }
+
+
+  .gaza-podcast-list__type {
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+  }
+
+
+  .gaza-podcast-list__info h3 {
+
+    font-size: 11px;
+  }
+
+
+  .gaza-podcast-list__info p {
+
+    display: none;
+  }
+
+
+  .gaza-podcast-list__play {
+
+    width: 30px;
+    height: 30px;
+  }
+
+
+  .gaza-podcast-empty {
+
+    flex-direction: column;
+
+    text-align: center;
+  }
+
+}
+
+
+
+/* ============================================================
+   SMALL MOBILE
+============================================================ */
+
+@media (max-width: 380px) {
+
+  .gaza-podcast-hero__artwork {
+
+    width: 165px;
+    height: 165px;
+
+    flex-basis: 165px;
+  }
+
+
+  .gaza-podcast-hero__content h1 {
+
+    font-size: 27px;
+  }
+
+
+  .gaza-podcast-hero__stat {
+
+    min-width: 60px;
+  }
+
+
+  .gaza-podcast-hero__stat strong {
+
+    font-size: 18px;
+  }
+
+
+  .gaza-podcast-hero__stat-divider {
+
+    margin-left: 9px;
+    margin-right: 9px;
+  }
+
+
+  .gaza-podcast-filters button {
+
+    gap: 4px;
+
+    padding:
+      0 7px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-podcast-filters button b {
+
+    display: none;
+  }
+
+
+  .gaza-podcast-list__item {
+
+    grid-template-columns:
+      20px 32px minmax(0, 1fr) 30px;
+
+    gap: 6px;
+
+    padding: 7px;
+  }
+
+
+  .gaza-podcast-list__type {
+
+    width: 32px;
+    height: 32px;
+  }
+
+
+  .gaza-podcast-list__info h3 {
+
+    font-size: 10px;
+  }
+
+
+  .gaza-podcast-list__play {
+
+    width: 28px;
+    height: 28px;
+  }
+
+}
+
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-podcast-hero__artwork-frame,
+  .gaza-podcast-filters button,
+  .gaza-podcast-list__play,
+  .gaza-podcast-loading__icon {
+
+    animation: none;
+
+    transition: none;
+  }
+
+}

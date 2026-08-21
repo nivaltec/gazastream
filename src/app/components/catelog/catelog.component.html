@@ -1,0 +1,179 @@
+<div class="gaza-page">
+
+  <section class="gaza-section">
+
+
+    <!-- ======================================================
+         PLAYLIST HEADER
+    ======================================================= -->
+
+    <div class="gaza-playlists-header">
+
+      <app-section-header title="My Playlists"
+        subtitle="Discover music from independent artists around the world and create your own playlist">
+      </app-section-header>
+
+
+      <!-- ====================================================
+           CREATE PLAYLIST
+      ===================================================== -->
+
+      <button type="button" class="gaza-create-playlist-btn" (click)="openCreatePlaylist()">
+
+        <span class="gaza-create-playlist-btn__icon">
+
+          <i class="fa-solid fa-plus"></i>
+
+        </span>
+
+        <span>
+          Create playlist
+        </span>
+
+      </button>
+
+    </div>
+
+
+    <!-- ======================================================
+         LOADING
+    ======================================================= -->
+
+    <div class="gaza-playlists-loading" *ngIf="isLoading">
+
+      <i class="fa-solid fa-spinner fa-spin"></i>
+
+      <span>
+        Loading playlists...
+      </span>
+
+    </div>
+
+
+    <!-- ======================================================
+         ERROR
+    ======================================================= -->
+
+    <div class="gaza-playlists-error" *ngIf="
+        !isLoading &&
+        errorMessage &&
+        !playlists.length
+      ">
+
+      <div class="gaza-playlists-error__icon">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+      </div>
+
+
+      <div class="gaza-playlists-error__content">
+
+        <strong>
+          Something went wrong
+        </strong>
+
+        <span>
+          {{ errorMessage }}
+        </span>
+
+      </div>
+
+
+      <button type="button" class="gaza-btn gaza-btn-secondary" (click)="refresh()">
+
+        <i class="fa-solid fa-rotate"></i>
+
+        Try Again
+
+      </button>
+
+    </div>
+
+
+    <!-- ======================================================
+         PLAYLIST GRID
+    ======================================================= -->
+
+    <app-playlist-grid *ngIf="
+        !isLoading &&
+        playlists.length > 0
+      " [playlists]="playlists" (playlistPlay)="
+        playPlaylist($event)
+      " (playlistOpen)="
+        openPlaylist($event)
+      ">
+    </app-playlist-grid>
+
+
+    <!-- ======================================================
+         EMPTY STATE
+    ======================================================= -->
+
+    <div class="gaza-playlists-empty" *ngIf="
+        !isLoading &&
+        !errorMessage &&
+        playlists.length === 0
+      ">
+
+      <!-- ICON -->
+
+      <div class="gaza-playlists-empty__icon">
+
+        <i class="fa-solid fa-music"></i>
+
+      </div>
+
+
+      <!-- TITLE -->
+
+      <h3>
+        Create your first playlist
+      </h3>
+
+
+      <!-- DESCRIPTION -->
+
+      <p>
+        Save your favourite music into
+        playlists made for every mood,
+        moment and journey.
+      </p>
+
+
+      <!-- CREATE -->
+
+      <button type="button" class="gaza-create-playlist-btn gaza-create-playlist-btn--empty"
+        (click)="openCreatePlaylist()">
+
+        <span class="gaza-create-playlist-btn__icon">
+
+          <i class="fa-solid fa-plus"></i>
+
+        </span>
+
+        <span>
+          Create your first playlist
+        </span>
+
+      </button>
+
+    </div>
+
+
+  </section>
+
+
+  <!-- ========================================================
+       CREATE PLAYLIST MODAL
+  ========================================================= -->
+
+  <app-create-playlist-modal [visible]="showCreatePlaylist" (closed)="
+      closeCreatePlaylist()
+    " (created)="
+      onPlaylistCreated($event)
+    ">
+  </app-create-playlist-modal>
+
+
+</div>

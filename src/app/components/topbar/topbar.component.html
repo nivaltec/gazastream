@@ -1,0 +1,243 @@
+<header class="gaza-topbar">
+
+  <!-- ======================================================
+       LEFT
+       ====================================================== -->
+
+  <div class="gaza-topbar-left">
+
+    <!-- MOBILE MENU -->
+
+    <button type="button" class="gaza-mobile-menu" aria-label="Open navigation" (click)="openMobileMenu()">
+
+      <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+
+    <!-- SEARCH -->
+
+    <form class="gaza-search" role="search" (ngSubmit)="search()">
+
+      <span class="gaza-search-icon">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </span>
+
+
+      <input type="search" name="search" [(ngModel)]="searchTerm" (keydown)="onSearchKeydown($event)"
+        placeholder="Search songs, artists, albums..." autocomplete="off"
+        aria-label="Search songs, artists and albums" />
+
+
+      @if (searchTerm) {
+
+      <button type="button" class="gaza-search-clear" aria-label="Clear search" (click)="clearSearch()">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+      }
+
+    </form>
+
+  </div>
+
+
+  <!-- ======================================================
+       RIGHT
+       ====================================================== -->
+
+  <div class="gaza-topbar-actions">
+
+
+    <!-- ====================================================
+         NOTIFICATIONS
+         ==================================================== -->
+
+    <button type="button" class="gaza-topbar-button" aria-label="Notifications" (click)="openNotifications()">
+
+      <i class="fa-regular fa-bell"></i>
+
+
+      @if (notificationCount > 0) {
+
+      <span class="gaza-notification-dot">
+
+        @if (notificationCount <= 9) { {{ notificationCount }} } @else { 9+ } </span>
+
+          }
+
+    </button>
+
+
+    <span class="gaza-topbar-divider"></span>
+
+
+    <!-- ====================================================
+         PROFILE
+         ==================================================== -->
+
+    <div class="gaza-profile">
+
+      <button type="button" class="gaza-user-button" [class.is-open]="isProfileOpen" aria-label="Open profile menu"
+        [attr.aria-expanded]="isProfileOpen" (click)="toggleProfileMenu()">
+
+
+        <!-- AVATAR -->
+
+        <span class="gaza-user-avatar">
+
+          @if (hasProfileImage) {
+
+          <img [src]="user.profileImageUrl" [alt]="displayName" loading="lazy" />
+
+          } @else {
+
+          <i class="fa-solid fa-user"></i>
+
+          }
+
+        </span>
+
+
+        <!-- USER INFO -->
+
+        <span class="gaza-user-info">
+
+          <strong>
+            {{ displayName }}
+          </strong>
+
+          <small>
+            {{ userSubtitle }}
+          </small>
+
+        </span>
+
+
+        <!-- ARROW -->
+
+        <span class="gaza-user-arrow">
+
+          <i class="fa-solid fa-chevron-down"></i>
+
+        </span>
+
+      </button>
+
+
+      <!-- ==================================================
+           PROFILE DROPDOWN
+           ================================================== -->
+
+      @if (isProfileOpen) {
+
+      <div class="gaza-profile-menu" role="menu">
+
+
+        <!-- PROFILE HEADER -->
+
+        <div class="gaza-profile-menu__header">
+
+
+          <div class="gaza-profile-menu__avatar">
+
+            @if (hasProfileImage) {
+
+            <img [src]="user.profileImageUrl" [alt]="displayName" />
+
+            } @else {
+
+            <i class="fa-solid fa-user"></i>
+
+            }
+
+          </div>
+
+
+          <div class="gaza-profile-menu__identity">
+
+            <strong>
+              {{ displayName }}
+            </strong>
+
+            <span>
+              {{ userSubtitle }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="gaza-profile-menu__divider"></div>
+
+
+        <!-- VIEW PROFILE -->
+
+        <button type="button" class="gaza-profile-menu__item" role="menuitem" (click)="viewProfile()">
+
+          <span class="gaza-profile-menu__item-icon">
+
+            <i class="fa-regular fa-user"></i>
+
+          </span>
+
+
+          <span class="gaza-profile-menu__item-content">
+
+            <strong>
+              View profile
+            </strong>
+
+            <small>
+              See your public profile
+            </small>
+
+          </span>
+
+
+          <i class="fa-solid fa-chevron-right"></i>
+
+        </button>
+
+
+        <div class="gaza-profile-menu__divider"></div>
+
+
+        <!-- LOGOUT -->
+
+        <button type="button" class="gaza-profile-menu__item gaza-profile-menu__item--danger" role="menuitem"
+          (click)="logout()">
+
+          <span class="gaza-profile-menu__item-icon">
+
+            <i class="fa-solid fa-arrow-right-from-bracket"></i>
+
+          </span>
+
+
+          <span class="gaza-profile-menu__item-content">
+
+            <strong>
+              Sign out
+            </strong>
+
+            <small>
+              End your current session
+            </small>
+
+          </span>
+
+        </button>
+
+      </div>
+
+      }
+
+    </div>
+
+  </div>
+
+</header>

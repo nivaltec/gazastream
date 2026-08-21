@@ -1,0 +1,72 @@
+<article class="gaza-radio-card" [class.is-active]="playing" (click)="onCardClick()">
+
+  <!-- ARTWORK -->
+  <div class="gaza-radio-card__cover">
+
+    <img [src]="station.artwork" [alt]="station.name" loading="lazy" />
+
+    <div class="gaza-radio-card__playing" *ngIf="playing">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </div>
+
+
+  <!-- MAIN -->
+  <div class="gaza-radio-card__main">
+
+    <div class="gaza-radio-card__top">
+
+      <span class="gaza-radio-card__live">
+        <i></i>
+        LIVE
+      </span>
+
+      <span class="gaza-radio-card__genre">
+        {{ station.genre || 'RADIO' }}
+      </span>
+
+    </div>
+
+
+    <h3>
+      {{ station.name }}
+    </h3>
+
+
+    <p>
+      {{ station.description || 'Live radio streaming' }}
+    </p>
+
+
+    <div class="gaza-radio-card__meta">
+
+      <span>
+        <i class="fa-solid fa-tower-broadcast"></i>
+        Live station
+      </span>
+
+      <span *ngIf="playing" class="gaza-radio-card__now">
+        Playing now
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ACTION -->
+  <button type="button" class="gaza-radio-card__button" [class.is-playing]="playing" (click)="onPlay($event)"
+    [attr.aria-label]="
+      playing
+        ? 'Pause ' + station.name
+        : 'Play ' + station.name
+    ">
+
+    <i class="fa-solid" [ngClass]="playing ? 'fa-pause' : 'fa-play'"></i>
+
+  </button>
+
+</article>

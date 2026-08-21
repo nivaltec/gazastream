@@ -1,0 +1,438 @@
+<section class="gaza-auth-page">
+
+  <!-- ======================================================
+       BACKGROUND
+       ====================================================== -->
+
+  <div class="gaza-auth-background" aria-hidden="true">
+
+    <span class="gaza-auth-orb gaza-auth-orb--one">
+    </span>
+
+    <span class="gaza-auth-orb gaza-auth-orb--two">
+    </span>
+
+    <span class="gaza-auth-orb gaza-auth-orb--three">
+    </span>
+
+    <span class="gaza-auth-grid"></span>
+
+  </div>
+
+
+  <!-- ======================================================
+       AUTH CONTAINER
+       ====================================================== -->
+
+  <div class="gaza-auth-container">
+
+
+    <!-- ====================================================
+         BRAND
+         ==================================================== -->
+
+    <header class="gaza-auth-brand">
+
+      <div class="gaza-auth-logo">
+
+        <img src="../../../assets/img/gaza2.png" alt="Gaza Stream" />
+
+      </div>
+
+      <div class="gaza-auth-brand-content">
+
+        <strong>
+          GAZA STREAM
+        </strong>
+
+        <span>
+          YOUR MUSIC. YOUR CULTURE.
+        </span>
+
+      </div>
+
+    </header>
+
+
+    <!-- ====================================================
+         AUTH CARD
+         ==================================================== -->
+
+    <main class="gaza-auth-card">
+
+      <div class="gaza-auth-card-glow" aria-hidden="true">
+      </div>
+
+
+      <!-- ==================================================
+           HEADING
+           ================================================== -->
+
+      <div class="gaza-auth-heading">
+
+        <div class="gaza-auth-eyebrow">
+
+          <span class="gaza-auth-eyebrow-line"></span>
+
+          <i class="fa-solid fa-right-to-bracket"></i>
+
+          <span>
+            WELCOME BACK
+          </span>
+
+        </div>
+
+        <h1>
+          Sign in
+        </h1>
+
+        <p>
+          Continue your journey through music, culture and community.
+        </p>
+
+      </div>
+
+
+      <!-- ==================================================
+           ERROR MESSAGE
+           ================================================== -->
+
+      @if (errorMessage) {
+
+      <div class="gaza-auth-message gaza-auth-message--error" role="alert">
+
+        <div class="gaza-auth-message-icon">
+
+          <i class="fa-solid fa-circle-exclamation"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            Sign in failed
+          </strong>
+
+          <span>
+            {{ errorMessage }}
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+
+      <!-- ==================================================
+           SUCCESS MESSAGE
+           ================================================== -->
+
+      @if (successMessage) {
+
+      <div class="gaza-auth-message gaza-auth-message--success" role="status">
+
+        <div class="gaza-auth-message-icon">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            Success
+          </strong>
+
+          <span>
+            {{ successMessage }}
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+
+      <!-- ==================================================
+           SOCIAL LOGIN
+           ================================================== -->
+
+      <div class="gaza-auth-social">
+
+
+        <!-- GOOGLE -->
+
+        <button type="button" class="gaza-social-button gaza-social-button--google" (click)="loginWithGoogle()"
+          [disabled]="loading" aria-label="Continue with Google">
+
+          <span class="gaza-social-icon">
+
+            <i class="fa-brands fa-google"></i>
+
+          </span>
+
+          <span class="gaza-social-label">
+            Continue with Google
+          </span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square gaza-social-arrow">
+          </i>
+
+        </button>
+
+
+        <!-- FACEBOOK / APPLE -->
+
+        <div class="gaza-auth-social-row">
+
+
+          <!-- FACEBOOK -->
+
+          <button type="button" class="gaza-social-button gaza-social-button--compact" (click)="loginWithFacebook()"
+            [disabled]="loading" aria-label="Continue with Facebook">
+
+            <span class="gaza-social-icon">
+
+              <i class="fa-brands fa-facebook-f"></i>
+
+            </span>
+
+            <span>
+              Facebook
+            </span>
+
+          </button>
+
+
+          <!-- APPLE -->
+
+          <button type="button" class="gaza-social-button gaza-social-button--compact" (click)="loginWithApple()"
+            [disabled]="loading" aria-label="Continue with Apple">
+
+            <span class="gaza-social-icon">
+
+              <i class="fa-brands fa-apple"></i>
+
+            </span>
+
+            <span>
+              Apple
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           DIVIDER
+           ================================================== -->
+
+      <div class="gaza-auth-divider">
+
+        <span></span>
+
+        <small>
+          OR CONTINUE WITH EMAIL
+        </small>
+
+        <span></span>
+
+      </div>
+
+
+      <!-- ==================================================
+           LOGIN FORM
+           ================================================== -->
+
+      <form class="gaza-auth-form" (ngSubmit)="login()" novalidate>
+
+
+        <!-- ==================================================
+             EMAIL
+             ================================================== -->
+
+        <label class="gaza-auth-field">
+
+          <span class="gaza-auth-field-label">
+            Email address
+          </span>
+
+          <div class="gaza-auth-input">
+
+            <span class="gaza-auth-input-icon">
+
+              <i class="fa-regular fa-envelope"></i>
+
+            </span>
+
+            <input type="email" name="email" [(ngModel)]="email" placeholder="you@example.com" autocomplete="email"
+              [disabled]="loading" />
+
+          </div>
+
+        </label>
+
+
+        <!-- ==================================================
+             PASSWORD
+             ================================================== -->
+
+        <label class="gaza-auth-field">
+
+          <div class="gaza-auth-label-row">
+
+            <span class="gaza-auth-field-label">
+              Password
+            </span>
+
+            <button type="button" class="gaza-auth-forgot" (click)="forgotPassword()">
+
+              Forgot password?
+
+            </button>
+
+          </div>
+
+
+          <div class="gaza-auth-input">
+
+            <span class="gaza-auth-input-icon">
+
+              <i class="fa-solid fa-lock"></i>
+
+            </span>
+
+            <input [type]="showPassword ? 'text' : 'password'" name="password" [(ngModel)]="password"
+              placeholder="Enter your password" autocomplete="current-password" [disabled]="loading" />
+
+            <button type="button" class="gaza-auth-input-action" (click)="togglePassword()" [attr.aria-label]="
+                showPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              ">
+
+              <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword">
+              </i>
+
+            </button>
+
+          </div>
+
+        </label>
+
+
+        <!-- ==================================================
+             OPTIONS
+             ================================================== -->
+
+        <div class="gaza-auth-options">
+
+          <label class="gaza-auth-checkbox">
+
+            <input type="checkbox" name="rememberMe" [(ngModel)]="rememberMe" [disabled]="loading" />
+
+            <span class="gaza-auth-checkmark">
+
+              <i class="fa-solid fa-check"></i>
+
+            </span>
+
+            <span>
+              Remember me
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- ==================================================
+             SUBMIT
+             ================================================== -->
+
+        <button type="submit" class="gaza-auth-submit" [disabled]="loading">
+
+          @if (loading) {
+
+          <span class="gaza-auth-spinner"></span>
+
+          <span>
+            Signing in...
+          </span>
+
+          } @else {
+
+          <span>
+            Sign in to Gaza Stream
+          </span>
+
+          <span class="gaza-auth-submit-icon">
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </span>
+
+          }
+
+        </button>
+
+      </form>
+
+
+      <!-- ==================================================
+           REGISTER
+           ================================================== -->
+
+      <div class="gaza-auth-footer">
+
+        <span>
+          New to Gaza Stream?
+        </span>
+
+        <button type="button" (click)="register()">
+
+          <span>
+            Create your account
+          </span>
+
+          <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+      </div>
+
+    </main>
+
+
+    <!-- ====================================================
+         LEGAL FOOTER
+         ==================================================== -->
+
+    <footer class="gaza-auth-legal">
+
+      <span>
+        © {{ currentYear }} Gaza Stream
+      </span>
+
+      <span class="gaza-auth-legal-dot"></span>
+
+      <button type="button">
+        Privacy
+      </button>
+
+      <span class="gaza-auth-legal-dot"></span>
+
+      <button type="button">
+        Terms
+      </button>
+
+    </footer>
+
+  </div>
+
+</section>

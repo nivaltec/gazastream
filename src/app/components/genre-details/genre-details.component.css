@@ -1,0 +1,575 @@
+/* ============================================================
+   GAZA STREAM
+   GENRE DETAILS
+   Clean • Premium • Responsive
+   ============================================================ */
+
+.gaza-genre-details {
+  width: 100%;
+  min-width: 0;
+  padding-bottom: 40px;
+}
+
+
+/* ============================================================
+   GENRE HERO
+   ============================================================ */
+
+.gaza-genre-hero {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 250px;
+
+  margin: 28px 0 38px;
+  padding: 28px 34px;
+
+  overflow: hidden;
+  isolation: isolate;
+
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+
+  background:
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(8, 207, 255, 0.14),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 65% 100%,
+      rgba(108, 36, 255, 0.18),
+      transparent 45%
+    ),
+    linear-gradient(
+      135deg,
+      #08080e 0%,
+      #0d0d18 55%,
+      #111024 100%
+    );
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ============================================================
+   HERO BACKGROUND
+   ============================================================ */
+
+.gaza-genre-hero::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 4, 8, 0.96) 0%,
+      rgba(4, 4, 8, 0.78) 48%,
+      rgba(4, 4, 8, 0.40) 100%
+    );
+
+  pointer-events: none;
+}
+
+
+.gaza-genre-hero::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.12;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 36px 36px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      #000 0%,
+      rgba(0, 0, 0, 0.5) 60%,
+      transparent 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   ARTWORK
+   ============================================================ */
+
+.gaza-genre-details-artwork {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  width: 190px;
+  height: 190px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-lg);
+
+  background: var(--gaza-surface-3);
+
+  box-shadow:
+    0 18px 40px rgba(0, 0, 0, 0.42),
+    0 0 45px rgba(108, 36, 255, 0.10);
+}
+
+
+.gaza-genre-details-artwork::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.08),
+      transparent 40%,
+      rgba(108, 36, 255, 0.12)
+    );
+
+  pointer-events: none;
+}
+
+
+.gaza-genre-details-artwork img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform var(--transition-slow),
+    filter var(--transition);
+}
+
+
+.gaza-genre-hero:hover
+.gaza-genre-details-artwork img {
+  transform: scale(1.04);
+  filter: saturate(1.08);
+}
+
+
+/* ============================================================
+   GENRE INFORMATION
+   ============================================================ */
+
+.gaza-genre-details-info {
+  position: relative;
+
+  z-index: 2;
+
+  min-width: 0;
+
+  margin-left: 30px;
+}
+
+
+.gaza-genre-details-label {
+  display: inline-flex;
+  align-items: center;
+
+  margin-bottom: 9px;
+
+  color: var(--gaza-cyan);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-genre-details-info h1 {
+  margin: 0;
+
+  max-width: 700px;
+
+  color: #fff;
+
+  font-size:
+    clamp(
+      34px,
+      4vw,
+      58px
+    );
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -2px;
+}
+
+
+.gaza-genre-details-info p {
+  display: flex;
+  align-items: center;
+
+  margin: 13px 0 0;
+
+  color: var(--text-secondary);
+
+  font-size: 12px;
+}
+
+
+.gaza-genre-details-info p::before {
+  content: "";
+
+  width: 5px;
+  height: 5px;
+
+  margin-right: 8px;
+
+  border-radius: 50%;
+
+  background: var(--gaza-cyan);
+
+  box-shadow:
+    0 0 10px rgba(8, 207, 255, 0.45);
+}
+
+
+/* ============================================================
+   TRACK SECTION
+   ============================================================ */
+
+.gaza-genre-tracks {
+  width: 100%;
+  min-width: 0;
+}
+
+
+.gaza-genre-tracks .gaza-section-header {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 18px;
+}
+
+
+.gaza-genre-tracks .gaza-section-heading {
+  min-width: 0;
+}
+
+
+.gaza-genre-tracks .gaza-section-heading h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size:
+    clamp(
+      20px,
+      2vw,
+      27px
+    );
+
+  font-weight: 750;
+
+  line-height: 1.2;
+
+  letter-spacing: -0.8px;
+}
+
+
+.gaza-genre-tracks .gaza-section-heading p {
+  margin: 5px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-genre-hero {
+    min-height: 220px;
+
+    padding: 24px 27px;
+  }
+
+
+  .gaza-genre-details-artwork {
+    width: 160px;
+    height: 160px;
+  }
+
+
+  .gaza-genre-details-info {
+    margin-left: 24px;
+  }
+
+
+  .gaza-genre-details-info h1 {
+    font-size: 40px;
+    letter-spacing: -1.5px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-genre-details {
+    padding-bottom: 28px;
+  }
+
+
+  .gaza-genre-hero {
+    min-height: 0;
+
+    margin-top: 18px;
+    margin-bottom: 30px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+  }
+
+
+  .gaza-genre-details-artwork {
+    width: 130px;
+    height: 130px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-genre-details-info {
+    margin-left: 18px;
+  }
+
+
+  .gaza-genre-details-label {
+    margin-bottom: 6px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .gaza-genre-details-info h1 {
+    font-size: 30px;
+
+    letter-spacing: -1.1px;
+  }
+
+
+  .gaza-genre-details-info p {
+    margin-top: 9px;
+
+    font-size: 10px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-header {
+    margin-bottom: 13px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading h2 {
+    font-size: 19px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading p {
+    font-size: 10px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-genre-hero {
+    display: flex;
+
+    min-height: 145px;
+
+    margin-top: 14px;
+    margin-bottom: 25px;
+
+    padding: 14px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-genre-details-artwork {
+    width: 105px;
+    height: 105px;
+
+    border-radius: 11px;
+  }
+
+
+  .gaza-genre-details-info {
+    margin-left: 14px;
+  }
+
+
+  .gaza-genre-details-label {
+    font-size: 7px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .gaza-genre-details-info h1 {
+    font-size: 23px;
+
+    letter-spacing: -0.8px;
+  }
+
+
+  .gaza-genre-details-info p {
+    margin-top: 7px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-genre-details-info p::before {
+    width: 4px;
+    height: 4px;
+
+    margin-right: 6px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading h2 {
+    font-size: 17px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading p {
+    font-size: 9px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-genre-hero {
+    min-height: 120px;
+
+    padding: 10px;
+
+    border-radius: 12px;
+  }
+
+
+  .gaza-genre-details-artwork {
+    width: 82px;
+    height: 82px;
+
+    border-radius: 9px;
+  }
+
+
+  .gaza-genre-details-info {
+    margin-left: 10px;
+  }
+
+
+  .gaza-genre-details-label {
+    margin-bottom: 4px;
+
+    font-size: 6px;
+  }
+
+
+  .gaza-genre-details-info h1 {
+    font-size: 18px;
+
+    letter-spacing: -0.5px;
+  }
+
+
+  .gaza-genre-details-info p {
+    margin-top: 5px;
+
+    font-size: 8px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading h2 {
+    font-size: 16px;
+  }
+
+
+  .gaza-genre-tracks .gaza-section-heading p {
+    font-size: 8px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-genre-details-artwork img {
+    transition: none;
+  }
+
+}
+

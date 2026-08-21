@@ -1,0 +1,1208 @@
+/* ============================================================
+   GAZA STREAM — UPLOADS / CREATOR STUDIO
+   ============================================================ */
+
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.gaza-uploads-page {
+  min-width: 0;
+  padding-bottom: 40px;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.gaza-uploads-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 30px;
+
+  margin-bottom: 26px;
+}
+
+.gaza-uploads-header__main {
+  min-width: 0;
+}
+
+.gaza-uploads-heading {
+  min-width: 0;
+}
+
+.gaza-uploads-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 9px;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+
+  opacity: 0.45;
+}
+
+.gaza-uploads-eyebrow i {
+  font-size: 9px;
+}
+
+.gaza-uploads-header h1 {
+  margin: 0;
+
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.gaza-uploads-header p {
+  max-width: 520px;
+
+  margin: 9px 0 0;
+
+  font-size: 13px;
+  line-height: 1.5;
+
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   MAIN UPLOAD BUTTON
+   ============================================================ */
+
+.gaza-upload-main-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  flex-shrink: 0;
+
+  min-height: 46px;
+
+  padding: 0 15px 0 7px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 13px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(255, 255, 255, 0.86)
+    );
+
+  color: #111;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
+}
+
+.gaza-upload-main-button:hover {
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.22);
+}
+
+.gaza-upload-main-button:active {
+  transform: translateY(0);
+}
+
+.gaza-upload-main-button__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 9px;
+
+  background: #111;
+  color: #fff;
+
+  font-size: 12px;
+}
+
+.gaza-upload-main-button > i:last-child {
+  margin-left: 2px;
+
+  font-size: 9px;
+
+  opacity: 0.5;
+}
+
+
+/* ============================================================
+   STATISTICS
+   ============================================================ */
+
+.gaza-upload-stats {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+}
+
+.gaza-upload-stat {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+
+  min-height: 76px;
+
+  padding: 13px 15px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.018)
+    );
+
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.gaza-upload-stat::after {
+  content: '';
+
+  position: absolute;
+
+  right: -30px;
+  bottom: -35px;
+
+  width: 90px;
+  height: 90px;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  pointer-events: none;
+}
+
+.gaza-upload-stat:hover {
+  transform: translateY(-1px);
+
+  border-color:
+    rgba(255, 255, 255, 0.11);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.06),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+.gaza-upload-stat__icon {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 38px;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  font-size: 13px;
+
+  opacity: 0.85;
+}
+
+.gaza-upload-stat__content {
+  position: relative;
+  z-index: 1;
+
+  min-width: 0;
+}
+
+.gaza-upload-stat strong {
+  display: block;
+
+  font-size: 19px;
+  font-weight: 850;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.gaza-upload-stat span {
+  display: block;
+
+  margin-top: 5px;
+
+  font-size: 10px;
+  font-weight: 600;
+
+  opacity: 0.42;
+}
+
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.gaza-uploads-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+
+  min-height: 54px;
+
+  margin-bottom: 12px;
+  padding: 7px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 14px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+}
+
+
+/* ============================================================
+   SEARCH
+   ============================================================ */
+
+.gaza-upload-search {
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+
+  width: min(100%, 350px);
+  height: 38px;
+
+  padding: 0 10px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.06);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.gaza-upload-search:focus-within {
+  border-color:
+    rgba(255, 255, 255, 0.14);
+
+  background:
+    rgba(255, 255, 255, 0.05);
+}
+
+.gaza-upload-search > i {
+  flex-shrink: 0;
+
+  font-size: 11px;
+
+  opacity: 0.4;
+}
+
+.gaza-upload-search input {
+  min-width: 0;
+  width: 100%;
+
+  border: 0;
+  outline: 0;
+
+  background: transparent;
+  color: inherit;
+
+  font: inherit;
+  font-size: 11px;
+}
+
+.gaza-upload-search input::placeholder {
+  opacity: 0.35;
+}
+
+.gaza-upload-search button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  width: 25px;
+  height: 25px;
+
+  padding: 0;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+  color: inherit;
+
+  opacity: 0.4;
+
+  cursor: pointer;
+}
+
+.gaza-upload-search button:hover {
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  opacity: 1;
+}
+
+
+/* ============================================================
+   FILTERS
+   ============================================================ */
+
+.gaza-upload-filters {
+  display: flex;
+  align-items: center;
+
+  gap: 3px;
+
+  flex-shrink: 0;
+}
+
+.gaza-upload-filters button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  height: 34px;
+
+  padding: 0 11px;
+
+  border: 1px solid transparent;
+  border-radius: 9px;
+
+  background: transparent;
+  color: inherit;
+
+  font-size: 10px;
+  font-weight: 700;
+
+  opacity: 0.45;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.gaza-upload-filters button:hover {
+  opacity: 0.8;
+}
+
+.gaza-upload-filters button.is-active {
+  border-color:
+    rgba(255, 255, 255, 0.08);
+
+  background:
+    rgba(255, 255, 255, 0.075);
+
+  opacity: 1;
+}
+
+.gaza-upload-filters button i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   LIST WRAPPER
+   ============================================================ */
+
+.gaza-upload-list-wrapper {
+  min-width: 0;
+}
+
+
+/* ============================================================
+   EMPTY / LOADING
+   ============================================================ */
+
+.gaza-upload-empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-height: 280px;
+
+  padding: 40px 20px;
+
+  border:
+    1px dashed
+    rgba(255, 255, 255, 0.09);
+
+  border-radius: 17px;
+
+  background:
+    rgba(255, 255, 255, 0.012);
+
+  text-align: center;
+}
+
+.gaza-upload-empty__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  margin-bottom: 15px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.07);
+
+  border-radius: 15px;
+
+  background:
+    rgba(255, 255, 255, 0.045);
+
+  font-size: 17px;
+
+  opacity: 0.65;
+}
+
+.gaza-upload-empty strong {
+  font-size: 14px;
+  font-weight: 750;
+}
+
+.gaza-upload-empty > span {
+  margin-top: 6px;
+
+  font-size: 11px;
+
+  opacity: 0.42;
+}
+
+.gaza-upload-empty__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 19px;
+
+  padding: 9px 13px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 9px;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  color: inherit;
+
+  font-size: 10px;
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    transform 0.18s ease;
+}
+
+.gaza-upload-empty__button:hover {
+  background:
+    rgba(255, 255, 255, 0.09);
+
+  transform: translateY(-1px);
+}
+
+
+/* ============================================================
+   UPLOAD LIST
+   ============================================================ */
+
+.gaza-upload-list {
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.065);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.018);
+}
+
+
+/* ============================================================
+   LIST HEADER
+   ============================================================ */
+
+.gaza-upload-list__header {
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 2fr)
+    minmax(120px, 0.8fr)
+    minmax(110px, 0.7fr)
+    minmax(110px, 0.7fr)
+    50px;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-height: 38px;
+
+  padding: 0 15px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+}
+
+.gaza-upload-list__header span {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+
+  opacity: 0.3;
+}
+
+.gaza-upload-list__header-content {
+  padding-left: 57px;
+}
+
+
+/* ============================================================
+   UPLOAD ITEM
+   ============================================================ */
+
+.gaza-upload-item {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(280px, 2fr)
+    minmax(120px, 0.8fr)
+    minmax(110px, 0.7fr)
+    minmax(110px, 0.7fr)
+    50px;
+
+  align-items: center;
+
+  gap: 16px;
+
+  min-height: 74px;
+
+  padding: 10px 15px;
+
+  border-bottom:
+    1px solid
+    rgba(255, 255, 255, 0.045);
+
+  transition:
+    background 0.18s ease;
+}
+
+.gaza-upload-item:last-child {
+  border-bottom: 0;
+}
+
+.gaza-upload-item:hover {
+  background:
+    rgba(255, 255, 255, 0.028);
+}
+
+.gaza-upload-item::before {
+  content: '';
+
+  position: absolute;
+
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+
+  width: 2px;
+
+  border-radius: 2px;
+
+  background: rgba(255, 255, 255, 0.2);
+
+  opacity: 0;
+
+  transition: opacity 0.18s ease;
+}
+
+.gaza-upload-item:hover::before {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.gaza-upload-item__content {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+.gaza-upload-item__artwork {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 48px;
+
+  width: 48px;
+  height: 48px;
+
+  overflow: hidden;
+
+  border-radius: 11px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.09),
+      rgba(255, 255, 255, 0.035)
+    );
+
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.12);
+
+  font-size: 14px;
+}
+
+.gaza-upload-item__artwork img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.gaza-upload-item__artwork-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0.55;
+}
+
+.gaza-upload-item__info {
+  display: flex;
+  flex-direction: column;
+
+  min-width: 0;
+}
+
+.gaza-upload-item__info strong {
+  overflow: hidden;
+
+  font-size: 12px;
+  font-weight: 750;
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-upload-item__info span {
+  overflow: hidden;
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  opacity: 0.48;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-upload-item__info small {
+  overflow: hidden;
+
+  margin-top: 2px;
+
+  font-size: 9px;
+
+  opacity: 0.32;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   TYPE
+   ============================================================ */
+
+.gaza-upload-item__type {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 5px;
+
+  min-width: 0;
+}
+
+.gaza-type-badge {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  max-width: 100%;
+
+  padding: 5px 8px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.055);
+
+  border-radius: 8px;
+
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  font-size: 9px;
+  font-weight: 750;
+
+  white-space: nowrap;
+}
+
+.gaza-type-badge--podcast {
+  background:
+    rgba(255, 255, 255, 0.08);
+}
+
+.gaza-type-badge i {
+  font-size: 8px;
+
+  opacity: 0.7;
+}
+
+.gaza-upload-item__type small {
+  font-size: 8px;
+
+  opacity: 0.4;
+}
+
+
+/* ============================================================
+   STATUS
+   ============================================================ */
+
+.gaza-upload-item__status {
+  min-width: 0;
+}
+
+.gaza-status {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 6px;
+
+  font-size: 9px;
+  font-weight: 650;
+
+  opacity: 0.45;
+}
+
+.gaza-status__dot {
+  width: 5px;
+  height: 5px;
+
+  flex: 0 0 5px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+.gaza-status--success {
+  opacity: 0.85;
+}
+
+
+/* ============================================================
+   DATE
+   ============================================================ */
+
+.gaza-upload-item__date {
+  min-width: 0;
+
+  font-size: 9px;
+
+  opacity: 0.42;
+}
+
+
+/* ============================================================
+   ACTION
+   ============================================================ */
+
+.gaza-upload-item__action {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.gaza-upload-item__action button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 31px;
+  height: 31px;
+
+  padding: 0;
+
+  border:
+    1px solid
+    transparent;
+
+  border-radius: 9px;
+
+  background: transparent;
+  color: inherit;
+
+  opacity: 0.35;
+
+  cursor: pointer;
+
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.gaza-upload-item__action button:hover {
+  border-color:
+    rgba(255, 255, 255, 0.07);
+
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  opacity: 1;
+}
+
+
+/* ============================================================
+   RESPONSIVE — TABLET
+   ============================================================ */
+
+@media (max-width: 1000px) {
+
+  .gaza-upload-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+  .gaza-upload-list__header,
+  .gaza-upload-item {
+    grid-template-columns:
+      minmax(230px, 2fr)
+      minmax(100px, 0.8fr)
+      minmax(100px, 0.7fr)
+      50px;
+  }
+
+  .gaza-upload-list__header span:nth-child(4),
+  .gaza-upload-item__date {
+    display: none;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — MOBILE
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .gaza-uploads-page {
+    padding-bottom: 25px;
+  }
+
+  .gaza-uploads-header {
+    align-items: stretch;
+    flex-direction: column;
+
+    gap: 18px;
+  }
+
+  .gaza-upload-main-button {
+    width: 100%;
+  }
+
+  .gaza-uploads-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+
+    padding: 7px;
+  }
+
+  .gaza-upload-search {
+    width: 100%;
+  }
+
+  .gaza-upload-filters {
+    width: 100%;
+
+    overflow-x: auto;
+
+    padding-bottom: 1px;
+
+    scrollbar-width: none;
+  }
+
+  .gaza-upload-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gaza-upload-filters button {
+    flex-shrink: 0;
+  }
+
+
+  /* LIST */
+
+  .gaza-upload-list__header {
+    display: none;
+  }
+
+  .gaza-upload-list {
+    border-radius: 14px;
+
+    background: transparent;
+
+    border: 0;
+
+    overflow: visible;
+  }
+
+  .gaza-upload-item {
+    grid-template-columns: 1fr auto;
+
+    gap: 8px;
+
+    min-height: auto;
+
+    margin-bottom: 8px;
+    padding: 13px;
+
+    border:
+      1px solid
+      rgba(255, 255, 255, 0.06);
+
+    border-radius: 14px;
+
+    background:
+      rgba(255, 255, 255, 0.022);
+  }
+
+  .gaza-upload-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .gaza-upload-item:hover {
+    background:
+      rgba(255, 255, 255, 0.035);
+  }
+
+  .gaza-upload-item::before {
+    display: none;
+  }
+
+  .gaza-upload-item__content {
+    grid-column: 1;
+
+    min-width: 0;
+  }
+
+  .gaza-upload-item__type {
+    grid-column: 1;
+
+    margin-top: 2px;
+  }
+
+  .gaza-upload-item__status {
+    grid-column: 1;
+  }
+
+  .gaza-upload-item__action {
+    grid-column: 2;
+    grid-row: 1 / span 3;
+
+    align-self: center;
+  }
+
+  .gaza-upload-item__date {
+    display: none;
+  }
+
+}
+
+
+/* ============================================================
+   RESPONSIVE — SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-uploads-header h1 {
+    font-size: 27px;
+  }
+
+  .gaza-uploads-header p {
+    font-size: 11px;
+  }
+
+  .gaza-upload-stats {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .gaza-upload-stat {
+    min-height: 68px;
+
+    padding: 10px;
+  }
+
+  .gaza-upload-stat__icon {
+    flex-basis: 32px;
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 9px;
+
+    font-size: 11px;
+  }
+
+  .gaza-upload-stat strong {
+    font-size: 16px;
+  }
+
+  .gaza-upload-stat span {
+    margin-top: 4px;
+
+    font-size: 9px;
+  }
+
+  .gaza-upload-item {
+    padding: 11px;
+  }
+
+  .gaza-upload-item__artwork {
+    flex-basis: 44px;
+
+    width: 44px;
+    height: 44px;
+
+    border-radius: 10px;
+  }
+
+  .gaza-upload-item__info strong {
+    font-size: 11px;
+  }
+
+  .gaza-upload-item__info span {
+    font-size: 9px;
+  }
+
+  .gaza-upload-item__action button {
+    width: 29px;
+    height: 29px;
+  }
+
+}

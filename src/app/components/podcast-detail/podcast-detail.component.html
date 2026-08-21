@@ -1,0 +1,556 @@
+<!-- ============================================================
+     GAZASTREAM
+     PODCAST DETAIL
+============================================================= -->
+
+<div class="gaza-podcast-detail" *ngIf="podcast">
+
+
+  <!-- ==========================================================
+       PODCAST HERO
+  =========================================================== -->
+
+  <section class="gaza-podcast-hero">
+
+
+    <!-- Background atmosphere -->
+
+    <div class="gaza-podcast-hero__background" aria-hidden="true"></div>
+
+
+    <!-- Noise texture -->
+
+    <div class="gaza-podcast-hero__noise" aria-hidden="true"></div>
+
+
+    <!-- ========================================================
+         HERO INNER
+    ========================================================= -->
+
+    <div class="gaza-podcast-hero__inner">
+
+
+      <!-- ======================================================
+           ARTWORK
+      ======================================================= -->
+
+      <div class="gaza-podcast-hero__artwork">
+
+
+        <!-- Glow -->
+
+        <div class="gaza-podcast-hero__artwork-glow" aria-hidden="true"></div>
+
+
+        <!-- Artwork -->
+
+        <div class="gaza-podcast-hero__artwork-frame">
+
+          <img *ngIf="podcast.artwork" [src]="podcast.artwork" [alt]="podcast.title" loading="eager" />
+
+
+          <!-- Fallback -->
+
+          <div *ngIf="!podcast.artwork" class="gaza-podcast-hero__artwork-fallback">
+
+            <i class="fa-solid fa-podcast"></i>
+
+          </div>
+
+        </div>
+
+
+        <!-- Podcast badge -->
+
+        <div class="gaza-podcast-hero__floating-icon" aria-hidden="true">
+
+          <i class="fa-solid fa-podcast"></i>
+
+        </div>
+
+      </div>
+
+
+      <!-- ======================================================
+           HERO CONTENT
+      ======================================================= -->
+
+      <div class="gaza-podcast-hero__content">
+
+
+        <!-- Eyebrow -->
+
+        <div class="gaza-podcast-hero__eyebrow">
+
+          <span class="gaza-podcast-hero__eyebrow-line"></span>
+
+          <span>
+            Podcast
+          </span>
+
+        </div>
+
+
+        <!-- Title -->
+
+        <h1>
+          {{ podcast.title }}
+        </h1>
+
+
+        <!-- Artist -->
+
+        <div *ngIf="podcast.artist" class="gaza-podcast-hero__artist">
+
+          <span class="gaza-podcast-hero__artist-icon">
+
+            <i class="fa-solid fa-microphone"></i>
+
+          </span>
+
+          <span>
+            {{ podcast.artist }}
+          </span>
+
+        </div>
+
+
+        <!-- Description -->
+
+        <p *ngIf="podcast.description" class="gaza-podcast-hero__description">
+
+          {{ podcast.description }}
+
+        </p>
+
+
+        <!-- ====================================================
+             STATISTICS
+        ===================================================== -->
+
+        <div class="gaza-podcast-hero__stats">
+
+
+          <!-- Episodes -->
+
+          <div class="gaza-podcast-hero__stat">
+
+            <strong>
+              {{ podcastMedia.length }}
+            </strong>
+
+            <span>
+              Episodes
+            </span>
+
+          </div>
+
+
+          <!-- Divider -->
+
+          <span class="gaza-podcast-hero__stat-divider"></span>
+
+
+          <!-- Audio -->
+
+          <div *ngIf="audioCount" class="gaza-podcast-hero__stat">
+
+            <strong>
+              {{ audioCount }}
+            </strong>
+
+            <span>
+              Audio
+            </span>
+
+          </div>
+
+
+          <!-- Divider -->
+
+          <span *ngIf="audioCount && videoCount" class="gaza-podcast-hero__stat-divider"></span>
+
+
+          <!-- Video -->
+
+          <div *ngIf="videoCount" class="gaza-podcast-hero__stat">
+
+            <strong>
+              {{ videoCount }}
+            </strong>
+
+            <span>
+              Video
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Hero bottom fade -->
+
+    <div class="gaza-podcast-hero__fade" aria-hidden="true"></div>
+
+  </section>
+
+
+
+  <!-- ==========================================================
+       EPISODES SECTION
+  =========================================================== -->
+
+  <section class="gaza-podcast-episodes">
+
+
+    <!-- ========================================================
+         SECTION HEADER
+    ========================================================= -->
+
+    <header class="gaza-podcast-episodes__header">
+
+
+      <!-- Heading -->
+
+      <div class="gaza-podcast-episodes__heading">
+
+        <span class="gaza-section-eyebrow">
+
+          <i class="fa-solid fa-wave-square"></i>
+
+          Podcast Library
+
+        </span>
+
+
+        <h2>
+          Episodes
+        </h2>
+
+
+        <p>
+          Listen and watch the latest episodes from
+          <strong>
+            {{ podcast.title }}
+          </strong>
+        </p>
+
+      </div>
+
+
+      <!-- ======================================================
+           FILTERS
+      ======================================================= -->
+
+      <div class="gaza-podcast-filters" role="tablist" aria-label="Podcast media filters">
+
+
+        <!-- ====================================================
+             ALL
+        ===================================================== -->
+
+        <button type="button" role="tab" [class.active]="activeFilter === 'all'"
+          [attr.aria-selected]="activeFilter === 'all'" (click)="setFilter('all')">
+
+          <i class="fa-solid fa-border-all"></i>
+
+          <span>
+            All
+          </span>
+
+          <b>
+            {{ podcastMedia.length }}
+          </b>
+
+        </button>
+
+
+        <!-- ====================================================
+             AUDIO
+        ===================================================== -->
+
+        <button type="button" role="tab" [class.active]="activeFilter === 'audio'"
+          [attr.aria-selected]="activeFilter === 'audio'" (click)="setFilter('audio')">
+
+          <i class="fa-solid fa-headphones"></i>
+
+          <span>
+            Audio
+          </span>
+
+          <b>
+            {{ audioCount }}
+          </b>
+
+        </button>
+
+
+        <!-- ====================================================
+             VIDEO
+        ===================================================== -->
+
+        <button type="button" role="tab" [class.active]="activeFilter === 'video'"
+          [attr.aria-selected]="activeFilter === 'video'" (click)="setFilter('video')">
+
+          <i class="fa-solid fa-video"></i>
+
+          <span>
+            Video
+          </span>
+
+          <b>
+            {{ videoCount }}
+          </b>
+
+        </button>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- ========================================================
+         MEDIA
+    ========================================================= -->
+
+    <div class="gaza-podcast-media" *ngIf="filteredMedia.length">
+
+
+      <!-- ======================================================
+           ALL — LIST
+      ======================================================= -->
+
+      <div class="gaza-podcast-list" *ngIf="activeFilter === 'all'">
+
+        <ng-container *ngFor="let media of filteredMedia; let i = index">
+
+
+          <!-- ==================================================
+               AUDIO ROW
+          =================================================== -->
+
+          <div class="gaza-podcast-list__item" *ngIf="media.type === MediaType.Audio">
+
+
+            <!-- Number -->
+
+            <div class="gaza-podcast-list__number">
+
+              {{ i + 1 | number:'2.0-0' }}
+
+            </div>
+
+
+            <!-- Type -->
+
+            <div class="gaza-podcast-list__type gaza-podcast-list__type--audio">
+
+              <i class="fa-solid fa-headphones"></i>
+
+            </div>
+
+
+            <!-- Information -->
+
+            <div class="gaza-podcast-list__info">
+
+              <h3 [title]="media.title">
+                {{ media.title }}
+              </h3>
+
+
+              <p *ngIf="media.description">
+                {{ media.description }}
+              </p>
+
+            </div>
+
+
+            <!-- Type label -->
+
+            <div class="gaza-podcast-list__meta">
+
+              <span>
+                Audio
+              </span>
+
+            </div>
+
+
+            <!-- Play -->
+
+            <button type="button" class="gaza-podcast-list__play" aria-label="Play audio episode"
+              (click)="$event.stopPropagation()">
+
+              <i class="fa-solid fa-play"></i>
+
+            </button>
+
+          </div>
+
+
+
+          <!-- ==================================================
+               VIDEO ROW
+          =================================================== -->
+
+          <div class="gaza-podcast-list__item" *ngIf="media.type === MediaType.Video">
+
+
+            <!-- Number -->
+
+            <div class="gaza-podcast-list__number">
+
+              {{ i + 1 | number:'2.0-0' }}
+
+            </div>
+
+
+            <!-- Type -->
+
+            <div class="gaza-podcast-list__type gaza-podcast-list__type--video">
+
+              <i class="fa-solid fa-video"></i>
+
+            </div>
+
+
+            <!-- Information -->
+
+            <div class="gaza-podcast-list__info">
+
+              <h3 [title]="media.title">
+                {{ media.title }}
+              </h3>
+
+
+              <p *ngIf="media.description">
+                {{ media.description }}
+              </p>
+
+            </div>
+
+
+            <!-- Type label -->
+
+            <div class="gaza-podcast-list__meta">
+
+              <span>
+                Video
+              </span>
+
+            </div>
+
+
+            <!-- Play -->
+
+            <button type="button" class="gaza-podcast-list__play" aria-label="Watch video episode"
+              (click)="$event.stopPropagation()">
+
+              <i class="fa-solid fa-play"></i>
+
+            </button>
+
+          </div>
+
+        </ng-container>
+
+      </div>
+
+
+
+      <!-- ======================================================
+           AUDIO — CARD GRID
+      ======================================================= -->
+
+      <div class="gaza-podcast-media-grid" *ngIf="activeFilter === 'audio'">
+
+        <ng-container *ngFor="let media of filteredMedia">
+
+          <app-audio-card *ngIf="media.type === MediaType.Audio" [audio]="media">
+          </app-audio-card>
+
+        </ng-container>
+
+      </div>
+
+
+
+      <!-- ======================================================
+           VIDEO — CARD GRID
+      ======================================================= -->
+
+      <div class="gaza-podcast-media-grid" *ngIf="activeFilter === 'video'">
+
+        <ng-container *ngFor="let media of filteredMedia">
+
+          <app-video-card *ngIf="media.type === MediaType.Video" [video]="media">
+          </app-video-card>
+
+        </ng-container>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         EMPTY
+    ========================================================= -->
+
+    <div class="gaza-podcast-empty" *ngIf="!filteredMedia.length && !isLoading">
+
+      <div class="gaza-podcast-empty__visual">
+
+        <i class="fa-solid fa-podcast"></i>
+
+      </div>
+
+
+      <div class="gaza-podcast-empty__content">
+
+        <span>
+          Nothing here yet
+        </span>
+
+        <h3>
+          No episodes available
+        </h3>
+
+        <p>
+          New episodes will appear here when they are published.
+        </p>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ========================================================
+         LOADING
+    ========================================================= -->
+
+    <div class="gaza-podcast-loading" *ngIf="isLoading">
+
+      <div class="gaza-podcast-loading__icon">
+
+        <i class="fa-solid fa-podcast"></i>
+
+      </div>
+
+      <span>
+        Loading podcast episodes...
+      </span>
+
+    </div>
+
+  </section>
+
+</div>

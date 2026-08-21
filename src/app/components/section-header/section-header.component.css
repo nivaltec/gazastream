@@ -1,0 +1,154 @@
+/* ============================================================
+   GAZA STREAM
+   SECTION HEADER
+   ============================================================ */
+
+.gaza-section-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    width: 100%;
+
+    margin-bottom: 18px;
+}
+
+/* ------------------------------------------------------------
+   HEADING
+   ------------------------------------------------------------ */
+
+.gaza-section-heading {
+    min-width: 0;
+}
+
+.gaza-section-heading h2 {
+    margin: 0;
+
+    color: var(--text-primary);
+
+    font-size: clamp(20px, 2vw, 27px);
+    font-weight: 750;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.8px;
+}
+
+.gaza-section-heading p {
+    margin: 6px 0 0;
+
+    color: var(--text-muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+/* ------------------------------------------------------------
+   VIEW ALL LINK
+   ------------------------------------------------------------ */
+
+.gaza-section-link {
+    display: inline-flex;
+    align-items: center;
+
+    flex: 0 0 auto;
+
+    gap: 7px;
+
+    color: var(--text-secondary);
+
+    font-size: 12px;
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    transition:
+        color var(--transition),
+        transform var(--transition);
+}
+
+.gaza-section-link:hover {
+    color: var(--gaza-cyan);
+
+    transform: translateX(2px);
+}
+
+.gaza-section-link i {
+    font-size: 10px;
+
+    transition: transform var(--transition);
+}
+
+.gaza-section-link:hover i {
+    transform: translateX(3px);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+
+    .gaza-section-header {
+        gap: 12px;
+
+        margin-bottom: 14px;
+    }
+
+    .gaza-section-heading h2 {
+        font-size: 20px;
+    }
+
+    .gaza-section-heading p {
+        margin-top: 4px;
+
+        font-size: 10px;
+    }
+
+    .gaza-section-link {
+        font-size: 10px;
+    }
+
+    .gaza-section-link i {
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .gaza-section-header {
+        align-items: center;
+
+        margin-bottom: 12px;
+    }
+
+    .gaza-section-heading h2 {
+        font-size: 17px;
+
+        letter-spacing: -0.5px;
+    }
+
+    .gaza-section-heading p {
+        display: none;
+    }
+
+    .gaza-section-link {
+        gap: 5px;
+
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 360px) {
+
+    .gaza-section-heading h2 {
+        font-size: 16px;
+    }
+
+    .gaza-section-link {
+        font-size: 8px;
+    }
+}

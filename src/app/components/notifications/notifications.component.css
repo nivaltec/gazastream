@@ -1,0 +1,907 @@
+/* ============================================================
+   GAZA STREAM
+   NOTIFICATIONS PAGE
+   ============================================================ */
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   PAGE
+   ============================================================ */
+
+.gaza-notifications-page {
+  width: 100%;
+  min-width: 0;
+
+  padding: 28px 30px 48px;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.gaza-notifications-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+
+.gaza-notifications-heading {
+  min-width: 0;
+}
+
+
+.gaza-notifications-eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: rgba(255, 255, 255, 0.36);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  letter-spacing: 0.16em;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-notifications-heading h1 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: clamp(26px, 3vw, 36px);
+  font-weight: 700;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.035em;
+}
+
+
+.gaza-notifications-heading p {
+  margin: 8px 0 0;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   UNREAD COUNT
+   ============================================================ */
+
+.gaza-notifications-unread-count {
+  display: inline-flex;
+  align-items: center;
+
+  gap: 8px;
+
+  flex: 0 0 auto;
+
+  min-height: 34px;
+
+  padding: 0 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  white-space: nowrap;
+}
+
+
+.gaza-notifications-unread-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.07);
+}
+
+
+/* ============================================================
+   NOTIFICATION LIST
+   ============================================================ */
+
+.gaza-notifications-list {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+
+  width: 100%;
+}
+
+
+/* ============================================================
+   NOTIFICATION
+   ============================================================ */
+
+.gaza-notification {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+
+  width: 100%;
+
+  min-height: 76px;
+
+  padding: 14px 16px;
+
+  box-sizing: border-box;
+
+  border: 1px solid rgba(255, 255, 255, 0.055);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  cursor: pointer;
+
+  outline: none;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.gaza-notification:hover {
+  background: rgba(255, 255, 255, 0.045);
+
+  border-color: rgba(255, 255, 255, 0.095);
+
+  transform: translateY(-1px);
+}
+
+
+.gaza-notification:focus-visible {
+  border-color: rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.05);
+}
+
+
+.gaza-notification.is-unread {
+  border-color: rgba(255, 255, 255, 0.09);
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.05),
+      rgba(255, 255, 255, 0.025)
+    );
+}
+
+
+.gaza-notification.is-unread:hover {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.065),
+      rgba(255, 255, 255, 0.035)
+    );
+}
+
+
+/* ============================================================
+   NOTIFICATION ICON
+   ============================================================ */
+
+.gaza-notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 44px;
+  height: 44px;
+
+  flex: 0 0 44px;
+
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.055);
+
+  color: rgba(255, 255, 255, 0.58);
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.gaza-notification:hover .gaza-notification-icon {
+  background: rgba(255, 255, 255, 0.08);
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+
+.gaza-notification-icon i {
+  font-size: 15px;
+}
+
+
+/* ============================================================
+   NOTIFICATION TYPE ICONS
+   ============================================================ */
+
+.gaza-notification-icon[data-type="like"] {
+  background: rgba(225, 72, 78, 0.09);
+
+  color: #e8797d;
+}
+
+
+.gaza-notification-icon[data-type="follow"] {
+  background: rgba(78, 169, 111, 0.09);
+
+  color: #78c98d;
+}
+
+
+.gaza-notification-icon[data-type="playlist"] {
+  background: rgba(145, 102, 201, 0.09);
+
+  color: #b18bdd;
+}
+
+
+.gaza-notification-icon[data-type="upload"] {
+  background: rgba(215, 166, 69, 0.09);
+
+  color: #dfb661;
+}
+
+
+.gaza-notification-icon[data-type="message"] {
+  background: rgba(72, 137, 211, 0.09);
+
+  color: #75a9df;
+}
+
+
+.gaza-notification-icon[data-type="system"] {
+  background: rgba(255, 255, 255, 0.055);
+
+  color: rgba(255, 255, 255, 0.58);
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.gaza-notification-content {
+  flex: 1;
+
+  min-width: 0;
+}
+
+
+.gaza-notification-top {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  margin-bottom: 4px;
+
+  min-width: 0;
+}
+
+
+.gaza-notification-type {
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.32);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.gaza-notification-time {
+  flex: 0 0 auto;
+
+  margin-left: auto;
+
+  color: rgba(255, 255, 255, 0.28);
+
+  font-size: 10px;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.gaza-notification-content h2 {
+  margin: 0 0 4px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 13px;
+  font-weight: 600;
+
+  line-height: 1.35;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+.gaza-notification.is-unread
+.gaza-notification-content h2 {
+  color: #fff;
+}
+
+
+/* ============================================================
+   MESSAGE
+   ============================================================ */
+
+.gaza-notification-content p {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   STATUS / ARROW
+   ============================================================ */
+
+.gaza-notification-status {
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  flex: 0 0 auto;
+
+  padding-left: 8px;
+}
+
+
+.gaza-notification-unread {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: #fff;
+
+  box-shadow:
+    0 0 0 3px rgba(255, 255, 255, 0.07);
+}
+
+
+.gaza-notification-status > i {
+  color: rgba(255, 255, 255, 0.22);
+
+  font-size: 10px;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.gaza-notification:hover
+.gaza-notification-status > i {
+  color: rgba(255, 255, 255, 0.65);
+
+  transform: translateX(2px);
+}
+
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+
+.gaza-notifications-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  margin-top: 28px;
+}
+
+
+.gaza-pagination-pages {
+  display: flex;
+  align-items: center;
+
+  gap: 4px;
+}
+
+
+/* ============================================================
+   PAGINATION BUTTON
+   ============================================================ */
+
+.gaza-pagination-button,
+.gaza-pagination-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 34px;
+  height: 34px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 9px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: rgba(255, 255, 255, 0.45);
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.gaza-pagination-button:hover:not(:disabled),
+.gaza-pagination-page:hover {
+  background: rgba(255, 255, 255, 0.07);
+
+  border-color: rgba(255, 255, 255, 0.12);
+
+  color: #fff;
+}
+
+
+.gaza-pagination-button:disabled {
+  opacity: 0.25;
+
+  cursor: not-allowed;
+}
+
+
+.gaza-pagination-page.is-active {
+  border-color: rgba(255, 255, 255, 0.15);
+
+  background: rgba(255, 255, 255, 0.1);
+
+  color: #fff;
+}
+
+
+.gaza-pagination-button i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   PAGINATION INFO
+   ============================================================ */
+
+.gaza-notifications-pagination-info {
+  margin-top: 10px;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 9px;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.gaza-notifications-loading {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+
+.gaza-notification-skeleton {
+  width: 100%;
+  height: 76px;
+
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025),
+      rgba(255, 255, 255, 0.055),
+      rgba(255, 255, 255, 0.025)
+    );
+
+  background-size: 200% 100%;
+
+  animation:
+    gaza-notification-loading 1.5s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes gaza-notification-loading {
+
+  0% {
+    background-position: 200% 0;
+  }
+
+  100% {
+    background-position: -200% 0;
+  }
+
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.gaza-notifications-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 360px;
+
+  padding: 40px 20px;
+
+  text-align: center;
+}
+
+
+.gaza-notifications-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 21px;
+
+  background: rgba(255, 255, 255, 0.035);
+
+  color: rgba(255, 255, 255, 0.3);
+}
+
+
+.gaza-notifications-empty-icon i {
+  font-size: 25px;
+}
+
+
+.gaza-notifications-empty h2 {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+
+  font-size: 18px;
+  font-weight: 600;
+}
+
+
+.gaza-notifications-empty p {
+  max-width: 390px;
+
+  margin: 9px 0 0;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-notifications-page {
+    padding: 22px 18px 40px;
+  }
+
+
+  .gaza-notifications-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    gap: 15px;
+
+    margin-bottom: 22px;
+  }
+
+
+  .gaza-notifications-unread-count {
+    min-height: 32px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .gaza-notifications-page {
+    padding: 18px 12px 32px;
+  }
+
+
+  .gaza-notification {
+    gap: 11px;
+
+    min-height: 70px;
+
+    padding: 12px;
+  }
+
+
+  .gaza-notification-icon {
+    width: 40px;
+    height: 40px;
+
+    flex-basis: 40px;
+
+    border-radius: 11px;
+  }
+
+
+  .gaza-notification-icon i {
+    font-size: 13px;
+  }
+
+
+  .gaza-notification-content h2 {
+    font-size: 12px;
+  }
+
+
+  .gaza-notification-content p {
+    font-size: 10px;
+  }
+
+
+  .gaza-notification-time {
+    font-size: 9px;
+  }
+
+
+  .gaza-notification-status {
+    gap: 8px;
+
+    padding-left: 3px;
+  }
+
+
+  .gaza-notification-unread {
+    width: 6px;
+    height: 6px;
+  }
+
+
+  .gaza-pagination-button,
+  .gaza-pagination-page {
+    min-width: 32px;
+    height: 32px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+  .gaza-notifications-page {
+    padding: 16px 10px 28px;
+  }
+
+
+  .gaza-notifications-heading h1 {
+    font-size: 26px;
+  }
+
+
+  .gaza-notifications-heading p {
+    font-size: 11px;
+  }
+
+
+  .gaza-notification {
+    gap: 10px;
+
+    padding: 11px;
+  }
+
+
+  .gaza-notification-icon {
+    width: 36px;
+    height: 36px;
+
+    flex-basis: 36px;
+  }
+
+
+  .gaza-notification-icon i {
+    font-size: 12px;
+  }
+
+
+  .gaza-notification-top {
+    margin-bottom: 3px;
+  }
+
+
+  .gaza-notification-type {
+    font-size: 8px;
+  }
+
+
+  .gaza-notification-time {
+    display: none;
+  }
+
+
+  .gaza-notification-status {
+    padding-left: 0;
+  }
+
+
+  .gaza-pagination-pages {
+    gap: 3px;
+  }
+
+
+  .gaza-pagination-button,
+  .gaza-pagination-page {
+    min-width: 30px;
+    height: 30px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 350px) {
+
+  .gaza-notifications-page {
+    padding: 14px 8px 24px;
+  }
+
+
+  .gaza-notification {
+    gap: 8px;
+
+    padding: 10px;
+  }
+
+
+  .gaza-notification-icon {
+    width: 34px;
+    height: 34px;
+
+    flex-basis: 34px;
+
+    border-radius: 10px;
+  }
+
+
+  .gaza-notification-content h2 {
+    font-size: 11px;
+  }
+
+
+  .gaza-notification-content p {
+    font-size: 9px;
+  }
+
+
+  .gaza-notification-status > i {
+    display: none;
+  }
+
+
+  .gaza-notifications-pagination {
+    gap: 5px;
+
+    margin-top: 20px;
+  }
+
+
+  .gaza-pagination-pages {
+    gap: 2px;
+  }
+
+
+  .gaza-pagination-button,
+  .gaza-pagination-page {
+    min-width: 28px;
+    height: 28px;
+
+    font-size: 9px;
+  }
+
+}

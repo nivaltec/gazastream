@@ -1,0 +1,144 @@
+<!-- ============================================================
+     GAZA STREAM
+     PLAYLIST CARD
+============================================================ -->
+
+<article class="gaza-playlist-card" [class.is-playing]="isPlaying" (click)="onOpen()" tabindex="0" role="button"
+  [attr.aria-label]="'Open playlist ' + playlist.name">
+
+
+  <!-- ==========================================================
+       ARTWORK
+  =========================================================== -->
+
+  <div class="gaza-playlist-card__artwork">
+
+
+    <!-- Artwork -->
+
+    <img *ngIf="playlist.artwork" class="gaza-playlist-card__image" [src]="playlist.artwork" [alt]="playlist.name"
+      loading="lazy" />
+
+
+    <!-- Fallback -->
+
+    <div *ngIf="!playlist.artwork" class="gaza-playlist-card__fallback">
+
+      <div class="gaza-playlist-card__fallback-icon">
+
+        <i [class]="playlist.icon || 'fa-solid fa-music'"></i>
+
+      </div>
+
+      <span>
+        Gaza Stream
+      </span>
+
+    </div>
+
+
+    <!-- Artwork gradient -->
+
+    <div class="gaza-playlist-card__gradient"></div>
+
+
+    <!-- Top badge -->
+
+    <div class="gaza-playlist-card__badge">
+
+      <i class="fa-solid fa-list-music"></i>
+
+      <span>
+        PLAYLIST
+      </span>
+
+    </div>
+
+
+    <!-- Track count -->
+
+    <div *ngIf="playlist.trackCount !== undefined" class="gaza-playlist-card__track-count">
+
+      <i class="fa-solid fa-music"></i>
+
+      <span>
+        {{ playlist.trackCount }}
+      </span>
+
+    </div>
+
+
+    <!-- Play button -->
+
+    <button type="button" class="gaza-playlist-card__play" (click)="onPlay($event)"
+      [attr.aria-label]="'Play ' + playlist.name">
+
+      <i class="fa-solid" [class.fa-play]="!isPlaying" [class.fa-pause]="isPlaying"></i>
+
+    </button>
+
+
+    <!-- Playing equalizer -->
+
+    <div class="gaza-playlist-card__equalizer" [class.is-active]="isPlaying" aria-hidden="true">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================================
+       CONTENT
+  =========================================================== -->
+
+  <div class="gaza-playlist-card__content">
+
+
+    <!-- Title -->
+
+    <h3 class="gaza-playlist-card__title">
+
+      {{ playlist.name }}
+
+    </h3>
+
+
+    <!-- Description -->
+
+    <p *ngIf="playlist.description" class="gaza-playlist-card__description">
+
+      {{ playlist.description }}
+
+    </p>
+
+
+    <!-- Bottom metadata -->
+
+    <div class="gaza-playlist-card__footer">
+
+      <span class="gaza-playlist-card__footer-label">
+
+        <i class="fa-solid fa-headphones"></i>
+
+        Listen now
+
+      </span>
+
+
+      <span *ngIf="playlist.trackCount !== undefined" class="gaza-playlist-card__footer-count">
+
+        {{ playlist.trackCount }}
+        {{ playlist.trackCount === 1 ? 'track' : 'tracks' }}
+
+      </span>
+
+    </div>
+
+  </div>
+
+</article>

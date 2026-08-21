@@ -1,0 +1,868 @@
+/* ============================================================
+   GAZA STREAM
+   SIDEBAR
+   ============================================================ */
+
+
+/* ============================================================
+   SIDEBAR VARIABLES
+   ============================================================ */
+
+:host {
+
+  --gaza-sidebar-z: 1000;
+  --gaza-overlay-z: 990;
+  --gaza-menu-z: 1200;
+
+  display: block;
+
+}
+
+
+/* ============================================================
+   SIDEBAR
+============================================================ */
+
+.gaza-sidebar {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  bottom: 0;
+
+  z-index: var(--gaza-sidebar-z);
+
+  display: flex;
+  flex-direction: column;
+
+  width: var(--sidebar-width);
+  height: 100vh;
+
+  padding: 24px 16px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      180deg,
+      #08080d 0%,
+      #050507 100%
+    );
+
+  border-right: 1px solid var(--border);
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  scrollbar-width: none;
+
+  transform: translateX(0);
+
+  visibility: visible;
+
+  opacity: 1;
+
+  pointer-events: auto;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+}
+
+
+.gaza-sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+
+/* ============================================================
+   LOGO
+============================================================ */
+
+.gaza-logo {
+
+  flex: 0 0 auto;
+
+  padding: 4px 8px 28px;
+
+}
+
+
+.gaza-logo-link {
+
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+
+  min-width: 0;
+
+  color: var(--text-primary);
+
+  text-decoration: none;
+
+}
+
+
+.gaza-logo img {
+
+  width: 42px;
+  height: 42px;
+
+  flex: 0 0 42px;
+
+  object-fit: contain;
+
+}
+
+
+.gaza-logo-text {
+
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: 21px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: -0.7px;
+
+  white-space: nowrap;
+
+}
+
+
+.gaza-logo-text span {
+
+  background:
+    var(--gaza-gradient);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+}
+
+
+/* ============================================================
+   MAIN NAVIGATION
+============================================================ */
+
+.gaza-nav {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+
+  width: 100%;
+
+}
+
+
+.gaza-nav-label {
+
+  display: block;
+
+  padding: 18px 12px 8px;
+
+  color: var(--text-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+
+  line-height: 1;
+
+  text-transform: uppercase;
+
+  letter-spacing: 1.4px;
+
+}
+
+
+/* ============================================================
+   NAVIGATION LINK
+============================================================ */
+
+.gaza-nav-link {
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  gap: 13px;
+
+  width: 100%;
+  min-height: 46px;
+
+  padding: 0 13px;
+
+  box-sizing: border-box;
+
+  border-radius: var(--radius-md);
+
+  color: var(--text-secondary);
+
+  font-size: 14px;
+  font-weight: 600;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+
+}
+
+
+.gaza-nav-link i {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 20px;
+
+  flex: 0 0 20px;
+
+  color: var(--text-muted);
+
+  font-size: 16px;
+
+  text-align: center;
+
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+
+}
+
+
+.gaza-nav-link:hover {
+
+  color: var(--text-primary);
+
+  background:
+    rgba(255, 255, 255, 0.05);
+
+}
+
+
+.gaza-nav-link:hover i {
+
+  color: var(--text-primary);
+
+  transform: scale(1.05);
+
+}
+
+
+/* ============================================================
+   ACTIVE NAVIGATION
+============================================================ */
+
+.gaza-nav-link.active {
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(108, 36, 255, 0.22),
+      rgba(36, 75, 255, 0.08)
+    );
+
+  box-shadow:
+    inset 3px 0 0 var(--gaza-purple);
+
+}
+
+
+.gaza-nav-link.active i {
+
+  color: var(--gaza-cyan);
+
+}
+
+
+/* ============================================================
+   PLAYLISTS
+============================================================ */
+
+.gaza-sidebar-playlists {
+
+  display: flex;
+  flex-direction: column;
+
+  margin-top: 20px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid var(--border);
+
+}
+
+
+.gaza-sidebar-playlist {
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  min-height: 40px;
+
+  padding: 0 12px;
+
+  box-sizing: border-box;
+
+  border-radius: 9px;
+
+  color: var(--text-muted);
+
+  font-size: 13px;
+
+  text-decoration: none;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+
+}
+
+
+.gaza-sidebar-playlist i {
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 18px;
+
+  flex: 0 0 18px;
+
+  font-size: 13px;
+
+}
+
+
+.gaza-sidebar-playlist:hover {
+
+  color: var(--text-primary);
+
+  background:
+    rgba(255, 255, 255, 0.04);
+
+}
+
+
+.gaza-sidebar-playlist:hover i {
+
+  color: var(--gaza-cyan);
+
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.gaza-sidebar-footer {
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  margin-top: auto;
+
+  padding:
+    18px 10px 4px;
+
+  color: var(--text-muted);
+
+  font-size: 8px;
+  font-weight: 700;
+
+  letter-spacing: 1.1px;
+
+  text-align: center;
+
+}
+
+
+.gaza-sidebar-footer-line {
+
+  width: 100%;
+  height: 1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      var(--border),
+      transparent
+    );
+
+}
+
+
+/* ============================================================
+   MOBILE MENU BUTTON
+   HIDDEN ON DESKTOP
+============================================================ */
+
+.gaza-mobile-menu {
+
+  position: fixed;
+
+  top: 14px;
+  left: 14px;
+
+  z-index: var(--gaza-menu-z);
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  border: 1px solid
+    rgba(255, 255, 255, 0.08);
+
+  border-radius: 12px;
+
+  background:
+    rgba(8, 8, 13, 0.96);
+
+  color: var(--text-primary);
+
+  box-shadow:
+    0 8px 30px
+    rgba(0, 0, 0, 0.35);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+
+}
+
+
+.gaza-mobile-menu:hover {
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  transform: scale(1.04);
+
+}
+
+
+.gaza-mobile-menu:active {
+
+  transform: scale(0.94);
+
+}
+
+
+.gaza-mobile-menu i {
+
+  font-size: 17px;
+
+}
+
+
+/* ============================================================
+   OVERLAY
+   HIDDEN BY DEFAULT
+============================================================ */
+
+.gaza-sidebar-overlay {
+
+  position: fixed;
+
+  inset: 0;
+
+  z-index: var(--gaza-overlay-z);
+
+  display: block;
+
+  background:
+    rgba(0, 0, 0, 0.68);
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  pointer-events: none;
+
+  transition:
+    opacity 0.3s ease,
+    visibility 0.3s ease;
+
+}
+
+
+.gaza-sidebar-overlay.is-visible {
+
+  opacity: 1;
+
+  visibility: visible;
+
+  pointer-events: auto;
+
+}
+
+
+/* ============================================================
+   TABLET
+============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-sidebar {
+
+    width: 76px;
+
+    padding:
+      24px 10px;
+
+    align-items: center;
+
+  }
+
+
+  .gaza-logo {
+
+    padding:
+      4px 0 28px;
+
+  }
+
+
+  .gaza-logo-link {
+
+    justify-content: center;
+
+  }
+
+
+  .gaza-logo-text {
+
+    display: none;
+
+  }
+
+
+  .gaza-nav-label {
+
+    display: none;
+
+  }
+
+
+  .gaza-sidebar-playlists {
+
+    display: none;
+
+  }
+
+
+  .gaza-sidebar-footer {
+
+    display: none;
+
+  }
+
+
+  .gaza-nav {
+
+    align-items: center;
+
+  }
+
+
+  .gaza-nav-link {
+
+    justify-content: center;
+
+    padding-left: 0;
+    padding-right: 0;
+
+  }
+
+
+  .gaza-nav-link i {
+
+    margin: 0;
+
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+============================================================ */
+
+@media (max-width: 600px) {
+
+  /* ----------------------------------------------------------
+     SIDEBAR CLOSED
+  ---------------------------------------------------------- */
+
+  .gaza-sidebar {
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+
+    width: min(290px, 82vw);
+
+    height: 100vh;
+
+    padding:
+      22px 16px;
+
+    align-items: stretch;
+
+    transform:
+      translate3d(-110%, 0, 0);
+
+    visibility: hidden;
+
+    opacity: 1;
+
+    pointer-events: none;
+
+    box-shadow: none;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     SIDEBAR OPEN
+  ---------------------------------------------------------- */
+
+  .gaza-sidebar.is-mobile-open {
+
+    transform:
+      translate3d(0, 0, 0);
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+    box-shadow:
+      20px 0 60px
+      rgba(0, 0, 0, 0.50);
+
+  }
+
+
+  /* ----------------------------------------------------------
+     MENU BUTTON
+  ---------------------------------------------------------- */
+
+  .gaza-mobile-menu {
+
+    display: flex;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     LOGO
+  ---------------------------------------------------------- */
+
+  .gaza-logo {
+
+    display: block;
+
+    padding:
+      4px 8px 28px;
+
+  }
+
+
+  .gaza-logo-link {
+
+    justify-content: flex-start;
+
+  }
+
+
+  .gaza-logo-text {
+
+    display: block;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     NAV LABEL
+  ---------------------------------------------------------- */
+
+  .gaza-nav-label {
+
+    display: block;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     NAV
+  ---------------------------------------------------------- */
+
+  .gaza-nav {
+
+    display: flex;
+
+    align-items: stretch;
+
+  }
+
+
+  .gaza-nav-link {
+
+    justify-content: flex-start;
+
+    min-height: 46px;
+
+    padding:
+      0 13px;
+
+    font-size: 14px;
+
+  }
+
+
+  .gaza-nav-link i {
+
+    width: 20px;
+
+    flex: 0 0 20px;
+
+    font-size: 16px;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     PLAYLISTS
+  ---------------------------------------------------------- */
+
+  .gaza-sidebar-playlists {
+
+    display: flex;
+
+  }
+
+
+  /* ----------------------------------------------------------
+     FOOTER
+  ---------------------------------------------------------- */
+
+  .gaza-sidebar-footer {
+
+    display: flex;
+
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+============================================================ */
+
+@media (max-width: 380px) {
+
+  .gaza-mobile-menu {
+
+    top: 10px;
+    left: 10px;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 10px;
+
+  }
+
+
+  .gaza-sidebar {
+
+    width: min(270px, 84vw);
+
+    padding:
+      18px 13px;
+
+  }
+
+}
+
+
+/* ============================================================
+   BODY LOCK WHEN SIDEBAR IS OPEN
+============================================================ */
+
+body.gaza-sidebar-open {
+
+  overflow: hidden;
+
+}
+
+
+/* ============================================================
+   ACCESSIBILITY
+============================================================ */
+
+.gaza-mobile-menu:focus-visible,
+.gaza-nav-link:focus-visible,
+.gaza-sidebar-playlist:focus-visible {
+
+  outline:
+    2px solid
+    rgba(255, 255, 255, 0.55);
+
+  outline-offset: 2px;
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-sidebar,
+  .gaza-sidebar-overlay,
+  .gaza-mobile-menu,
+  .gaza-nav-link,
+  .gaza-nav-link i {
+
+    transition: none !important;
+
+  }
+
+}

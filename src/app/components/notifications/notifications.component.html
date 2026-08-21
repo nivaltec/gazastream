@@ -1,0 +1,248 @@
+<section class="gaza-notifications-page">
+
+  <!-- ======================================================
+       HEADER
+       ====================================================== -->
+
+  <header class="gaza-notifications-header">
+
+    <div class="gaza-notifications-heading">
+
+      <span class="gaza-notifications-eyebrow">
+        ACTIVITY
+      </span>
+
+      <h1>
+        Notifications
+      </h1>
+
+      <p>
+        Stay up to date with activity on your account.
+      </p>
+
+    </div>
+
+
+    @if (unreadCount > 0) {
+
+    <span class="gaza-notifications-unread-count">
+
+      <span class="gaza-notifications-unread-dot" aria-hidden="true">
+      </span>
+
+      {{ unreadCount }}
+
+      {{
+      unreadCount === 1
+      ? 'unread notification'
+      : 'unread notifications'
+      }}
+
+    </span>
+
+    }
+
+  </header>
+
+
+  <!-- ======================================================
+       NOTIFICATIONS
+       ====================================================== -->
+
+  @if (hasNotifications) {
+
+  <div class="gaza-notifications-list" role="list" aria-label="Notifications">
+
+    @for (
+    notification of paginatedNotifications;
+    track notification.id
+    ) {
+
+    <article class="gaza-notification" [class.is-unread]="!notification.read" role="listitem" tabindex="0"
+      [attr.aria-label]="
+            notification.title +
+            ': ' +
+            notification.message
+          " (click)="openNotification(notification)" (keydown.enter)="openNotification(notification)"
+      (keydown.space)="$event.preventDefault(); openNotification(notification)">
+
+      <!-- ==================================================
+               ICON
+               ================================================== -->
+
+      <div class="gaza-notification-icon" [attr.data-type]="notification.type" aria-hidden="true">
+
+        <i [class]="
+                getNotificationIcon(notification.type)
+              ">
+        </i>
+
+      </div>
+
+
+      <!-- ==================================================
+               CONTENT
+               ================================================== -->
+
+      <div class="gaza-notification-content">
+
+        <div class="gaza-notification-top">
+
+          <span class="gaza-notification-type">
+
+            {{ getNotificationLabel(notification.type) }}
+
+          </span>
+
+
+          <time class="gaza-notification-time" [attr.datetime]="
+                  notification.timestamp
+                    | date:'yyyy-MM-ddTHH:mm:ss'
+                ">
+
+            {{
+            getNotificationTime(
+            notification.timestamp
+            )
+            }}
+
+          </time>
+
+        </div>
+
+
+        <h2>
+          {{ notification.title }}
+        </h2>
+
+
+        <p>
+          {{ notification.message }}
+        </p>
+
+      </div>
+
+
+      <!-- ==================================================
+               STATUS
+               ================================================== -->
+
+      <div class="gaza-notification-status" aria-hidden="true">
+
+        @if (!notification.read) {
+
+        <span class="gaza-notification-unread">
+        </span>
+
+        }
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+      </div>
+
+    </article>
+
+    }
+
+  </div>
+
+
+  <!-- ======================================================
+         PAGINATION
+         ====================================================== -->
+
+  @if (hasPagination) {
+
+  <nav class="gaza-notifications-pagination" aria-label="Notification pages">
+
+    <!-- PREVIOUS -->
+
+    <button type="button" class="gaza-pagination-button" [disabled]="currentPage === 1" aria-label="Previous page"
+      (click)="previousPage()">
+
+      <i class="fa-solid fa-chevron-left" aria-hidden="true">
+      </i>
+
+    </button>
+
+
+    <!-- PAGE NUMBERS -->
+
+    <div class="gaza-pagination-pages">
+
+      @for (page of pages; track page) {
+
+      <button type="button" class="gaza-pagination-page" [class.is-active]="
+                page === currentPage
+              " [attr.aria-current]="
+                page === currentPage
+                  ? 'page'
+                  : null
+              " (click)="goToPage(page)">
+
+        {{ page }}
+
+      </button>
+
+      }
+
+    </div>
+
+
+    <!-- NEXT -->
+
+    <button type="button" class="gaza-pagination-button" [disabled]="
+            currentPage === totalPages
+          " aria-label="Next page" (click)="nextPage()">
+
+      <i class="fa-solid fa-chevron-right" aria-hidden="true">
+      </i>
+
+    </button>
+
+  </nav>
+
+
+  <div class="gaza-notifications-pagination-info">
+
+    Page {{ currentPage }}
+    of
+    {{ totalPages }}
+
+  </div>
+
+  }
+
+  }
+
+
+  <!-- ======================================================
+       EMPTY
+       ====================================================== -->
+
+  @if (!hasNotifications) {
+
+  <div class="gaza-notifications-empty">
+
+    <div class="gaza-notifications-empty-icon" aria-hidden="true">
+
+      <i class="fa-regular fa-bell"></i>
+
+    </div>
+
+
+    <h2>
+      No notifications
+    </h2>
+
+
+    <p>
+      When something happens on your account,
+      you'll see it here.
+    </p>
+
+  </div>
+
+  }
+
+</section>

@@ -1,0 +1,85 @@
+/* ============================================================
+   GAZA STREAM
+   PLAYLIST GRID
+   MATCHES AUDIO GRID EXACTLY
+   ============================================================ */
+
+.gaza-playlists-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      auto-fill,
+      minmax(180px, 1fr)
+    );
+
+  gap: 18px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-playlists-grid {
+    grid-template-columns:
+      repeat(
+        auto-fill,
+        minmax(160px, 1fr)
+      );
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-playlists-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 12px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-playlists-grid {
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(0, 1fr)
+      );
+
+    gap: 9px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-playlists-grid {
+    gap: 7px;
+  }
+
+}

@@ -1,0 +1,120 @@
+<!-- ============================================================
+     MOBILE MENU BUTTON
+============================================================ -->
+
+<button type="button" class="gaza-mobile-menu" [class.is-active]="mobileMenuOpen" (click)="toggleMobileMenu()"
+  aria-label="Toggle navigation" [attr.aria-expanded]="mobileMenuOpen">
+  <i class="fa-solid" [ngClass]="mobileMenuOpen ? 'fa-xmark' : 'fa-bars'"></i>
+</button>
+
+
+<!-- ============================================================
+     MOBILE SIDEBAR OVERLAY
+============================================================ -->
+
+<div class="gaza-sidebar-overlay" [class.is-visible]="mobileMenuOpen" (click)="closeMobileMenu()" aria-hidden="true">
+</div>
+
+
+<!-- ============================================================
+     SIDEBAR
+============================================================ -->
+
+<aside class="gaza-sidebar" [class.is-mobile-open]="mobileMenuOpen">
+
+
+  <!-- ==========================================================
+       BRAND
+  =========================================================== -->
+
+  <div class="gaza-logo">
+
+    <a routerLink="/" class="gaza-logo-link" aria-label="Gaza Stream Home" (click)="closeMobileMenu()">
+
+      <img src="../../../assets/img/gaza.png" alt="Gaza Stream" />
+
+      <span class="gaza-logo-text">
+        Gaza<span>Stream</span>
+      </span>
+
+    </a>
+
+  </div>
+
+
+  <!-- ==========================================================
+       MAIN NAVIGATION
+  =========================================================== -->
+
+  <nav class="gaza-nav" aria-label="Main navigation">
+
+    <span class="gaza-nav-label">
+      Menu
+    </span>
+
+
+    @for (item of navigation; track item.route) {
+
+    <a class="gaza-nav-link" [routerLink]="item.route" routerLinkActive="active" [routerLinkActiveOptions]="{
+          exact: item.exact ?? false
+        }" (click)="closeMobileMenu()">
+
+      <i [class]="item.icon" aria-hidden="true"></i>
+
+      <span>
+        {{ item.label }}
+      </span>
+
+    </a>
+
+    }
+
+  </nav>
+
+
+  <!-- ==========================================================
+       YOUR LIBRARY
+  =========================================================== -->
+
+  <div class="gaza-sidebar-playlists">
+
+    <span class="gaza-nav-label">
+      Your Library
+    </span>
+
+
+    @for (
+    libraryList of libraryLists;
+    track libraryList.route
+    ) {
+
+    <a class="gaza-sidebar-playlist" [routerLink]="libraryList.route" (click)="closeMobileMenu()">
+
+      <i [class]="libraryList.icon" aria-hidden="true"></i>
+
+      <span>
+        {{ libraryList.name }}
+      </span>
+
+    </a>
+
+    }
+
+  </div>
+
+
+  <!-- ==========================================================
+       FOOTER
+  =========================================================== -->
+
+  <div class="gaza-sidebar-footer">
+
+    <div class="gaza-sidebar-footer-line"></div>
+
+    <span>
+      YOUR MUSIC. YOUR CULTURE.
+    </span>
+
+  </div>
+
+</aside>

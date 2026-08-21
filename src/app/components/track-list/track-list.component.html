@@ -1,0 +1,201 @@
+<div class="gaza-track-list">
+
+  <!-- ============================================================
+       TRACKS
+  ============================================================= -->
+
+  <article
+    class="gaza-track"
+    *ngFor="
+      let track of tracks;
+      let i = index
+    "
+    [class.is-playing]="
+      isTrackPlaying(track)
+    "
+    (click)="playTrack(track)"
+  >
+
+
+    <!-- ==========================================================
+         NUMBER / PLAYING INDICATOR
+    =========================================================== -->
+
+    <div
+      class="gaza-track__number"
+    >
+
+      <span
+        *ngIf="
+          !isTrackPlaying(track)
+        "
+      >
+        {{ i + 1 }}
+      </span>
+
+
+      <span
+        class="gaza-track__equalizer"
+        *ngIf="
+          isTrackPlaying(track)
+        "
+      >
+
+        <i></i>
+        <i></i>
+        <i></i>
+
+      </span>
+
+    </div>
+
+
+    <!-- ==========================================================
+         ARTWORK
+    =========================================================== -->
+
+    <div
+      class="gaza-track__artwork"
+    >
+
+      <img
+        [src]="track.artwork"
+        [alt]="track.title"
+        loading="lazy"
+      />
+
+
+      <button
+        type="button"
+        class="gaza-track__play"
+        (click)="
+          playTrack(track, $event)
+        "
+        [attr.aria-label]="
+          isTrackPlaying(track)
+            ? 'Pause ' + track.title
+            : 'Play ' + track.title
+        "
+      >
+
+        <i
+          class="fa-solid"
+          [ngClass]="
+            isTrackPlaying(track)
+              ? 'fa-pause'
+              : 'fa-play'
+          "
+        ></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- ==========================================================
+         TRACK INFORMATION
+    =========================================================== -->
+
+    <div
+      class="gaza-track__info"
+    >
+
+      <h3
+        [class.playing]="
+          isTrackPlaying(track)
+        "
+      >
+        {{ track.title }}
+      </h3>
+
+
+      <p>
+        {{ track.artist }}
+      </p>
+
+    </div>
+
+
+    <!-- ==========================================================
+         ALBUM
+    =========================================================== -->
+
+    <div
+      class="gaza-track__album"
+    >
+
+      {{ track.album || 'Single' }}
+
+    </div>
+
+
+    <!-- ==========================================================
+         GENRE
+    =========================================================== -->
+
+    <div
+      class="gaza-track__genre"
+    >
+
+      {{ track.genre }}
+
+    </div>
+
+
+    <!-- ==========================================================
+         DURATION
+    =========================================================== -->
+
+    <div
+      class="gaza-track__duration"
+    >
+
+      {{ formatDuration(track.duration) }}
+
+    </div>
+
+
+    <!-- ==========================================================
+         MORE
+    =========================================================== -->
+
+    <button
+      type="button"
+      class="gaza-track__more"
+      aria-label="More options"
+      (click)="$event.stopPropagation()"
+    >
+
+      <i
+        class="fa-solid fa-ellipsis"
+      ></i>
+
+    </button>
+
+  </article>
+
+
+  <!-- ============================================================
+       EMPTY
+  ============================================================= -->
+
+  <div
+    class="gaza-track-list__empty"
+    *ngIf="!tracks.length"
+  >
+
+    <i
+      class="fa-solid fa-music"
+    ></i>
+
+    <h3>
+      No tracks available
+    </h3>
+
+    <p>
+      This playlist doesn't contain any tracks yet.
+    </p>
+
+  </div>
+
+</div>

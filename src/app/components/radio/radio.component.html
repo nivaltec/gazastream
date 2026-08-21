@@ -1,0 +1,295 @@
+<div class="gaza-page">
+
+  <!-- ============================================================
+       RADIO HERO
+  ============================================================ -->
+
+  <section class="gaza-radio-hero" *ngIf="selectedStation || featuredStations.length">
+
+    <!-- Background artwork -->
+    <div class="gaza-radio-hero__background">
+
+      <img [src]="
+          selectedStation?.artwork
+          || featuredStations[0]?.artwork
+        " alt="" aria-hidden="true" />
+
+    </div>
+
+
+    <!-- Background overlay -->
+    <div class="gaza-radio-hero__overlay"></div>
+
+
+    <!-- Decorative glow -->
+    <div class="gaza-radio-hero__glow"></div>
+
+
+    <!-- ==========================================================
+         CONTENT
+    =========================================================== -->
+
+    <div class="gaza-radio-hero__content">
+
+      <span class="gaza-radio-hero__eyebrow">
+
+        <span class="gaza-radio-hero__eyebrow-icon">
+          <i class="fa-solid fa-radio"></i>
+        </span>
+
+        <span>LIVE RADIO</span>
+
+        <span class="gaza-radio-hero__status">
+          <span></span>
+          ON AIR
+        </span>
+
+      </span>
+
+
+      <h1>
+        {{
+        selectedStation?.name
+        || featuredStations[0]?.name
+        }}
+      </h1>
+
+
+      <p>
+        {{
+        selectedStation?.description
+        || featuredStations[0]?.description
+        }}
+      </p>
+
+
+      <!-- META -->
+
+      <div class="gaza-radio-hero__meta">
+
+        <span>
+          <i class="fa-solid fa-microphone"></i>
+
+          {{
+          selectedStation?.name
+          || featuredStations[0]?.name
+          }}
+        </span>
+
+        <span class="gaza-radio-hero__meta-dot"></span>
+
+        <span>
+          <i class="fa-solid fa-tower-broadcast"></i>
+          Live stream
+        </span>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="gaza-radio-hero__actions">
+
+        <!-- PLAY -->
+
+        <button type="button" class="gaza-radio-hero__button gaza-radio-hero__button--primary" (click)="
+            playStation(
+              selectedStation || featuredStations[0]
+            )
+          ">
+
+          <span class="gaza-radio-hero__button-icon">
+
+            <i class="fa-solid" [ngClass]="
+                selectedStation &&
+                isStationPlaying(selectedStation)
+                  ? 'fa-pause'
+                  : 'fa-play'
+              "></i>
+
+          </span>
+
+          <span>
+            {{
+            selectedStation &&
+            isStationPlaying(selectedStation)
+            ? 'Pause'
+            : 'Listen Live'
+            }}
+          </span>
+
+        </button>
+
+
+        <!-- FAVOURITE -->
+
+        <button type="button" class="gaza-radio-hero__button gaza-radio-hero__button--secondary" (click)="
+            addToFavourites(
+              selectedStation || featuredStations[0]
+            )
+          ">
+
+          <i class="fa-regular fa-heart"></i>
+
+          <span>
+            Favourite
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ==========================================================
+         ARTWORK
+    =========================================================== -->
+
+    <div class="gaza-radio-hero__visual">
+
+      <div class="gaza-radio-hero__artwork">
+
+        <img [src]="
+            selectedStation?.artwork
+            || featuredStations[0]?.artwork
+          " [alt]="
+            selectedStation?.name
+            || featuredStations[0]?.name
+          " />
+
+
+        <div class="gaza-radio-hero__artwork-overlay"></div>
+
+
+        <!-- LIVE -->
+
+        <div class="gaza-radio-hero__live">
+
+          <span></span>
+
+          LIVE
+
+        </div>
+
+
+        <!-- Bottom information -->
+
+        <div class="gaza-radio-hero__artwork-info">
+
+          <span>
+            NOW BROADCASTING
+          </span>
+
+          <strong>
+            {{
+            selectedStation?.name
+            || featuredStations[0]?.name
+            }}
+          </strong>
+
+        </div>
+
+
+        <!-- Play -->
+
+        <button type="button" class="gaza-radio-hero__play" (click)="
+            playStation(
+              selectedStation || featuredStations[0]
+            )
+          " [attr.aria-label]="
+            selectedStation &&
+            isStationPlaying(selectedStation)
+              ? 'Pause radio'
+              : 'Play radio'
+          ">
+
+          <i class="fa-solid" [ngClass]="
+              selectedStation &&
+              isStationPlaying(selectedStation)
+                ? 'fa-pause'
+                : 'fa-play'
+            "></i>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- Decorative signal -->
+
+    <div class="gaza-radio-hero__signal" aria-hidden="true">
+
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       RADIO STATIONS
+  ============================================================ -->
+
+  <section class="gaza-section gaza-radio-stations" *ngIf="featuredStations.length">
+
+    <app-section-header title="Radio Stations" subtitle="Explore live stations">
+    </app-section-header>
+
+
+    <div class="gaza-radio-grid">
+
+      <app-radio-card *ngFor="let station of featuredStations" [station]="station" [playing]="isStationPlaying(station)"
+        (play)="playStation($event)">
+      </app-radio-card>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       EMPTY STATE
+  ============================================================ -->
+
+  <section class="gaza-radio-empty" *ngIf="!featuredStations.length">
+
+    <div class="gaza-empty-icon">
+
+      <i class="fa-solid fa-radio"></i>
+
+    </div>
+
+
+    <div class="gaza-radio-empty__content">
+
+      <span>
+        GAZA STREAM RADIO
+      </span>
+
+      <h3>
+        Radio stations coming soon
+      </h3>
+
+      <p>
+        We're preparing live radio stations for Gaza Stream.
+      </p>
+
+    </div>
+
+  </section>
+
+</div>

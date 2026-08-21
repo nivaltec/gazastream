@@ -1,0 +1,154 @@
+<!--==========================================================
+ CONTACT MODAL
+===========================================================-->
+
+<div 
+class="contact-overlay"
+(click)="closeModal()">
+
+
+
+    <div 
+    class="contact-modal"
+    (click)="$event.stopPropagation()">
+
+
+
+        <!-- CLOSE BUTTON -->
+
+        <button
+        class="close-btn"
+        (click)="closeModal()">
+
+
+            <i class="fa-solid fa-xmark"></i>
+
+
+        </button>
+
+
+
+
+        <!-- ICON -->
+
+        <div class="contact-icon">
+
+            <i class="fa-solid fa-headset"></i>
+
+        </div>
+
+
+
+
+        <h2>
+
+            Contact gazastream Money
+
+        </h2>
+
+
+
+
+        <p>
+
+            Need help with your application?
+            Our support team is ready to assist you.
+
+        </p>
+
+
+
+
+        <!-- PHONE -->
+
+        <div class="contact-item">
+
+
+            <div class="contact-item-icon">
+
+                <i class="fa-solid fa-phone"></i>
+
+            </div>
+
+
+            <span>
+
+                010 000 0000
+
+            </span>
+
+
+        </div>
+
+
+
+
+        <!-- EMAIL -->
+
+        <div class="contact-item">
+
+
+            <div class="contact-item-icon">
+
+                <i class="fa-solid fa-envelope"></i>
+
+            </div>
+
+
+            <span>
+
+                support@gazastreammoney.co.za
+
+            </span>
+
+
+        </div>
+
+
+
+
+        <!-- WHATSAPP -->
+
+        <div class="contact-item">
+
+
+            <div class="contact-item-icon">
+
+                <i class="fa-brands fa-whatsapp"></i>
+
+            </div>
+
+
+            <span>
+
+                Chat with us on WhatsApp
+
+            </span>
+
+
+        </div>
+
+
+
+
+        <!-- APPLY BUTTON -->
+
+        <button
+        class="modal-button"
+        (click)="applyNow()">
+
+
+            Start Application
+
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+
+        </button>
+
+
+
+    </div>
+
+
+</div>

@@ -1,0 +1,314 @@
+<!-- ============================================================
+     GAZA STREAM
+     ADD PLAYLIST ITEM MODAL
+============================================================= -->
+
+<div class="gaza-add-modal" role="presentation">
+
+
+  <!-- ==========================================================
+       BACKDROP
+  =========================================================== -->
+
+  <div class="gaza-add-modal__backdrop" (click)="close()"></div>
+
+
+  <!-- ==========================================================
+       PANEL
+  =========================================================== -->
+
+  <section class="gaza-add-modal__panel" role="dialog" aria-modal="true" aria-labelledby="addPlaylistItemTitle">
+
+
+    <!-- ========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="gaza-add-modal__header">
+
+      <div class="gaza-add-modal__heading">
+
+        <div class="gaza-add-modal__icon">
+
+          <i class="fa-solid fa-plus"></i>
+
+        </div>
+
+
+        <div>
+
+          <span class="gaza-add-modal__eyebrow">
+            PLAYLIST
+          </span>
+
+          <h2 id="addPlaylistItemTitle">
+            Add music
+          </h2>
+
+          <p>
+            Choose a song from your Gaza Stream library.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button type="button" class="gaza-add-modal__close" (click)="close()" [disabled]="isAdding" aria-label="Close">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </header>
+
+
+    <!-- ========================================================
+         SEARCH
+    ========================================================= -->
+
+    <div class="gaza-add-modal__search">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input type="text" [(ngModel)]="searchTerm" placeholder="Search songs or artists..." autocomplete="off" />
+
+
+      <button *ngIf="searchTerm" type="button" class="gaza-add-modal__clear" (click)="searchTerm = ''"
+        aria-label="Clear search">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </div>
+
+
+    <!-- ========================================================
+         ERROR
+    ========================================================= -->
+
+    <div *ngIf="errorMessage" class="gaza-add-modal__error">
+
+      <i class="fa-solid fa-circle-exclamation"></i>
+
+      <span>
+        {{ errorMessage }}
+      </span>
+
+    </div>
+
+
+    <!-- ========================================================
+         BODY
+    ========================================================= -->
+
+    <div class="gaza-add-modal__body">
+
+
+      <!-- ======================================================
+           LOADING
+      ======================================================= -->
+
+      <div *ngIf="isLoading" class="gaza-add-modal__loading">
+
+        <i class="fa-solid fa-spinner fa-spin"></i>
+
+        <strong>
+          Loading your music
+        </strong>
+
+        <span>
+          Getting your Gaza Stream library ready...
+        </span>
+
+      </div>
+
+
+      <!-- ======================================================
+           EMPTY
+      ======================================================= -->
+
+      <div *ngIf="
+          !isLoading &&
+          !errorMessage &&
+          !filteredItems.length
+        " class="gaza-add-modal__empty">
+
+        <div class="gaza-add-modal__empty-icon">
+
+          <i class="fa-solid fa-music"></i>
+
+        </div>
+
+        <h3>
+          No music found
+        </h3>
+
+        <p>
+          Try searching for another song or artist.
+        </p>
+
+      </div>
+
+
+      <!-- ======================================================
+           LIST
+      ======================================================= -->
+
+      <div *ngIf="
+          !isLoading &&
+          filteredItems.length
+        " class="gaza-add-modal__list">
+
+
+        <button type="button" class="gaza-add-modal__song" *ngFor="
+            let item of filteredItems;
+            trackBy: trackById
+          " [class.gaza-add-modal__song--selected]="
+            selectedItem?.id === item.id
+          " [class.gaza-add-modal__song--added]="
+            isAlreadyAdded(item)
+          " (click)="selectItem(item)">
+
+
+          <!-- ARTWORK -->
+
+          <div class="gaza-add-modal__artwork">
+
+            <img *ngIf="item.artwork" [src]="item.artwork" [alt]="item.title" loading="lazy" />
+
+            <div *ngIf="!item.artwork" class="gaza-add-modal__artwork-fallback">
+
+              <i class="fa-solid fa-music"></i>
+
+            </div>
+
+
+            <div class="gaza-add-modal__artwork-overlay">
+
+              <i *ngIf="
+                  selectedItem?.id !== item.id
+                " class="fa-solid fa-plus"></i>
+
+              <i *ngIf="
+                  selectedItem?.id === item.id
+                " class="fa-solid fa-check"></i>
+
+            </div>
+
+          </div>
+
+
+          <!-- INFORMATION -->
+
+          <div class="gaza-add-modal__song-info">
+
+            <strong>
+              {{ item.title }}
+            </strong>
+
+            <span>
+              {{ item.artist || 'Unknown artist' }}
+            </span>
+
+          </div>
+
+
+          <!-- TYPE -->
+
+          <span class="gaza-add-modal__type">
+
+            <i class="fa-solid fa-music"></i>
+
+            {{ item.type || 'Audio' }}
+
+          </span>
+
+
+          <!-- CHECK -->
+
+          <span class="gaza-add-modal__check">
+
+            <i *ngIf="isAlreadyAdded(item)" class="fa-solid fa-check"></i>
+
+            <i *ngIf="
+                !isAlreadyAdded(item) &&
+                selectedItem?.id === item.id
+              " class="fa-solid fa-check"></i>
+
+            <i *ngIf="
+                !isAlreadyAdded(item) &&
+                selectedItem?.id !== item.id
+              " class="fa-solid fa-plus"></i>
+
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="gaza-add-modal__footer">
+
+
+      <div class="gaza-add-modal__selection">
+
+        <span *ngIf="selectedItem">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+          <strong>
+            {{ selectedItem.title }}
+          </strong>
+
+        </span>
+
+
+        <span *ngIf="!selectedItem">
+
+          <i class="fa-solid fa-circle-info"></i>
+
+          Select a song to add
+
+        </span>
+
+      </div>
+
+
+      <div class="gaza-add-modal__actions">
+
+        <button type="button" class="gaza-add-modal__cancel" (click)="close()" [disabled]="isAdding">
+          Cancel
+        </button>
+
+
+        <button type="button" class="gaza-add-modal__add" [disabled]="
+            !selectedItem ||
+            isAdding
+          " (click)="addSelectedItem()">
+
+          <i *ngIf="!isAdding" class="fa-solid fa-plus"></i>
+
+          <i *ngIf="isAdding" class="fa-solid fa-spinner fa-spin"></i>
+
+          {{ isAdding
+          ? 'Adding...'
+          : 'Add to playlist'
+          }}
+
+        </button>
+
+      </div>
+
+    </footer>
+
+  </section>
+
+</div>

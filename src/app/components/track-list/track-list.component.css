@@ -1,0 +1,636 @@
+/* ============================================================
+   GAZA STREAM
+   TRACK LIST
+   ============================================================ */
+
+.gaza-track-list {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   TRACK
+   ============================================================ */
+
+.gaza-track {
+  position: relative;
+
+  display: grid;
+
+  grid-template-columns:
+    34px
+    52px
+    minmax(180px, 1.5fr)
+    minmax(120px, 1fr)
+    100px
+    70px
+    36px;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 68px;
+
+  padding: 8px 12px;
+
+  border: 1px solid transparent;
+
+  border-radius: var(--radius-md);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  color: var(--text-secondary);
+
+  cursor: pointer;
+
+  transition:
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+
+.gaza-track + .gaza-track {
+  margin-top: 5px;
+}
+
+
+.gaza-track:hover {
+  background:
+    rgba(255, 255, 255, 0.055);
+
+  border-color:
+    var(--border);
+
+  transform:
+    translateY(-1px);
+}
+
+
+/* ============================================================
+   PLAYING
+   ============================================================ */
+
+.gaza-track.is-playing {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(108, 36, 255, 0.14),
+      rgba(8, 207, 255, 0.045)
+    );
+
+  border-color:
+    rgba(108, 36, 255, 0.25);
+}
+
+
+/* ============================================================
+   NUMBER
+   ============================================================ */
+
+.gaza-track__number {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  text-align: center;
+}
+
+
+.gaza-track.is-playing
+.gaza-track__number {
+  color: var(--gaza-cyan);
+}
+
+
+/* ============================================================
+   EQUALIZER
+   ============================================================ */
+
+.gaza-track__equalizer {
+  display: flex;
+
+  align-items: flex-end;
+  justify-content: center;
+
+  gap: 2px;
+
+  width: 18px;
+  height: 18px;
+}
+
+
+.gaza-track__equalizer i {
+  display: block;
+
+  width: 3px;
+
+  border-radius: 4px;
+
+  background:
+    var(--gaza-gradient);
+
+  animation:
+    gazaEqualizer
+    0.8s ease-in-out
+    infinite alternate;
+}
+
+
+.gaza-track__equalizer i:nth-child(1) {
+  height: 7px;
+  animation-delay: -0.2s;
+}
+
+
+.gaza-track__equalizer i:nth-child(2) {
+  height: 15px;
+  animation-delay: -0.5s;
+}
+
+
+.gaza-track__equalizer i:nth-child(3) {
+  height: 10px;
+  animation-delay: -0.35s;
+}
+
+
+@keyframes gazaEqualizer {
+
+  from {
+    transform: scaleY(0.45);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+
+}
+
+
+/* ============================================================
+   ARTWORK
+   ============================================================ */
+
+.gaza-track__artwork {
+  position: relative;
+
+  width: 52px;
+  height: 52px;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+
+  background:
+    #11111a;
+
+  border: 1px solid var(--border);
+}
+
+
+.gaza-track__artwork img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform var(--transition);
+}
+
+
+.gaza-track:hover
+.gaza-track__artwork img {
+  transform:
+    scale(1.06);
+}
+
+
+/* ============================================================
+   PLAY BUTTON
+   ============================================================ */
+
+.gaza-track__play {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+
+  border: 0;
+
+  color: #fff;
+
+  background:
+    rgba(0, 0, 0, 0.58);
+
+  opacity: 0;
+
+  cursor: pointer;
+
+  transition:
+    opacity var(--transition),
+    background var(--transition);
+}
+
+
+.gaza-track:hover
+.gaza-track__play,
+.gaza-track.is-playing
+.gaza-track__play {
+  opacity: 1;
+}
+
+
+.gaza-track__play i {
+  font-size: 13px;
+}
+
+
+.gaza-track.is-playing
+.gaza-track__play {
+  background:
+    rgba(108, 36, 255, 0.42);
+}
+
+
+/* ============================================================
+   INFORMATION
+   ============================================================ */
+
+.gaza-track__info {
+  min-width: 0;
+}
+
+
+.gaza-track__info h3 {
+  overflow: hidden;
+
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 13px;
+  font-weight: 700;
+
+  line-height: 1.25;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+.gaza-track__info h3.playing {
+  color:
+    var(--gaza-cyan);
+}
+
+
+.gaza-track__info p {
+  overflow: hidden;
+
+  margin: 4px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.2;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   ALBUM
+   ============================================================ */
+
+.gaza-track__album,
+.gaza-track__genre {
+  overflow: hidden;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+
+  text-overflow: ellipsis;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   GENRE
+   ============================================================ */
+
+.gaza-track__genre {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: fit-content;
+
+  max-width: 100%;
+
+  min-height: 24px;
+
+  padding: 0 9px;
+
+  border:
+    1px solid var(--border);
+
+  border-radius:
+    var(--radius-round);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   DURATION
+   ============================================================ */
+
+.gaza-track__duration {
+  color: var(--text-muted);
+
+  font-size: 10px;
+
+  font-variant-numeric:
+    tabular-nums;
+
+  text-align: right;
+}
+
+
+/* ============================================================
+   MORE
+   ============================================================ */
+
+.gaza-track__more {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  color: var(--text-muted);
+
+  background:
+    transparent;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  transition:
+    background var(--transition),
+    color var(--transition),
+    opacity var(--transition);
+}
+
+
+.gaza-track:hover
+.gaza-track__more {
+  opacity: 1;
+}
+
+
+.gaza-track__more:hover {
+  color: var(--text-primary);
+
+  background:
+    rgba(255, 255, 255, 0.07);
+}
+
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.gaza-track-list__empty {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 240px;
+
+  padding: 40px;
+
+  border:
+    1px dashed var(--border);
+
+  border-radius:
+    var(--radius-xl);
+
+  background:
+    rgba(255, 255, 255, 0.015);
+
+  text-align: center;
+}
+
+
+.gaza-track-list__empty > i {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 52px;
+
+  margin-bottom: 14px;
+
+  border-radius: 50%;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    var(--shadow-brand);
+}
+
+
+.gaza-track-list__empty h3 {
+  margin: 0;
+
+  color: var(--text-primary);
+
+  font-size: 16px;
+}
+
+
+.gaza-track-list__empty p {
+  margin: 7px 0 0;
+
+  color: var(--text-muted);
+
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .gaza-track {
+    grid-template-columns:
+      28px
+      48px
+      minmax(150px, 1fr)
+      80px
+      60px
+      32px;
+
+    gap: 10px;
+  }
+
+
+  .gaza-track__album {
+    display: none;
+  }
+
+
+  .gaza-track__artwork {
+    width: 48px;
+    height: 48px;
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 600px) {
+
+  .gaza-track {
+    grid-template-columns:
+      24px
+      46px
+      minmax(0, 1fr)
+      32px;
+
+    gap: 9px;
+
+    min-height: 62px;
+
+    padding: 7px 8px;
+  }
+
+
+  .gaza-track__artwork {
+    width: 46px;
+    height: 46px;
+
+    border-radius: 8px;
+  }
+
+
+  .gaza-track__info h3 {
+    font-size: 12px;
+  }
+
+
+  .gaza-track__info p {
+    font-size: 10px;
+  }
+
+
+  .gaza-track__genre,
+  .gaza-track__duration {
+    display: none;
+  }
+
+
+  .gaza-track__more {
+    display: none;
+  }
+
+
+  .gaza-track__play {
+    opacity: 1;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-track {
+    grid-template-columns:
+      20px
+      42px
+      minmax(0, 1fr)
+      30px;
+
+    gap: 7px;
+
+    padding: 6px;
+  }
+
+
+  .gaza-track__artwork {
+    width: 42px;
+    height: 42px;
+  }
+
+
+  .gaza-track__info h3 {
+    font-size: 11px;
+  }
+
+
+  .gaza-track__info p {
+    font-size: 9px;
+  }
+
+
+  .gaza-track__number {
+    font-size: 9px;
+  }
+
+}

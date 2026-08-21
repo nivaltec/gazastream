@@ -1,0 +1,1288 @@
+<!-- ============================================================
+     GAZA STREAM
+     UPLOAD MODAL
+============================================================ -->
+
+<div class="gaza-upload-modal" (click)="onModalBackdropClick($event)">
+
+  <div class="gaza-upload-modal__dialog">
+
+
+    <!-- ========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="gaza-upload-modal__header">
+
+      <div class="gaza-upload-modal__title-wrap">
+
+        <div class="gaza-upload-modal__icon">
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+        </div>
+
+        <div>
+
+          <h2>
+            Upload Content
+          </h2>
+
+          <p>
+            Add music, videos or podcasts to Gaza Stream
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button type="button" class="gaza-upload-modal__close" [disabled]="isUploading" (click)="close()"
+        aria-label="Close upload">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+    </header>
+
+
+    <!-- ========================================================
+         STEPPER
+    ========================================================= -->
+
+    <div class="gaza-upload-stepper">
+
+      <div class="gaza-upload-step" [class.is-active]="step === 1" [class.is-complete]="step > 1">
+
+        <span class="gaza-upload-step__number">
+
+          <i *ngIf="step > 1" class="fa-solid fa-check"></i>
+
+          <span *ngIf="step <= 1">
+            1
+          </span>
+
+        </span>
+
+        <span class="gaza-upload-step__label">
+          Content
+        </span>
+
+      </div>
+
+
+      <div class="gaza-upload-step__line"></div>
+
+
+      <div class="gaza-upload-step" [class.is-active]="step === 2" [class.is-complete]="step > 2">
+
+        <span class="gaza-upload-step__number">
+
+          <i *ngIf="step > 2" class="fa-solid fa-check"></i>
+
+          <span *ngIf="step <= 2">
+            2
+          </span>
+
+        </span>
+
+        <span class="gaza-upload-step__label">
+          Details
+        </span>
+
+      </div>
+
+
+      <div class="gaza-upload-step__line"></div>
+
+
+      <div class="gaza-upload-step" [class.is-active]="step === 3" [class.is-complete]="step > 3">
+
+        <span class="gaza-upload-step__number">
+
+          <i *ngIf="step > 3" class="fa-solid fa-check"></i>
+
+          <span *ngIf="step <= 3">
+            3
+          </span>
+
+        </span>
+
+        <span class="gaza-upload-step__label">
+          Files
+        </span>
+
+      </div>
+
+
+      <div class="gaza-upload-step__line"></div>
+
+
+      <div class="gaza-upload-step" [class.is-active]="step === 4" [class.is-complete]="step > 4">
+
+        <span class="gaza-upload-step__number">
+
+          <i *ngIf="step > 4" class="fa-solid fa-check"></i>
+
+          <span *ngIf="step <= 4">
+            4
+          </span>
+
+        </span>
+
+        <span class="gaza-upload-step__label">
+          Review
+        </span>
+
+      </div>
+
+
+      <div class="gaza-upload-step__line"></div>
+
+
+      <div class="gaza-upload-step" [class.is-active]="step === 5">
+
+        <span class="gaza-upload-step__number">
+
+          <i *ngIf="step === 5" class="fa-solid fa-check"></i>
+
+          <span *ngIf="step < 5">
+            5
+          </span>
+
+        </span>
+
+        <span class="gaza-upload-step__label">
+          Complete
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         BODY
+    ========================================================= -->
+
+    <main class="gaza-upload-modal__body">
+
+
+      <!-- ======================================================
+           ERROR
+      ====================================================== -->
+
+      <div class="gaza-upload-alert gaza-upload-alert--error" *ngIf="errorMessage">
+
+        <i class="fa-solid fa-circle-exclamation"></i>
+
+        <span>
+          {{ errorMessage }}
+        </span>
+
+      </div>
+
+
+      <!-- ======================================================
+           SUCCESS
+      ====================================================== -->
+
+      <div class="gaza-upload-alert gaza-upload-alert--success" *ngIf="successMessage && step !== 5">
+
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>
+          {{ successMessage }}
+        </span>
+
+      </div>
+
+
+      <!-- ======================================================
+           STEP 1
+           CONTENT TYPE
+      ====================================================== -->
+
+      <section class="gaza-upload-section" *ngIf="step === 1">
+
+        <div class="gaza-upload-heading">
+
+          <span class="gaza-upload-heading__eyebrow">
+            STEP 01
+          </span>
+
+          <h3>
+            What are you uploading?
+          </h3>
+
+          <p>
+            Choose the type of content you want to publish.
+          </p>
+
+        </div>
+
+
+        <div class="gaza-content-options">
+
+
+          <!-- AUDIO -->
+
+          <button type="button" class="gaza-content-option" [class.is-selected]="
+              selectedContentType === UploadContentType.Audio
+            " (click)="
+              selectContentType(UploadContentType.Audio)
+            ">
+
+            <span class="gaza-content-option__icon">
+              <i class="fa-solid fa-music"></i>
+            </span>
+
+            <span class="gaza-content-option__content">
+
+              <strong>
+                Audio
+              </strong>
+
+              <small>
+                Music, tracks and albums
+              </small>
+
+            </span>
+
+            <span class="gaza-content-option__check">
+
+              <i class="fa-solid fa-check"></i>
+
+            </span>
+
+          </button>
+
+
+          <!-- VIDEO -->
+
+          <button type="button" class="gaza-content-option" [class.is-selected]="
+              selectedContentType === UploadContentType.Video
+            " (click)="
+              selectContentType(UploadContentType.Video)
+            ">
+
+            <span class="gaza-content-option__icon">
+              <i class="fa-solid fa-video"></i>
+            </span>
+
+            <span class="gaza-content-option__content">
+
+              <strong>
+                Video
+              </strong>
+
+              <small>
+                Music videos and visual content
+              </small>
+
+            </span>
+
+            <span class="gaza-content-option__check">
+
+              <i class="fa-solid fa-check"></i>
+
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <!-- ====================================================
+             PODCAST FLAG
+        ===================================================== -->
+
+        <label class="gaza-podcast-toggle">
+
+          <span class="gaza-podcast-toggle__checkbox">
+
+            <input type="checkbox" [(ngModel)]="isPodcast" />
+
+            <span class="gaza-podcast-toggle__box">
+
+              <i class="fa-solid fa-check"></i>
+
+            </span>
+
+          </span>
+
+
+          <span class="gaza-podcast-toggle__content">
+
+            <strong>
+              This is a podcast
+            </strong>
+
+            <small>
+              Mark this upload as a podcast.
+              Podcasts can be either audio or video.
+            </small>
+
+          </span>
+
+
+          <span class="gaza-podcast-toggle__badge">
+            <i class="fa-solid fa-microphone-lines"></i>
+            Podcast
+          </span>
+
+        </label>
+
+      </section>
+
+
+      <!-- ======================================================
+           STEP 2
+           DETAILS
+      ====================================================== -->
+
+      <section class="gaza-upload-section" *ngIf="step === 2">
+
+        <div class="gaza-upload-heading">
+
+          <span class="gaza-upload-heading__eyebrow">
+            STEP 02
+          </span>
+
+          <h3>
+            Tell us about your content
+          </h3>
+
+          <p>
+            Add the information listeners and viewers will see.
+          </p>
+
+        </div>
+
+
+        <div class="gaza-form-grid">
+
+
+          <!-- TITLE -->
+
+          <div class="gaza-form-field gaza-form-field--full">
+
+            <label>
+              Title
+              <span>*</span>
+            </label>
+
+            <input type="text" [(ngModel)]="title" placeholder="Enter a title" autocomplete="off" />
+
+          </div>
+
+
+          <!-- ARTIST -->
+
+          <div class="gaza-form-field">
+
+            <label>
+              Artist / Creator
+            </label>
+
+            <input type="text" [(ngModel)]="artist" placeholder="Artist or creator" />
+
+          </div>
+
+
+          <!-- ALBUM -->
+
+          <div class="gaza-form-field">
+
+            <label>
+              Album
+            </label>
+
+            <input type="text" [(ngModel)]="album" placeholder="Album name" />
+
+          </div>
+
+
+          <!-- GENRE -->
+
+          <div class="gaza-form-field">
+
+            <label>
+              Genre
+            </label>
+
+            <input type="text" [(ngModel)]="genre" placeholder="e.g. Hip Hop, Gospel, Talk" />
+
+          </div>
+
+
+          <!-- RELEASE DATE -->
+
+          <div class="gaza-form-field">
+
+            <label>
+              Release date
+            </label>
+
+            <input type="date" [(ngModel)]="releaseDate" />
+
+          </div>
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="gaza-form-field gaza-form-field--full">
+
+            <label>
+              Description
+            </label>
+
+            <textarea [(ngModel)]="description" rows="5"
+              placeholder="Tell listeners and viewers about this content..."></textarea>
+
+          </div>
+
+        </div>
+
+
+        <!-- CONTENT SUMMARY -->
+
+        <div class="gaza-content-summary">
+
+          <div class="gaza-content-summary__icon">
+
+            <i class="fa-solid" [ngClass]="
+                selectedContentType === UploadContentType.Video
+                  ? 'fa-video'
+                  : 'fa-music'
+              "></i>
+
+          </div>
+
+          <div>
+
+            <strong>
+              {{ contentTypeLabel }}
+            </strong>
+
+            <span>
+              {{ isPodcast
+              ? 'Podcast content'
+              : 'Standard content'
+              }}
+            </span>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ======================================================
+           STEP 3
+           FILES
+      ====================================================== -->
+
+      <section class="gaza-upload-section" *ngIf="step === 3">
+
+        <div class="gaza-upload-heading">
+
+          <span class="gaza-upload-heading__eyebrow">
+            STEP 03
+          </span>
+
+          <h3>
+            Add your files
+          </h3>
+
+          <p>
+            Upload your artwork and media files.
+          </p>
+
+        </div>
+
+
+        <!-- ====================================================
+             ARTWORK
+        ===================================================== -->
+
+        <div class="gaza-form-section">
+
+          <div class="gaza-form-section__header">
+
+            <div>
+
+              <h4>
+                Artwork
+              </h4>
+
+              <p>
+                JPG, PNG or WEBP
+              </p>
+
+            </div>
+
+            <span class="gaza-form-section__optional">
+              Optional
+            </span>
+
+          </div>
+
+
+          <label class="gaza-artwork-drop" [class.has-file]="artworkFile">
+
+            <input type="file" accept="image/jpeg,image/png,image/webp" [id]="artworkInputId"
+              (change)="onArtworkSelected($event)" />
+
+
+            <div class="gaza-artwork-drop__icon" *ngIf="!artworkFile">
+
+              <i class="fa-solid fa-image"></i>
+
+            </div>
+
+
+            <div class="gaza-artwork-drop__icon gaza-artwork-drop__icon--success" *ngIf="artworkFile">
+
+              <i class="fa-solid fa-check"></i>
+
+            </div>
+
+
+            <strong *ngIf="!artworkFile">
+              Choose artwork
+            </strong>
+
+            <strong *ngIf="artworkFile">
+              {{ artworkFile.name }}
+            </strong>
+
+
+            <small *ngIf="!artworkFile">
+              Click to browse
+            </small>
+
+            <small *ngIf="artworkFile">
+              Artwork selected
+            </small>
+
+          </label>
+
+        </div>
+
+
+        <!-- ====================================================
+             AUDIO
+        ===================================================== -->
+
+        <div class="gaza-form-section" *ngIf="
+            selectedContentType === UploadContentType.Audio
+          ">
+
+          <div class="gaza-form-section__header">
+
+            <div>
+
+              <h4>
+                Audio
+              </h4>
+
+              <p>
+                Select single track or album.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- AUDIO TYPE -->
+
+          <div class="gaza-choice-row">
+
+            <button type="button" class="gaza-choice" [class.is-selected]="
+                audioType === UploadAudioType.Single
+              " (click)="
+                audioType = UploadAudioType.Single
+              ">
+
+              <span class="gaza-choice__icon">
+                <i class="fa-solid fa-music"></i>
+              </span>
+
+              <span>
+
+                <strong>
+                  Single
+                </strong>
+
+                <small>
+                  Upload one audio file
+                </small>
+
+              </span>
+
+              <i class="fa-solid fa-check gaza-choice__check"></i>
+
+            </button>
+
+
+            <button type="button" class="gaza-choice" [class.is-selected]="
+                audioType === UploadAudioType.Album
+              " (click)="
+                audioType = UploadAudioType.Album
+              ">
+
+              <span class="gaza-choice__icon">
+                <i class="fa-solid fa-compact-disc"></i>
+              </span>
+
+              <span>
+
+                <strong>
+                  Album
+                </strong>
+
+                <small>
+                  Upload multiple tracks
+                </small>
+
+              </span>
+
+              <i class="fa-solid fa-check gaza-choice__check"></i>
+
+            </button>
+
+          </div>
+
+
+          <!-- SINGLE AUDIO -->
+
+          <label class="gaza-media-drop" *ngIf="
+              audioType === UploadAudioType.Single
+            " [class.has-file]="mediaFile" (dragenter)="onDragEnter($event)" (dragover)="onDragOver($event)"
+            (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+
+            <input type="file" accept="audio/*,.mp3,.wav,.m4a,.aac,.flac,.ogg" [id]="mediaInputId"
+              (change)="onMediaSelected($event)" />
+
+            <div class="gaza-media-drop__icon">
+
+              <i class="fa-solid" [ngClass]="
+                  mediaFile
+                    ? 'fa-check'
+                    : 'fa-cloud-arrow-up'
+                "></i>
+
+            </div>
+
+            <strong>
+              {{
+              mediaFile
+              ? mediaFile.name
+              : 'Drop your audio here'
+              }}
+            </strong>
+
+            <small>
+              {{
+              mediaFile
+              ? 'Audio file selected'
+              : 'or click to browse'
+              }}
+            </small>
+
+          </label>
+
+
+          <!-- ALBUM -->
+
+          <div class="gaza-album-upload" *ngIf="
+              audioType === UploadAudioType.Album
+            ">
+
+            <label class="gaza-media-drop">
+
+              <input type="file" multiple accept="audio/*,.mp3,.wav,.m4a,.aac,.flac,.ogg" [id]="albumInputId"
+                (change)="onAlbumFilesSelected($event)" />
+
+              <div class="gaza-media-drop__icon">
+
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+
+              </div>
+
+              <strong>
+                Add album tracks
+              </strong>
+
+              <small>
+                Select multiple audio files
+              </small>
+
+            </label>
+
+
+            <!-- TRACKS -->
+
+            <div class="gaza-album-tracks" *ngIf="albumTracks.length">
+
+              <div class="gaza-album-tracks__header">
+
+                <div>
+
+                  <strong>
+                    {{ albumTracks.length }}
+                    {{ albumTracks.length === 1
+                    ? 'track'
+                    : 'tracks'
+                    }}
+                  </strong>
+
+                  <span>
+                    Arrange the order of your album
+                  </span>
+
+                </div>
+
+              </div>
+
+
+              <div class="gaza-album-track" *ngFor="
+                  let track of albumTracks;
+                  let i = index;
+                  trackBy: trackByTrackId
+                ">
+
+                <span class="gaza-album-track__number">
+                  {{ track.trackNumber }}
+                </span>
+
+
+                <span class="gaza-album-track__icon">
+                  <i class="fa-solid fa-music"></i>
+                </span>
+
+
+                <div class="gaza-album-track__info">
+
+                  <strong>
+                    {{ track.title }}
+                  </strong>
+
+                  <small>
+                    {{ track.file.name }}
+                  </small>
+
+                </div>
+
+
+                <div class="gaza-album-track__actions">
+
+                  <button type="button" [disabled]="i === 0" (click)="moveTrackUp(i)" aria-label="Move track up">
+
+                    <i class="fa-solid fa-chevron-up"></i>
+
+                  </button>
+
+
+                  <button type="button" [disabled]="
+                      i === albumTracks.length - 1
+                    " (click)="moveTrackDown(i)" aria-label="Move track down">
+
+                    <i class="fa-solid fa-chevron-down"></i>
+
+                  </button>
+
+
+                  <button type="button" class="is-danger" (click)="removeAlbumTrack(track.id)"
+                    aria-label="Remove track">
+
+                    <i class="fa-solid fa-trash"></i>
+
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             VIDEO
+        ===================================================== -->
+
+        <div class="gaza-form-section" *ngIf="
+            selectedContentType === UploadContentType.Video
+          ">
+
+          <div class="gaza-form-section__header">
+
+            <div>
+
+              <h4>
+                Video
+              </h4>
+
+              <p>
+                MP4, MOV, WEBM, MKV or AVI
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <label class="gaza-media-drop" [class.has-file]="mediaFile" (dragenter)="onDragEnter($event)"
+            (dragover)="onDragOver($event)" (dragleave)="onDragLeave($event)" (drop)="onDrop($event)">
+
+            <input type="file" accept="video/*,.mp4,.mov,.webm,.mkv,.avi" [id]="mediaInputId"
+              (change)="onMediaSelected($event)" />
+
+            <div class="gaza-media-drop__icon">
+
+              <i class="fa-solid" [ngClass]="
+                  mediaFile
+                    ? 'fa-check'
+                    : 'fa-cloud-arrow-up'
+                "></i>
+
+            </div>
+
+            <strong>
+              {{
+              mediaFile
+              ? mediaFile.name
+              : 'Drop your video here'
+              }}
+            </strong>
+
+            <small>
+              {{
+              mediaFile
+              ? 'Video file selected'
+              : 'or click to browse'
+              }}
+            </small>
+
+          </label>
+
+        </div>
+
+      </section>
+
+
+      <!-- ======================================================
+           STEP 4
+           REVIEW
+      ====================================================== -->
+
+      <section class="gaza-upload-section" *ngIf="step === 4">
+
+        <div class="gaza-upload-heading">
+
+          <span class="gaza-upload-heading__eyebrow">
+            STEP 04
+          </span>
+
+          <h3>
+            Review your upload
+          </h3>
+
+          <p>
+            Make sure everything looks correct before uploading.
+          </p>
+
+        </div>
+
+
+        <div class="gaza-review">
+
+
+          <!-- TYPE -->
+
+          <div class="gaza-review__hero">
+
+            <div class="gaza-review__hero-icon">
+
+              <i class="fa-solid" [ngClass]="
+                  selectedContentType === UploadContentType.Video
+                    ? 'fa-video'
+                    : 'fa-music'
+                "></i>
+
+            </div>
+
+            <div>
+
+              <span>
+                {{ contentTypeLabel }}
+              </span>
+
+              <h3>
+                {{ title }}
+              </h3>
+
+              <p *ngIf="artist">
+                {{ artist }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- DETAILS -->
+
+          <div class="gaza-review__grid">
+
+
+            <div class="gaza-review__item" *ngIf="album">
+
+              <span>
+                Album
+              </span>
+
+              <strong>
+                {{ album }}
+              </strong>
+
+            </div>
+
+
+            <div class="gaza-review__item" *ngIf="genre">
+
+              <span>
+                Genre
+              </span>
+
+              <strong>
+                {{ genre }}
+              </strong>
+
+            </div>
+
+
+            <div class="gaza-review__item" *ngIf="releaseDate">
+
+              <span>
+                Release date
+              </span>
+
+              <strong>
+                {{ releaseDate }}
+              </strong>
+
+            </div>
+
+
+            <div class="gaza-review__item">
+
+              <span>
+                Type
+              </span>
+
+              <strong>
+                {{ contentTypeLabel }}
+              </strong>
+
+            </div>
+
+
+            <div class="gaza-review__item" *ngIf="
+                audioType === UploadAudioType.Album &&
+                albumTracks.length
+              ">
+
+              <span>
+                Tracks
+              </span>
+
+              <strong>
+                {{ albumTracks.length }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <!-- DESCRIPTION -->
+
+          <div class="gaza-review__description" *ngIf="description">
+
+            <span>
+              Description
+            </span>
+
+            <p>
+              {{ description }}
+            </p>
+
+          </div>
+
+
+          <!-- FILE -->
+
+          <div class="gaza-review-file">
+
+            <div class="gaza-review-file__icon">
+
+              <i class="fa-solid" [ngClass]="
+                  selectedContentType === UploadContentType.Video
+                    ? 'fa-video'
+                    : 'fa-music'
+                "></i>
+
+            </div>
+
+            <div class="gaza-review-file__content">
+
+              <strong>
+                {{
+                mediaFile?.name ||
+                (
+                albumTracks.length
+                ? albumTracks.length + ' album tracks'
+                : 'Media file'
+                )
+                }}
+              </strong>
+
+              <span>
+                Ready to upload
+              </span>
+
+            </div>
+
+            <i class="fa-solid fa-circle-check"></i>
+
+          </div>
+
+
+          <!-- PODCAST -->
+
+          <div class="gaza-review__podcast" *ngIf="isPodcast">
+
+            <span>
+
+              <i class="fa-solid fa-microphone-lines"></i>
+
+            </span>
+
+            <div>
+
+              <strong>
+                Podcast
+              </strong>
+
+              <small>
+                This content will be published as podcast content.
+              </small>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ======================================================
+           STEP 5
+           COMPLETE
+      ====================================================== -->
+
+      <section class="gaza-upload-complete" *ngIf="step === 5">
+
+        <div class="gaza-upload-complete__icon">
+
+          <i class="fa-solid fa-check"></i>
+
+        </div>
+
+
+        <span class="gaza-upload-complete__eyebrow">
+          UPLOAD COMPLETE
+        </span>
+
+
+        <h3>
+          Your content is live
+        </h3>
+
+
+        <p>
+          {{ successMessage }}
+        </p>
+
+
+        <div class="gaza-upload-complete__summary">
+
+          <div>
+
+            <span>
+              Content
+            </span>
+
+            <strong>
+              {{ title }}
+            </strong>
+
+          </div>
+
+
+          <div>
+
+            <span>
+              Type
+            </span>
+
+            <strong>
+              {{ contentTypeLabel }}
+            </strong>
+
+          </div>
+
+
+          <div *ngIf="artist">
+
+            <span>
+              Artist
+            </span>
+
+            <strong>
+              {{ artist }}
+            </strong>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+    </main>
+
+
+    <!-- ========================================================
+         FOOTER
+    ========================================================= -->
+
+    <footer class="gaza-upload-modal__footer" *ngIf="step < 5">
+
+      <button type="button" class="gaza-upload-btn gaza-upload-btn--secondary" [disabled]="isUploading"
+        (click)="back()">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        <span>
+          {{ step === 1 ? 'Cancel' : 'Back' }}
+        </span>
+
+      </button>
+
+
+      <div class="gaza-upload-modal__footer-right">
+
+
+        <span class="gaza-upload-status" *ngIf="isUploading">
+
+          <span class="gaza-upload-status__dot"></span>
+
+          Uploading {{ uploadProgress }}%
+
+        </span>
+
+
+        <button type="button" class="gaza-upload-btn gaza-upload-btn--primary" [disabled]="isUploading" *ngIf="step < 4"
+          (click)="next()">
+
+          <span>
+            Continue
+          </span>
+
+          <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+
+        <button type="button" class="gaza-upload-btn gaza-upload-btn--primary" [disabled]="isUploading"
+          *ngIf="step === 4" (click)="upload()">
+
+          <i class="fa-solid fa-cloud-arrow-up"></i>
+
+          <span>
+            Upload Content
+          </span>
+
+        </button>
+
+      </div>
+
+    </footer>
+
+
+    <!-- ========================================================
+         UPLOAD PROGRESS
+    ========================================================= -->
+
+    <div class="gaza-upload-progress" *ngIf="isUploading">
+
+      <div class="gaza-upload-progress__top">
+
+        <span>
+          Uploading your content
+        </span>
+
+        <strong>
+          {{ uploadProgress }}%
+        </strong>
+
+      </div>
+
+      <div class="gaza-upload-progress__track">
+
+        <div class="gaza-upload-progress__bar" [style.width.%]="uploadProgress"></div>
+
+      </div>
+
+      <small>
+        Please keep this window open until the upload finishes.
+      </small>
+
+    </div>
+
+
+    <!-- ========================================================
+         COMPLETE FOOTER
+    ========================================================= -->
+
+    <footer class="gaza-upload-modal__footer gaza-upload-modal__footer--complete" *ngIf="step === 5">
+
+      <button type="button" class="gaza-upload-btn gaza-upload-btn--secondary" (click)="uploadMore()">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Upload More
+
+      </button>
+
+
+      <button type="button" class="gaza-upload-btn gaza-upload-btn--primary" (click)="close()">
+
+        <i class="fa-solid fa-check"></i>
+
+        Done
+
+      </button>
+
+    </footer>
+
+  </div>
+
+</div>

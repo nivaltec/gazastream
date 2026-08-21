@@ -1,0 +1,155 @@
+<!-- ============================================================
+     GAZA STREAM
+     PODCAST CARD
+============================================================ -->
+
+<article class="gaza-podcast-card" [attr.aria-label]="podcast.title" (click)="openPodcast()">
+
+
+  <!-- ==========================================================
+       ARTWORK
+  =========================================================== -->
+
+  <div class="gaza-podcast-card__artwork">
+
+
+    <!-- IMAGE -->
+
+    <img *ngIf="podcast.artwork" class="gaza-podcast-card__image" [src]="podcast.artwork" [alt]="podcast.title"
+      loading="lazy" />
+
+
+    <!-- FALLBACK -->
+
+    <div *ngIf="!podcast.artwork" class="gaza-podcast-card__fallback">
+
+      <div class="gaza-podcast-card__fallback-icon">
+
+        <i class="fa-solid fa-podcast"></i>
+
+      </div>
+
+    </div>
+
+
+    <!-- CINEMATIC OVERLAY -->
+
+    <div class="gaza-podcast-card__overlay"></div>
+
+
+    <!-- TOP BADGE -->
+
+    <div class="gaza-podcast-card__top">
+
+      <span class="gaza-podcast-card__badge">
+
+        <i class="fa-solid fa-podcast"></i>
+
+        Podcast
+
+      </span>
+
+    </div>
+
+
+    <!-- CENTER PLAY -->
+
+    <div class="gaza-podcast-card__play">
+
+      <span class="gaza-podcast-card__play-button">
+
+        <i class="fa-solid fa-play"></i>
+
+      </span>
+
+    </div>
+
+
+    <!-- ARTWORK TITLE -->
+
+    <div class="gaza-podcast-card__artwork-content">
+
+      <span *ngIf="podcast.genre" class="gaza-podcast-card__genre">
+
+        {{ podcast.genre }}
+
+      </span>
+
+
+      <h3 class="gaza-podcast-card__title" [title]="podcast.title">
+
+        {{ podcast.title }}
+
+      </h3>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================================
+       CARD CONTENT
+  =========================================================== -->
+
+  <div class="gaza-podcast-card__content">
+
+
+    <!-- ========================================================
+         ARTIST
+    ========================================================= -->
+
+    <div *ngIf="podcast.artist" class="gaza-podcast-card__artist">
+
+      <span class="gaza-podcast-card__artist-avatar">
+
+        <i class="fa-solid fa-microphone"></i>
+
+      </span>
+
+
+      <span class="gaza-podcast-card__artist-name">
+
+        {{ podcast.artist }}
+
+      </span>
+
+    </div>
+
+
+    <!-- ========================================================
+         DESCRIPTION
+    ========================================================= -->
+
+    <p *ngIf="podcast.description" class="gaza-podcast-card__description">
+
+      {{ podcast.description }}
+
+    </p>
+
+
+    <!-- ========================================================
+         FOOTER
+    ========================================================= -->
+
+    <div class="gaza-podcast-card__footer">
+
+      <span class="gaza-podcast-card__listen">
+
+        <i class="fa-solid fa-headphones"></i>
+
+        Listen now
+
+      </span>
+
+
+      <span class="gaza-podcast-card__arrow">
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </span>
+
+    </div>
+
+  </div>
+
+</article>

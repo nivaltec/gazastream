@@ -1,0 +1,25 @@
+<header class="gaza-section-header">
+
+  <div class="gaza-section-heading">
+
+    <h2>
+      {{ title }}
+    </h2>
+
+    <p *ngIf="subtitle">
+      {{ subtitle }}
+    </p>
+
+  </div>
+
+  <a
+    *ngIf="linkText"
+    class="gaza-section-link"
+    [routerLink]="linkUrl || null"
+  >
+    {{ linkText }}
+
+    <i class="fa-solid fa-arrow-right"></i>
+  </a>
+
+</header>

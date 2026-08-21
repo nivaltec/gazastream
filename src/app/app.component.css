@@ -1,0 +1,111 @@
+/* ============================================================
+   GAZA STREAM
+   Application Shell
+   ============================================================ */
+
+
+/* ============================================================
+   APP SHELL
+   ============================================================ */
+
+.gaza-app {
+  display: grid;
+
+  grid-template-columns:
+    var(--sidebar-width)
+    minmax(0, 1fr);
+
+  width: 100%;
+  min-height: 100vh;
+
+  background: var(--gaza-black);
+
+  overflow-x: hidden;
+}
+
+
+/* ============================================================
+   MAIN CONTENT AREA
+   ============================================================ */
+
+.gaza-main {
+  grid-column: 2;
+
+  min-width: 0;
+  min-height: 100vh;
+
+  padding-bottom:
+    calc(
+      var(--player-height) + 25px
+    );
+
+  background: transparent;
+}
+
+
+/* ============================================================
+   PAGE CONTENT
+   ============================================================ */
+
+.gaza-page {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-app {
+    grid-template-columns:
+      var(--sidebar-width)
+      minmax(0, 1fr);
+  }
+
+  .gaza-main {
+    grid-column: 2;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-app {
+    display: block;
+
+    min-height: 100vh;
+  }
+
+  .gaza-main {
+    width: 100%;
+
+    min-height: 100vh;
+
+    padding-bottom:
+      calc(
+        var(--player-height) + 75px
+      );
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-main {
+    padding-bottom:
+      calc(
+        var(--player-height) + 72px
+      );
+  }
+}

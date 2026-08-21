@@ -1,0 +1,822 @@
+/* ============================================================
+   PLAYLIST CREATE MODAL
+   ============================================================ */
+
+.gaza-playlist-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 5000;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    rgba(3, 4, 10, 0.78);
+
+  backdrop-filter:
+    blur(18px);
+
+  -webkit-backdrop-filter:
+    blur(18px);
+
+  animation:
+    gaza-modal-fade 0.2s ease;
+}
+
+
+/* ============================================================
+   DIALOG
+   ============================================================ */
+
+.gaza-playlist-modal__dialog {
+  width: min(100%,
+      560px);
+
+  max-height:
+    calc(100vh - 48px);
+
+  overflow-y: auto;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius:
+    24px;
+
+  background:
+    linear-gradient(145deg,
+      #171827,
+      #0e0f1b);
+
+  box-shadow:
+    0 30px 100px rgba(0, 0, 0, 0.55),
+
+    0 0 0 1px rgba(8, 207, 255, 0.025);
+
+  animation:
+    gaza-modal-enter 0.28s cubic-bezier(0.2,
+      0.8,
+      0.2,
+      1);
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.gaza-playlist-modal__header {
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  padding:
+    26px 28px 22px;
+
+  border-bottom:
+    1px solid rgba(255, 255, 255, 0.06);
+}
+
+
+.gaza-playlist-modal__eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--gaza-cyan, #08cfff);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  letter-spacing: 0.16em;
+}
+
+
+.gaza-playlist-modal__header h2 {
+  margin: 0;
+
+  color:
+    #f7f8fb;
+
+  font-size: 24px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    -0.035em;
+}
+
+
+.gaza-playlist-modal__header p {
+  margin:
+    6px 0 0;
+
+  color:
+    rgba(255, 255, 255, 0.42);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   CLOSE
+   ============================================================ */
+
+.gaza-playlist-modal__close {
+  flex:
+    0 0 auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 34px;
+
+  height: 34px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color:
+    rgba(255, 255, 255, 0.55);
+
+  cursor: pointer;
+
+  transition:
+    0.2s ease;
+}
+
+
+.gaza-playlist-modal__close:hover {
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  color:
+    #fff;
+
+  transform:
+    rotate(90deg);
+}
+
+
+/* ============================================================
+   CONTENT
+   ============================================================ */
+
+.gaza-playlist-modal__content {
+  padding:
+    24px 28px 28px;
+}
+
+
+/* ============================================================
+   ARTWORK
+   ============================================================ */
+
+.gaza-playlist-artwork {
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 26px;
+}
+
+
+.gaza-playlist-artwork__preview {
+  position: relative;
+
+  flex:
+    0 0 108px;
+
+  width: 108px;
+
+  height: 108px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(145deg,
+      #202337,
+      #11121e);
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.25);
+}
+
+
+.gaza-playlist-artwork__preview img {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+.gaza-playlist-artwork__empty {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 100%;
+
+  height: 100%;
+
+  background:
+    radial-gradient(circle at 30% 20%,
+      rgba(8, 207, 255, 0.16),
+      transparent 50%);
+
+  color:
+    rgba(255, 255, 255, 0.25);
+
+  font-size: 28px;
+}
+
+
+.gaza-playlist-artwork__remove {
+  position: absolute;
+
+  top: 7px;
+
+  right: 7px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 25px;
+
+  height: 25px;
+
+  border: 0;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 0, 0, 0.7);
+
+  color:
+    #fff;
+
+  cursor: pointer;
+
+  transition:
+    0.2s ease;
+}
+
+
+.gaza-playlist-artwork__remove:hover {
+  background:
+    #ff506e;
+
+  transform:
+    scale(1.08);
+}
+
+
+/* ============================================================
+   ARTWORK INFO
+   ============================================================ */
+
+.gaza-playlist-artwork__info {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  gap: 5px;
+}
+
+
+.gaza-playlist-artwork__info strong {
+  color:
+    #f5f6f8;
+
+  font-size: 13px;
+
+  font-weight: 750;
+}
+
+
+.gaza-playlist-artwork__info span {
+  color:
+    rgba(255, 255, 255, 0.36);
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   UPLOAD
+   ============================================================ */
+
+.gaza-playlist-artwork__upload {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  margin-top: 7px;
+
+  padding:
+    8px 12px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.18);
+
+  border-radius: 9px;
+
+  background:
+    rgba(8, 207, 255, 0.06);
+
+  color:
+    var(--gaza-cyan, #08cfff);
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    0.2s ease;
+}
+
+
+.gaza-playlist-artwork__upload:hover {
+  background:
+    rgba(8, 207, 255, 0.12);
+
+  border-color:
+    rgba(8, 207, 255, 0.35);
+}
+
+
+.gaza-playlist-artwork__upload input {
+  position: absolute;
+
+  inset: 0;
+
+  width: 100%;
+
+  height: 100%;
+
+  opacity: 0;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.gaza-playlist-field {
+  margin-bottom: 18px;
+}
+
+
+.gaza-playlist-field label,
+.gaza-playlist-field__label label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+
+  font-weight: 700;
+}
+
+
+.gaza-playlist-field__label {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+}
+
+
+.gaza-playlist-field__label span {
+  color:
+    rgba(255, 255, 255, 0.25);
+
+  font-size: 9px;
+}
+
+
+.gaza-playlist-field input,
+.gaza-playlist-field textarea {
+  display: block;
+
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 11px;
+
+  outline: none;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color:
+    #f4f6f8;
+
+  font-family: inherit;
+
+  font-size: 12px;
+
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.gaza-playlist-field input {
+  height: 44px;
+
+  padding:
+    0 13px;
+}
+
+
+.gaza-playlist-field textarea {
+  min-height: 90px;
+
+  padding:
+    12px 13px;
+
+  resize: vertical;
+
+  line-height: 1.5;
+}
+
+
+.gaza-playlist-field input::placeholder,
+.gaza-playlist-field textarea::placeholder {
+  color:
+    rgba(255, 255, 255, 0.22);
+}
+
+
+.gaza-playlist-field input:focus,
+.gaza-playlist-field textarea:focus {
+  border-color:
+    rgba(8, 207, 255, 0.45);
+
+  background:
+    rgba(8, 207, 255, 0.025);
+
+  box-shadow:
+    0 0 0 3px rgba(8, 207, 255, 0.06);
+}
+
+
+.gaza-playlist-field small {
+  display: block;
+
+  margin-top: 6px;
+
+  color:
+    #ff506e;
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.gaza-playlist-modal__error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  margin:
+    4px 0 18px;
+
+  padding:
+    11px 12px;
+
+  border:
+    1px solid rgba(255, 80, 110, 0.16);
+
+  border-radius: 10px;
+
+  background:
+    rgba(255, 80, 110, 0.05);
+
+  color:
+    rgba(255, 255, 255, 0.6);
+
+  font-size: 10px;
+}
+
+
+.gaza-playlist-modal__error i {
+  color:
+    #ff506e;
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.gaza-playlist-modal__actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  gap: 10px;
+
+  padding-top: 7px;
+}
+
+
+.gaza-playlist-modal__cancel,
+.gaza-playlist-modal__create {
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  min-height: 40px;
+
+  padding:
+    0 17px;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    0.2s ease;
+}
+
+
+.gaza-playlist-modal__cancel {
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  color:
+    rgba(255, 255, 255, 0.55);
+}
+
+
+.gaza-playlist-modal__cancel:hover {
+  background:
+    rgba(255, 255, 255, 0.07);
+
+  color:
+    #fff;
+}
+
+
+.gaza-playlist-modal__create {
+  border: 0;
+
+  background:
+    var(--gaza-cyan, #08cfff);
+
+  color:
+    #071018;
+
+  box-shadow:
+    0 8px 20px rgba(8, 207, 255, 0.15);
+}
+
+
+.gaza-playlist-modal__create:hover:not(:disabled) {
+  transform:
+    translateY(-1px);
+
+  box-shadow:
+    0 12px 26px rgba(8, 207, 255, 0.23);
+}
+
+
+.gaza-playlist-modal__create:disabled,
+.gaza-playlist-modal__cancel:disabled {
+  opacity:
+    0.45;
+
+  cursor:
+    not-allowed;
+
+  transform:
+    none;
+}
+
+
+/* ============================================================
+   ANIMATIONS
+   ============================================================ */
+
+@keyframes gaza-modal-fade {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+@keyframes gaza-modal-enter {
+
+  from {
+    opacity: 0;
+
+    transform:
+      translateY(16px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+
+    transform:
+      translateY(0) scale(1);
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 520px) {
+
+  .gaza-playlist-modal {
+    align-items: flex-end;
+
+    padding: 0;
+  }
+
+
+  .gaza-playlist-modal__dialog {
+    width: 100%;
+
+    max-height:
+      92vh;
+
+    border-radius:
+      24px 24px 0 0;
+  }
+
+
+  .gaza-playlist-modal__header {
+    padding:
+      22px 20px 18px;
+  }
+
+
+  .gaza-playlist-modal__content {
+    padding:
+      20px;
+  }
+
+
+  .gaza-playlist-modal__header h2 {
+    font-size: 21px;
+  }
+
+
+  .gaza-playlist-artwork__preview {
+    width: 90px;
+
+    height: 90px;
+
+    flex-basis: 90px;
+  }
+
+
+  .gaza-playlist-modal__actions {
+    padding-bottom: 4px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-playlist-artwork {
+    gap: 12px;
+  }
+
+
+  .gaza-playlist-artwork__preview {
+    width: 76px;
+
+    height: 76px;
+
+    flex-basis: 76px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-playlist-artwork__info strong {
+    font-size: 11px;
+  }
+
+
+  .gaza-playlist-artwork__info span {
+    font-size: 9px;
+  }
+
+
+  .gaza-playlist-modal__cancel,
+  .gaza-playlist-modal__create {
+    flex: 1;
+
+    padding:
+      0 10px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-playlist-modal,
+  .gaza-playlist-modal__dialog {
+    animation: none;
+  }
+
+}

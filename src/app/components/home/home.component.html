@@ -1,0 +1,334 @@
+<div class="gaza-home">
+
+  <!-- =========================================================
+       HERO
+  ========================================================== -->
+
+  <section class="gaza-hero">
+
+    <!-- Background decoration -->
+    <div class="gaza-hero__glow gaza-hero__glow--one"></div>
+    <div class="gaza-hero__glow gaza-hero__glow--two"></div>
+
+    <div class="gaza-hero__grid"></div>
+
+    <!-- =======================================================
+         HERO CONTENT
+    ======================================================== -->
+
+    <div class="gaza-hero__content">
+
+      <div class="gaza-hero__eyebrow">
+
+        <span class="gaza-hero__eyebrow-icon">
+          <i class="fa-solid fa-music"></i>
+        </span>
+
+        <span>
+          Gaza Stream
+        </span>
+
+        <span class="gaza-hero__eyebrow-dot"></span>
+
+        <span class="gaza-hero__eyebrow-status">
+          Listen now
+        </span>
+
+      </div>
+
+
+      <h1 class="gaza-hero__title">
+
+        Your music.
+        <span>Your culture.</span>
+
+      </h1>
+
+
+      <p class="gaza-hero__description">
+        Discover music, artists, podcasts and stories
+        from Gaza-nkulu and around the world.
+      </p>
+
+
+      <div class="gaza-hero__actions">
+
+        <button type="button" class="gaza-btn gaza-btn--primary" (click)="playFeatured()">
+
+          <span class="gaza-btn__icon">
+            <i class="fa-solid fa-play"></i>
+          </span>
+
+          <span>
+            Play Music
+          </span>
+
+        </button>
+
+
+        <a routerLink="/playlist" class="gaza-btn gaza-btn--secondary">
+
+          <span class="gaza-btn__icon">
+            <i class="fa-solid fa-layer-group"></i>
+          </span>
+
+          <span>
+            Browse Playlists
+          </span>
+
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <!-- =======================================================
+         HERO MUSIC VISUAL
+    ======================================================== -->
+
+    <div class="gaza-hero__visual" [class.is-playing]="isPlaying" aria-hidden="true">
+
+      <div class="gaza-hero__disc">
+
+        <div class="gaza-hero__disc-ring"></div>
+
+        <div class="gaza-hero__disc-center">
+          <i class="fa-solid fa-music"></i>
+        </div>
+
+      </div>
+
+
+      <div class="gaza-hero__waves" [class.is-playing]="isPlaying">
+
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       TRENDING
+  ========================================================== -->
+
+  <section class="gaza-section">
+
+    <div class="gaza-section__header">
+
+      <div class="gaza-section__heading">
+
+        <span class="gaza-section__eyebrow">
+          <i class="fa-solid fa-fire"></i>
+          TRENDING
+        </span>
+
+        <h2>
+          Trending Now
+        </h2>
+
+        <p>
+          What listeners are playing right now.
+        </p>
+
+      </div>
+
+
+      <a routerLink="/playlist" class="gaza-section__link">
+
+        <span>
+          View all
+        </span>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div class="gaza-audio-grid">
+
+      <app-audio-card *ngFor="let audio of trendingAudio" [audio]="audio">
+      </app-audio-card>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       GENRES
+  ========================================================== -->
+
+  <section class="gaza-section gaza-section--genres">
+
+    <div class="gaza-section__header">
+
+      <div class="gaza-section__heading">
+
+        <span class="gaza-section__eyebrow">
+          <i class="fa-solid fa-compass"></i>
+          DISCOVER
+        </span>
+
+        <h2>
+          Explore Genres
+        </h2>
+
+        <p>
+          Find something that matches your mood.
+        </p>
+
+      </div>
+
+
+      <a routerLink="/playlist" class="gaza-section__link">
+
+        <span>
+          Explore all
+        </span>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div class="gaza-genre-grid">
+
+      <app-genre-card *ngFor="let genre of genres" [genre]="genre" (genreSelected)="onGenreSelected($event)">
+      </app-genre-card>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       FEATURED VIDEOS
+  ========================================================== -->
+
+  <section class="gaza-section">
+
+    <div class="gaza-section__header">
+
+      <div class="gaza-section__heading">
+
+        <span class="gaza-section__eyebrow">
+          <i class="fa-solid fa-circle-play"></i>
+          WATCH
+        </span>
+
+        <h2>
+          Featured Videos
+        </h2>
+
+        <p>
+          Performances, interviews and music stories.
+        </p>
+
+      </div>
+
+
+      <a routerLink="/video" class="gaza-section__link">
+
+        <span>
+          View all
+        </span>
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+      </a>
+
+    </div>
+
+
+    <div class="gaza-video-grid">
+
+      <app-video-card *ngFor="let video of trendingVideos" [video]="video">
+      </app-video-card>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       PODCAST BANNER
+  ========================================================== -->
+
+  <section class="gaza-podcast-banner">
+
+    <!-- Decorative elements -->
+
+    <div class="gaza-podcast-banner__glow"></div>
+
+    <div class="gaza-podcast-banner__pattern"></div>
+
+
+    <!-- Icon -->
+
+    <div class="gaza-podcast-banner__icon">
+
+      <div class="gaza-podcast-banner__icon-ring"></div>
+
+      <i class="fa-solid fa-podcast"></i>
+
+    </div>
+
+
+    <!-- Content -->
+
+    <div class="gaza-podcast-banner__content">
+
+      <span class="gaza-podcast-banner__eyebrow">
+        GAZA STREAM ORIGINALS
+      </span>
+
+      <h2>
+        Stories worth hearing.
+      </h2>
+
+      <p>
+        Discover conversations, culture, interviews and
+        voices from our community.
+      </p>
+
+    </div>
+
+
+    <!-- Action -->
+
+    <a routerLink="/podcast" class="gaza-podcast-banner__action">
+
+      <span>
+        Explore Podcasts
+      </span>
+
+      <span class="gaza-podcast-banner__action-icon">
+        <i class="fa-solid fa-arrow-right"></i>
+      </span>
+
+    </a>
+
+  </section>
+
+</div>

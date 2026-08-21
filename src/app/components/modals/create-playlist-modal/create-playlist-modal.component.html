@@ -1,0 +1,227 @@
+<!-- ============================================================
+     BACKDROP
+============================================================ -->
+
+<div class="gaza-playlist-modal" *ngIf="visible" (click)="close()">
+
+
+  <!-- ==========================================================
+       MODAL
+  =========================================================== -->
+
+  <section class="gaza-playlist-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="createPlaylistTitle"
+    (click)="$event.stopPropagation()">
+
+
+    <!-- ========================================================
+         HEADER
+    ========================================================= -->
+
+    <header class="gaza-playlist-modal__header">
+
+      <div>
+
+        <span class="gaza-playlist-modal__eyebrow">
+          YOUR LIBRARY
+        </span>
+
+        <h2 id="createPlaylistTitle">
+          Create playlist
+        </h2>
+
+        <p>
+          Build a collection of music
+          you want to listen to.
+        </p>
+
+      </div>
+
+
+      <button type="button" class="gaza-playlist-modal__close" aria-label="Close" (click)="close()">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </header>
+
+
+    <!-- ========================================================
+         CONTENT
+    ========================================================= -->
+
+    <div class="gaza-playlist-modal__content">
+
+
+      <!-- ======================================================
+           ARTWORK
+      ======================================================= -->
+
+      <div class="gaza-playlist-artwork">
+
+        <div class="gaza-playlist-artwork__preview" [class.has-image]="artworkPreview">
+
+
+          <!-- IMAGE -->
+
+          <img *ngIf="artworkPreview" [src]="artworkPreview" alt="Playlist artwork preview" />
+
+
+          <!-- DEFAULT -->
+
+          <div *ngIf="!artworkPreview" class="gaza-playlist-artwork__empty">
+
+            <i class="fa-solid fa-music"></i>
+
+          </div>
+
+
+          <!-- REMOVE -->
+
+          <button *ngIf="artworkPreview" type="button" class="gaza-playlist-artwork__remove" aria-label="Remove artwork"
+            (click)="removeArtwork()">
+
+            <i class="fa-solid fa-xmark"></i>
+
+          </button>
+
+        </div>
+
+
+        <div class="gaza-playlist-artwork__info">
+
+          <strong>
+            Playlist artwork
+          </strong>
+
+          <span>
+            Optional · JPG, PNG or WEBP
+          </span>
+
+
+          <label class="gaza-playlist-artwork__upload">
+
+            <i class="fa-solid fa-cloud-arrow-up"></i>
+
+            <span>
+              {{ artworkPreview
+              ? 'Change artwork'
+              : 'Upload artwork'
+              }}
+            </span>
+
+
+            <input type="file" accept="image/png,image/jpeg,image/webp" (change)="onArtworkSelected($event)" />
+
+          </label>
+
+        </div>
+
+      </div>
+
+
+      <!-- ======================================================
+           FORM
+      ======================================================= -->
+
+      <form [formGroup]="form" (ngSubmit)="create()">
+
+
+        <!-- ====================================================
+             NAME
+        ===================================================== -->
+
+        <div class="gaza-playlist-field">
+
+          <label for="playlistName">
+            Playlist name
+          </label>
+
+          <input id="playlistName" type="text" formControlName="name" placeholder="My new playlist" maxlength="100"
+            autocomplete="off" />
+
+          <small *ngIf="
+              nameControl?.invalid &&
+              nameControl?.touched
+            ">
+            Please enter a playlist name.
+          </small>
+
+        </div>
+
+
+        <!-- ====================================================
+             DESCRIPTION
+        ===================================================== -->
+
+        <div class="gaza-playlist-field">
+
+          <div class="gaza-playlist-field__label">
+
+            <label for="playlistDescription">
+              Description
+            </label>
+
+            <span>
+              Optional
+            </span>
+
+          </div>
+
+
+          <textarea id="playlistDescription" formControlName="description" placeholder="What is this playlist about?"
+            maxlength="500" rows="3"></textarea>
+
+        </div>
+
+
+        <!-- ====================================================
+             ERROR
+        ===================================================== -->
+
+        <div class="gaza-playlist-modal__error" *ngIf="errorMessage">
+
+          <i class="fa-solid fa-circle-exclamation"></i>
+
+          <span>
+            {{ errorMessage }}
+          </span>
+
+        </div>
+
+
+        <!-- ====================================================
+             ACTIONS
+        ===================================================== -->
+
+        <div class="gaza-playlist-modal__actions">
+
+          <button type="button" class="gaza-playlist-modal__cancel" [disabled]="isCreating" (click)="close()">
+            Cancel
+          </button>
+
+
+          <button type="submit" class="gaza-playlist-modal__create" [disabled]="form.invalid || isCreating">
+
+            <i *ngIf="isCreating" class="fa-solid fa-spinner fa-spin"></i>
+
+            <i *ngIf="!isCreating" class="fa-solid fa-plus"></i>
+
+            <span>
+              {{ isCreating
+              ? 'Creating...'
+              : 'Create playlist'
+              }}
+            </span>
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </section>
+
+</div>

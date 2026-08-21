@@ -1,0 +1,706 @@
+<section class="gaza-profile-page">
+
+  <div class="gaza-profile-container">
+
+    <!-- ======================================================
+         HERO
+         ====================================================== -->
+
+    <header class="gaza-profile-hero">
+
+      <div class="gaza-profile-hero__glow"></div>
+
+      <div class="gaza-profile-hero__content">
+
+        <span class="gaza-profile-eyebrow">
+          <i class="fa-solid fa-user"></i>
+          ACCOUNT
+        </span>
+
+        <h1>
+          Your profile
+        </h1>
+
+        <p>
+          Manage your personal information, address and account security.
+        </p>
+
+      </div>
+
+    </header>
+
+
+    <!-- ======================================================
+         PROFILE IDENTITY
+         ====================================================== -->
+
+    <section class="gaza-profile-identity">
+
+      <!-- PROFILE IMAGE -->
+      <button
+        type="button"
+        class="gaza-profile-avatar"
+        [class.gaza-profile-avatar--editable]="isEditing"
+        [disabled]="!isEditing"
+        (click)="openProfileImagePicker()"
+        [attr.aria-label]="
+          isEditing
+            ? 'Change profile image'
+            : 'Profile image'
+        "
+      >
+
+        @if (profileImageUrl) {
+
+          <img
+            [src]="profileImageUrl"
+            alt="Profile image"
+            class="gaza-profile-avatar__image"
+          />
+
+        } @else {
+
+          <i
+            class="fa-solid fa-user"
+            aria-hidden="true"
+          ></i>
+
+        }
+
+        @if (isEditing) {
+
+          <span class="gaza-profile-avatar__overlay">
+
+            <i class="fa-solid fa-camera"></i>
+
+            <small>
+              Change
+            </small>
+
+          </span>
+
+        }
+
+      </button>
+
+
+      <!-- HIDDEN IMAGE INPUT -->
+
+      <input
+        #profileImageInput
+        type="file"
+        accept="image/png,image/jpeg,image/webp"
+        class="gaza-profile-image-input"
+        (change)="onProfileImageSelected($event)"
+      />
+
+
+      <!-- USER INFORMATION -->
+
+      <div class="gaza-profile-identity__info">
+
+        <div class="gaza-profile-name-row">
+
+          <h2>
+            {{ user.firstName }} {{ user.lastName }}
+          </h2>
+
+          <span class="gaza-profile-verified">
+
+            <i class="fa-solid fa-circle-check"></i>
+
+            Verified
+
+          </span>
+
+        </div>
+
+
+        <p>
+          {{ user.email }}
+        </p>
+
+
+        <span class="gaza-profile-member">
+
+          <i class="fa-solid fa-headphones"></i>
+
+          Gaza Stream listener
+
+        </span>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="gaza-profile-actions">
+
+        @if (!isEditing) {
+
+          <button
+            type="button"
+            class="gaza-profile-edit-button"
+            (click)="startEditing()"
+          >
+
+            <i class="fa-solid fa-pen"></i>
+
+            <span>
+              Edit profile
+            </span>
+
+          </button>
+
+        } @else {
+
+          <button
+            type="button"
+            class="gaza-profile-cancel-button"
+            (click)="cancelEditing()"
+          >
+
+            <i class="fa-solid fa-xmark"></i>
+
+            <span>
+              Cancel
+            </span>
+
+          </button>
+
+
+          <button
+            type="button"
+            class="gaza-profile-save-button"
+            (click)="saveProfile()"
+          >
+
+            <i class="fa-solid fa-check"></i>
+
+            <span>
+              Save changes
+            </span>
+
+          </button>
+
+        }
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         EDIT MODE INDICATOR
+         ====================================================== -->
+
+    @if (isEditing) {
+
+      <div class="gaza-profile-edit-notice">
+
+        <i class="fa-solid fa-pen"></i>
+
+        <span>
+          You are editing your profile. Click your profile image
+          to upload a new photo.
+        </span>
+
+      </div>
+
+    }
+
+
+    <!-- ======================================================
+         PERSONAL INFORMATION
+         ====================================================== -->
+
+    <section class="gaza-profile-card">
+
+      <div class="gaza-profile-card__header">
+
+        <div class="gaza-profile-card__icon">
+
+          <i class="fa-solid fa-user"></i>
+
+        </div>
+
+        <div>
+
+          <h3>
+            Personal information
+          </h3>
+
+          <p>
+            Your basic account information
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-profile-form-grid">
+
+
+        <!-- FIRST NAME -->
+
+        <label class="gaza-profile-field">
+
+          <span>
+            First name
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-regular fa-user"></i>
+
+            <input
+              type="text"
+              placeholder="First name"
+              [(ngModel)]="user.firstName"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <!-- LAST NAME -->
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Last name
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-regular fa-user"></i>
+
+            <input
+              type="text"
+              placeholder="Last name"
+              [(ngModel)]="user.lastName"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <!-- EMAIL -->
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Email address
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-regular fa-envelope"></i>
+
+            <input
+              type="email"
+              placeholder="Email address"
+              [(ngModel)]="user.email"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <!-- PHONE -->
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Mobile number
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-mobile-screen-button"></i>
+
+            <input
+              type="tel"
+              placeholder="Mobile number"
+              [(ngModel)]="user.phone"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <!-- DOB -->
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Date of birth
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <input
+              type="date"
+              [(ngModel)]="user.dateOfBirth"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         PHYSICAL ADDRESS
+         ====================================================== -->
+
+    <section class="gaza-profile-card">
+
+      <div class="gaza-profile-card__header">
+
+        <div class="gaza-profile-card__icon">
+
+          <i class="fa-solid fa-location-dot"></i>
+
+        </div>
+
+        <div>
+
+          <h3>
+            Physical address
+          </h3>
+
+          <p>
+            Where your deliveries should be sent
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-profile-form-grid">
+
+
+        <label
+          class="gaza-profile-field gaza-profile-field--full"
+        >
+
+          <span>
+            Street address
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-location-dot"></i>
+
+            <input
+              type="text"
+              placeholder="Street address"
+              [(ngModel)]="user.address"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            City
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-city"></i>
+
+            <input
+              type="text"
+              placeholder="City"
+              [(ngModel)]="user.city"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Province
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-map"></i>
+
+            <input
+              type="text"
+              placeholder="Province"
+              [(ngModel)]="user.province"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Postal code
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-location-crosshairs"></i>
+
+            <input
+              type="text"
+              placeholder="Postal code"
+              [(ngModel)]="user.postalCode"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Country
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-earth-africa"></i>
+
+            <input
+              type="text"
+              placeholder="Country"
+              [(ngModel)]="user.country"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         BANKING
+         ====================================================== -->
+
+    <section class="gaza-profile-card">
+
+      <div class="gaza-profile-card__header">
+
+        <div class="gaza-profile-card__icon">
+
+          <i class="fa-solid fa-building-columns"></i>
+
+        </div>
+
+        <div>
+
+          <h3>
+            Banking details
+          </h3>
+
+          <p>
+            Manage your payment information
+          </p>
+
+        </div>
+
+        <span class="gaza-sensitive-badge">
+
+          <i class="fa-solid fa-lock"></i>
+
+          Secure
+
+        </span>
+
+      </div>
+
+
+      <div class="gaza-profile-form-grid">
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Bank name
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-building-columns"></i>
+
+            <input
+              type="text"
+              placeholder="Bank name"
+              [(ngModel)]="user.bankName"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Account holder
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-regular fa-user"></i>
+
+            <input
+              type="text"
+              placeholder="Account holder"
+              [(ngModel)]="user.accountHolder"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Account number
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-credit-card"></i>
+
+            <input
+              type="text"
+              placeholder="Account number"
+              [(ngModel)]="user.accountNumber"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+
+        <label class="gaza-profile-field">
+
+          <span>
+            Branch code
+          </span>
+
+          <div class="gaza-profile-input">
+
+            <i class="fa-solid fa-code-branch"></i>
+
+            <input
+              type="text"
+              placeholder="Branch code"
+              [(ngModel)]="user.branchCode"
+              [disabled]="!isEditing"
+            />
+
+          </div>
+
+        </label>
+
+      </div>
+
+    </section>
+
+
+    <!-- ======================================================
+         SECURITY
+         ====================================================== -->
+
+    <section class="gaza-security-card">
+
+      <div class="gaza-security-card__icon">
+
+        <i class="fa-solid fa-shield-halved"></i>
+
+      </div>
+
+
+      <div class="gaza-security-card__content">
+
+        <span class="gaza-security-card__eyebrow">
+          ACCOUNT SECURITY
+        </span>
+
+        <h3>
+          Keep your account protected
+        </h3>
+
+        <p>
+          Use a strong password and update it regularly to keep
+          your Gaza Stream account secure.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        class="gaza-security-button"
+        (click)="openChangePassword()"
+      >
+
+        <i class="fas fa-lock"></i>
+
+        Change Password
+
+      </button>
+
+    </section>
+
+  </div>
+
+
+  <!-- ======================================================
+       CHANGE PASSWORD MODAL
+       ====================================================== -->
+
+  <app-change-password-modal
+    *ngIf="isChangePasswordOpen"
+    (closed)="closeChangePassword()"
+    (passwordChanged)="onPasswordChanged()">
+  </app-change-password-modal>
+
+</section>

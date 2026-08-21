@@ -1,0 +1,42 @@
+<div
+  class="gaza-playlists-grid"
+  *ngIf="playlists.length"
+>
+
+  <app-playlist-card
+    *ngFor="let playlist of playlists"
+    [playlist]="playlist"
+    (play)="playPlaylist($event)"
+    (open)="openPlaylist($event)"
+  >
+  </app-playlist-card>
+
+</div>
+
+
+<!-- ============================================================
+     EMPTY
+     ============================================================ -->
+
+<div
+  class="gaza-playlists-empty"
+  *ngIf="!playlists.length"
+>
+
+  <div class="gaza-playlists-empty__icon">
+
+    <i class="fa-solid fa-music"></i>
+
+  </div>
+
+
+  <h3>
+    No playlists yet
+  </h3>
+
+
+  <p>
+    Your playlists will appear here.
+  </p>
+
+</div>

@@ -1,0 +1,622 @@
+<section class="gaza-auth-page">
+
+  <!-- ======================================================
+       BACKGROUND
+       ====================================================== -->
+
+  <div class="gaza-auth-background" aria-hidden="true">
+
+    <span class="gaza-auth-orb gaza-auth-orb--one">
+    </span>
+
+    <span class="gaza-auth-orb gaza-auth-orb--two">
+    </span>
+
+    <span class="gaza-auth-orb gaza-auth-orb--three">
+    </span>
+
+    <span class="gaza-auth-grid"></span>
+
+  </div>
+
+
+  <!-- ======================================================
+       AUTH CONTAINER
+       ====================================================== -->
+
+  <div class="gaza-auth-container">
+
+
+    <!-- ====================================================
+         BRAND
+         ==================================================== -->
+
+    <header class="gaza-auth-brand">
+
+      <div class="gaza-auth-logo">
+
+        <img src="../../../assets/img/gaza2.png" alt="Gaza Stream" />
+
+      </div>
+
+      <div class="gaza-auth-brand-content">
+
+        <strong>
+          GAZA STREAM
+        </strong>
+
+        <span>
+          YOUR MUSIC. YOUR CULTURE.
+        </span>
+
+      </div>
+
+    </header>
+
+
+    <!-- ====================================================
+         AUTH CARD
+         ==================================================== -->
+
+    <main class="gaza-auth-card">
+
+      <div class="gaza-auth-card-glow" aria-hidden="true">
+      </div>
+
+
+      <!-- ==================================================
+           HEADING
+           ================================================== -->
+
+      <div class="gaza-auth-heading">
+
+        <div class="gaza-auth-eyebrow">
+
+          <span class="gaza-auth-eyebrow-line"></span>
+
+          <i class="fa-solid fa-user-plus"></i>
+
+          <span>
+            JOIN GAZA STREAM
+          </span>
+
+        </div>
+
+        <h1>
+          Create account
+        </h1>
+
+        <p>
+          Join the community and start enjoying your music,
+          culture and conversations.
+        </p>
+
+      </div>
+
+
+      <!-- ==================================================
+           ERROR
+           ================================================== -->
+
+      @if (errorMessage) {
+
+      <div class="gaza-auth-message gaza-auth-message--error" role="alert">
+
+        <div class="gaza-auth-message-icon">
+
+          <i class="fa-solid fa-circle-exclamation"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            Something went wrong
+          </strong>
+
+          <span>
+            {{ errorMessage }}
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+
+      <!-- ==================================================
+           SUCCESS
+           ================================================== -->
+
+      @if (successMessage) {
+
+      <div class="gaza-auth-message gaza-auth-message--success" role="status">
+
+        <div class="gaza-auth-message-icon">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            Account created
+          </strong>
+
+          <span>
+            {{ successMessage }}
+          </span>
+
+        </div>
+
+      </div>
+
+      }
+
+
+      <!-- ==================================================
+           SOCIAL LOGIN
+           ================================================== -->
+
+      <div class="gaza-auth-social">
+
+
+        <!-- GOOGLE -->
+
+        <button type="button" class="gaza-social-button gaza-social-button--google" (click)="registerWithGoogle()"
+          [disabled]="loading">
+
+          <span class="gaza-social-icon">
+
+            <i class="fa-brands fa-google"></i>
+
+          </span>
+
+          <span>
+            Continue with Google
+          </span>
+
+          <i class="fa-solid fa-arrow-up-right-from-square gaza-social-arrow">
+          </i>
+
+        </button>
+
+
+        <!-- FACEBOOK / APPLE -->
+
+        <div class="gaza-auth-social-row">
+
+          <button type="button" class="gaza-social-button gaza-social-button--compact" (click)="registerWithFacebook()"
+            [disabled]="loading">
+
+            <span class="gaza-social-icon">
+
+              <i class="fa-brands fa-facebook-f"></i>
+
+            </span>
+
+            <span>
+              Facebook
+            </span>
+
+          </button>
+
+
+          <button type="button" class="gaza-social-button gaza-social-button--compact" (click)="registerWithApple()"
+            [disabled]="loading">
+
+            <span class="gaza-social-icon">
+
+              <i class="fa-brands fa-apple"></i>
+
+            </span>
+
+            <span>
+              Apple
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ==================================================
+           DIVIDER
+           ================================================== -->
+
+      <div class="gaza-auth-divider">
+
+        <span></span>
+
+        <small>
+          OR REGISTER WITH EMAIL
+        </small>
+
+        <span></span>
+
+      </div>
+
+
+      <!-- ==================================================
+           FORM
+           ================================================== -->
+
+      <form class="gaza-auth-form" (ngSubmit)="register()" novalidate>
+
+
+        <!-- ==================================================
+             NAME
+             ================================================== -->
+
+        <div class="gaza-auth-two-column">
+
+
+          <!-- FIRST NAME -->
+
+          <label class="gaza-auth-field">
+
+            <span class="gaza-auth-field-label">
+              First name
+            </span>
+
+            <div class="gaza-auth-input">
+
+              <span class="gaza-auth-input-icon">
+
+                <i class="fa-regular fa-user"></i>
+
+              </span>
+
+              <input type="text" name="firstName" [(ngModel)]="firstName" placeholder="First name"
+                autocomplete="given-name" [disabled]="loading" />
+
+            </div>
+
+          </label>
+
+
+          <!-- LAST NAME -->
+
+          <label class="gaza-auth-field">
+
+            <span class="gaza-auth-field-label">
+              Last name
+            </span>
+
+            <div class="gaza-auth-input">
+
+              <span class="gaza-auth-input-icon">
+
+                <i class="fa-regular fa-user"></i>
+
+              </span>
+
+              <input type="text" name="lastName" [(ngModel)]="lastName" placeholder="Last name"
+                autocomplete="family-name" [disabled]="loading" />
+
+            </div>
+
+          </label>
+
+        </div>
+
+
+        <!-- ==================================================
+             EMAIL
+             ================================================== -->
+
+        <label class="gaza-auth-field">
+
+          <span class="gaza-auth-field-label">
+            Email address
+          </span>
+
+          <div class="gaza-auth-input">
+
+            <span class="gaza-auth-input-icon">
+
+              <i class="fa-regular fa-envelope"></i>
+
+            </span>
+
+            <input type="email" name="email" [(ngModel)]="email" placeholder="you@example.com" autocomplete="email"
+              [disabled]="loading" />
+
+          </div>
+
+        </label>
+
+
+        <!-- ==================================================
+             PASSWORD
+             ================================================== -->
+
+        <label class="gaza-auth-field">
+
+          <span class="gaza-auth-field-label">
+            Password
+          </span>
+
+          <div class="gaza-auth-input">
+
+            <span class="gaza-auth-input-icon">
+
+              <i class="fa-solid fa-lock"></i>
+
+            </span>
+
+            <input [type]="
+                showPassword
+                  ? 'text'
+                  : 'password'
+              " name="password" [(ngModel)]="password" placeholder="Create a password" autocomplete="new-password"
+              [disabled]="loading" />
+
+            <button type="button" class="gaza-auth-input-action" (click)="togglePassword()" [attr.aria-label]="
+                showPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              ">
+
+              <i class="fa-solid" [class.fa-eye]="!showPassword" [class.fa-eye-slash]="showPassword">
+              </i>
+
+            </button>
+
+          </div>
+
+        </label>
+
+
+        <!-- ==================================================
+             PASSWORD STRENGTH
+             ================================================== -->
+
+        @if (password) {
+
+        <div class="gaza-password-strength">
+
+          <div class="gaza-password-strength-header">
+
+            <span>
+              Password strength
+            </span>
+
+            <small [class.is-strong]="passwordStrength >= 4">
+
+              {{ passwordStrengthLabel }}
+
+            </small>
+
+          </div>
+
+
+          <div class="gaza-password-strength-bars">
+
+            @for (
+            bar of [1, 2, 3, 4, 5];
+            track bar
+            ) {
+
+            <span [class.is-active]="passwordStrength >= bar" [class.is-strong]="passwordStrength >= 4">
+            </span>
+
+            }
+
+          </div>
+
+        </div>
+
+        }
+
+
+        <!-- ==================================================
+             CONFIRM PASSWORD
+             ================================================== -->
+
+        <label class="gaza-auth-field">
+
+          <span class="gaza-auth-field-label">
+            Confirm password
+          </span>
+
+          <div class="gaza-auth-input" [class.gaza-auth-input--error]="
+              confirmPassword &&
+              password !== confirmPassword
+            " [class.gaza-auth-input--valid]="
+              confirmPassword &&
+              password === confirmPassword
+            ">
+
+            <span class="gaza-auth-input-icon">
+
+              <i class="fa-solid fa-shield-halved"></i>
+
+            </span>
+
+            <input [type]="
+                showConfirmPassword
+                  ? 'text'
+                  : 'password'
+              " name="confirmPassword" [(ngModel)]="confirmPassword" placeholder="Repeat your password"
+              autocomplete="new-password" [disabled]="loading" />
+
+            <button type="button" class="gaza-auth-input-action" (click)="toggleConfirmPassword()" [attr.aria-label]="
+                showConfirmPassword
+                  ? 'Hide password'
+                  : 'Show password'
+              ">
+
+              <i class="fa-solid" [class.fa-eye]="!showConfirmPassword" [class.fa-eye-slash]="showConfirmPassword">
+              </i>
+
+            </button>
+
+          </div>
+
+        </label>
+
+
+        <!-- PASSWORD MATCH -->
+
+        @if (
+        confirmPassword &&
+        password !== confirmPassword
+        ) {
+
+        <div class="gaza-password-match gaza-password-match--error">
+
+          <i class="fa-solid fa-circle-exclamation"></i>
+
+          <span>
+            Passwords do not match.
+          </span>
+
+        </div>
+
+        }
+
+        @if (
+        confirmPassword &&
+        password === confirmPassword
+        ) {
+
+        <div class="gaza-password-match gaza-password-match--success">
+
+          <i class="fa-solid fa-circle-check"></i>
+
+          <span>
+            Passwords match.
+          </span>
+
+        </div>
+
+        }
+
+
+        <!-- ==================================================
+             TERMS
+             ================================================== -->
+
+        <label class="gaza-auth-checkbox gaza-auth-terms">
+
+          <input type="checkbox" name="acceptTerms" [(ngModel)]="acceptTerms" [disabled]="loading" />
+
+          <span class="gaza-auth-checkmark">
+
+            <i class="fa-solid fa-check"></i>
+
+          </span>
+
+          <span class="gaza-auth-terms-text">
+
+            I agree to the
+
+            <button type="button" class="gaza-inline-link">
+
+              Terms
+
+            </button>
+
+            and
+
+            <button type="button" class="gaza-inline-link">
+
+              Privacy Policy
+
+            </button>
+
+          </span>
+
+        </label>
+
+
+        <!-- ==================================================
+             SUBMIT
+             ================================================== -->
+
+        <button type="submit" class="gaza-auth-submit" [disabled]="loading">
+
+          @if (loading) {
+
+          <span class="gaza-auth-spinner"></span>
+
+          <span>
+            Creating account...
+          </span>
+
+          } @else {
+
+          <span>
+            Create my account
+          </span>
+
+          <span class="gaza-auth-submit-icon">
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </span>
+
+          }
+
+        </button>
+
+      </form>
+
+
+      <!-- ==================================================
+           LOGIN
+           ================================================== -->
+
+      <div class="gaza-auth-footer">
+
+        <span>
+          Already part of Gaza Stream?
+        </span>
+
+        <button type="button" (click)="login()">
+
+          <span>
+            Sign in
+          </span>
+
+          <i class="fa-solid fa-arrow-right"></i>
+
+        </button>
+
+      </div>
+
+    </main>
+
+
+    <!-- ====================================================
+         LEGAL
+         ==================================================== -->
+
+    <footer class="gaza-auth-legal">
+
+      <span>
+        © {{ currentYear }} Gaza Stream
+      </span>
+
+      <span class="gaza-auth-legal-dot"></span>
+
+      <button type="button">
+        Privacy
+      </button>
+
+      <span class="gaza-auth-legal-dot"></span>
+
+      <button type="button">
+        Terms
+      </button>
+
+    </footer>
+
+  </div>
+
+</section>

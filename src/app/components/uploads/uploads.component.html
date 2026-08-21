@@ -1,0 +1,482 @@
+<section class="gaza-uploads-page">
+
+  <!-- ============================================================
+       PAGE HEADER
+  ============================================================ -->
+
+  <header class="gaza-uploads-header">
+
+    <div class="gaza-uploads-header__main">
+
+      <div class="gaza-uploads-heading">
+
+        <span class="gaza-uploads-eyebrow">
+          <i class="fa-solid fa-sparkles"></i>
+          Gaza Stream Studio
+        </span>
+
+        <h1>
+          Your uploads
+        </h1>
+
+        <p>
+          Manage everything you've published from one place.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      class="gaza-upload-main-button"
+      (click)="openUploadModal()">
+
+      <span class="gaza-upload-main-button__icon">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </span>
+
+      <span>
+        Upload content
+      </span>
+
+      <i class="fa-solid fa-plus"></i>
+
+    </button>
+
+  </header>
+
+
+  <!-- ============================================================
+       STATISTICS
+  ============================================================ -->
+
+  <section class="gaza-upload-stats">
+
+    <article class="gaza-upload-stat">
+
+      <div class="gaza-upload-stat__icon">
+        <i class="fa-solid fa-layer-group"></i>
+      </div>
+
+      <div class="gaza-upload-stat__content">
+
+        <strong>
+          {{ uploadCount }}
+        </strong>
+
+        <span>
+          Total uploads
+        </span>
+
+      </div>
+
+    </article>
+
+
+    <article class="gaza-upload-stat">
+
+      <div class="gaza-upload-stat__icon">
+        <i class="fa-solid fa-music"></i>
+      </div>
+
+      <div class="gaza-upload-stat__content">
+
+        <strong>
+          {{ audioCount }}
+        </strong>
+
+        <span>
+          Audio
+        </span>
+
+      </div>
+
+    </article>
+
+
+    <article class="gaza-upload-stat">
+
+      <div class="gaza-upload-stat__icon">
+        <i class="fa-solid fa-video"></i>
+      </div>
+
+      <div class="gaza-upload-stat__content">
+
+        <strong>
+          {{ videoCount }}
+        </strong>
+
+        <span>
+          Videos
+        </span>
+
+      </div>
+
+    </article>
+
+
+    <article class="gaza-upload-stat">
+
+      <div class="gaza-upload-stat__icon">
+        <i class="fa-solid fa-microphone-lines"></i>
+      </div>
+
+      <div class="gaza-upload-stat__content">
+
+        <strong>
+          {{ podcastCount }}
+        </strong>
+
+        <span>
+          Podcasts
+        </span>
+
+      </div>
+
+    </article>
+
+  </section>
+
+
+  <!-- ============================================================
+       TOOLBAR
+  ============================================================ -->
+
+  <section class="gaza-uploads-toolbar">
+
+    <div class="gaza-upload-search">
+
+      <i class="fa-solid fa-magnifying-glass"></i>
+
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        placeholder="Search your uploads..." />
+
+      <button
+        *ngIf="searchTerm"
+        type="button"
+        aria-label="Clear search"
+        (click)="searchTerm = ''">
+
+        <i class="fa-solid fa-xmark"></i>
+
+      </button>
+
+    </div>
+
+
+    <div class="gaza-upload-filters">
+
+      <button
+        type="button"
+        [class.is-active]="filter === 'all'"
+        (click)="setFilter('all')">
+
+        All
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.is-active]="filter === 'audio'"
+        (click)="setFilter('audio')">
+
+        <i class="fa-solid fa-music"></i>
+
+        Audio
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.is-active]="filter === 'video'"
+        (click)="setFilter('video')">
+
+        <i class="fa-solid fa-video"></i>
+
+        Video
+
+      </button>
+
+
+      <button
+        type="button"
+        [class.is-active]="filter === 'podcast'"
+        (click)="setFilter('podcast')">
+
+        <i class="fa-solid fa-microphone-lines"></i>
+
+        Podcasts
+
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       UPLOAD LIST
+  ============================================================ -->
+
+  <main class="gaza-upload-list-wrapper">
+
+
+    <!-- ==========================================================
+         LOADING
+    ========================================================== -->
+
+    <div
+      class="gaza-upload-empty"
+      *ngIf="isLoadingUploads">
+
+      <div class="gaza-upload-empty__icon">
+        <i class="fa-solid fa-spinner fa-spin"></i>
+      </div>
+
+      <strong>
+        Loading your uploads
+      </strong>
+
+      <span>
+        Just a moment...
+      </span>
+
+    </div>
+
+
+    <!-- ==========================================================
+         EMPTY
+    ========================================================== -->
+
+    <div
+      class="gaza-upload-empty"
+      *ngIf="
+        !isLoadingUploads &&
+        filteredUploads.length === 0
+      ">
+
+      <div class="gaza-upload-empty__icon">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+      </div>
+
+      <strong>
+        No uploads yet
+      </strong>
+
+      <span>
+        Your music, podcasts and videos will appear here.
+      </span>
+
+      <button
+        type="button"
+        class="gaza-upload-empty__button"
+        (click)="openUploadModal()">
+
+        <i class="fa-solid fa-plus"></i>
+
+        Upload your first item
+
+      </button>
+
+    </div>
+
+
+    <!-- ==========================================================
+         LIST
+    ========================================================== -->
+
+    <div
+      class="gaza-upload-list"
+      *ngIf="
+        !isLoadingUploads &&
+        filteredUploads.length
+      ">
+
+
+      <!-- LIST HEADER -->
+
+      <div class="gaza-upload-list__header">
+
+        <span class="gaza-upload-list__header-content">
+          Content
+        </span>
+
+        <span>
+          Type
+        </span>
+
+        <span>
+          Status
+        </span>
+
+        <span>
+          Date
+        </span>
+
+        <span></span>
+
+      </div>
+
+
+      <!-- ========================================================
+           ITEMS
+      ======================================================== -->
+
+      <article
+        class="gaza-upload-item"
+        *ngFor="
+          let upload of filteredUploads;
+          trackBy: trackByUploadId
+        ">
+
+
+        <!-- CONTENT -->
+
+        <div class="gaza-upload-item__content">
+
+          <div class="gaza-upload-item__artwork">
+
+            <img
+              *ngIf="upload.artwork"
+              [src]="upload.artwork"
+              [alt]="upload.title" />
+
+            <div
+              *ngIf="!upload.artwork"
+              class="gaza-upload-item__artwork-placeholder">
+
+              <i
+                class="fa-solid"
+                [ngClass]="getUploadIcon(upload)">
+              </i>
+
+            </div>
+
+          </div>
+
+
+          <div class="gaza-upload-item__info">
+
+            <strong>
+              {{ upload.title }}
+            </strong>
+
+            <span *ngIf="upload.artist">
+              {{ upload.artist }}
+            </span>
+
+            <small *ngIf="upload.album">
+              {{ upload.album }}
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <!-- TYPE -->
+
+        <div class="gaza-upload-item__type">
+
+          <span
+            class="gaza-type-badge"
+            [class.gaza-type-badge--podcast]="upload.isPodcast">
+
+            <i
+              class="fa-solid"
+              [ngClass]="getUploadIcon(upload)">
+            </i>
+
+            {{ getUploadTypeLabel(upload) }}
+
+          </span>
+
+          <small
+            *ngIf="
+              upload.audioType === UploadAudioType.Album
+            ">
+
+            Album
+
+            <ng-container *ngIf="upload.trackCount">
+              · {{ upload.trackCount }} tracks
+            </ng-container>
+
+          </small>
+
+        </div>
+
+
+        <!-- STATUS -->
+
+        <div class="gaza-upload-item__status">
+
+          <span
+            class="gaza-status"
+            [class.gaza-status--success]="
+              upload.status === UploadStatus.Completed
+            ">
+
+            <span class="gaza-status__dot"></span>
+
+            {{
+              upload.status === UploadStatus.Completed
+                ? 'Published'
+                : upload.status
+            }}
+
+          </span>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="gaza-upload-item__date">
+
+          <span>
+            {{ formatDate(upload.createdAt) }}
+          </span>
+
+        </div>
+
+
+        <!-- ACTION -->
+
+        <div class="gaza-upload-item__action">
+
+          <button
+            type="button"
+            title="More options"
+            aria-label="More options">
+
+            <i class="fa-solid fa-ellipsis"></i>
+
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </main>
+
+
+  <!-- ============================================================
+       UPLOAD MODAL
+  ============================================================ -->
+
+  <app-upload-modal
+    *ngIf="isUploadModalOpen"
+    (closed)="closeUploadModal()"
+    (uploadCompleted)="onUploadCompleted($event)">
+  </app-upload-modal>
+
+</section>

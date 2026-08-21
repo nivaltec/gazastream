@@ -1,0 +1,560 @@
+/* ============================================================
+   PLAYLIST PAGE
+   ============================================================ */
+
+.gaza-page {
+  width: 100%;
+  min-width: 0;
+}
+
+
+.gaza-section {
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.gaza-playlists-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  margin-bottom: 28px;
+}
+
+
+/* ============================================================
+   CREATE PLAYLIST BUTTON
+   ============================================================ */
+
+.gaza-create-playlist-btn {
+  position: relative;
+
+  flex: 0 0 auto;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 42px;
+
+  padding:
+    0 16px 0 8px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.2);
+
+  border-radius: 12px;
+
+  outline: none;
+
+  background:
+    rgba(8, 207, 255, 0.055);
+
+  color:
+    var(--gaza-cyan, #08cfff);
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    0.01em;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 5px 18px rgba(0, 0, 0, 0.12);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+
+.gaza-create-playlist-btn:hover {
+  transform:
+    translateY(-2px);
+
+  background:
+    rgba(8, 207, 255, 0.1);
+
+  border-color:
+    rgba(8, 207, 255, 0.4);
+
+  box-shadow:
+    0 10px 25px rgba(8, 207, 255, 0.08);
+}
+
+
+.gaza-create-playlist-btn:active {
+  transform:
+    translateY(0);
+}
+
+
+/* ============================================================
+   CREATE ICON
+   ============================================================ */
+
+.gaza-create-playlist-btn__icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 27px;
+
+  height: 27px;
+
+  flex: 0 0 27px;
+
+  border-radius: 8px;
+
+  background:
+    var(--gaza-cyan, #08cfff);
+
+  color:
+    #061017;
+
+  font-size: 10px;
+
+  transition:
+    transform 0.2s ease;
+}
+
+
+.gaza-create-playlist-btn:hover .gaza-create-playlist-btn__icon {
+  transform:
+    rotate(90deg);
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.gaza-playlists-loading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 240px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  border-radius:
+    var(--radius-xl, 20px);
+
+  background:
+    rgba(255, 255, 255, 0.012);
+
+  color:
+    var(--text-muted, rgba(255, 255, 255, 0.4));
+
+  font-size: 11px;
+}
+
+
+.gaza-playlists-loading i {
+  color:
+    var(--gaza-cyan, #08cfff);
+
+  font-size: 17px;
+}
+
+
+/* ============================================================
+   ERROR
+   ============================================================ */
+
+.gaza-playlists-error {
+  display: flex;
+
+  align-items: center;
+
+  gap: 14px;
+
+  min-height: 120px;
+
+  padding:
+    18px 20px;
+
+  border:
+    1px solid rgba(255, 80, 110, 0.15);
+
+  border-radius:
+    var(--radius-xl, 20px);
+
+  background:
+    linear-gradient(135deg,
+      rgba(255, 80, 110, 0.055),
+      rgba(255, 80, 110, 0.018));
+
+  color:
+    var(--text-muted, rgba(255, 255, 255, 0.45));
+}
+
+
+.gaza-playlists-error__icon {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 38px;
+
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  border-radius: 11px;
+
+  background:
+    rgba(255, 80, 110, 0.08);
+
+  color:
+    #ff506e;
+
+  font-size: 14px;
+}
+
+
+.gaza-playlists-error__content {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 4px;
+
+  min-width: 0;
+
+  flex: 1;
+}
+
+
+.gaza-playlists-error__content strong {
+  color:
+    rgba(255, 255, 255, 0.78);
+
+  font-size: 11px;
+
+  font-weight: 750;
+}
+
+
+.gaza-playlists-error__content span {
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+
+.gaza-playlists-empty {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 340px;
+
+  padding:
+    45px 24px;
+
+  border:
+    1px dashed rgba(255, 255, 255, 0.08);
+
+  border-radius:
+    var(--radius-xl, 20px);
+
+  background:
+    radial-gradient(circle at 50% 20%,
+      rgba(8, 207, 255, 0.035),
+      transparent 40%);
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   EMPTY ICON
+   ============================================================ */
+
+.gaza-playlists-empty__icon {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 66px;
+
+  height: 66px;
+
+  margin-bottom: 17px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.12);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(145deg,
+      rgba(8, 207, 255, 0.09),
+      rgba(8, 207, 255, 0.025));
+
+  color:
+    var(--gaza-cyan, #08cfff);
+
+  font-size: 22px;
+
+  box-shadow:
+    0 15px 35px rgba(8, 207, 255, 0.05);
+}
+
+
+.gaza-playlists-empty__icon::before {
+  content: '';
+
+  position: absolute;
+
+  inset: -7px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.04);
+
+  border-radius: 25px;
+}
+
+
+/* ============================================================
+   EMPTY TITLE
+   ============================================================ */
+
+.gaza-playlists-empty h3 {
+  margin: 0;
+
+  color:
+    #f5f7fa;
+
+  font-size: 17px;
+
+  font-weight: 800;
+
+  letter-spacing:
+    -0.025em;
+}
+
+
+/* ============================================================
+   EMPTY DESCRIPTION
+   ============================================================ */
+
+.gaza-playlists-empty p {
+  max-width: 380px;
+
+  margin:
+    8px 0 20px;
+
+  color:
+    rgba(255, 255, 255, 0.38);
+
+  font-size: 10px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   EMPTY CREATE BUTTON
+   ============================================================ */
+
+.gaza-create-playlist-btn--empty {
+  padding:
+    0 17px 0 8px;
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-playlists-header {
+    align-items: flex-start;
+
+    gap: 18px;
+  }
+
+}
+
+
+@media (max-width: 600px) {
+
+  .gaza-playlists-header {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    margin-bottom: 22px;
+  }
+
+
+  .gaza-create-playlist-btn {
+    width: 100%;
+  }
+
+
+  .gaza-playlists-error {
+    flex-wrap: wrap;
+  }
+
+
+  .gaza-playlists-error__content {
+    min-width:
+      calc(100% - 60px);
+  }
+
+
+  .gaza-playlists-error .gaza-btn {
+    width: 100%;
+
+    margin-top: 4px;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-playlists-empty {
+    min-height: 300px;
+
+    padding:
+      35px 18px;
+  }
+
+
+  .gaza-playlists-empty h3 {
+    font-size: 15px;
+  }
+
+
+  .gaza-playlists-empty p {
+    font-size: 9px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-playlists-header {
+    gap: 14px;
+  }
+
+
+  .gaza-create-playlist-btn {
+    min-height: 40px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-create-playlist-btn__icon {
+    width: 25px;
+
+    height: 25px;
+
+    flex-basis: 25px;
+  }
+
+
+  .gaza-playlists-error {
+    padding:
+      15px;
+    gap: 10px;
+  }
+
+
+  .gaza-playlists-empty {
+    min-height: 270px;
+
+    padding:
+      28px 14px;
+  }
+
+
+  .gaza-playlists-empty__icon {
+    width: 58px;
+
+    height: 58px;
+
+    font-size: 19px;
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-create-playlist-btn,
+  .gaza-create-playlist-btn__icon {
+    transition: none;
+  }
+
+  .gaza-create-playlist-btn:hover {
+    transform: none;
+  }
+
+  .gaza-create-playlist-btn:hover .gaza-create-playlist-btn__icon {
+    transform: none;
+  }
+
+}

@@ -1,0 +1,522 @@
+<section class="gaza-playlist-page">
+
+  <!-- ============================================================
+       LOADING
+  ============================================================ -->
+
+  <div class="gaza-playlist-loading" *ngIf="isLoading">
+
+    <div class="gaza-playlist-loading__spinner">
+      <i class="fa-solid fa-spinner fa-spin"></i>
+    </div>
+
+    <div class="gaza-playlist-loading__text">
+      <strong>Loading playlist</strong>
+      <span>Getting your music ready...</span>
+    </div>
+
+  </div>
+
+
+  <!-- ============================================================
+       ERROR
+  ============================================================ -->
+
+  <section class="gaza-playlist-error" *ngIf="!isLoading && errorMessage">
+
+    <div class="gaza-playlist-error__icon">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+    </div>
+
+    <div class="gaza-playlist-error__content">
+
+      <span>PLAYLIST</span>
+
+      <h2>
+        {{ errorMessage }}
+      </h2>
+
+      <p>
+        We couldn't load this playlist right now.
+      </p>
+
+      <button type="button" class="gaza-btn gaza-btn--primary" (click)="refresh()">
+        <i class="fa-solid fa-rotate"></i>
+        Try Again
+      </button>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       PLAYLIST
+  ============================================================ -->
+
+  <ng-container *ngIf="
+      !isLoading &&
+      !errorMessage &&
+      playlist
+    ">
+
+    <!-- ==========================================================
+         HERO
+    =========================================================== -->
+
+    <header class="gaza-playlist-hero">
+
+      <!-- Artwork background -->
+
+      <div class="gaza-playlist-hero__background" [style.background-image]="'url(' + playlistArtwork + ')'"></div>
+
+
+      <!-- Dark artwork wash -->
+
+      <div class="gaza-playlist-hero__artwork"></div>
+
+
+      <!-- Main gradients -->
+
+      <div class="gaza-playlist-hero__gradient"></div>
+
+
+      <!-- Decorative glow -->
+
+      <div class="gaza-playlist-hero__glow gaza-playlist-hero__glow--cyan"></div>
+
+      <div class="gaza-playlist-hero__glow gaza-playlist-hero__glow--purple"></div>
+
+
+      <!-- Decorative lines -->
+
+      <div class="gaza-playlist-hero__pattern"></div>
+
+
+      <!-- ========================================================
+           HERO CONTENT
+      ========================================================= -->
+
+      <div class="gaza-playlist-hero__content">
+
+
+        <!-- ======================================================
+             COVER
+        ======================================================= -->
+
+        <div class="gaza-playlist-cover-wrap">
+
+          <div class="gaza-playlist-cover">
+
+            <img [src]="playlistArtwork" [alt]="playlistTitle" loading="eager" />
+
+            <div class="gaza-playlist-cover__shine"></div>
+
+            <div class="gaza-playlist-cover__overlay">
+
+              <i class="fa-solid fa-music"></i>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ======================================================
+             INFORMATION
+        ======================================================= -->
+
+        <div class="gaza-playlist-info">
+
+
+          <!-- EYEBROW -->
+
+          <div class="gaza-playlist-eyebrow">
+
+            <span class="gaza-playlist-eyebrow__dot"></span>
+
+            <span>
+              {{ isUserPlaylist
+              ? 'YOUR PLAYLIST'
+              : 'GAZA STREAM PLAYLIST'
+              }}
+            </span>
+
+          </div>
+
+
+          <!-- TITLE -->
+
+          <h1>
+            {{ playlistTitle }}
+          </h1>
+
+
+          <!-- DESCRIPTION -->
+
+          <p *ngIf="playlistDescription" class="gaza-playlist-description">
+            {{ playlistDescription }}
+          </p>
+
+
+          <!-- ====================================================
+               META
+          ===================================================== -->
+
+          <div class="gaza-playlist-meta">
+
+            <span class="gaza-playlist-meta__item">
+
+              <i class="fa-solid fa-music"></i>
+
+              {{ trackCount }}
+
+              {{ trackCount === 1 ? 'track' : 'tracks' }}
+
+            </span>
+
+
+            <span class="gaza-playlist-meta__separator"></span>
+
+
+            <span class="gaza-playlist-meta__item">
+
+              <i class="fa-solid fa-tower-broadcast"></i>
+
+              Gaza Stream
+
+            </span>
+
+
+            <span *ngIf="!isUserPlaylist" class="gaza-playlist-meta__badge">
+
+              <i class="fa-solid fa-lock"></i>
+
+              Curated
+
+            </span>
+
+          </div>
+
+
+          <!-- ====================================================
+               ACTIONS
+          ===================================================== -->
+
+          <div class="gaza-playlist-actions">
+
+
+            <!-- PLAY -->
+
+            <button type="button" class="gaza-playlist-action gaza-playlist-action--play" [disabled]="!tracks.length"
+              (click)="playAll()">
+
+              <span class="gaza-playlist-action__icon">
+
+                <i class="fa-solid fa-play"></i>
+
+              </span>
+
+              <span>
+                Play All
+              </span>
+
+            </button>
+
+
+            <!-- SHUFFLE -->
+
+            <button type="button" class="gaza-playlist-action gaza-playlist-action--secondary"
+              [disabled]="!tracks.length" (click)="shufflePlaylist()">
+
+              <i class="fa-solid fa-shuffle"></i>
+
+              <span>
+                Shuffle
+              </span>
+
+            </button>
+
+
+            <!-- ADD SONG -->
+
+            <button *ngIf="isUserPlaylist" type="button" class="gaza-playlist-action gaza-playlist-action--add"
+              (click)="openAddItem()">
+
+              <span class="gaza-playlist-action__plus">
+
+                <i class="fa-solid fa-plus"></i>
+
+              </span>
+
+              <span>
+                Add Song
+              </span>
+
+            </button>
+
+          </div>
+
+
+          <!-- HELPER -->
+
+          <div *ngIf="isUserPlaylist" class="gaza-playlist-helper">
+
+            <i class="fa-solid fa-circle-info"></i>
+
+            <span>
+              Add music from your Gaza Stream library
+            </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ========================================================
+           HERO FOOTER
+      ========================================================= -->
+
+      <div class="gaza-playlist-hero__footer">
+
+        <div class="gaza-playlist-hero__footer-line"></div>
+
+        <span>
+          GAZA STREAM
+        </span>
+
+        <span class="gaza-playlist-hero__footer-dot"></span>
+
+        <span>
+          PLAYLIST
+        </span>
+
+      </div>
+
+    </header>
+
+
+    <!-- ==========================================================
+         CONTENT
+    =========================================================== -->
+
+    <main class="gaza-playlist-content">
+
+
+      <!-- ========================================================
+           SECTION HEADER
+      ========================================================= -->
+
+      <div class="gaza-section-header">
+
+        <div class="gaza-section-header__content">
+
+          <span class="gaza-section-eyebrow">
+            COLLECTION
+          </span>
+
+          <h2>
+            {{ isUserPlaylist
+            ? 'Your Songs'
+            : 'Playlist Tracks'
+            }}
+          </h2>
+
+          <p>
+            {{ isUserPlaylist
+            ? 'Music in your playlist.'
+            : 'Music included in this curated playlist.'
+            }}
+          </p>
+
+        </div>
+
+
+        <!-- COUNT -->
+
+        <div class="gaza-section-count">
+
+          <span class="gaza-section-count__icon">
+            <i class="fa-solid fa-music"></i>
+          </span>
+
+          <span>
+
+            <strong>
+              {{ trackCount }}
+            </strong>
+
+            {{ trackCount === 1 ? 'song' : 'songs' }}
+
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- ========================================================
+           EMPTY STATE
+      ========================================================= -->
+
+      <section *ngIf="!tracks.length" class="gaza-playlist-empty">
+
+        <div class="gaza-empty-icon">
+
+          <div class="gaza-empty-icon__main">
+            <i class="fa-solid fa-music"></i>
+          </div>
+
+          <span class="gaza-empty-icon__note gaza-empty-icon__note--one">
+            <i class="fa-solid fa-music"></i>
+          </span>
+
+          <span class="gaza-empty-icon__note gaza-empty-icon__note--two">
+            <i class="fa-solid fa-music"></i>
+          </span>
+
+        </div>
+
+
+        <div class="gaza-empty-content">
+
+          <span class="gaza-section-eyebrow">
+            {{ isUserPlaylist
+            ? 'EMPTY PLAYLIST'
+            : 'NO TRACKS'
+            }}
+          </span>
+
+          <h3>
+            {{ isUserPlaylist
+            ? 'Your playlist is empty'
+            : 'No tracks available'
+            }}
+          </h3>
+
+          <p>
+            {{ isUserPlaylist
+            ? 'Use the Add Song button in the hero to start building your playlist.'
+            : 'This playlist currently has no available tracks.'
+            }}
+          </p>
+
+
+          <div *ngIf="!isUserPlaylist" class="gaza-empty-locked">
+
+            <i class="fa-solid fa-lock"></i>
+
+            Curated playlist
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================================
+           TRACKS
+      ========================================================= -->
+
+      <section *ngIf="tracks.length" class="gaza-track-container">
+
+        <div class="gaza-track-header">
+
+          <div>
+
+            <span>
+              PLAYLIST
+            </span>
+
+            <strong>
+              Songs
+            </strong>
+
+          </div>
+
+          <span class="gaza-track-count">
+
+            {{ trackCount }}
+
+            {{ trackCount === 1 ? 'song' : 'songs' }}
+
+          </span>
+
+        </div>
+
+
+        <div class="gaza-track-columns">
+
+          <span>#</span>
+
+          <span>
+            SONG
+          </span>
+
+          <span>
+            TYPE
+          </span>
+
+          <span></span>
+
+        </div>
+
+
+        <div class="gaza-track-list">
+
+          <app-track-list [tracks]="tracks"></app-track-list>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================================
+           READ ONLY
+      ========================================================= -->
+
+      <div *ngIf="!isUserPlaylist" class="gaza-readonly">
+
+        <div class="gaza-readonly__icon">
+
+          <i class="fa-solid fa-lock"></i>
+
+        </div>
+
+        <div>
+
+          <strong>
+            Curated playlist
+          </strong>
+
+          <span>
+            This playlist is managed by Gaza Stream.
+          </span>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </ng-container>
+
+
+  <!-- ============================================================
+       ADD SONG MODAL
+
+       Keep this OUTSIDE the hero/content.
+  ============================================================= -->
+
+  <app-add-playlist-item-modal *ngIf="
+      showAddItemModal &&
+      playlist &&
+      isUserPlaylist
+    " [playlistId]="playlist.id" [existingTrackIds]="existingTrackIds" (closed)="closeAddItem()"
+    (itemAdded)="onPlaylistItemAdded($event)"></app-add-playlist-item-modal>
+
+</section>

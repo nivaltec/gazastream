@@ -1,0 +1,229 @@
+<main class="gaza-favourites-page">
+
+  <!-- =========================================================
+       PAGE HEADER
+  ========================================================== -->
+
+  <section class="gaza-favourites-header">
+
+    <div class="gaza-favourites-heading">
+
+      <div class="gaza-favourites-eyebrow">
+        <span class="gaza-favourites-eyebrow-icon">
+          <i class="fa-regular fa-heart"></i>
+        </span>
+
+        <span>YOUR LIBRARY</span>
+      </div>
+
+      <h1>
+        Your <span>Favourites</span>
+      </h1>
+
+      <p>
+        Everything you've saved, all in one place.
+      </p>
+
+    </div>
+
+
+    <!-- COUNT -->
+
+    <div class="gaza-favourites-count" *ngIf="favourites.length > 0">
+
+      <strong>
+        {{ favourites.length }}
+      </strong>
+
+      <span>
+        {{ favourites.length === 1 ? 'item' : 'items' }}
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       FAVOURITES LIST
+  ========================================================== -->
+
+  <section class="gaza-favourites-content" *ngIf="favourites.length > 0">
+
+    <div class="gaza-favourites-list">
+
+      <article class="gaza-favourite-item" *ngFor="let media of favourites; trackBy: trackByMedia"
+        [class.is-playing]="isTrackPlaying(media)" (click)="playTrack(media)">
+
+        <!-- ===================================================
+             ARTWORK
+        ==================================================== -->
+
+        <div class="gaza-favourite-artwork">
+
+          <img *ngIf="media.artwork" [src]="media.artwork" [alt]="media.title || 'Favourite media'" loading="lazy" />
+
+          <div class="gaza-favourite-artwork-fallback" *ngIf="!media.artwork">
+
+            <i [class]="getMediaIcon(media)"></i>
+
+          </div>
+
+
+          <!-- PLAY OVERLAY -->
+
+          <button type="button" class="gaza-favourite-play" [attr.aria-label]="
+              isTrackPlaying(media)
+                ? 'Pause'
+                : 'Play'
+            " (click)="playTrack(media, $event)">
+
+            <i class="fa-solid" [class.fa-pause]="isTrackPlaying(media)" [class.fa-play]="!isTrackPlaying(media)"></i>
+
+          </button>
+
+        </div>
+
+
+        <!-- ===================================================
+             MAIN INFO
+        ==================================================== -->
+
+        <div class="gaza-favourite-info">
+
+          <div class="gaza-favourite-title-row">
+
+            <h3>
+              {{ media.title || 'Untitled' }}
+            </h3>
+
+            <!-- PLAYING INDICATOR -->
+
+            <span class="gaza-favourite-playing" *ngIf="isTrackPlaying(media)">
+
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </span>
+
+          </div>
+
+
+          <p class="gaza-favourite-artist">
+
+            <ng-container *ngIf="media.artist">
+              {{ media.artist }}
+            </ng-container>
+
+            <ng-container *ngIf="!media.artist">
+              Gaza Stream
+            </ng-container>
+
+          </p>
+
+        </div>
+
+
+        <!-- ===================================================
+             TYPE
+        ==================================================== -->
+
+        <div class="gaza-favourite-type">
+
+          <span class="gaza-favourite-type-icon" [class.is-audio]="media.type === MediaType.Audio"
+            [class.is-video]="media.type === MediaType.Video" [class.is-radio]="media.type === MediaType.Radio">
+
+            <i [class]="getMediaIcon(media)"></i>
+
+          </span>
+
+          <span>
+            {{ getMediaTypeLabel(media) }}
+          </span>
+
+        </div>
+
+
+        <!-- ===================================================
+             META
+        ==================================================== -->
+
+        <div class="gaza-favourite-meta">
+
+          <!-- AUDIO / VIDEO DURATION -->
+
+          <span *ngIf="
+              media.duration &&
+              media.type !== MediaType.Radio
+            ">
+            {{ formatDuration(media.duration) }}
+          </span>
+
+
+          <!-- RADIO -->
+
+          <span *ngIf="media.type === MediaType.Radio" class="gaza-live-label">
+            <span></span>
+            LIVE
+          </span>
+
+        </div>
+
+
+        <!-- ===================================================
+             REMOVE
+        ==================================================== -->
+
+        <button type="button" class="gaza-favourite-remove" aria-label="Remove from favourites"
+          title="Remove from favourites" (click)="removeFavourite(media, $event)">
+
+          <i class="fa-solid fa-heart"></i>
+
+        </button>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       EMPTY STATE
+  ========================================================== -->
+
+  <section class="gaza-empty" *ngIf="favourites.length === 0">
+
+    <div class="gaza-empty-glow"></div>
+
+    <div class="gaza-empty-icon">
+
+      <i class="fa-regular fa-heart"></i>
+
+    </div>
+
+    <span class="gaza-empty-label">
+      YOUR LIBRARY
+    </span>
+
+    <h2>
+      Nothing here yet.
+    </h2>
+
+    <p>
+      Save your favourite songs, radio stations, podcasts
+      and videos and they'll appear here.
+    </p>
+
+    <a routerLink="/" class="gaza-empty-button">
+
+      <i class="fa-solid fa-compass"></i>
+
+      Explore Gaza Stream
+
+    </a>
+
+  </section>
+
+</main>

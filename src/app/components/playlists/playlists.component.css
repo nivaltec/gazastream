@@ -1,0 +1,70 @@
+/* ============================================================
+   PLAYLIST LOADING
+   ============================================================ */
+
+.gaza-playlists-loading {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 220px;
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+
+}
+
+
+.gaza-playlists-loading i {
+
+  color: var(--gaza-cyan);
+
+  font-size: 18px;
+
+}
+
+
+/* ============================================================
+   PLAYLIST ERROR
+   ============================================================ */
+
+.gaza-playlists-error {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  min-height: 180px;
+
+  padding: 20px;
+
+  border:
+    1px solid
+    rgba(255, 80, 110, 0.18);
+
+  border-radius:
+    var(--radius-xl);
+
+  background:
+    rgba(255, 80, 110, 0.05);
+
+  color: var(--text-muted);
+
+  font-size: 12px;
+
+}
+
+
+.gaza-playlists-error i {
+
+  color: #ff506e;
+
+}

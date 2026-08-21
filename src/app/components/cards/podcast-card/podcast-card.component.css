@@ -1,0 +1,747 @@
+/* =========================================================
+   GAZASTREAM
+   MINI PODCAST CARD
+========================================================= */
+
+.gaza-podcast-card {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 220px;
+  min-width: 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, 0.045),
+      rgba(255, 255, 255, 0.012));
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 13px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.16);
+
+  transition:
+    transform 0.28s ease,
+    border-color 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+
+/* =========================================================
+   HOVER
+========================================================= */
+
+.gaza-podcast-card:hover {
+  transform: translateY(-3px);
+
+  border-color: rgba(255, 255, 255, 0.13);
+
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.28);
+}
+
+
+/* =========================================================
+   ARTWORK
+========================================================= */
+
+.gaza-podcast-card__artwork {
+  position: relative;
+
+  width: 100%;
+
+  aspect-ratio: 1.25 / 1;
+
+  overflow: hidden;
+
+  background: #151515;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.gaza-podcast-card__artwork img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 0.5s cubic-bezier(.16, 1, .3, 1),
+    filter 0.3s ease;
+}
+
+.gaza-podcast-card:hover .gaza-podcast-card__artwork img {
+  transform: scale(1.05);
+
+  filter: brightness(0.68);
+}
+
+
+/* =========================================================
+   FALLBACK
+========================================================= */
+
+.gaza-podcast-card__fallback {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background:
+    radial-gradient(circle at center,
+      #292929,
+      #101010 70%);
+}
+
+.gaza-podcast-card__fallback i {
+  color: rgba(255, 255, 255, 0.18);
+
+  font-size: 2.6rem;
+}
+
+
+/* =========================================================
+   ARTWORK GRADIENT
+========================================================= */
+
+.gaza-podcast-card__gradient {
+  position: absolute;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.18) 0%,
+      transparent 45%,
+      rgba(0, 0, 0, 0.82) 100%);
+}
+
+
+/* =========================================================
+   TOP CONTROLS
+========================================================= */
+
+.gaza-podcast-card__top {
+  position: absolute;
+
+  top: 8px;
+  left: 8px;
+  right: 8px;
+
+  z-index: 5;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* =========================================================
+   PODCAST BADGE
+========================================================= */
+
+.gaza-podcast-card__badge {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  height: 22px;
+
+  padding: 0 7px;
+
+  color: rgba(255, 255, 255, 0.88);
+
+  background: rgba(0, 0, 0, 0.52);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 999px;
+
+  font-size: 7px;
+  font-weight: 800;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.gaza-podcast-card__badge i {
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   OPEN BUTTON
+========================================================= */
+
+.gaza-podcast-card__action {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 26px;
+  height: 26px;
+
+  padding: 0;
+
+  color: #fff;
+
+  background: rgba(0, 0, 0, 0.52);
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 50%;
+
+  cursor: pointer;
+
+  opacity: 0;
+
+  transform: scale(0.8);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.gaza-podcast-card:hover .gaza-podcast-card__action {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+.gaza-podcast-card__action:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.gaza-podcast-card__action i {
+  font-size: 8px;
+}
+
+
+/* =========================================================
+   PLAY BUTTON
+========================================================= */
+
+.gaza-podcast-card__play {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 4;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  pointer-events: none;
+}
+
+.gaza-podcast-card__play-button {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  color: #111;
+
+  background: #fff;
+
+  border-radius: 50%;
+
+  box-shadow:
+    0 7px 20px rgba(0, 0, 0, 0.38);
+
+  opacity: 0;
+
+  transform: scale(0.65);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.28s cubic-bezier(.2, .8, .2, 1);
+}
+
+.gaza-podcast-card:hover .gaza-podcast-card__play-button {
+  opacity: 1;
+
+  transform: scale(1);
+}
+
+.gaza-podcast-card__play-button i {
+  margin-left: 2px;
+
+  font-size: 10px;
+}
+
+
+/* =========================================================
+   ARTWORK TEXT
+========================================================= */
+
+.gaza-podcast-card__artwork-info {
+  position: absolute;
+
+  left: 10px;
+  right: 10px;
+  bottom: 9px;
+
+  z-index: 4;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   GENRE
+========================================================= */
+
+.gaza-podcast-card__genre {
+  display: block;
+
+  margin-bottom: 2px;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  font-size: 7px;
+  font-weight: 700;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TITLE
+========================================================= */
+
+.gaza-podcast-card__artwork-title {
+  margin: 0;
+
+  overflow: hidden;
+
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 750;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.015em;
+
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+
+/* =========================================================
+   CONTENT
+========================================================= */
+
+.gaza-podcast-card__content {
+  display: flex;
+
+  flex-direction: column;
+
+  min-width: 0;
+
+  padding: 8px 10px 9px;
+}
+
+
+/* =========================================================
+   ARTIST
+========================================================= */
+
+.gaza-podcast-card__artist {
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  min-width: 0;
+}
+
+.gaza-podcast-card__artist-icon {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 20px;
+  height: 20px;
+
+  color: rgba(255, 255, 255, 0.55);
+
+  background: rgba(255, 255, 255, 0.055);
+
+  border-radius: 50%;
+}
+
+.gaza-podcast-card__artist-icon i {
+  font-size: 7px;
+}
+
+.gaza-podcast-card__artist-name {
+  min-width: 0;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.6);
+
+  font-size: 9px;
+  font-weight: 600;
+
+  white-space: nowrap;
+
+  text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   DESCRIPTION
+========================================================= */
+
+.gaza-podcast-card__description {
+  display: -webkit-box;
+
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+
+  overflow: hidden;
+
+  margin: 5px 0 0;
+
+  color: rgba(255, 255, 255, 0.35);
+
+  font-size: 8px;
+
+  line-height: 1.35;
+}
+
+
+/* =========================================================
+   FOOTER
+========================================================= */
+
+.gaza-podcast-card__footer {
+  display: flex;
+
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 7px;
+  padding-top: 6px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.055);
+}
+
+
+/* =========================================================
+   LISTEN
+========================================================= */
+
+.gaza-podcast-card__listen {
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  color: rgba(255, 255, 255, 0.38);
+
+  font-size: 7px;
+  font-weight: 750;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+.gaza-podcast-card__listen i {
+  font-size: 7px;
+}
+
+
+/* =========================================================
+   ARROW
+========================================================= */
+
+.gaza-podcast-card__arrow {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 21px;
+  height: 21px;
+
+  color: rgba(255, 255, 255, 0.4);
+
+  background: rgba(255, 255, 255, 0.05);
+
+  border-radius: 50%;
+
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.gaza-podcast-card__arrow i {
+  font-size: 7px;
+}
+
+.gaza-podcast-card:hover .gaza-podcast-card__arrow {
+  color: #111;
+
+  background: #fff;
+
+  transform: translateX(2px);
+}
+
+
+/* =========================================================
+   BOTTOM ACCENT
+========================================================= */
+
+.gaza-podcast-card::after {
+  content: "";
+
+  position: absolute;
+
+  left: 25%;
+  right: 25%;
+  bottom: 0;
+
+  height: 2px;
+
+  background: var(--gaza-gradient);
+
+  border-radius: 999px;
+
+  opacity: 0;
+
+  transform: scaleX(0.5);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.gaza-podcast-card:hover::after {
+  opacity: 1;
+
+  transform: scaleX(1);
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 768px) {
+
+  .gaza-podcast-card {
+    max-width: 200px;
+
+    border-radius: 12px;
+  }
+
+  .gaza-podcast-card__play-button {
+    width: 38px;
+    height: 38px;
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 480px) {
+
+  .gaza-podcast-card {
+    max-width: 180px;
+
+    border-radius: 11px;
+  }
+
+  .gaza-podcast-card__artwork {
+    aspect-ratio: 1.2 / 1;
+  }
+
+  .gaza-podcast-card__top {
+    top: 7px;
+    left: 7px;
+    right: 7px;
+  }
+
+  .gaza-podcast-card__badge {
+    height: 20px;
+
+    padding: 0 6px;
+
+    font-size: 6.5px;
+  }
+
+  .gaza-podcast-card__action {
+    width: 24px;
+    height: 24px;
+
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .gaza-podcast-card__play-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .gaza-podcast-card__artwork-info {
+    left: 8px;
+    right: 8px;
+    bottom: 7px;
+  }
+
+  .gaza-podcast-card__artwork-title {
+    font-size: 11px;
+  }
+
+  .gaza-podcast-card__content {
+    padding: 7px 8px 8px;
+  }
+
+  .gaza-podcast-card__artist-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .gaza-podcast-card__artist-name {
+    font-size: 8px;
+  }
+
+  .gaza-podcast-card__description {
+    font-size: 7px;
+  }
+
+  .gaza-podcast-card__footer {
+    margin-top: 5px;
+    padding-top: 5px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL
+========================================================= */
+
+@media (max-width: 360px) {
+
+  .gaza-podcast-card {
+    max-width: 160px;
+  }
+
+  .gaza-podcast-card__artwork-title {
+    font-size: 10px;
+  }
+
+  .gaza-podcast-card__artist-name {
+    font-size: 7px;
+  }
+
+  .gaza-podcast-card__description {
+    display: none;
+  }
+
+  .gaza-podcast-card__footer {
+    margin-top: 5px;
+  }
+
+}
+
+
+/* =========================================================
+   TOUCH
+========================================================= */
+
+@media (hover: none) {
+
+  .gaza-podcast-card:hover {
+    transform: none;
+
+    box-shadow:
+      0 6px 18px rgba(0, 0, 0, 0.16);
+  }
+
+  .gaza-podcast-card__action {
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .gaza-podcast-card__play-button {
+    opacity: 1;
+
+    transform: none;
+  }
+
+  .gaza-podcast-card:hover .gaza-podcast-card__artwork img {
+    transform: none;
+
+    filter: none;
+  }
+
+}

@@ -1,0 +1,843 @@
+/* ============================================================
+   GAZA STREAM
+   AUDIO DETAILS
+   ============================================================ */
+
+.gaza-audio-details {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 30px 24px 80px;
+  color: var(--text-primary);
+}
+
+
+/* ============================================================
+   BACK
+   ============================================================ */
+
+.gaza-audio-details__back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: 24px;
+  padding: 9px 13px;
+
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 10px;
+
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, .035);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    color .2s ease,
+    background .2s ease,
+    border-color .2s ease,
+    transform .2s ease;
+}
+
+.gaza-audio-details__back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, .07);
+  border-color: rgba(255, 255, 255, .15);
+  transform: translateX(-2px);
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.gaza-audio-details__hero {
+  position: relative;
+
+  display: grid;
+  grid-template-columns: minmax(300px, 460px) minmax(0, 1fr);
+
+  align-items: center;
+
+  gap: clamp(30px, 5vw, 70px);
+
+  padding: clamp(22px, 4vw, 45px);
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: var(--radius-lg);
+
+  background:
+    linear-gradient(145deg,
+      rgba(255, 255, 255, .055),
+      rgba(255, 255, 255, .015));
+
+  box-shadow:
+    0 25px 70px rgba(0, 0, 0, .25);
+}
+
+.gaza-audio-details__hero::before {
+  content: "";
+
+  position: absolute;
+
+  width: 450px;
+  height: 450px;
+
+  top: -250px;
+  right: -160px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(108, 36, 255, .18),
+      transparent 70%);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   ARTWORK
+   ============================================================ */
+
+.gaza-audio-details__artwork {
+  position: relative;
+  z-index: 1;
+
+  width: 100%;
+  aspect-ratio: 1 / 1;
+
+  overflow: hidden;
+
+  border-radius: clamp(14px, 2vw, 22px);
+
+  background: var(--gaza-surface-3);
+
+  box-shadow:
+    0 25px 55px rgba(0, 0, 0, .35);
+}
+
+.gaza-audio-details__artwork img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform .7s ease;
+}
+
+.gaza-audio-details__artwork:hover img {
+  transform: scale(1.025);
+}
+
+.gaza-audio-details__artwork-overlay {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(180deg,
+      transparent 50%,
+      rgba(0, 0, 0, .4));
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   VISUALIZER
+   ============================================================ */
+
+.gaza-audio-details__visualizer {
+  position: absolute;
+
+  left: 16px;
+  bottom: 16px;
+
+  z-index: 5;
+
+  display: flex;
+  align-items: flex-end;
+
+  gap: 4px;
+
+  height: 28px;
+  padding: 7px 9px;
+
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 9px;
+
+  background: rgba(0, 0, 0, .55);
+
+  backdrop-filter: blur(10px);
+}
+
+.gaza-audio-details__visualizer span {
+  width: 3px;
+  height: 10px;
+
+  border-radius: 99px;
+
+  background: var(--gaza-gradient);
+
+  animation:
+    gaza-details-equalizer .9s ease-in-out infinite;
+}
+
+.gaza-audio-details__visualizer span:nth-child(1) {
+  animation-delay: -.2s;
+}
+
+.gaza-audio-details__visualizer span:nth-child(2) {
+  height: 18px;
+  animation-delay: -.45s;
+}
+
+.gaza-audio-details__visualizer span:nth-child(3) {
+  height: 13px;
+  animation-delay: -.7s;
+}
+
+.gaza-audio-details__visualizer span:nth-child(4) {
+  height: 16px;
+  animation-delay: -.3s;
+}
+
+@keyframes gaza-details-equalizer {
+
+  0%,
+  100% {
+    transform: scaleY(.55);
+  }
+
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+
+/* ============================================================
+   INFO
+   ============================================================ */
+
+.gaza-audio-details__info {
+  position: relative;
+  z-index: 2;
+
+  min-width: 0;
+}
+
+.gaza-audio-details__type {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-bottom: 12px;
+
+  color: var(--gaza-cyan);
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.gaza-audio-details__type i {
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.gaza-audio-details__info h1 {
+  margin: 0;
+
+  max-width: 760px;
+
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: clamp(30px, 4vw, 58px);
+  font-weight: 800;
+
+  line-height: 1.05;
+  letter-spacing: -1.5px;
+}
+
+
+/* ============================================================
+   ARTIST
+   ============================================================ */
+
+.gaza-audio-details__artist {
+  margin: 15px 0 0;
+
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: clamp(16px, 2vw, 22px);
+  font-weight: 600;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.gaza-audio-details__album {
+  margin: 6px 0 0;
+
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+
+/* ============================================================
+   META
+   ============================================================ */
+
+.gaza-audio-details__meta {
+  display: flex;
+  flex-wrap: wrap;
+
+  gap: 8px;
+
+  margin-top: 21px;
+}
+
+.gaza-audio-details__meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 7px 10px;
+
+  border: 1px solid rgba(255, 255, 255, .07);
+  border-radius: 8px;
+
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, .035);
+
+  font-size: 10px;
+}
+
+.gaza-audio-details__meta i {
+  color: var(--gaza-cyan);
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.gaza-audio-details__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+
+  margin-top: 28px;
+}
+
+
+/* ============================================================
+   PLAY
+   ============================================================ */
+
+.gaza-audio-details__play {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  min-width: 120px;
+  height: 44px;
+
+  padding: 0 19px;
+
+  border: 0;
+  border-radius: 10px;
+
+  color: #fff;
+  background: var(--gaza-gradient);
+
+  box-shadow:
+    0 10px 28px rgba(108, 36, 255, .25);
+
+  font-size: 12px;
+  font-weight: 800;
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    filter .2s ease,
+    box-shadow .2s ease;
+}
+
+.gaza-audio-details__play:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+
+  box-shadow:
+    0 14px 34px rgba(108, 36, 255, .35);
+}
+
+.gaza-audio-details__play.is-playing {
+  box-shadow:
+    0 0 0 3px rgba(8, 207, 255, .10),
+    0 12px 32px rgba(8, 207, 255, .2);
+}
+
+
+/* ============================================================
+   FAVOURITE
+   ============================================================ */
+
+.gaza-audio-details__favourite {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  height: 44px;
+
+  padding: 0 17px;
+
+  border: 1px solid rgba(255, 255, 255, .1);
+  border-radius: 10px;
+
+  color: var(--text-muted);
+  background: rgba(255, 255, 255, .04);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition: .2s ease;
+}
+
+.gaza-audio-details__favourite:hover,
+.gaza-audio-details__favourite.active {
+  color: var(--gaza-cyan);
+  background: rgba(8, 207, 255, .08);
+  border-color: rgba(8, 207, 255, .18);
+}
+
+
+/* ============================================================
+   PLAYER STATUS
+   ============================================================ */
+
+.gaza-audio-details__player {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  margin-top: 18px;
+  padding: 14px 17px;
+
+  border: 1px solid rgba(8, 207, 255, .12);
+  border-radius: 12px;
+
+  background:
+    linear-gradient(100deg,
+      rgba(8, 207, 255, .07),
+      rgba(108, 36, 255, .06));
+}
+
+.gaza-audio-details__player-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: var(--gaza-cyan);
+
+  font-size: 8px;
+  font-weight: 800;
+
+  letter-spacing: 1.2px;
+}
+
+.gaza-audio-details__live-dot {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+
+  background: var(--gaza-cyan);
+
+  box-shadow:
+    0 0 0 4px rgba(8, 207, 255, .1);
+
+  animation:
+    gaza-live-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes gaza-live-pulse {
+
+  0%,
+  100% {
+    opacity: .6;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.gaza-audio-details__player-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  min-width: 0;
+}
+
+.gaza-audio-details__player-title strong,
+.gaza-audio-details__player-title span {
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.gaza-audio-details__player-title strong {
+  color: var(--text-primary);
+  font-size: 11px;
+}
+
+.gaza-audio-details__player-title span {
+  color: var(--text-muted);
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   DETAILS
+   ============================================================ */
+
+.gaza-audio-details__section {
+  margin-top: 40px;
+}
+
+.gaza-audio-details__section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 15px;
+  padding-bottom: 11px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+}
+
+.gaza-audio-details__section-heading i {
+  color: var(--gaza-cyan);
+  font-size: 11px;
+}
+
+
+/* ============================================================
+   DETAILS GRID
+   ============================================================ */
+
+.gaza-audio-details__details-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  gap: 10px;
+}
+
+.gaza-audio-details__detail {
+  min-width: 0;
+
+  padding: 15px;
+
+  border: 1px solid rgba(255, 255, 255, .06);
+  border-radius: 11px;
+
+  background: rgba(255, 255, 255, .025);
+}
+
+.gaza-audio-details__detail span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--text-muted);
+
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: .7px;
+}
+
+.gaza-audio-details__detail strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: var(--text-primary);
+
+  font-size: 12px;
+  font-weight: 650;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.gaza-audio-details__empty {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  min-height: 60vh;
+
+  padding: 30px;
+
+  text-align: center;
+}
+
+.gaza-audio-details__empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 18px;
+
+  border-radius: 18px;
+
+  color: #fff;
+  background: var(--gaza-gradient);
+
+  font-size: 25px;
+}
+
+.gaza-audio-details__empty h2 {
+  margin: 0;
+
+  color: var(--text-primary);
+  font-size: 22px;
+}
+
+.gaza-audio-details__empty p {
+  margin: 8px 0 20px;
+
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.gaza-audio-details__empty button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  height: 40px;
+
+  padding: 0 15px;
+
+  border: 0;
+  border-radius: 9px;
+
+  color: #fff;
+  background: var(--gaza-gradient);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-audio-details {
+    padding: 25px 18px 60px;
+  }
+
+  .gaza-audio-details__hero {
+    grid-template-columns:
+      minmax(240px, 350px) minmax(0, 1fr);
+
+    gap: 32px;
+    padding: 28px;
+  }
+
+  .gaza-audio-details__details-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-audio-details {
+    padding: 18px 12px 50px;
+  }
+
+  .gaza-audio-details__hero {
+    grid-template-columns: 1fr;
+
+    gap: 25px;
+
+    padding: 15px;
+
+    border-radius: 16px;
+  }
+
+  .gaza-audio-details__artwork {
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .gaza-audio-details__info h1 {
+    font-size: clamp(27px, 8vw, 40px);
+    letter-spacing: -.8px;
+  }
+
+  .gaza-audio-details__artist {
+    font-size: 16px;
+  }
+
+  .gaza-audio-details__player {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .gaza-audio-details__details-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-audio-details {
+    padding: 14px 8px 40px;
+  }
+
+  .gaza-audio-details__hero {
+    gap: 20px;
+    padding: 11px;
+    border-radius: 14px;
+  }
+
+  .gaza-audio-details__artwork {
+    border-radius: 12px;
+  }
+
+  .gaza-audio-details__info h1 {
+    font-size: 25px;
+  }
+
+  .gaza-audio-details__artist {
+    font-size: 14px;
+  }
+
+  .gaza-audio-details__album {
+    font-size: 11px;
+  }
+
+  .gaza-audio-details__actions {
+    width: 100%;
+  }
+
+  .gaza-audio-details__play,
+  .gaza-audio-details__favourite {
+    flex: 1;
+    min-width: 0;
+    height: 40px;
+  }
+
+  .gaza-audio-details__details-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gaza-audio-details__visualizer {
+    left: 10px;
+    bottom: 10px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-audio-details {
+    padding: 10px 6px 35px;
+  }
+
+  .gaza-audio-details__hero {
+    padding: 8px;
+  }
+
+  .gaza-audio-details__info h1 {
+    font-size: 22px;
+  }
+
+  .gaza-audio-details__artist {
+    font-size: 12px;
+  }
+
+  .gaza-audio-details__meta span {
+    font-size: 7px;
+  }
+
+  .gaza-audio-details__play,
+  .gaza-audio-details__favourite {
+    height: 37px;
+    font-size: 9px;
+  }
+
+}

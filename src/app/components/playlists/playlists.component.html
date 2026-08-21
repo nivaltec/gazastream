@@ -1,0 +1,140 @@
+<div class="gaza-page">
+
+  <section class="gaza-section">
+
+    <!-- ======================================================
+         HEADER
+    ======================================================= -->
+
+    <app-section-header
+      title="Playlists"
+      subtitle="Discover music from independent artists around the world"
+    >
+    </app-section-header>
+
+
+    <!-- ======================================================
+         LOADING
+    ======================================================= -->
+
+    <div
+      class="gaza-playlists-loading"
+      *ngIf="isLoading"
+    >
+
+      <i
+        class="fa-solid fa-spinner fa-spin"
+      ></i>
+
+      <span>
+        Loading playlists...
+      </span>
+
+    </div>
+
+
+    <!-- ======================================================
+         ERROR
+    ======================================================= -->
+
+    <div
+      class="gaza-playlists-error"
+      *ngIf="
+        !isLoading &&
+        errorMessage
+      "
+    >
+
+      <i
+        class="fa-solid fa-circle-exclamation"
+      ></i>
+
+      <span>
+        {{ errorMessage }}
+      </span>
+
+      <button
+        type="button"
+        class="gaza-btn gaza-btn-secondary"
+        (click)="refresh()"
+      >
+
+        <i class="fa-solid fa-rotate"></i>
+
+        Try Again
+
+      </button>
+
+    </div>
+
+
+    <!-- ======================================================
+         PLAYLIST GRID
+    ======================================================= -->
+
+    <app-playlist-grid
+      *ngIf="
+        !isLoading &&
+        !errorMessage &&
+        playlists.length
+      "
+
+      [playlists]="playlists"
+
+      (playlistPlay)="
+        playPlaylist($event)
+      "
+
+      (playlistOpen)="
+        openPlaylist($event)
+      "
+    >
+    </app-playlist-grid>
+
+
+    <!-- ======================================================
+         EMPTY
+    ======================================================= -->
+
+    <div
+      class="gaza-playlists-empty"
+      *ngIf="
+        !isLoading &&
+        !errorMessage &&
+        !playlists.length
+      "
+    >
+
+      <div class="gaza-playlists-empty-icon">
+
+        <i
+          class="fa-solid fa-music"
+        ></i>
+
+      </div>
+
+      <h3>
+        No playlists available
+      </h3>
+
+      <p>
+        There are no playlists available right now.
+      </p>
+
+      <button
+        type="button"
+        class="gaza-btn gaza-btn-secondary"
+        (click)="refresh()"
+      >
+
+        <i class="fa-solid fa-rotate"></i>
+
+        Refresh
+
+      </button>
+
+    </div>
+
+  </section>
+
+</div>

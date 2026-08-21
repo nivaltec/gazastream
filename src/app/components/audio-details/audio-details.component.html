@@ -1,0 +1,279 @@
+<!-- ============================================================
+     AUDIO DETAILS
+     ============================================================ -->
+
+<div class="gaza-audio-details" *ngIf="audio as track">
+
+  <!-- ============================================================
+       BACK
+       ============================================================ -->
+
+  <button type="button" class="gaza-audio-details__back" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Back</span>
+  </button>
+
+
+  <!-- ============================================================
+       HERO
+       ============================================================ -->
+
+  <section class="gaza-audio-details__hero">
+
+    <!-- ARTWORK -->
+
+    <div class="gaza-audio-details__artwork">
+
+      <img [src]="track.artwork" [alt]="track.title" loading="eager" />
+
+      <div class="gaza-audio-details__artwork-overlay" aria-hidden="true"></div>
+
+
+      <!-- PLAYING VISUALIZER -->
+
+      <div class="gaza-audio-details__visualizer" *ngIf="isPlaying" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+
+    </div>
+
+
+    <!-- INFORMATION -->
+
+    <div class="gaza-audio-details__info">
+
+      <!-- TYPE -->
+
+      <div class="gaza-audio-details__type">
+        <i class="fa-solid fa-music"></i>
+        <span>MUSIC</span>
+      </div>
+
+
+      <!-- TITLE -->
+
+      <h1 [title]="track.title">
+        {{ track.title }}
+      </h1>
+
+
+      <!-- ARTIST -->
+
+      <p class="gaza-audio-details__artist" [title]="track.artist">
+        {{ track.artist }}
+      </p>
+
+
+      <!-- ALBUM -->
+
+      <p class="gaza-audio-details__album" *ngIf="track.album">
+        {{ track.album }}
+      </p>
+
+
+      <!-- META -->
+
+      <div class="gaza-audio-details__meta">
+
+        <span *ngIf="track.genre">
+          <i class="fa-solid fa-tags"></i>
+          {{ track.genre }}
+        </span>
+
+        <span *ngIf="track.releaseYear">
+          <i class="fa-regular fa-calendar"></i>
+          {{ track.releaseYear }}
+        </span>
+
+        <span *ngIf="track.duration">
+          <i class="fa-regular fa-clock"></i>
+
+          {{
+          playerService.formatTime(track.duration)
+          }}
+        </span>
+
+      </div>
+
+
+      <!-- ACTIONS -->
+
+      <div class="gaza-audio-details__actions">
+
+        <!-- PLAY / PAUSE -->
+
+        <button type="button" class="gaza-audio-details__play" [class.is-playing]="isPlaying" (click)="togglePlay()">
+
+          <i class="fa-solid" [class.fa-play]="!isPlaying" [class.fa-pause]="isPlaying"></i>
+
+          <span>
+            {{ isPlaying ? 'Pause' : 'Play' }}
+          </span>
+
+        </button>
+
+
+        <!-- FAVOURITE -->
+
+        <button type="button" class="gaza-audio-details__favourite" [class.active]="track.isFavourite"
+          (click)="toggleFavourite()">
+
+          <i class="fa-heart" [class.fa-solid]="track.isFavourite" [class.fa-regular]="!track.isFavourite"></i>
+
+          <span>
+            {{ track.isFavourite ? 'Liked' : 'Like' }}
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       NOW PLAYING
+       ============================================================ -->
+
+  <section class="gaza-audio-details__player" *ngIf="isPlaying">
+
+    <div class="gaza-audio-details__player-status">
+
+      <span class="gaza-audio-details__live-dot"></span>
+
+      <span>NOW PLAYING</span>
+
+    </div>
+
+
+    <div class="gaza-audio-details__player-title">
+
+      <strong>
+        {{ track.title }}
+      </strong>
+
+      <span>
+        {{ track.artist }}
+      </span>
+
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       TRACK DETAILS
+       ============================================================ -->
+
+  <section class="gaza-audio-details__section">
+
+    <div class="gaza-audio-details__section-heading">
+
+      <span>
+        TRACK DETAILS
+      </span>
+
+      <i class="fa-solid fa-music"></i>
+
+    </div>
+
+
+    <div class="gaza-audio-details__details-grid">
+
+      <div class="gaza-audio-details__detail" *ngIf="track.title">
+        <span>Title</span>
+
+        <strong [title]="track.title">
+          {{ track.title }}
+        </strong>
+      </div>
+
+
+      <div class="gaza-audio-details__detail" *ngIf="track.artist">
+        <span>Artist</span>
+
+        <strong [title]="track.artist">
+          {{ track.artist }}
+        </strong>
+      </div>
+
+
+      <div class="gaza-audio-details__detail" *ngIf="track.album">
+        <span>Album</span>
+
+        <strong [title]="track.album">
+          {{ track.album }}
+        </strong>
+      </div>
+
+
+      <div class="gaza-audio-details__detail" *ngIf="track.genre">
+        <span>Genre</span>
+
+        <strong>
+          {{ track.genre }}
+        </strong>
+      </div>
+
+
+      <div class="gaza-audio-details__detail" *ngIf="track.releaseYear">
+        <span>Release Year</span>
+
+        <strong>
+          {{ track.releaseYear }}
+        </strong>
+      </div>
+
+
+      <div class="gaza-audio-details__detail">
+
+        <span>
+          Duration
+        </span>
+
+        <strong>
+          {{
+          track.duration
+          ? playerService.formatTime(track.duration)
+          : '--:--'
+          }}
+        </strong>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<!-- ============================================================
+     AUDIO NOT FOUND
+     ============================================================ -->
+
+<div class="gaza-audio-details__empty" *ngIf="!audio">
+
+  <div class="gaza-audio-details__empty-icon">
+    <i class="fa-solid fa-music"></i>
+  </div>
+
+  <h2>
+    Audio not found
+  </h2>
+
+  <p>
+    The music track you're looking for could not be found.
+  </p>
+
+  <button type="button" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    <span>Back to Gaza Stream</span>
+  </button>
+
+</div>

@@ -1,0 +1,79 @@
+<div class="gaza-genre-details">
+
+
+  <!-- =========================================================
+       HEADER
+  ========================================================= -->
+
+  <section class="gaza-genre-hero">
+
+
+    <!-- Artwork -->
+
+    <div class="gaza-genre-details-artwork">
+
+      <img
+        [src]="genre?.artwork"
+        [alt]="genre?.name || genreName"
+      />
+
+    </div>
+
+
+    <!-- Information -->
+
+    <div class="gaza-genre-details-info">
+
+      <span class="gaza-genre-details-label">
+        GENRE
+      </span>
+
+
+      <h1>
+        {{ genre?.name || genreName }}
+      </h1>
+
+
+      <p>
+
+        {{ tracks.length }}
+
+        {{ tracks.length === 1 ? 'track' : 'tracks' }}
+
+      </p>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- =========================================================
+       TRACKS
+  ========================================================= -->
+
+  <section class="gaza-genre-tracks">
+
+    <div class="gaza-section-header">
+
+      <div class="gaza-section-heading">
+        <p>
+          Tracks in this genre
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Existing Track List -->
+
+    <app-track-list
+      [tracks]="tracks"
+    >
+    </app-track-list>
+
+  </section>
+
+
+</div>

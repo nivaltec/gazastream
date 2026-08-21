@@ -1,0 +1,1998 @@
+/* ============================================================
+   GAZA STREAM
+   UPLOAD MODAL
+============================================================ */
+
+:host {
+  display: block;
+}
+
+
+/* ============================================================
+   MODAL
+============================================================ */
+
+.gaza-upload-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background: rgba(3, 7, 18, 0.78);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+
+  animation: gaza-upload-fade-in 180ms ease-out;
+}
+
+
+/* ============================================================
+   DIALOG
+============================================================ */
+
+.gaza-upload-modal__dialog {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+
+  width: min(940px, 100%);
+  max-height: calc(100vh - 48px);
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 26px;
+
+  background:
+    linear-gradient(145deg,
+      rgba(19, 25, 40, 0.98),
+      rgba(9, 13, 24, 0.99));
+
+  box-shadow:
+    0 35px 100px rgba(0, 0, 0, 0.55),
+    0 10px 35px rgba(0, 0, 0, 0.25);
+
+  animation:
+    gaza-upload-dialog-in 220ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+
+/* ============================================================
+   HEADER
+============================================================ */
+
+.gaza-upload-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+
+  padding: 22px 24px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+
+  background: rgba(255, 255, 255, 0.015);
+}
+
+.gaza-upload-modal__title-wrap {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  min-width: 0;
+}
+
+.gaza-upload-modal__icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 14px;
+
+  color: #fff;
+  background: linear-gradient(135deg, #1db954, #14a44d);
+
+  box-shadow: 0 10px 25px rgba(29, 185, 84, 0.2);
+
+  font-size: 18px;
+}
+
+.gaza-upload-modal__title-wrap h2 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 18px;
+  font-weight: 750;
+  letter-spacing: -0.02em;
+}
+
+.gaza-upload-modal__title-wrap p {
+  margin: 4px 0 0;
+
+  color: rgba(255, 255, 255, 0.52);
+
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+
+/* ============================================================
+   CLOSE
+============================================================ */
+
+.gaza-upload-modal__close {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 12px;
+
+  color: rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.05);
+
+  cursor: pointer;
+
+  transition:
+    background 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.gaza-upload-modal__close:hover:not(:disabled) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  transform: rotate(3deg);
+}
+
+.gaza-upload-modal__close:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+
+/* ============================================================
+   STEPPER
+============================================================ */
+
+.gaza-upload-stepper {
+  display: flex;
+  align-items: center;
+
+  padding: 18px 26px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.gaza-upload-step {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  flex: 0 0 auto;
+
+  color: rgba(255, 255, 255, 0.32);
+
+  transition: color 160ms ease;
+}
+
+.gaza-upload-step.is-active {
+  color: #fff;
+}
+
+.gaza-upload-step.is-complete {
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.gaza-upload-step__number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+
+  color: rgba(255, 255, 255, 0.42);
+  background: rgba(255, 255, 255, 0.035);
+
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.gaza-upload-step.is-active .gaza-upload-step__number {
+  border-color: rgba(29, 185, 84, 0.55);
+
+  color: #fff;
+  background: rgba(29, 185, 84, 0.18);
+
+  box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.06);
+}
+
+.gaza-upload-step.is-complete .gaza-upload-step__number {
+  border-color: rgba(29, 185, 84, 0.4);
+
+  color: #fff;
+  background: rgba(29, 185, 84, 0.16);
+}
+
+.gaza-upload-step__label {
+  font-size: 11px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.gaza-upload-step__line {
+  flex: 1;
+
+  min-width: 16px;
+  height: 1px;
+  margin: 0 10px;
+
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ============================================================
+   BODY
+============================================================ */
+
+.gaza-upload-modal__body {
+  position: relative;
+
+  flex: 1;
+  min-height: 0;
+
+  overflow-y: auto;
+
+  padding: 30px;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.12) transparent;
+}
+
+.gaza-upload-modal__body::-webkit-scrollbar {
+  width: 5px;
+}
+
+.gaza-upload-modal__body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gaza-upload-modal__body::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+
+/* ============================================================
+   SECTIONS / HEADINGS
+============================================================ */
+
+.gaza-upload-section {
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+.gaza-upload-heading {
+  margin-bottom: 26px;
+}
+
+.gaza-upload-heading__eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #1db954;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+}
+
+.gaza-upload-heading h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 25px;
+  font-weight: 760;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+.gaza-upload-heading p {
+  margin: 8px 0 0;
+
+  color: rgba(255, 255, 255, 0.48);
+
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   ALERTS
+============================================================ */
+
+.gaza-upload-alert {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 20px;
+  padding: 12px 14px;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+}
+
+.gaza-upload-alert--error {
+  border: 1px solid rgba(239, 68, 68, 0.18);
+
+  color: #ffb0b0;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.gaza-upload-alert--success {
+  border: 1px solid rgba(29, 185, 84, 0.18);
+
+  color: #9ee7b8;
+  background: rgba(29, 185, 84, 0.08);
+}
+
+
+/* ============================================================
+   CONTENT OPTIONS
+============================================================ */
+
+.gaza-content-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+
+  margin-bottom: 18px;
+}
+
+.gaza-content-option {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  width: 100%;
+  min-height: 100px;
+  padding: 18px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 17px;
+
+  color: #fff;
+  background: rgba(255, 255, 255, 0.025);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    border 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.gaza-content-option:hover {
+  border-color: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.045);
+  transform: translateY(-1px);
+}
+
+.gaza-content-option.is-selected {
+  border-color: rgba(29, 185, 84, 0.48);
+
+  background:
+    linear-gradient(135deg,
+      rgba(29, 185, 84, 0.13),
+      rgba(29, 185, 84, 0.035));
+
+  box-shadow: inset 0 0 0 1px rgba(29, 185, 84, 0.04);
+}
+
+.gaza-content-option__icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 46px;
+  height: 46px;
+
+  border-radius: 13px;
+
+  color: rgba(255, 255, 255, 0.72);
+  background: rgba(255, 255, 255, 0.06);
+
+  font-size: 17px;
+}
+
+.gaza-content-option.is-selected .gaza-content-option__icon {
+  color: #fff;
+  background: rgba(29, 185, 84, 0.17);
+}
+
+.gaza-content-option__content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  min-width: 0;
+}
+
+.gaza-content-option__content strong {
+  color: #fff;
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.gaza-content-option__content small {
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 11px;
+}
+
+.gaza-content-option__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 23px;
+  height: 23px;
+  margin-left: auto;
+
+  border-radius: 50%;
+
+  color: #fff;
+  background: #1db954;
+
+  opacity: 0;
+
+  font-size: 9px;
+}
+
+.gaza-content-option.is-selected .gaza-content-option__check {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   PODCAST TOGGLE
+============================================================ */
+
+.gaza-podcast-toggle {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+
+  padding: 15px 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  cursor: pointer;
+}
+
+.gaza-podcast-toggle__checkbox {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.gaza-podcast-toggle__checkbox input {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gaza-podcast-toggle__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+
+  color: transparent;
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 10px;
+
+  transition: all 160ms ease;
+}
+
+.gaza-podcast-toggle input:checked+.gaza-podcast-toggle__box {
+  border-color: #1db954;
+
+  color: #fff;
+  background: #1db954;
+}
+
+.gaza-podcast-toggle__content {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.gaza-podcast-toggle__content strong {
+  color: rgba(255, 255, 255, 0.86);
+  font-size: 12px;
+}
+
+.gaza-podcast-toggle__content small {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+}
+
+.gaza-podcast-toggle__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  margin-left: auto;
+  padding: 6px 9px;
+
+  border-radius: 999px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.08);
+
+  font-size: 9px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   FORM
+============================================================ */
+
+.gaza-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.gaza-form-field {
+  min-width: 0;
+}
+
+.gaza-form-field--full {
+  grid-column: 1 / -1;
+}
+
+.gaza-form-field label {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: rgba(255, 255, 255, 0.65);
+
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.gaza-form-field label span {
+  color: #ff7d7d;
+}
+
+.gaza-form-field input,
+.gaza-form-field textarea {
+  box-sizing: border-box;
+
+  width: 100%;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 11px;
+
+  outline: none;
+
+  color: #fff;
+  background: rgba(255, 255, 255, 0.035);
+
+  font: inherit;
+  font-size: 12px;
+
+  transition:
+    border 160ms ease,
+    background 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.gaza-form-field input {
+  height: 44px;
+  padding: 0 13px;
+}
+
+.gaza-form-field textarea {
+  min-height: 110px;
+  padding: 12px 13px;
+
+  resize: vertical;
+}
+
+.gaza-form-field input::placeholder,
+.gaza-form-field textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25);
+}
+
+.gaza-form-field input:focus,
+.gaza-form-field textarea:focus {
+  border-color: rgba(29, 185, 84, 0.45);
+
+  background: rgba(29, 185, 84, 0.025);
+
+  box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.06);
+}
+
+
+/* ============================================================
+   CONTENT SUMMARY
+============================================================ */
+
+.gaza-content-summary {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-top: 20px;
+  padding: 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.gaza-content-summary__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 38px;
+  height: 38px;
+
+  border-radius: 10px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.1);
+}
+
+.gaza-content-summary>div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.gaza-content-summary strong {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+}
+
+.gaza-content-summary span {
+  color: rgba(255, 255, 255, 0.38);
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   FORM SECTIONS
+============================================================ */
+
+.gaza-form-section {
+  margin-top: 24px;
+  padding-top: 22px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gaza-form-section:first-of-type {
+  margin-top: 0;
+  padding-top: 0;
+  border-top: 0;
+}
+
+.gaza-form-section__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-bottom: 13px;
+}
+
+.gaza-form-section__header h4 {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 13px;
+}
+
+.gaza-form-section__header p {
+  margin: 4px 0 0;
+
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 10px;
+}
+
+.gaza-form-section__optional {
+  padding: 5px 8px;
+
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.04);
+
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   ARTWORK DROP
+============================================================ */
+
+.gaza-artwork-drop {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+
+  min-height: 130px;
+  padding: 18px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.13);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  cursor: pointer;
+
+  transition:
+    border 160ms ease,
+    background 160ms ease;
+}
+
+.gaza-artwork-drop:hover,
+.gaza-artwork-drop.has-file {
+  border-color: rgba(29, 185, 84, 0.35);
+  background: rgba(29, 185, 84, 0.035);
+}
+
+.gaza-artwork-drop input {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gaza-artwork-drop__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 42px;
+  height: 42px;
+
+  border-radius: 12px;
+
+  color: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gaza-artwork-drop__icon--success {
+  color: #fff;
+  background: rgba(29, 185, 84, 0.18);
+}
+
+.gaza-artwork-drop strong {
+  max-width: 90%;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 11px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-artwork-drop small {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   CHOICES
+============================================================ */
+
+.gaza-choice-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
+  margin-bottom: 13px;
+}
+
+.gaza-choice {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  min-width: 0;
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 13px;
+
+  color: #fff;
+  background: rgba(255, 255, 255, 0.025);
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition: all 160ms ease;
+}
+
+.gaza-choice:hover {
+  border-color: rgba(255, 255, 255, 0.14);
+}
+
+.gaza-choice.is-selected {
+  border-color: rgba(29, 185, 84, 0.38);
+  background: rgba(29, 185, 84, 0.07);
+}
+
+.gaza-choice__icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 9px;
+
+  color: rgba(255, 255, 255, 0.52);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gaza-choice.is-selected .gaza-choice__icon {
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.1);
+}
+
+.gaza-choice>span:nth-child(2) {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  min-width: 0;
+}
+
+.gaza-choice strong {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+}
+
+.gaza-choice small {
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 9px;
+}
+
+.gaza-choice__check {
+  margin-left: auto;
+
+  color: #1db954;
+
+  opacity: 0;
+
+  font-size: 10px;
+}
+
+.gaza-choice.is-selected .gaza-choice__check {
+  opacity: 1;
+}
+
+
+/* ============================================================
+   MEDIA DROP
+============================================================ */
+
+.gaza-media-drop {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 150px;
+  padding: 22px;
+
+  border: 1px dashed rgba(255, 255, 255, 0.13);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.018);
+
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    border 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.gaza-media-drop:hover,
+.gaza-media-drop.has-file {
+  border-color: rgba(29, 185, 84, 0.4);
+  background: rgba(29, 185, 84, 0.035);
+}
+
+.gaza-media-drop:hover {
+  transform: translateY(-1px);
+}
+
+.gaza-media-drop input {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  cursor: pointer;
+}
+
+.gaza-media-drop__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+
+  border-radius: 14px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.1);
+
+  font-size: 17px;
+}
+
+.gaza-media-drop strong {
+  max-width: 90%;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.76);
+
+  font-size: 12px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-media-drop small {
+  margin-top: 4px;
+
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   ALBUM
+============================================================ */
+
+.gaza-album-upload {
+  display: block;
+}
+
+.gaza-album-tracks {
+  margin-top: 14px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 15px;
+
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.gaza-album-tracks__header {
+  padding: 13px 15px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gaza-album-tracks__header>div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gaza-album-tracks__header strong {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 11px;
+}
+
+.gaza-album-tracks__header span {
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   ALBUM TRACK
+============================================================ */
+
+.gaza-album-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.045);
+}
+
+.gaza-album-track:last-child {
+  border-bottom: 0;
+}
+
+.gaza-album-track__number {
+  width: 20px;
+
+  color: rgba(255, 255, 255, 0.25);
+
+  font-size: 9px;
+  text-align: center;
+}
+
+.gaza-album-track__icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 8px;
+
+  color: rgba(255, 255, 255, 0.45);
+  background: rgba(255, 255, 255, 0.05);
+
+  font-size: 11px;
+}
+
+.gaza-album-track__info {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.gaza-album-track__info strong,
+.gaza-album-track__info small {
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-album-track__info strong {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 11px;
+}
+
+.gaza-album-track__info small {
+  color: rgba(255, 255, 255, 0.28);
+  font-size: 9px;
+}
+
+.gaza-album-track__actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.gaza-album-track__actions button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+  padding: 0;
+
+  border: 0;
+  border-radius: 7px;
+
+  color: rgba(255, 255, 255, 0.38);
+  background: rgba(255, 255, 255, 0.04);
+
+  cursor: pointer;
+}
+
+.gaza-album-track__actions button:hover:not(:disabled) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.gaza-album-track__actions button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+.gaza-album-track__actions button.is-danger:hover {
+  color: #ff8d8d;
+  background: rgba(239, 68, 68, 0.08);
+}
+
+
+/* ============================================================
+   REVIEW
+============================================================ */
+
+.gaza-review {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.gaza-review__hero {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 17px;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.gaza-review__hero-icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  height: 55px;
+
+  border-radius: 14px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.1);
+
+  font-size: 19px;
+}
+
+.gaza-review__hero>div:last-child {
+  min-width: 0;
+}
+
+.gaza-review__hero span {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #8fe0aa;
+
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gaza-review__hero h3 {
+  overflow: hidden;
+
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 17px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-review__hero p {
+  margin: 3px 0 0;
+
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 10px;
+}
+
+
+/* ============================================================
+   REVIEW GRID
+============================================================ */
+
+.gaza-review__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.gaza-review__item {
+  min-width: 0;
+  padding: 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.gaza-review__item span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 9px;
+}
+
+.gaza-review__item strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.72);
+
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   REVIEW DESCRIPTION
+============================================================ */
+
+.gaza-review__description {
+  padding: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.gaza-review__description>span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 9px;
+}
+
+.gaza-review__description p {
+  margin: 0;
+
+  color: rgba(255, 255, 255, 0.58);
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   REVIEW FILE
+============================================================ */
+
+.gaza-review-file {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+
+  background: rgba(255, 255, 255, 0.018);
+}
+
+.gaza-review-file__icon {
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  border-radius: 9px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.08);
+}
+
+.gaza-review-file__content {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.gaza-review-file__content strong {
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gaza-review-file__content span {
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 9px;
+}
+
+.gaza-review-file>i {
+  color: #1db954;
+  font-size: 14px;
+}
+
+
+/* ============================================================
+   PODCAST REVIEW
+============================================================ */
+
+.gaza-review__podcast {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 12px 14px;
+
+  border: 1px solid rgba(29, 185, 84, 0.12);
+  border-radius: 12px;
+
+  background: rgba(29, 185, 84, 0.045);
+}
+
+.gaza-review__podcast>span {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 34px;
+  height: 34px;
+
+  border-radius: 9px;
+
+  color: #8fe0aa;
+  background: rgba(29, 185, 84, 0.1);
+}
+
+.gaza-review__podcast div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.gaza-review__podcast strong {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 10px;
+}
+
+.gaza-review__podcast small {
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   COMPLETE
+============================================================ */
+
+.gaza-upload-complete {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 390px;
+  padding: 30px 20px;
+
+  text-align: center;
+}
+
+.gaza-upload-complete__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 76px;
+  height: 76px;
+  margin-bottom: 18px;
+
+  border: 1px solid rgba(29, 185, 84, 0.28);
+  border-radius: 50%;
+
+  color: #fff;
+  background: rgba(29, 185, 84, 0.14);
+
+  box-shadow:
+    0 0 0 10px rgba(29, 185, 84, 0.035),
+    0 15px 40px rgba(29, 185, 84, 0.12);
+
+  font-size: 27px;
+
+  animation: gaza-upload-success-pop 350ms ease-out;
+}
+
+.gaza-upload-complete__eyebrow {
+  margin-bottom: 8px;
+
+  color: #1db954;
+
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+}
+
+.gaza-upload-complete h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 25px;
+  letter-spacing: -0.025em;
+}
+
+.gaza-upload-complete>p {
+  max-width: 460px;
+
+  margin: 9px auto 0;
+
+  color: rgba(255, 255, 255, 0.42);
+
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   COMPLETE SUMMARY
+============================================================ */
+
+.gaza-upload-complete__summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  width: min(100%, 540px);
+  margin-top: 25px;
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 13px;
+
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.gaza-upload-complete__summary>div {
+  min-width: 0;
+  padding: 13px;
+
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.gaza-upload-complete__summary>div:last-child {
+  border-right: 0;
+}
+
+.gaza-upload-complete__summary span {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: rgba(255, 255, 255, 0.28);
+
+  font-size: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.gaza-upload-complete__summary strong {
+  display: block;
+
+  overflow: hidden;
+
+  color: rgba(255, 255, 255, 0.7);
+
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   FOOTER
+============================================================ */
+
+.gaza-upload-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding: 16px 24px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.gaza-upload-modal__footer-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gaza-upload-modal__footer--complete {
+  justify-content: flex-end;
+}
+
+
+/* ============================================================
+   BUTTONS
+============================================================ */
+
+.gaza-upload-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  height: 40px;
+  padding: 0 16px;
+
+  border: 0;
+  border-radius: 10px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform 160ms ease,
+    background 160ms ease,
+    opacity 160ms ease;
+}
+
+.gaza-upload-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.gaza-upload-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.gaza-upload-btn--secondary {
+  color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.gaza-upload-btn--secondary:hover:not(:disabled) {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.gaza-upload-btn--primary {
+  color: #fff;
+
+  background: linear-gradient(135deg, #1db954, #159447);
+
+  box-shadow: 0 8px 20px rgba(29, 185, 84, 0.14);
+}
+
+.gaza-upload-btn--primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #22c55e, #18a84e);
+}
+
+
+/* ============================================================
+   STATUS
+============================================================ */
+
+.gaza-upload-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 9px;
+}
+
+.gaza-upload-status__dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: #1db954;
+
+  box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.08);
+
+  animation: gaza-upload-pulse 1.3s infinite;
+}
+
+
+/* ============================================================
+   PROGRESS
+============================================================ */
+
+.gaza-upload-progress {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 72px;
+
+  padding: 11px 13px;
+
+  border: 1px solid rgba(29, 185, 84, 0.12);
+  border-radius: 11px;
+
+  background: rgba(7, 12, 20, 0.94);
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.gaza-upload-progress__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 7px;
+}
+
+.gaza-upload-progress__top span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 9px;
+}
+
+.gaza-upload-progress__top strong {
+  color: #8fe0aa;
+  font-size: 9px;
+}
+
+.gaza-upload-progress__track {
+  height: 4px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.gaza-upload-progress__bar {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(90deg, #1db954, #45d978);
+
+  transition: width 200ms ease;
+}
+
+.gaza-upload-progress small {
+  display: block;
+
+  margin-top: 7px;
+
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 8px;
+}
+
+
+/* ============================================================
+   ANIMATIONS
+============================================================ */
+
+@keyframes gaza-upload-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes gaza-upload-dialog-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.985);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes gaza-upload-success-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  70% {
+    transform: scale(1.06);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes gaza-upload-pulse {
+
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+
+/* ============================================================
+   RESPONSIVE
+============================================================ */
+
+@media (max-width: 760px) {
+
+  .gaza-upload-modal {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .gaza-upload-modal__dialog {
+    width: 100%;
+    max-height: 94vh;
+
+    border-radius: 22px 22px 0 0;
+  }
+
+  .gaza-upload-modal__header {
+    padding: 17px 18px;
+  }
+
+  .gaza-upload-modal__icon {
+    width: 40px;
+    height: 40px;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+  }
+
+  .gaza-upload-modal__title-wrap h2 {
+    font-size: 16px;
+  }
+
+  .gaza-upload-modal__title-wrap p {
+    font-size: 10px;
+  }
+
+  .gaza-upload-stepper {
+    padding: 13px 16px;
+    overflow-x: auto;
+  }
+
+  .gaza-upload-step__label {
+    display: none;
+  }
+
+  .gaza-upload-step__line {
+    min-width: 20px;
+    margin: 0 7px;
+  }
+
+  .gaza-upload-modal__body {
+    padding: 22px 17px;
+  }
+
+  .gaza-upload-heading h3 {
+    font-size: 21px;
+  }
+
+  .gaza-content-options,
+  .gaza-form-grid,
+  .gaza-choice-row {
+    grid-template-columns: 1fr;
+  }
+
+  .gaza-form-field--full {
+    grid-column: auto;
+  }
+
+  .gaza-review__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gaza-upload-modal__footer {
+    padding: 13px 16px;
+  }
+
+  .gaza-upload-status {
+    display: none;
+  }
+
+  .gaza-upload-btn {
+    height: 38px;
+    padding: 0 13px;
+
+    font-size: 10px;
+  }
+
+  .gaza-upload-progress {
+    left: 16px;
+    right: 16px;
+    bottom: 64px;
+  }
+}
+
+
+@media (max-width: 460px) {
+
+  .gaza-upload-modal__title-wrap p {
+    display: none;
+  }
+
+  .gaza-upload-modal__body {
+    padding: 20px 14px;
+  }
+
+  .gaza-podcast-toggle {
+    align-items: flex-start;
+  }
+
+  .gaza-podcast-toggle__badge {
+    display: none;
+  }
+
+  .gaza-review__hero {
+    padding: 13px;
+  }
+
+  .gaza-review__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gaza-upload-complete {
+    min-height: 340px;
+  }
+
+  .gaza-upload-complete__summary {
+    grid-template-columns: 1fr;
+  }
+
+  .gaza-upload-complete__summary>div {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  }
+
+  .gaza-upload-complete__summary>div:last-child {
+    border-bottom: 0;
+  }
+
+  .gaza-upload-modal__footer {
+    gap: 8px;
+  }
+
+  .gaza-upload-modal__footer-right {
+    gap: 7px;
+  }
+
+  .gaza-upload-btn {
+    padding: 0 10px;
+  }
+
+  .gaza-album-track__actions button {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-upload-modal,
+  .gaza-upload-modal__dialog,
+  .gaza-upload-complete__icon {
+    animation: none;
+  }
+
+  .gaza-upload-btn,
+  .gaza-content-option,
+  .gaza-media-drop,
+  .gaza-artwork-drop {
+    transition: none;
+  }
+}
