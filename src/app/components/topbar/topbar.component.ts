@@ -1,9 +1,23 @@
-import { Component, HostListener, OnDestroy, OnInit } from '@angular/core';
+
+import {
+  Component,
+  HostListener,
+  OnDestroy,
+  OnInit
+} from '@angular/core';
+
 import { Router } from '@angular/router';
-import { Subject, takeUntil } from 'rxjs';
+
+import {
+  Subject,
+  takeUntil
+} from 'rxjs';
+
 import { AuthService } from 'src/app/services/auth-service';
 
+
 export interface TopbarUser {
+
   id?: string;
 
   displayName?: string;
@@ -19,246 +33,483 @@ export interface TopbarUser {
   isAuthenticated: boolean;
 }
 
+
 @Component({
   selector: 'app-topbar',
+
   templateUrl: './topbar.component.html',
+
   styleUrl: './topbar.component.css',
+
   standalone: false,
 })
 export class TopbarComponent implements OnInit, OnDestroy {
 
+
+  /* ==========================================================
+     SEARCH
+     ========================================================== */
+
   searchTerm = '';
+
+
+  /* ==========================================================
+     PROFILE
+     ========================================================== */
+
   isProfileOpen = false;
+
+
+  /* ==========================================================
+     USER
+     ========================================================== */
+
   user: TopbarUser = {
+
     isAuthenticated: false,
+
   };
 
+
+  /* ==========================================================
+     NOTIFICATIONS
+     ========================================================== */
+
   notificationCount = 4;
-  private readonly destroy$ = new Subject<void>();
+
+
+  /* ==========================================================
+     DESTROY
+     ========================================================== */
+
+  private readonly destroy$ =
+    new Subject<void>();
+
+
+  /* ==========================================================
+     CONSTRUCTOR
+     ========================================================== */
 
   constructor(
+
     private readonly router: Router,
+
     private readonly authService: AuthService,
+
   ) {}
 
+
+  /* ==========================================================
+     INIT
+     ========================================================== */
+
   ngOnInit(): void {
+
     /* --------------------------------------------------------
        AUTHENTICATED USER
        -------------------------------------------------------- */
 
     this.authService.currentUser$
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((user) => {
-        if (!user) {
+      .pipe(
+        takeUntil(this.destroy$)
+      )
+      .subscribe({
+
+        next: (user) => {
+
+          /* --------------------------------------------------
+             NO USER
+             -------------------------------------------------- */
+
+          if (!user) {
+
+            this.user = {
+
+              isAuthenticated: false,
+
+            };
+
+            return;
+
+          }
+
+
+          /* --------------------------------------------------
+             USER FOUND
+             -------------------------------------------------- */
+
           this.user = {
-            isAuthenticated: false,
+
+            ...user,
+
+            isAuthenticated: true,
+
           };
 
-          return;
-        }
+        },
 
-        this.user = {
-          ...user,
-          isAuthenticated: true,
-        };
+        error: (error) => {
+
+          console.error(
+            'Failed to load authenticated user:',
+            error
+          );
+
+          this.user = {
+
+            isAuthenticated: false,
+
+          };
+
+        },
+
       });
 
-    /* --------------------------------------------------------
-       NOTIFICATION COUNT
-       -------------------------------------------------------- */
-
-    this.authService.notificationCount
-      .pipe(takeUntil(this.destroy$))
-      .subscribe((count: number) => {
-        this.notificationCount = count ?? 0;
-      });
   }
 
+
+  /* ==========================================================
+     DESTROY
+     ========================================================== */
+
   ngOnDestroy(): void {
+
     this.destroy$.next();
 
     this.destroy$.complete();
+
   }
+
 
   /* ==========================================================
      USER DISPLAY
      ========================================================== */
 
   get displayName(): string {
-    if (this.user.displayName?.trim()) {
+
+    /* --------------------------------------------------------
+       DISPLAY NAME
+       -------------------------------------------------------- */
+
+    if (
+      this.user.displayName?.trim()
+    ) {
+
       return this.user.displayName.trim();
+
     }
 
-    if (this.user.username?.trim()) {
+
+    /* --------------------------------------------------------
+       USERNAME
+       -------------------------------------------------------- */
+
+    if (
+      this.user.username?.trim()
+    ) {
+
       return this.user.username.trim();
+
     }
 
-    if (this.user.email?.trim()) {
-      return this.user.email.split('@')[0].trim();
+
+    /* --------------------------------------------------------
+       EMAIL
+       -------------------------------------------------------- */
+
+    if (
+      this.user.email?.trim()
+    ) {
+
+      return this.user.email
+        .split('@')[0]
+        .trim();
+
     }
+
+
+    /* --------------------------------------------------------
+       DEFAULT
+       -------------------------------------------------------- */
 
     return 'Listener';
+
   }
+
 
   /* ==========================================================
      USER SUBTITLE
      ========================================================== */
 
   get userSubtitle(): string {
-    if (this.user.role?.trim()) {
+
+    /* --------------------------------------------------------
+       ROLE
+       -------------------------------------------------------- */
+
+    if (
+      this.user.role?.trim()
+    ) {
+
       return this.user.role.trim();
+
     }
 
-    if (this.user.email?.trim()) {
+
+    /* --------------------------------------------------------
+       EMAIL
+       -------------------------------------------------------- */
+
+    if (
+      this.user.email?.trim()
+    ) {
+
       return this.user.email.trim();
+
     }
+
+
+    /* --------------------------------------------------------
+       DEFAULT
+       -------------------------------------------------------- */
 
     return 'Music lover';
+
   }
+
 
   /* ==========================================================
      PROFILE IMAGE
      ========================================================== */
 
   get hasProfileImage(): boolean {
+
     return !!this.user.profileImageUrl?.trim();
+
   }
+
 
   /* ==========================================================
      SEARCH
      ========================================================== */
 
   search(): void {
-    const query = this.searchTerm.trim();
+
+    const query =
+      this.searchTerm.trim();
+
 
     /* --------------------------------------------------------
-       Do nothing for an empty search
+       EMPTY SEARCH
        -------------------------------------------------------- */
 
     if (!query) {
+
       return;
+
     }
 
+
     /* --------------------------------------------------------
-       Close profile menu
+       CLOSE PROFILE
        -------------------------------------------------------- */
 
     this.closeProfileMenu();
 
+
     /* --------------------------------------------------------
-       Navigate to search
+       NAVIGATE
        -------------------------------------------------------- */
 
-    this.router.navigate(['/search'], {
-      queryParams: {
-        q: query,
-      },
-    });
+    this.router.navigate(
+      ['/search'],
+      {
+        queryParams: {
+          q: query,
+        },
+      }
+    );
+
   }
+
 
   /* ==========================================================
      CLEAR SEARCH
      ========================================================== */
 
   clearSearch(): void {
+
     this.searchTerm = '';
+
   }
+
 
   /* ==========================================================
      SEARCH KEYBOARD
      ========================================================== */
 
-  onSearchKeydown(event: KeyboardEvent): void {
+  onSearchKeydown(
+    event: KeyboardEvent
+  ): void {
+
     /* --------------------------------------------------------
        ENTER
        -------------------------------------------------------- */
 
-    if (event.key === 'Enter') {
+    if (
+      event.key === 'Enter'
+    ) {
+
       event.preventDefault();
 
       this.search();
 
       return;
+
     }
+
 
     /* --------------------------------------------------------
        ESCAPE
        -------------------------------------------------------- */
 
-    if (event.key === 'Escape') {
+    if (
+      event.key === 'Escape'
+    ) {
+
       if (this.searchTerm) {
+
         this.clearSearch();
+
       }
+
     }
+
   }
+
 
   /* ==========================================================
      PROFILE MENU
      ========================================================== */
 
   toggleProfileMenu(): void {
-    this.isProfileOpen = !this.isProfileOpen;
+
+    this.isProfileOpen =
+      !this.isProfileOpen;
+
   }
 
+
+  /* ==========================================================
+     CLOSE PROFILE MENU
+     ========================================================== */
+
   closeProfileMenu(): void {
+
     this.isProfileOpen = false;
+
   }
+
 
   /* ==========================================================
      VIEW PROFILE
      ========================================================== */
 
   viewProfile(): void {
+
     this.closeProfileMenu();
 
-    this.router.navigate(['/profile']);
+    this.router.navigate(
+      ['/profile']
+    );
+
   }
+
 
   /* ==========================================================
      NOTIFICATIONS
      ========================================================== */
 
   openNotifications(): void {
-    this.router.navigate(['/notifications']);
+
+    this.router.navigate(
+      ['/notifications']
+    );
+
   }
+
 
   /* ==========================================================
      LOGOUT
      ========================================================== */
 
   logout(): void {
+
     this.closeProfileMenu();
 
     this.authService.logout();
+
   }
+
 
   /* ==========================================================
      MOBILE MENU
      ========================================================== */
 
   openMobileMenu(): void {
-    window.dispatchEvent(new CustomEvent('gaza-mobile-menu-toggle'));
+
+    window.dispatchEvent(
+      new CustomEvent(
+        'gaza-mobile-menu-toggle'
+      )
+    );
+
   }
+
 
   /* ==========================================================
      CLOSE PROFILE WHEN CLICKING OUTSIDE
      ========================================================== */
 
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
+  @HostListener(
+    'document:click',
+    ['$event']
+  )
 
-    if (!target.closest('.gaza-profile')) {
+  onDocumentClick(
+    event: MouseEvent
+  ): void {
+
+    const target =
+      event.target as HTMLElement;
+
+
+    if (
+      !target.closest(
+        '.gaza-profile'
+      )
+    ) {
+
       this.closeProfileMenu();
+
     }
+
   }
+
 
   /* ==========================================================
      ESCAPE
      ========================================================== */
 
-  @HostListener('document:keydown.escape')
+  @HostListener(
+    'document:keydown.escape'
+  )
+
   onEscape(): void {
+
     this.closeProfileMenu();
+
   }
+
 }
+

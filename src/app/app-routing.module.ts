@@ -15,6 +15,7 @@ import { UploadsComponent } from './components/uploads/uploads.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { NewsComponent } from './components/news/news.component';
 
 
 
@@ -35,7 +36,8 @@ const routes: Routes = [
     {path:'profile',component: ProfileComponent},
     {path:'catelog',component: CatelogComponent},
     {path:'uploads',component: UploadsComponent},
-    {path:'notifications',component: NotificationsComponent}
+    {path:'notifications',component: NotificationsComponent},
+      {path:'news',component: NewsComponent}
 
 ];
 

@@ -1,0 +1,936 @@
+<div class="gaza-news">
+
+  <!-- ==========================================================
+       HERO
+       ========================================================== -->
+
+  <section class="news-hero">
+
+    <div class="news-hero__grid"></div>
+
+    <div class="news-hero__glow news-hero__glow--cyan"></div>
+    <div class="news-hero__glow news-hero__glow--purple"></div>
+
+    <div class="news-hero__content">
+
+      <div class="news-hero__eyebrow">
+        <span class="news-hero__live-dot"></span>
+        <span>Live News</span>
+        <span class="news-hero__divider"></span>
+        <span>{{ currentDate }}</span>
+      </div>
+
+      <h1>
+        Gaza Stream
+        <span>News</span>
+      </h1>
+
+      <p>
+        Stay informed with the latest breaking news, politics,
+        business, finance, sport and entertainment from around
+        the world.
+      </p>
+
+      <div class="news-hero__meta">
+
+        <span>
+          <i class="bi bi-broadcast-pin"></i>
+          Live Updates
+        </span>
+
+        <span>
+          <i class="bi bi-globe2"></i>
+          Global Coverage
+        </span>
+
+        <span>
+          <i class="bi bi-clock"></i>
+          Updated Regularly
+        </span>
+
+      </div>
+
+    </div>
+
+    <div class="news-hero__visual">
+
+      <div class="news-hero__ring news-hero__ring--one"></div>
+      <div class="news-hero__ring news-hero__ring--two"></div>
+
+      <div class="news-hero__icon">
+        <i class="bi bi-newspaper"></i>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       CATEGORY NAVIGATION
+       ========================================================== -->
+
+  <nav class="news-categories" aria-label="News categories">
+
+    <button
+      type="button"
+      class="news-category news-category--all"
+      [class.active]="selectedCategory === 'all'"
+      (click)="selectCategory('all')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-grid-fill"></i>
+      </span>
+
+      <span>All News</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="news-category news-category--entertainment"
+      [class.active]="selectedCategory === 'entertainment'"
+      (click)="selectCategory('entertainment')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-stars"></i>
+      </span>
+
+      <span>Entertainment</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="news-category news-category--sport"
+      [class.active]="selectedCategory === 'sport'"
+      (click)="selectCategory('sport')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-trophy-fill"></i>
+      </span>
+
+      <span>Sport</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="news-category news-category--finance"
+      [class.active]="selectedCategory === 'finance'"
+      (click)="selectCategory('finance')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-graph-up-arrow"></i>
+      </span>
+
+      <span>Finance</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="news-category news-category--business"
+      [class.active]="selectedCategory === 'business'"
+      (click)="selectCategory('business')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-briefcase-fill"></i>
+      </span>
+
+      <span>Business</span>
+    </button>
+
+
+    <button
+      type="button"
+      class="news-category news-category--politics"
+      [class.active]="selectedCategory === 'politics'"
+      (click)="selectCategory('politics')"
+    >
+      <span class="news-category__icon">
+        <i class="bi bi-bank2"></i>
+      </span>
+
+      <span>Politics</span>
+    </button>
+
+  </nav>
+
+
+  <!-- ==========================================================
+       ALL NEWS / TOP STORIES
+       ========================================================== -->
+
+  <section
+    class="news-section"
+    *ngIf="selectedCategory === 'all'"
+  >
+
+    <div class="news-section__header">
+
+      <div>
+
+        <div class="news-section__eyebrow">
+          <span></span>
+          Top Stories
+        </div>
+
+        <h2>Latest News</h2>
+
+        <p>
+          The most important stories making headlines right now.
+        </p>
+
+      </div>
+
+      <a
+        href="#"
+        class="news-section__link"
+      >
+        View All
+        <i class="bi bi-arrow-right"></i>
+      </a>
+
+    </div>
+
+
+    <div class="news-layout">
+
+      <!-- FEATURED STORY -->
+
+      <article
+        class="news-featured"
+        *ngIf="visibleStories.length > 0"
+      >
+
+        <div class="news-featured__image">
+
+          <img
+            [src]="visibleStories[0].image"
+            [alt]="visibleStories[0].title"
+            loading="eager"
+          >
+
+          <span
+            class="news-badge"
+            [ngClass]="'news-badge--' + visibleStories[0].category"
+          >
+            {{ visibleStories[0].category }}
+          </span>
+
+        </div>
+
+
+        <div class="news-featured__content">
+
+          <div class="news-meta">
+
+            <span>
+              <i class="bi bi-building"></i>
+              {{ visibleStories[0].source }}
+            </span>
+
+            <span>
+              <i class="bi bi-clock"></i>
+              {{ getTimeAgo(visibleStories[0].publishedAt) }}
+            </span>
+
+          </div>
+
+
+          <h3>
+            {{ visibleStories[0].title }}
+          </h3>
+
+
+          <p>
+            {{ visibleStories[0].description }}
+          </p>
+
+
+          <a
+            [href]="visibleStories[0].url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="news-read"
+          >
+            Read Full Story
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- SIDE STORIES -->
+
+      <div class="news-side-list">
+
+        <article
+          class="news-small-card"
+          *ngFor="
+            let article of visibleStories.slice(1, 4);
+            trackBy: trackByArticle
+          "
+        >
+
+          <div class="news-small-card__image">
+
+            <img
+              [src]="article.image"
+              [alt]="article.title"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="news-small-card__content">
+
+            <span
+              class="news-label"
+              [ngClass]="'news-label--' + article.category"
+            >
+              {{ article.category }}
+            </span>
+
+
+            <h3>
+              {{ article.title }}
+            </h3>
+
+
+            <div class="news-small-card__time">
+
+              <i class="bi bi-clock"></i>
+
+              {{ getTimeAgo(article.publishedAt) }}
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       ENTERTAINMENT
+       ========================================================== -->
+
+  <section
+    class="news-section"
+    *ngIf="
+      selectedCategory === 'all' ||
+      selectedCategory === 'entertainment'
+    "
+  >
+
+    <div class="news-section__header">
+
+      <div>
+
+        <div class="news-section__eyebrow news-section__eyebrow--entertainment">
+          <span></span>
+          Entertainment
+        </div>
+
+        <h2>Entertainment</h2>
+
+        <p>
+          Celebrity news, movies, music and culture.
+        </p>
+
+      </div>
+
+      <a
+        href="#"
+        class="news-section__link"
+      >
+        More Stories
+        <i class="bi bi-arrow-right"></i>
+      </a>
+
+    </div>
+
+
+    <div class="news-card-grid">
+
+      <article
+        class="news-card"
+        *ngFor="
+          let article of entertainmentNews;
+          trackBy: trackByArticle
+        "
+      >
+
+        <div class="news-card__image">
+
+          <img
+            [src]="article.image"
+            [alt]="article.title"
+            loading="lazy"
+          >
+
+          <span class="news-badge news-badge--entertainment">
+            Entertainment
+          </span>
+
+        </div>
+
+
+        <div class="news-card__body">
+
+          <div class="news-meta">
+
+            <span>
+              <i class="bi bi-building"></i>
+              {{ article.source }}
+            </span>
+
+            <span>
+              <i class="bi bi-clock"></i>
+              {{ getTimeAgo(article.publishedAt) }}
+            </span>
+
+          </div>
+
+
+          <h3>
+            {{ article.title }}
+          </h3>
+
+
+          <p>
+            {{ article.description }}
+          </p>
+
+
+          <a
+            [href]="article.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="news-read"
+          >
+            Read Story
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       SPORT
+       ========================================================== -->
+
+  <section
+    class="news-section"
+    *ngIf="
+      selectedCategory === 'all' ||
+      selectedCategory === 'sport'
+    "
+  >
+
+    <div class="news-section__header">
+
+      <div>
+
+        <div class="news-section__eyebrow news-section__eyebrow--sport">
+          <span></span>
+          Sport
+        </div>
+
+        <h2>Sport</h2>
+
+        <p>
+          The latest results, transfers and sporting headlines.
+        </p>
+
+      </div>
+
+      <a
+        href="#"
+        class="news-section__link"
+      >
+        More Stories
+        <i class="bi bi-arrow-right"></i>
+      </a>
+
+    </div>
+
+
+    <div class="news-card-grid">
+
+      <article
+        class="news-card"
+        *ngFor="
+          let article of sportNews;
+          trackBy: trackByArticle
+        "
+      >
+
+        <div class="news-card__image">
+
+          <img
+            [src]="article.image"
+            [alt]="article.title"
+            loading="lazy"
+          >
+
+          <span class="news-badge news-badge--sport">
+            Sport
+          </span>
+
+        </div>
+
+
+        <div class="news-card__body">
+
+          <div class="news-meta">
+
+            <span>
+              <i class="bi bi-building"></i>
+              {{ article.source }}
+            </span>
+
+            <span>
+              <i class="bi bi-clock"></i>
+              {{ getTimeAgo(article.publishedAt) }}
+            </span>
+
+          </div>
+
+
+          <h3>
+            {{ article.title }}
+          </h3>
+
+
+          <p>
+            {{ article.description }}
+          </p>
+
+
+          <a
+            [href]="article.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="news-read"
+          >
+            Read Story
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       FINANCE + BUSINESS
+       ========================================================== -->
+
+  <div
+    class="news-dual"
+    *ngIf="
+      selectedCategory === 'all' ||
+      selectedCategory === 'finance' ||
+      selectedCategory === 'business'
+    "
+  >
+
+    <!-- FINANCE -->
+
+    <section
+      class="news-section"
+      *ngIf="
+        selectedCategory === 'all' ||
+        selectedCategory === 'finance'
+      "
+    >
+
+      <div class="news-section__header">
+
+        <div>
+
+          <div class="news-section__eyebrow news-section__eyebrow--finance">
+            <span></span>
+            Finance
+          </div>
+
+          <h2>Markets & Finance</h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="news-mini-list">
+
+        <article
+          class="news-mini-card"
+          *ngFor="
+            let article of financeNews;
+            trackBy: trackByArticle
+          "
+        >
+
+          <div class="news-mini-card__icon news-mini-card__icon--finance">
+            <i class="bi bi-graph-up-arrow"></i>
+          </div>
+
+
+          <div>
+
+            <span>
+              {{ article.source }}
+            </span>
+
+            <h3>
+              {{ article.title }}
+            </h3>
+
+            <small>
+              {{ getTimeAgo(article.publishedAt) }}
+            </small>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- BUSINESS -->
+
+    <section
+      class="news-section"
+      *ngIf="
+        selectedCategory === 'all' ||
+        selectedCategory === 'business'
+      "
+    >
+
+      <div class="news-section__header">
+
+        <div>
+
+          <div class="news-section__eyebrow news-section__eyebrow--business">
+            <span></span>
+            Business
+          </div>
+
+          <h2>Business</h2>
+
+        </div>
+
+      </div>
+
+
+      <div class="news-mini-list">
+
+        <article
+          class="news-mini-card"
+          *ngFor="
+            let article of businessNews;
+            trackBy: trackByArticle
+          "
+        >
+
+          <div class="news-mini-card__icon news-mini-card__icon--business">
+            <i class="bi bi-briefcase-fill"></i>
+          </div>
+
+
+          <div>
+
+            <span>
+              {{ article.source }}
+            </span>
+
+            <h3>
+              {{ article.title }}
+            </h3>
+
+            <small>
+              {{ getTimeAgo(article.publishedAt) }}
+            </small>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+  </div>
+
+
+  <!-- ==========================================================
+       POLITICS
+       ========================================================== -->
+
+  <section
+    class="news-section"
+    *ngIf="
+      selectedCategory === 'all' ||
+      selectedCategory === 'politics'
+    "
+  >
+
+    <div class="news-section__header">
+
+      <div>
+
+        <div class="news-section__eyebrow news-section__eyebrow--politics">
+          <span></span>
+          Politics
+        </div>
+
+        <h2>Political Headlines</h2>
+
+        <p>
+          Important political developments from around the world.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <div class="news-politics-grid">
+
+      <article
+        class="news-politics-card"
+        *ngFor="
+          let article of politicsNews;
+          let i = index;
+          trackBy: trackByArticle
+        "
+      >
+
+        <div class="news-politics-card__number">
+
+          {{
+            (i + 1)
+              .toString()
+              .padStart(2, '0')
+          }}
+
+        </div>
+
+
+        <div>
+
+          <span>
+            {{ article.source }}
+          </span>
+
+
+          <h3>
+            {{ article.title }}
+          </h3>
+
+
+          <p>
+            {{ article.description }}
+          </p>
+
+
+          <small>
+
+            <i class="bi bi-clock"></i>
+
+            {{ getTimeAgo(article.publishedAt) }}
+
+          </small>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       GAZA FOCUS
+       ========================================================== -->
+
+  <section
+    class="gaza-news-section"
+    *ngIf="
+      selectedCategory === 'all' ||
+      selectedCategory === 'politics'
+    "
+  >
+
+    <div class="gaza-header">
+
+      <div class="gaza-icon">
+        <i class="bi bi-globe-americas"></i>
+      </div>
+
+      <div>
+
+        <div class="news-section__eyebrow">
+          <span></span>
+          Gaza Focus
+        </div>
+
+        <h2>
+          Gaza & Middle East
+        </h2>
+
+      </div>
+
+    </div>
+
+
+    <div class="news-card-grid">
+
+      <article
+        class="news-card"
+        *ngFor="
+          let article of gazaNews;
+          trackBy: trackByArticle
+        "
+      >
+
+        <div class="news-card__image">
+
+          <img
+            [src]="article.image"
+            [alt]="article.title"
+            loading="lazy"
+          >
+
+          <span class="news-badge">
+            Gaza
+          </span>
+
+        </div>
+
+
+        <div class="news-card__body">
+
+          <div class="news-meta">
+
+            <span>
+              <i class="bi bi-building"></i>
+              {{ article.source }}
+            </span>
+
+            <span>
+              <i class="bi bi-clock"></i>
+              {{ getTimeAgo(article.publishedAt) }}
+            </span>
+
+          </div>
+
+
+          <h3>
+            {{ article.title }}
+          </h3>
+
+
+          <p>
+            {{ article.description }}
+          </p>
+
+
+          <a
+            [href]="article.url"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="news-read"
+          >
+            Read Full Story
+            <i class="bi bi-arrow-up-right"></i>
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- ==========================================================
+       SOURCE NOTICE
+       ========================================================== -->
+
+  <div class="news-source-notice">
+
+    <div class="source-notice-inner">
+
+      <div class="source-notice-icon">
+        <i class="bi bi-info-circle"></i>
+      </div>
+
+      <div>
+
+        <strong>
+          News Sources
+        </strong>
+
+        <p class="mb-0">
+          Stories are collected from publicly available news
+          sources. Click on a story to read the original article
+          from its publisher.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ==========================================================
+       FOOTER CTA
+       ========================================================== -->
+
+  <section class="news-footer-cta">
+
+    <div class="news-section__eyebrow justify-content-center">
+      <span></span>
+      Gaza Stream News
+      <span></span>
+    </div>
+
+    <h2>
+      Stay Informed.
+    </h2>
+
+    <p>
+      Follow the stories that matter and stay up to date
+      with the latest developments.
+    </p>
+
+  </section>
+
+</div>

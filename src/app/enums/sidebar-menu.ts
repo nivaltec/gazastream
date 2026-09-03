@@ -31,4 +31,9 @@ import { NavigationItem } from "../models/navigation-item";
       icon: 'fa-solid fa-radio',
       route: '/radio',
     },
+        {
+      label: 'News',
+      icon: 'fa-solid fa-tv',
+      route: '/news',
+    },
   ];

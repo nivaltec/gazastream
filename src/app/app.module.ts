@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import {HTTP_INTERCEPTORS,provideHttpClient,withInterceptorsFromDi} from '@angular/common/http';
+import {HTTP_INTERCEPTORS,HttpClientModule,provideHttpClient,withInterceptorsFromDi} from '@angular/common/http';
 
 
 import { ContactComponent } from './components/contact/contact.component';
@@ -11,7 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { HttpInterceptorService } from './middlewares/httpinterceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
-import { CommonModule, DecimalPipe } from '@angular/common';
+import { CommonModule, DecimalPipe, UpperCasePipe } from '@angular/common';
 import { ProfileComponent } from './components/profile/profile.component';
 import { AudioCardComponent } from './components/cards/audio-card/audio-card.component';
 import { GenreCardComponent } from './components/cards/genre-card/genre-card.component';
@@ -42,6 +42,8 @@ import { ChangePasswordModalComponent } from './components/modals/change-passwor
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
+import { NewsComponent } from './components/news/news.component';
+
 
 
 
@@ -80,7 +82,8 @@ import { NotificationsComponent } from './components/notifications/notifications
     ChangePasswordModalComponent,
     RegisterComponent,
     LoginComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -88,16 +91,16 @@ import { NotificationsComponent } from './components/notifications/notifications
     FormsModule,
     ReactiveFormsModule,
     CommonModule,
-    DecimalPipe
+    HttpClientModule
   ],
   providers: [
-    /*UserService,*/
-    {
-      provide: HTTP_INTERCEPTORS,
+     //NewsService,
+    /*{
+      /*provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
     },
-    provideHttpClient(withInterceptorsFromDi())
+    provideHttpClient(withInterceptorsFromDi())*/
   ],
   bootstrap: [AppComponent]
 })
