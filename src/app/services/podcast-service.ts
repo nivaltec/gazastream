@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { MediaItem } from '../models/media-item';
-import { MediaType } from '../models/media-type-enum';
+import { MediaType } from '../enums/media-type-enum';
 import { VideoProvider } from '../models/video-provider-enum';
-import { MediaIcon } from '../models/media-icon-enum';
+import { MediaIcon } from '../enums/media-icon-enum';
 
 @Injectable({
   providedIn: 'root',

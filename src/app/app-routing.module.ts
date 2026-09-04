@@ -16,28 +16,34 @@ import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NewsComponent } from './components/news/news.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { ContentDashboardComponent } from './components/content-dashboard/content-dashboard.component';
+import { NotFoundComponent } from './components/notfound/notfound.component';
 
 
 
 const routes: Routes = [
     {path :'' , component:HomeComponent},
-    {path: 'login',component: LoginComponent},
-    {path: 'register', component: RegisterComponent},
+    /*{path: 'login',component: LoginComponent},
+    {path: 'register', component: RegisterComponent},*/
     {path:'home',component: HomeComponent},
-    {path:'playlist',component: PlaylistsComponent},
+   /* {path:'playlist',component: PlaylistsComponent},
     {path: 'playlist/:id',component: PlaylistComponent},
     {path:'favourites',component: FavouritesComponent},
     {path:'podcast',component: PodcastComponent},
-    {path: 'podcast/:id',component: PodcastDetailComponent},
+    {path: 'podcast/:id',component: PodcastDetailComponent},*/
     {path:'radio',component: RadioComponent},
-    {path: 'genre/:genreName',component: GenreDetailsComponent},
+    /*{path: 'genre/:genreName',component: GenreDetailsComponent},
     {path: 'genres/:genre', component: GenreDetailsComponent },
     {path: 'music/:id',component: AudioDetailsComponent},
     {path:'profile',component: ProfileComponent},
     {path:'catelog',component: CatelogComponent},
     {path:'uploads',component: UploadsComponent},
-    {path:'notifications',component: NotificationsComponent},
-      {path:'news',component: NewsComponent}
+    {path:'notifications',component: NotificationsComponent},*/
+    {path:'news',component: NewsComponent},
+    /*{path:'videos',component: VideosComponent},
+    {path:'dashboard',component: ContentDashboardComponent},*/
+    {path: '**',component: NotFoundComponent}
 
 ];
 

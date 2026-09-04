@@ -1,8 +1,10 @@
 import {
   Component,
   Input,
+  OnChanges,
   OnDestroy,
-  OnInit
+  OnInit,
+  SimpleChanges
 } from '@angular/core';
 
 import {
@@ -15,75 +17,43 @@ import {
 
 import {
   MediaType
-} from 'src/app/models/media-type-enum';
+} from 'src/app/enums/media-type-enum';
 
 import {
   MediaPlayerService
 } from 'src/app/services/media-player-service';
 
-
 @Component({
   selector: 'app-video-card',
-
-  templateUrl:
-    './video-card.component.html',
-
-  styleUrls:
-    ['./video-card.component.css'],
-
-  standalone: false
+  standalone: false,
+  templateUrl: './video-card.component.html',
+  styleUrls: ['./video-card.component.css']
 })
 export class VideoCardComponent
-  implements OnInit, OnDestroy {
-
-
-  // ============================================================
-  // INPUT
-  // ============================================================
+  implements OnInit, OnChanges, OnDestroy {
 
   @Input()
   video!: MediaItem;
 
-
-  // ============================================================
-  // STATE
-  // ============================================================
-
   isActive = false;
-
   isPlaying = false;
 
-
-  // ============================================================
-  // SUBSCRIPTIONS
-  // ============================================================
+  /**
+   * Used when the artwork URL cannot be loaded.
+   */
+  artworkError = false;
 
   private readonly subscriptions =
     new Subscription();
-
-
-  // ============================================================
-  // CONSTRUCTOR
-  // ============================================================
 
   constructor(
     private readonly mediaPlayerService:
       MediaPlayerService
   ) {}
 
-
-  // ============================================================
-  // INIT
-  // ============================================================
-
   ngOnInit(): void {
 
-    // ----------------------------------------------------------
-    // CURRENT MEDIA
-    // ----------------------------------------------------------
-
     this.subscriptions.add(
-
       this.mediaPlayerService.currentMedia
         .subscribe(media => {
 
@@ -93,16 +63,9 @@ export class VideoCardComponent
           );
 
         })
-
     );
 
-
-    // ----------------------------------------------------------
-    // PLAYING STATE
-    // ----------------------------------------------------------
-
     this.subscriptions.add(
-
       this.mediaPlayerService.isPlaying
         .subscribe(isPlaying => {
 
@@ -112,106 +75,109 @@ export class VideoCardComponent
           );
 
         })
-
     );
 
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
 
-  // ============================================================
-  // PLAY VIDEO
-  // ============================================================
-playVideo(): void {
+    if (changes['video']) {
 
-  if (!this.video?.url) {
+      this.artworkError = false;
 
-    console.warn(
-      'Gaza Stream: Video has no URL:',
-      this.video
-    );
-
-    return;
-
-  }
-
-
-  // ============================================================
-  // DETERMINE WHETHER THIS IS A VIDEO
-  // ============================================================
-
-  const provider =
-    String(
-      (this.video as any).videoProvider ??
-      (this.video as any).provider ??
-      ''
-    )
-      .trim()
-      .toLowerCase();
-
-
-  const isYouTube =
-    provider === 'youtube';
-
-
-  const isVideo =
-    this.video.type === MediaType.Video ||
-    isYouTube;
-
-
-  if (!isVideo) {
-
-    console.warn(
-      'Gaza Stream: MediaItem is not a video:',
-      this.video
-    );
-
-    return;
-
-  }
-
-
-  // ============================================================
-  // CURRENT VIDEO
-  // ============================================================
-
-  if (this.isActive) {
-
-    if (
-      this.mediaPlayerService.isPlayingValue
-    ) {
-
-      this.mediaPlayerService.pause();
-
-    } else {
-
-      this.mediaPlayerService.resume();
+      this.updateState(
+        this.mediaPlayerService.currentMediaValue,
+        this.mediaPlayerService.isPlayingValue
+      );
 
     }
 
-    return;
+  }
+
+  /**
+   * Play or pause this video.
+   */
+  playVideo(): void {
+
+    if (!this.video?.url) {
+
+      console.warn(
+        'Gaza Stream: Video has no URL:',
+        this.video
+      );
+
+      return;
+    }
+
+    const provider =
+      String(
+        (this.video as any).videoProvider ??
+        (this.video as any).provider ??
+        ''
+      )
+        .trim()
+        .toLowerCase();
+
+    const isYouTube =
+      provider === 'youtube';
+
+    const isVideo =
+      this.video.type === MediaType.Video ||
+      isYouTube;
+
+    if (!isVideo) {
+
+      console.warn(
+        'Gaza Stream: MediaItem is not a video:',
+        this.video
+      );
+
+      return;
+    }
+
+    /**
+     * If this card is already active,
+     * toggle pause/resume.
+     */
+    if (this.isActive) {
+
+      if (
+        this.mediaPlayerService.isPlayingValue
+      ) {
+
+        this.mediaPlayerService.pause();
+
+      } else {
+
+        this.mediaPlayerService.resume();
+
+      }
+
+      return;
+    }
+
+    /**
+     * Start a completely different video.
+     */
+    this.mediaPlayerService.play({
+      ...this.video,
+      type: MediaType.Video
+    });
 
   }
 
+  /**
+   * Artwork failed to load.
+   */
+  onArtworkError(): void {
 
-  // ============================================================
-  // START VIDEO
-  // ============================================================
+    this.artworkError = true;
 
-  this.mediaPlayerService.play({
+  }
 
-    ...this.video,
-
-    type: MediaType.Video
-
-  });
-
-}
-
-
-  // ============================================================
-  // PLAY ICON
-  // ============================================================
-
+  /**
+   * Play/pause icon.
+   */
   get playIcon(): string {
 
     return this.isPlaying
@@ -220,16 +186,13 @@ playVideo(): void {
 
   }
 
-
-  // ============================================================
-  // DURATION
-  // ============================================================
-
+  /**
+   * Returns the duration in a readable format.
+   */
   get durationLabel(): string {
 
     const duration =
       this.video?.duration;
-
 
     if (
       duration === undefined ||
@@ -242,17 +205,107 @@ playVideo(): void {
 
     }
 
+    return this.formatDuration(duration);
 
-    return this.formatDuration(
-      duration
+  }
+
+  /**
+   * Artwork URL.
+   *
+   * The VideoService should normally populate
+   * artwork automatically from YouTube.
+   *
+   * This getter also supports a YouTube fallback
+   * directly from the video URL.
+   */
+  get artworkUrl(): string | null {
+
+    if (
+      this.video?.artwork &&
+      this.video.artwork.trim()
+    ) {
+
+      return this.video.artwork.trim();
+
+    }
+
+    const youtubeId =
+      this.getYoutubeVideoId(
+        this.video?.url
+      );
+
+    if (!youtubeId) {
+
+      return null;
+
+    }
+
+    return (
+      `https://img.youtube.com/vi/` +
+      `${youtubeId}/hqdefault.jpg`
     );
 
   }
 
+  /**
+   * Detect whether the video has artwork.
+   */
+  get hasArtwork(): boolean {
 
-  // ============================================================
-  // UPDATE STATE
-  // ============================================================
+    return !!(
+      this.artworkUrl &&
+      !this.artworkError
+    );
+
+  }
+
+  /**
+   * Provider label.
+   */
+  get providerLabel(): string {
+
+    const provider =
+      String(
+        (this.video as any)?.videoProvider ??
+        (this.video as any)?.provider ??
+        ''
+      )
+        .trim()
+        .toLowerCase();
+
+    if (provider === 'youtube') {
+
+      return 'YouTube';
+
+    }
+
+    return 'Video';
+
+  }
+
+  /**
+   * Provider icon.
+   */
+  get providerIcon(): string {
+
+    const provider =
+      String(
+        (this.video as any)?.videoProvider ??
+        (this.video as any)?.provider ??
+        ''
+      )
+        .trim()
+        .toLowerCase();
+
+    if (provider === 'youtube') {
+
+      return 'fa-brands fa-youtube';
+
+    }
+
+    return 'fa-solid fa-video';
+
+  }
 
   private updateState(
     media: MediaItem | null,
@@ -260,32 +313,18 @@ playVideo(): void {
   ): void {
 
     this.isActive = (
-
       !!media &&
-
       !!this.video &&
-
       media.id === this.video.id &&
-
       media.type === this.video.type
-
     );
 
-
     this.isPlaying = (
-
       this.isActive &&
-
       isPlaying
-
     );
 
   }
-
-
-  // ============================================================
-  // FORMAT DURATION
-  // ============================================================
 
   private formatDuration(
     seconds: number
@@ -300,42 +339,28 @@ playVideo(): void {
 
     }
 
-
     const hours =
-      Math.floor(
-        seconds / 3600
-      );
-
+      Math.floor(seconds / 3600);
 
     const minutes =
       Math.floor(
         (seconds % 3600) / 60
       );
 
-
     const remainingSeconds =
-      Math.floor(
-        seconds % 60
-      )
+      Math.floor(seconds % 60)
         .toString()
-        .padStart(
-          2,
-          '0'
-        );
-
+        .padStart(2, '0');
 
     if (hours > 0) {
 
       return (
         `${hours}:` +
-        `${minutes
-          .toString()
-          .padStart(2, '0')}:` +
+        `${minutes.toString().padStart(2, '0')}:` +
         remainingSeconds
       );
 
     }
-
 
     return (
       `${minutes}:` +
@@ -344,10 +369,126 @@ playVideo(): void {
 
   }
 
+  /**
+   * Extract YouTube video ID from:
+   *
+   * https://youtube.com/watch?v=XXXXXXXXXXX
+   * https://youtu.be/XXXXXXXXXXX
+   * https://youtube.com/embed/XXXXXXXXXXX
+   * https://youtube.com/shorts/XXXXXXXXXXX
+   */
+  private getYoutubeVideoId(
+    url?: string
+  ): string | null {
 
-  // ============================================================
-  // DESTROY
-  // ============================================================
+    if (!url) {
+
+      return null;
+
+    }
+
+    const value =
+      url.trim();
+
+    if (
+      /^[a-zA-Z0-9_-]{11}$/.test(value)
+    ) {
+
+      return value;
+
+    }
+
+    try {
+
+      const parsed =
+        new URL(value);
+
+      const hostname =
+        parsed.hostname
+          .toLowerCase()
+          .replace(/^www\./, '');
+
+      if (
+        hostname === 'youtube.com' ||
+        hostname === 'm.youtube.com'
+      ) {
+
+        if (
+          parsed.pathname === '/watch'
+        ) {
+
+          return this.cleanYoutubeId(
+            parsed.searchParams.get('v')
+          );
+
+        }
+
+        if (
+          parsed.pathname.startsWith('/embed/')
+        ) {
+
+          return this.cleanYoutubeId(
+            parsed.pathname.split('/')[2]
+          );
+
+        }
+
+        if (
+          parsed.pathname.startsWith('/shorts/')
+        ) {
+
+          return this.cleanYoutubeId(
+            parsed.pathname.split('/')[2]
+          );
+
+        }
+
+      }
+
+      if (
+        hostname === 'youtu.be'
+      ) {
+
+        return this.cleanYoutubeId(
+          parsed.pathname
+            .split('/')
+            .filter(Boolean)[0]
+        );
+
+      }
+
+    } catch {
+
+      return null;
+
+    }
+
+    return null;
+
+  }
+
+  private cleanYoutubeId(
+    id?: string | null
+  ): string | null {
+
+    if (!id) {
+
+      return null;
+
+    }
+
+    const cleanId =
+      id
+        .split('?')[0]
+        .split('&')[0]
+        .split('#')[0]
+        .trim();
+
+    return /^[a-zA-Z0-9_-]{11}$/.test(cleanId)
+      ? cleanId
+      : null;
+
+  }
 
   ngOnDestroy(): void {
 

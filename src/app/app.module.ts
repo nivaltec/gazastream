@@ -43,6 +43,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { NewsComponent } from './components/news/news.component';
+import { VideosComponent } from './components/videos/videos.component';
+import { ContentDashboardComponent } from './components/content-dashboard/content-dashboard.component';
 
 
 
@@ -83,7 +85,9 @@ import { NewsComponent } from './components/news/news.component';
     RegisterComponent,
     LoginComponent,
     NotificationsComponent,
-    NewsComponent
+    NewsComponent,
+    VideosComponent,
+    ContentDashboardComponent
   ],
   imports: [
     BrowserModule,

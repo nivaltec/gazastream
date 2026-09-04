@@ -1,0 +1,1120 @@
+/* ============================================================
+   GAZA STREAM
+   VIDEO LIBRARY
+   ============================================================ */
+
+.gaza-videos {
+
+  width: 100%;
+
+  min-width: 0;
+
+  --video-cyan:
+    #08cfff;
+
+  --video-purple:
+    #6c24ff;
+
+  --video-gradient:
+    linear-gradient(
+      135deg,
+      var(--video-cyan),
+      var(--video-purple)
+    );
+
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.gaza-videos__hero {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 225px;
+
+  margin:
+    20px 0 36px;
+
+  padding:
+    34px 42px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(8, 207, 255, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 65% 100%,
+      rgba(108, 36, 255, 0.15),
+      transparent 38%
+    ),
+    linear-gradient(
+      135deg,
+      #08080d,
+      #0d0d16 55%,
+      #111020
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.20);
+
+}
+
+
+/* ============================================================
+   HERO GLOW
+   ============================================================ */
+
+.gaza-videos__hero-glow {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter:
+    blur(75px);
+
+  pointer-events: none;
+
+}
+
+
+.gaza-videos__hero-glow--one {
+
+  width: 280px;
+
+  height: 280px;
+
+  top: -180px;
+
+  right: 80px;
+
+  background:
+    var(--video-cyan);
+
+  opacity: 0.10;
+
+}
+
+
+.gaza-videos__hero-glow--two {
+
+  width: 260px;
+
+  height: 260px;
+
+  right: 350px;
+
+  bottom: -210px;
+
+  background:
+    var(--video-purple);
+
+  opacity: 0.10;
+
+}
+
+
+/* ============================================================
+   HERO PATTERN
+   ============================================================ */
+
+.gaza-videos__hero-pattern {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.13;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size:
+    36px 36px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      #000,
+      transparent 85%
+    );
+
+}
+
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+
+.gaza-videos__hero-content {
+
+  position: relative;
+
+  z-index: 2;
+
+  max-width: 650px;
+
+}
+
+
+.gaza-videos__eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color:
+    var(--video-cyan);
+
+  font-size: 9px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+
+}
+
+
+.gaza-videos__eyebrow-icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 25px;
+
+  height: 25px;
+
+  border-radius: 7px;
+
+  background:
+    rgba(8, 207, 255, 0.08);
+
+  border:
+    1px solid rgba(8, 207, 255, 0.18);
+
+}
+
+
+.gaza-videos__eyebrow-icon i {
+
+  font-size: 10px;
+
+}
+
+
+.gaza-videos__hero h1 {
+
+  margin: 0;
+
+  color: #fff;
+
+  font-size:
+    clamp(38px, 5vw, 58px);
+
+  font-weight: 850;
+
+  line-height: 1;
+
+  letter-spacing: -2.7px;
+
+}
+
+
+.gaza-videos__hero p {
+
+  max-width: 500px;
+
+  margin: 13px 0 0;
+
+  color:
+    var(--text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+
+}
+
+
+/* ============================================================
+   TOOLBAR
+   ============================================================ */
+
+.gaza-videos__toolbar {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 18px;
+
+}
+
+
+.gaza-videos__toolbar-info {
+
+  min-width: 0;
+
+}
+
+
+.gaza-videos__toolbar-label {
+
+  display: block;
+
+  margin-bottom: 5px;
+
+  color:
+    var(--video-cyan);
+
+  font-size: 8px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.5px;
+
+}
+
+
+.gaza-videos__toolbar h2 {
+
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size: 22px;
+
+  font-weight: 800;
+
+  letter-spacing: -0.7px;
+
+}
+
+
+/* ============================================================
+   PAGE SIZE
+   ============================================================ */
+
+.gaza-videos__page-size {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+
+  font-weight: 650;
+
+}
+
+
+.gaza-videos__page-size select {
+
+  min-width: 60px;
+
+  height: 34px;
+
+  padding:
+    0 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  outline: none;
+
+  color:
+    var(--text-primary);
+
+  background:
+    #11111a;
+
+  font-size: 10px;
+
+  cursor: pointer;
+
+}
+
+
+/* ============================================================
+   VIDEO GRID
+   ============================================================ */
+
+.gaza-videos__grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 20px;
+
+  width: 100%;
+
+  min-width: 0;
+
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.gaza-videos__loading {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 300px;
+
+  gap: 12px;
+
+  color:
+    var(--text-muted);
+
+  font-size: 11px;
+
+}
+
+
+.gaza-videos__spinner {
+
+  width: 34px;
+
+  height: 34px;
+
+  border:
+    3px solid rgba(255, 255, 255, 0.08);
+
+  border-top-color:
+    var(--video-cyan);
+
+  border-right-color:
+    var(--video-purple);
+
+  border-radius: 50%;
+
+  animation:
+    gaza-video-spin 0.8s linear infinite;
+
+}
+
+
+@keyframes gaza-video-spin {
+
+  to {
+
+    transform:
+      rotate(360deg);
+
+  }
+
+}
+
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.gaza-videos__empty {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  min-height: 300px;
+
+  padding: 30px;
+
+  text-align: center;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 16px;
+
+  background:
+    rgba(255, 255, 255, 0.02);
+
+}
+
+
+.gaza-videos__empty-icon {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 58px;
+
+  height: 58px;
+
+  margin-bottom: 15px;
+
+  border-radius: 16px;
+
+  color:
+    var(--video-cyan);
+
+  background:
+    rgba(8, 207, 255, 0.07);
+
+}
+
+
+.gaza-videos__empty-icon i {
+
+  font-size: 21px;
+
+}
+
+
+.gaza-videos__empty h2 {
+
+  margin: 0;
+
+  color:
+    var(--text-primary);
+
+  font-size: 20px;
+
+}
+
+
+.gaza-videos__empty p {
+
+  margin: 7px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+
+}
+
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+
+.gaza-videos__pagination {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  margin-top: 34px;
+
+}
+
+
+.gaza-videos__pagination-pages {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+}
+
+
+/* ============================================================
+   PAGINATION BUTTON
+   ============================================================ */
+
+.gaza-videos__pagination-button {
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 34px;
+
+  height: 34px;
+
+  padding: 0;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 8px;
+
+  color:
+    var(--text-secondary);
+
+  background:
+    rgba(255, 255, 255, 0.025);
+
+  font-size: 9px;
+
+  font-weight: 750;
+
+  cursor: pointer;
+
+  transition:
+    color var(--transition),
+    background var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+
+}
+
+
+.gaza-videos__pagination-button:hover:not(:disabled) {
+
+  color: #fff;
+
+  border-color:
+    rgba(8, 207, 255, 0.20);
+
+  background:
+    rgba(8, 207, 255, 0.07);
+
+  transform:
+    translateY(-1px);
+
+}
+
+
+.gaza-videos__pagination-button.is-active {
+
+  border-color:
+    transparent;
+
+  color: #fff;
+
+  background:
+    var(--video-gradient);
+
+  box-shadow:
+    0 7px 20px rgba(108, 36, 255, 0.20);
+
+}
+
+
+.gaza-videos__pagination-button:disabled {
+
+  opacity: 0.30;
+
+  cursor: not-allowed;
+
+}
+
+
+/* ============================================================
+   ARROW BUTTON
+   ============================================================ */
+
+.gaza-videos__pagination-button--arrow {
+
+  width: 36px;
+
+  height: 36px;
+
+}
+
+
+.gaza-videos__pagination-button--arrow i {
+
+  font-size: 9px;
+
+}
+
+
+/* ============================================================
+   PAGINATION INFO
+   ============================================================ */
+
+.gaza-videos__pagination-info {
+
+  margin-top: 12px;
+
+  color:
+    var(--text-muted);
+
+  font-size: 9px;
+
+  text-align: center;
+
+}
+
+
+.gaza-videos__pagination-info strong {
+
+  color:
+    var(--text-secondary);
+
+  font-weight: 750;
+
+}
+
+
+/* ============================================================
+   LARGE TABLET
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+  .gaza-videos__grid {
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+  }
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-videos__hero {
+
+    min-height: 210px;
+
+    padding: 30px;
+
+  }
+
+
+  .gaza-videos__grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-videos__hero {
+
+    min-height: 190px;
+
+    margin:
+      14px 0 28px;
+
+    padding:
+      25px 22px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .gaza-videos__hero h1 {
+
+    font-size: 36px;
+
+    letter-spacing: -2px;
+
+  }
+
+
+  .gaza-videos__hero p {
+
+    max-width: 360px;
+
+    font-size: 10px;
+
+  }
+
+
+  .gaza-videos__toolbar {
+
+    align-items: center;
+
+    margin-bottom: 14px;
+
+  }
+
+
+  .gaza-videos__toolbar h2 {
+
+    font-size: 19px;
+
+  }
+
+
+  .gaza-videos__grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+
+  }
+
+
+  .gaza-videos__pagination {
+
+    margin-top: 26px;
+
+    gap: 5px;
+
+  }
+
+
+  .gaza-videos__pagination-pages {
+
+    gap: 4px;
+
+  }
+
+
+  .gaza-videos__pagination-button {
+
+    width: 31px;
+
+    height: 31px;
+
+    border-radius: 7px;
+
+  }
+
+
+  .gaza-videos__pagination-button--arrow {
+
+    width: 32px;
+
+    height: 32px;
+
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-videos__hero {
+
+    min-height: 170px;
+
+    padding:
+      21px 18px;
+
+    border-radius: 15px;
+
+  }
+
+
+  .gaza-videos__eyebrow {
+
+    margin-bottom: 9px;
+
+    font-size: 7px;
+
+  }
+
+
+  .gaza-videos__eyebrow-icon {
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: 6px;
+
+  }
+
+
+  .gaza-videos__hero h1 {
+
+    font-size: 31px;
+
+    letter-spacing: -1.6px;
+
+  }
+
+
+  .gaza-videos__hero p {
+
+    margin-top: 9px;
+
+    font-size: 9px;
+
+  }
+
+
+  .gaza-videos__toolbar {
+
+    gap: 10px;
+
+  }
+
+
+  .gaza-videos__toolbar-label {
+
+    font-size: 7px;
+
+  }
+
+
+  .gaza-videos__toolbar h2 {
+
+    font-size: 17px;
+
+  }
+
+
+  .gaza-videos__page-size {
+
+    font-size: 8px;
+
+  }
+
+
+  .gaza-videos__page-size select {
+
+    min-width: 52px;
+
+    height: 30px;
+
+    font-size: 9px;
+
+  }
+
+
+  .gaza-videos__grid {
+
+    gap: 8px;
+
+  }
+
+
+  .gaza-videos__pagination {
+
+    margin-top: 22px;
+
+    gap: 3px;
+
+  }
+
+
+  .gaza-videos__pagination-pages {
+
+    gap: 3px;
+
+  }
+
+
+  .gaza-videos__pagination-button {
+
+    width: 29px;
+
+    height: 29px;
+
+    font-size: 8px;
+
+  }
+
+
+  .gaza-videos__pagination-button--arrow {
+
+    width: 30px;
+
+    height: 30px;
+
+  }
+
+
+  .gaza-videos__pagination-info {
+
+    font-size: 8px;
+
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-videos__hero {
+
+    min-height: 155px;
+
+    padding:
+      18px 15px;
+
+    margin-top: 10px;
+
+    border-radius: 13px;
+
+  }
+
+
+  .gaza-videos__hero h1 {
+
+    font-size: 27px;
+
+    letter-spacing: -1.3px;
+
+  }
+
+
+  .gaza-videos__hero p {
+
+    max-width: 240px;
+
+    font-size: 8px;
+
+  }
+
+
+  .gaza-videos__toolbar {
+
+    align-items: flex-end;
+
+  }
+
+
+  .gaza-videos__toolbar h2 {
+
+    font-size: 15px;
+
+  }
+
+
+  .gaza-videos__page-size span {
+
+    display: none;
+
+  }
+
+
+  .gaza-videos__grid {
+
+    gap: 7px;
+
+  }
+
+
+  .gaza-videos__pagination-button {
+
+    width: 27px;
+
+    height: 27px;
+
+    font-size: 7px;
+
+  }
+
+
+  .gaza-videos__pagination-button--arrow {
+
+    width: 28px;
+
+    height: 28px;
+
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-videos__spinner {
+
+    animation: none;
+
+  }
+
+
+  .gaza-videos__pagination-button {
+
+    transition: none;
+
+  }
+
+}

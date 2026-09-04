@@ -66,17 +66,29 @@
         </button>
 
 
-        <a routerLink="/playlist" class="gaza-btn gaza-btn--secondary">
+        <a [routerLink]=[browseLink] class="gaza-btn gaza-btn--secondary">
 
           <span class="gaza-btn__icon">
-            <i class="fa-solid fa-layer-group"></i>
+            <i [class]="browseIcon"></i>
           </span>
 
           <span>
-            Browse Playlists
+            {{browse}}
           </span>
 
         </a>
+
+<a *ngIf="!isAuthenticated"
+  routerLink="/register"
+  class="gaza-btn gaza-btn--signup"
+  aria-label="Sign up for free"
+>
+  <span>Signup for free</span>
+
+  <span class="gaza-btn__icon" aria-hidden="true">
+    <i class="fa-solid fa-arrow-right"></i>
+  </span>
+</a>
 
       </div>
 
@@ -175,7 +187,7 @@
        GENRES
   ========================================================== -->
 
-  <section class="gaza-section gaza-section--genres">
+  <section *ngIf="isAuthenticated" class="gaza-section gaza-section--genres">
 
     <div class="gaza-section__header">
 
@@ -222,12 +234,13 @@
 
 
   <!-- =========================================================
-       FEATURED VIDEOS
-  ========================================================== -->
+     FEATURED VIDEOS
+========================================================== -->
 
   <section class="gaza-section">
 
     <div class="gaza-section__header">
+
 
       <div class="gaza-section__heading">
 
@@ -247,7 +260,7 @@
       </div>
 
 
-      <a routerLink="/video" class="gaza-section__link">
+      <a routerLink="/videos" class="gaza-section__link">
 
         <span>
           View all
@@ -257,17 +270,55 @@
 
       </a>
 
+
     </div>
 
+    <!-- =========================================================
+       HORIZONTAL VIDEO SCROLLER
+  ========================================================== -->
 
-    <div class="gaza-video-grid">
+    <div class="gaza-video-scroll">
 
-      <app-video-card *ngFor="let video of trendingVideos" [video]="video">
-      </app-video-card>
+
+      <div class="gaza-video-scroll__track">
+
+        <!-- First 8 videos -->
+        <app-video-card *ngFor="let video of trendingVideos | slice:0:8" [video]="video">
+        </app-video-card>
+
+
+        <!-- Watch More Card -->
+        <a routerLink="/videos" class="gaza-video-more">
+
+          <div class="gaza-video-more__icon">
+            <i class="fa-solid fa-arrow-right"></i>
+          </div>
+
+          <div class="gaza-video-more__content">
+
+            <span class="gaza-video-more__eyebrow">
+              KEEP WATCHING
+            </span>
+
+            <h3>
+              Watch More Videos
+            </h3>
+
+            <p>
+              Explore all videos
+            </p>
+
+          </div>
+
+        </a>
+
+      </div>
+
 
     </div>
 
   </section>
+
 
 
 
@@ -304,12 +355,11 @@
       </span>
 
       <h2>
-        Stories worth hearing.
+        {{bannerH1}}
       </h2>
 
       <p>
-        Discover conversations, culture, interviews and
-        voices from our community.
+        {{bannerP}}
       </p>
 
     </div>
@@ -317,10 +367,10 @@
 
     <!-- Action -->
 
-    <a routerLink="/podcast" class="gaza-podcast-banner__action">
+    <a [routerLink]=[bannerLink] class="gaza-podcast-banner__action">
 
       <span>
-        Explore Podcasts
+        {{bannerSpan}}
       </span>
 
       <span class="gaza-podcast-banner__action-icon">

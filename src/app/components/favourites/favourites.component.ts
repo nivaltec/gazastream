@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { MediaIcon } from 'src/app/models/media-icon-enum';
+import { MediaIcon } from 'src/app/enums/media-icon-enum';
 import { MediaItem } from 'src/app/models/media-item';
-import { MediaType } from 'src/app/models/media-type-enum';
+import { MediaType } from 'src/app/enums/media-type-enum';
 import { MediaPlayerService } from 'src/app/services/media-player-service';
 
 @Component({

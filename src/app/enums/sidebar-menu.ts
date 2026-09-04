@@ -7,7 +7,12 @@ import { NavigationItem } from "../models/navigation-item";
       route: '/',
       exact: true,
     },
-
+    /*{
+      label: 'Dashboard',
+      icon: 'fa-solid fa-house',
+      route: '/dashboard',
+      exact: true,
+    },
     {
       label: 'Playlists',
       icon: 'fa-solid fa-music',
@@ -24,7 +29,7 @@ import { NavigationItem } from "../models/navigation-item";
       label: 'Podcasts',
       icon: 'fa-solid fa-microphone',
       route: '/podcast',
-    },
+    },*/
 
     {
       label: 'Radio',

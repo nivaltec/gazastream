@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 import { MediaItem } from '../models/media-item';
-import { MediaType } from '../models/media-type-enum';
+import { MediaType } from '../enums/media-type-enum';
 
 
 @Injectable({

@@ -48,17 +48,30 @@ export class HomeComponent implements OnInit, OnDestroy {
     private readonly videoService: VideoService,
     private readonly podcastService: PodcastService,
     private readonly playerService: MediaPlayerService,
-    private readonly router: Router
+    private readonly router: Router,
   ) {}
 
-  // ============================================================
-  // INIT
-  // ============================================================
+  isAuthenticated = false;
+  browse = 'Play Radio';
+  browseIcon = 'fa-radio fa-solid';
+  browseLink = '/radio';
+
+  bannerH1 = 'Have music worth hearing.';
+  bannerP = 'Share your music , talent and art with our community.';
+  bannerSpan = 'Share Content';
+  bannerLink = '/artist';
 
   ngOnInit(): void {
-    // ----------------------------------------------------------
-    // TRENDING AUDIO
-    // ----------------------------------------------------------
+    if (this.isAuthenticated) {
+      this.browse = 'Browse Playlists';
+      this.browseIcon = 'fa-solid fa-layer-group';
+      this.browseLink = '/playlist';
+
+      this.bannerH1 = '  Stories worth hearing.';
+      this.bannerP = 'Discover conversations, culture, interviews and voices from our community.';
+      this.bannerSpan = 'Explore Podcasts';
+      this.bannerLink = '/podcast';
+    }
 
     this.trendingAudio = this.musicService.getTrendingTracks();
 

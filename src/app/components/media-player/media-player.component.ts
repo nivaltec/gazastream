@@ -19,7 +19,7 @@ import {
 
 import {
   MediaType
-} from 'src/app/models/media-type-enum';
+} from 'src/app/enums/media-type-enum';
 
 import {
   MediaPlayerService

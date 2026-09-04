@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { MediaItem } from 'src/app/models/media-item';
-import { MediaType } from 'src/app/models/media-type-enum';
+import { MediaType } from 'src/app/enums/media-type-enum';
 import { PodcastService } from 'src/app/services/podcast-service';
 
 type PodcastFilter = 'all' | 'audio' | 'video';

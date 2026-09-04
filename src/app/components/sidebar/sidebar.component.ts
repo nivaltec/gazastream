@@ -11,9 +11,11 @@ import { sideBarMenu } from 'src/app/enums/sidebar-menu';
 export class SidebarComponent implements OnDestroy {
   mobileMenuOpen = false;
   navigation = sideBarMenu;
+  isAuthenticated = false ;
 
   readonly libraryLists = LibraryMenu;
 
+  
   toggleMobileMenu(): void {
     this.mobileMenuOpen = !this.mobileMenuOpen;
 

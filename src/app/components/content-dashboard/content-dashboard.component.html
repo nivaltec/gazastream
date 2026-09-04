@@ -1,0 +1,914 @@
+<div #dashboardReport class="gaza-dashboard">
+
+  <!-- ============================================================
+       HEADER
+       ============================================================ -->
+
+  <header class="gaza-dashboard__header">
+
+    <div class="gaza-dashboard__header-content">
+
+      <div class="gaza-dashboard__heading">
+
+        <span class="gaza-dashboard__eyebrow">
+          <i class="fa-solid fa-chart-line"></i>
+          CONTENT ANALYTICS
+        </span>
+
+        <h1>
+          Content Dashboard
+        </h1>
+
+        <p>
+          Monitor plays, listeners, engagement and
+          performance across Gaza Stream.
+        </p>
+
+      </div>
+
+      <div class="gaza-dashboard__actions">
+
+        <label class="gaza-dashboard__period">
+
+          <span>
+            Period
+          </span>
+
+          <select [(ngModel)]="selectedPeriod" (change)="onPeriodChange()" aria-label="Analytics period">
+            <option [ngValue]="7">
+              Last 7 days
+            </option>
+
+            <option [ngValue]="30">
+              Last 30 days
+            </option>
+
+            <option [ngValue]="90">
+              Last 90 days
+            </option>
+
+            <option [ngValue]="365">
+              Last 12 months
+            </option>
+          </select>
+
+        </label>
+
+        <button type="button" class="gaza-dashboard__export" [disabled]="isExporting" (click)="exportToPdf()">
+
+          <i class="fa-solid" [ngClass]="
+              isExporting
+                ? 'fa-spinner fa-spin'
+                : 'fa-file-pdf'
+            "></i>
+
+          <span>
+            {{
+            isExporting
+            ? 'Generating PDF...'
+            : 'Export PDF'
+            }}
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ============================================================
+       CONTENT
+       ============================================================ -->
+
+  <main class="gaza-dashboard__content">
+
+
+    <!-- ==========================================================
+         KPI CARDS
+         ========================================================== -->
+
+    <section class="gaza-dashboard__kpis">
+
+      <!-- TOTAL PLAYS -->
+
+      <article class="gaza-dashboard__kpi">
+
+        <div class="gaza-dashboard__kpi-icon">
+          <i class="fa-solid fa-play"></i>
+        </div>
+
+        <div class="gaza-dashboard__kpi-body">
+
+          <span class="gaza-dashboard__kpi-label">
+            Total Plays
+          </span>
+
+          <strong class="gaza-dashboard__kpi-value">
+            {{ formatNumber(totalPlays) }}
+          </strong>
+
+          <span class="gaza-dashboard__kpi-change" [class.is-negative]="playsChange < 0">
+            <i class="fa-solid" [ngClass]="
+                playsChange >= 0
+                  ? 'fa-arrow-trend-up'
+                  : 'fa-arrow-trend-down'
+              "></i>
+
+            {{ formatPercentage(playsChange) }}
+
+            <small>
+              vs previous period
+            </small>
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- UNIQUE LISTENERS -->
+
+      <article class="gaza-dashboard__kpi">
+
+        <div class="gaza-dashboard__kpi-icon">
+          <i class="fa-solid fa-users"></i>
+        </div>
+
+        <div class="gaza-dashboard__kpi-body">
+
+          <span class="gaza-dashboard__kpi-label">
+            Unique Listeners
+          </span>
+
+          <strong class="gaza-dashboard__kpi-value">
+            {{ formatNumber(totalListeners) }}
+          </strong>
+
+          <span class="gaza-dashboard__kpi-change" [class.is-negative]="listenersChange < 0">
+            <i class="fa-solid" [ngClass]="
+                listenersChange >= 0
+                  ? 'fa-arrow-trend-up'
+                  : 'fa-arrow-trend-down'
+              "></i>
+
+            {{ formatPercentage(listenersChange) }}
+
+            <small>
+              vs previous period
+            </small>
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- WATCH / LISTEN TIME -->
+
+      <article class="gaza-dashboard__kpi">
+
+        <div class="gaza-dashboard__kpi-icon">
+          <i class="fa-solid fa-clock"></i>
+        </div>
+
+        <div class="gaza-dashboard__kpi-body">
+
+          <span class="gaza-dashboard__kpi-label">
+            Engagement Time
+          </span>
+
+          <strong class="gaza-dashboard__kpi-value">
+            {{ formatWatchTime(totalWatchTime) }}
+          </strong>
+
+          <span class="gaza-dashboard__kpi-change">
+            <i class="fa-solid fa-chart-simple"></i>
+
+            Across all content
+
+          </span>
+
+        </div>
+
+      </article>
+
+
+      <!-- FAVOURITES -->
+
+      <article class="gaza-dashboard__kpi">
+
+        <div class="gaza-dashboard__kpi-icon">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+
+        <div class="gaza-dashboard__kpi-body">
+
+          <span class="gaza-dashboard__kpi-label">
+            Favourites
+          </span>
+
+          <strong class="gaza-dashboard__kpi-value">
+            {{ formatNumber(totalFavourites) }}
+          </strong>
+
+          <span class="gaza-dashboard__kpi-change" [class.is-negative]="favouritesChange < 0">
+            <i class="fa-solid" [ngClass]="
+                favouritesChange >= 0
+                  ? 'fa-arrow-trend-up'
+                  : 'fa-arrow-trend-down'
+              "></i>
+
+            {{ formatPercentage(favouritesChange) }}
+
+            <small>
+              vs previous period
+            </small>
+          </span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CONTENT TYPES
+         ========================================================== -->
+
+    <section class="gaza-dashboard__section">
+
+      <div class="gaza-dashboard__section-header">
+
+        <div>
+
+          <span class="gaza-dashboard__section-eyebrow">
+            CONTENT PERFORMANCE
+          </span>
+
+          <h2>
+            Content Overview
+          </h2>
+
+          <p>
+            Compare performance across your content
+            categories.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-dashboard__content-grid">
+
+        <article *ngFor="let item of contentSummary" class="gaza-dashboard__content-card">
+
+          <div class="gaza-dashboard__content-card-top">
+
+            <div class="gaza-dashboard__content-icon" [attr.data-type]="item.type">
+              <i [class]="item.icon"></i>
+            </div>
+
+            <span class="gaza-dashboard__content-label">
+              {{ item.label }}
+            </span>
+
+          </div>
+
+
+          <div class="gaza-dashboard__content-card-main">
+
+            <strong>
+              {{ formatNumber(item.plays) }}
+            </strong>
+
+            <span>
+              plays
+            </span>
+
+          </div>
+
+
+          <div class="gaza-dashboard__content-meta">
+
+            <span>
+              <i class="fa-solid fa-users"></i>
+              {{ formatNumber(item.uniqueListeners) }}
+              listeners
+            </span>
+
+            <span>
+              <i class="fa-solid fa-heart"></i>
+              {{ formatNumber(item.favourites) }}
+            </span>
+
+          </div>
+
+
+          <div class="gaza-dashboard__progress">
+
+            <div class="gaza-dashboard__progress-header">
+
+              <span>
+                Share of plays
+              </span>
+
+              <strong>
+                {{ item.percentage }}%
+              </strong>
+
+            </div>
+
+            <div class="gaza-dashboard__progress-track">
+
+              <div class="gaza-dashboard__progress-value" [style.width.%]="item.percentage"></div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         CHART + AUDIENCE
+         ========================================================== -->
+
+    <section class="gaza-dashboard__analytics-grid">
+
+
+      <!-- PLAYS CHART -->
+
+      <article class="gaza-dashboard__panel">
+
+        <div class="gaza-dashboard__panel-header">
+
+          <div>
+
+            <span class="gaza-dashboard__section-eyebrow">
+              ACTIVITY
+            </span>
+
+            <h2>
+              Plays &amp; Listeners
+            </h2>
+
+          </div>
+
+          <div class="gaza-dashboard__legend">
+
+            <span>
+              <i class="gaza-dashboard__legend-dot plays"></i>
+              Plays
+            </span>
+
+            <span>
+              <i class="gaza-dashboard__legend-dot listeners"></i>
+              Listeners
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="gaza-dashboard__chart">
+
+          <div class="gaza-dashboard__chart-y">
+
+            <span>
+              {{ formatCompactNumber(chartMaxValue) }}
+            </span>
+
+            <span>
+              {{ formatCompactNumber(chartMaxValue * 0.75) }}
+            </span>
+
+            <span>
+              {{ formatCompactNumber(chartMaxValue * 0.5) }}
+            </span>
+
+            <span>
+              {{ formatCompactNumber(chartMaxValue * 0.25) }}
+            </span>
+
+            <span>
+              0
+            </span>
+
+          </div>
+
+
+          <div class="gaza-dashboard__chart-area">
+
+            <div class="gaza-dashboard__chart-gridline"></div>
+            <div class="gaza-dashboard__chart-gridline"></div>
+            <div class="gaza-dashboard__chart-gridline"></div>
+            <div class="gaza-dashboard__chart-gridline"></div>
+            <div class="gaza-dashboard__chart-gridline"></div>
+
+
+            <div class="gaza-dashboard__chart-bars">
+
+              <div *ngFor="let day of dailyAnalytics" class="gaza-dashboard__chart-column">
+
+                <div class="gaza-dashboard__chart-bars-inner">
+
+                  <div class="gaza-dashboard__bar plays" [style.height.%]="
+                      getChartHeight(day.plays)
+                    " [title]="
+                      formatNumber(day.plays) +
+                      ' plays'
+                    "></div>
+
+                  <div class="gaza-dashboard__bar listeners" [style.height.%]="
+                      getChartHeight(day.listeners)
+                    " [title]="
+                      formatNumber(day.listeners) +
+                      ' listeners'
+                    "></div>
+
+                </div>
+
+                <span class="gaza-dashboard__chart-label">
+                  {{ formatChartDate(day.date) }}
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </article>
+
+
+      <!-- AUDIENCE -->
+
+      <article class="gaza-dashboard__panel">
+
+        <div class="gaza-dashboard__panel-header">
+
+          <div>
+
+            <span class="gaza-dashboard__section-eyebrow">
+              AUDIENCE
+            </span>
+
+            <h2>
+              Audience Overview
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="gaza-dashboard__audience">
+
+          <div class="gaza-dashboard__audience-stat">
+
+            <div class="gaza-dashboard__audience-icon">
+              <i class="fa-solid fa-user-group"></i>
+            </div>
+
+            <div>
+
+              <span>
+                Returning listeners
+              </span>
+
+              <strong>
+                {{ returningListeners }}%
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="gaza-dashboard__audience-stat">
+
+            <div class="gaza-dashboard__audience-icon">
+              <i class="fa-solid fa-user-plus"></i>
+            </div>
+
+            <div>
+
+              <span>
+                New listeners
+              </span>
+
+              <strong>
+                {{ newListeners }}%
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="gaza-dashboard__audience-stat">
+
+            <div class="gaza-dashboard__audience-icon">
+              <i class="fa-solid fa-repeat"></i>
+            </div>
+
+            <div>
+
+              <span>
+                Average sessions
+              </span>
+
+              <strong>
+                {{ averageSessions }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="gaza-dashboard__audience-stat">
+
+            <div class="gaza-dashboard__audience-icon">
+              <i class="fa-solid fa-percent"></i>
+            </div>
+
+            <div>
+
+              <span>
+                Completion rate
+              </span>
+
+              <strong>
+                {{ completionRate }}%
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="gaza-dashboard__audience-note">
+
+          <i class="fa-solid fa-lightbulb"></i>
+
+          <p>
+            Your audience is engaging most with
+            video and podcast content. Consider
+            publishing more content in these categories.
+          </p>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+    <!-- ==========================================================
+         TOP CONTENT
+         ========================================================== -->
+
+    <section class="gaza-dashboard__section">
+
+      <div class="gaza-dashboard__section-header">
+
+        <div>
+
+          <span class="gaza-dashboard__section-eyebrow">
+            TOP PERFORMERS
+          </span>
+
+          <h2>
+            Top Content
+          </h2>
+
+          <p>
+            Your most played content for the selected period.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-dashboard__table-wrapper">
+
+        <table class="gaza-dashboard__table">
+
+          <thead>
+
+            <tr>
+
+              <th>
+                Content
+              </th>
+
+              <th>
+                Type
+              </th>
+
+              <th>
+                Plays
+              </th>
+
+              <th>
+                Listeners
+              </th>
+
+              <th>
+                Completion
+              </th>
+
+              <th>
+                Report
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr *ngFor="
+                let content of topContent;
+                trackBy: trackByContent
+              ">
+
+              <td>
+
+                <div class="gaza-dashboard__table-content">
+
+                  <div class="gaza-dashboard__table-artwork">
+
+                    <img *ngIf="content.artwork" [src]="content.artwork" [alt]="content.title" loading="lazy"
+                      decoding="async" />
+
+                    <div *ngIf="!content.artwork" class="gaza-dashboard__table-artwork-fallback">
+                      <i class="fa-solid fa-photo-film"></i>
+                    </div>
+
+                  </div>
+
+
+                  <div class="gaza-dashboard__table-title">
+
+                    <strong [title]="content.title">
+                      {{ content.title }}
+                    </strong>
+
+                    <span [title]="content.creator">
+                      {{ content.creator }}
+                    </span>
+
+                  </div>
+
+                </div>
+
+              </td>
+
+
+              <td>
+
+                <span class="gaza-dashboard__type" [attr.data-type]="content.type">
+                  <i [class]="content.icon"></i>
+                  {{ content.label }}
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <strong class="gaza-dashboard__table-number">
+                  {{ formatNumber(content.plays) }}
+                </strong>
+
+              </td>
+
+
+              <td>
+
+                <span class="gaza-dashboard__table-muted">
+                  {{ formatNumber(content.uniqueListeners) }}
+                </span>
+
+              </td>
+
+
+              <td>
+
+                <div class="gaza-dashboard__completion">
+
+                  <div class="gaza-dashboard__completion-track">
+
+                    <div class="gaza-dashboard__completion-value" [style.width.%]="content.completionRate"></div>
+
+                  </div>
+
+                  <span>
+                    {{ content.completionRate }}%
+                  </span>
+
+                </div>
+
+              </td>
+
+
+              <td>
+
+                <button type="button" class="gaza-dashboard__report-button" [attr.aria-label]="
+                    'View report for ' +
+                    content.title
+                  " (click)="viewContentReport(content)">
+                  <i class="fa-solid fa-chart-column"></i>
+                </button>
+
+              </td>
+
+            </tr>
+
+
+            <tr *ngIf="!topContent.length" class="gaza-dashboard__table-empty">
+
+              <td colspan="6">
+
+                <div>
+
+                  <i class="fa-solid fa-chart-line"></i>
+
+                  <span>
+                    No content analytics available.
+                  </span>
+
+                </div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         INSIGHTS
+         ========================================================== -->
+
+    <section class="gaza-dashboard__insights">
+
+      <div class="gaza-dashboard__insight">
+
+        <div class="gaza-dashboard__insight-icon">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+
+        <div>
+
+          <span>
+            TRENDING
+          </span>
+
+          <strong>
+            Your audience is active
+          </strong>
+
+          <p>
+            Content engagement is strongest during
+            your selected reporting period.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-dashboard__insight">
+
+        <div class="gaza-dashboard__insight-icon">
+          <i class="fa-solid fa-video"></i>
+        </div>
+
+        <div>
+
+          <span>
+            VIDEO
+          </span>
+
+          <strong>
+            Strong visual engagement
+          </strong>
+
+          <p>
+            Video content continues to generate
+            significant audience activity.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="gaza-dashboard__insight">
+
+        <div class="gaza-dashboard__insight-icon">
+          <i class="fa-solid fa-headphones"></i>
+        </div>
+
+        <div>
+
+          <span>
+            AUDIO
+          </span>
+
+          <strong>
+            Keep listeners engaged
+          </strong>
+
+          <p>
+            Podcasts and music provide opportunities
+            for longer listening sessions.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         REPORT
+         ========================================================== -->
+
+    <section class="gaza-dashboard__report">
+
+      <div class="gaza-dashboard__report-content">
+
+        <div class="gaza-dashboard__report-icon">
+          <i class="fa-solid fa-file-chart-column"></i>
+        </div>
+
+        <div>
+
+          <span class="gaza-dashboard__report-eyebrow">
+            ANALYTICS REPORT
+          </span>
+
+          <h2>
+            Export your content performance
+          </h2>
+
+          <p>
+            Download a PDF report containing your
+            content statistics, audience metrics,
+            performance overview and top-performing
+            content.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <button type="button" [disabled]="isExporting" (click)="exportToPdf()">
+
+        <i class="fa-solid" [ngClass]="
+            isExporting
+              ? 'fa-spinner fa-spin'
+              : 'fa-file-pdf'
+          "></i>
+
+        {{
+        isExporting
+        ? 'Generating...'
+        : 'Export PDF'
+        }}
+
+      </button>
+
+    </section>
+
+  </main>
+
+</div>
