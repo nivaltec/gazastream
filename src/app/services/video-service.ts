@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MediaItem } from '../models/media-item';
-import { MediaType } from '../models/media-type-enum';
-import { MediaIcon } from '../models/media-icon-enum';
+import { MediaType } from '../enums/media-type-enum';
+import { MediaIcon } from '../enums/media-icon-enum';
 import { VideoProvider } from '../models/video-provider-enum';
 
 @Injectable({
@@ -9,312 +9,440 @@ import { VideoProvider } from '../models/video-provider-enum';
 })
 export class VideoService {
 
+  /* ==========================================================
+     VIDEO DATA
+     ========================================================== */
+
   private readonly videos: MediaItem[] = [
 
     {
       id: '1',
-      title: 'Palestinian Music Sessions',
-      artist: 'Gaza Stream',
+      title: 'MC Gaza - Grime From Gaza',
+      artist: 'MC Gaza',
       description:
-        'A collection of contemporary Palestinian music performances.',
+        'A Gaza-based Palestinian rap performance.',
       artwork:
-        'https://images.unsplash.com/photo-1516280440614-37939bbacd81?w=1200&auto=format&fit=crop',
+        'https://img.youtube.com/vi/maxYQn011i4/hqdefault.jpg',
       url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'https://www.youtube.com/watch?v=maxYQn011i4',
       type: MediaType.Video,
       provider: VideoProvider.YouTube,
-      duration: 324,
-      views: 125000,
-      releaseYear: 2026,
+      duration: 0,
+      views: 0,
+      releaseYear: 2018,
       mediaIcon: MediaIcon.Video,
     },
 
     {
       id: '2',
-      title: 'Saint Levant Live',
-      artist: 'Saint Levant',
+      title: 'Dammi Falastini',
+      artist: 'Mohammed Assaf',
       description:
-        'Live performance featuring modern Arabic and Palestinian sounds.',
+        'Mohammed Assaf performing the Palestinian classic Dammi Falastini.',
       artwork:
-        'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1200&auto=format&fit=crop',
+        'https://img.youtube.com/vi/WgzUvbI7pj0/hqdefault.jpg',
       url:
-        'https://www.youtube.com/watch?v=D4QkxtgGI_A',
+        'https://www.youtube.com/watch?v=WgzUvbI7pj0',
       type: MediaType.Video,
       provider: VideoProvider.YouTube,
-      duration: 287,
-      views: 98000,
-      releaseYear: 2026,
+      duration: 0,
+      views: 0,
+      releaseYear: 2020,
       mediaIcon: MediaIcon.Video,
     },
 
     {
       id: '3',
-      title: 'Arabic Music Mix',
-      artist: 'Gaza Stream',
+      title: 'Mohammed Assaf - Dammi Falastini',
+      artist: 'Mohammed Assaf',
       description:
-        'A selection of Arabic music and emerging artists.',
+        'Mohammed Assaf performing Dammi Falastini.',
       artwork:
-        'https://images.unsplash.com/photo-1524368535928-5b5e00ddc76b?w=1200&auto=format&fit=crop',
+        'https://img.youtube.com/vi/F9czNtvvgvA/hqdefault.jpg',
       url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'https://www.youtube.com/watch?v=F9czNtvvgvA',
       type: MediaType.Video,
       provider: VideoProvider.YouTube,
-      duration: 612,
-      views: 87000,
-      releaseYear: 2026,
+      duration: 0,
+      views: 0,
+      releaseYear: 2020,
       mediaIcon: MediaIcon.Video,
     },
 
     {
       id: '4',
-      title: 'Behind The Music',
-      artist: 'Gaza Stream',
+      title: 'Today We Sing',
+      artist: 'Project Zouqaq',
       description:
-        'Discover the stories and inspiration behind Palestinian music.',
+        'A music project showcasing young musicians and singers from Gaza.',
       artwork:
-        'https://images.unsplash.com/photo-1506157786151-b8491531f063?w=1200&auto=format&fit=crop',
+        'https://img.youtube.com/vi/arSHRKBXOxU/hqdefault.jpg',
       url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'https://www.youtube.com/watch?v=arSHRKBXOxU',
       type: MediaType.Video,
       provider: VideoProvider.YouTube,
-      duration: 438,
-      views: 64000,
-      releaseYear: 2025,
+      duration: 0,
+      views: 0,
+      releaseYear: 2020,
       mediaIcon: MediaIcon.Video,
     },
 
     {
       id: '5',
-      title: 'Palestinian Artists',
-      artist: 'Gaza Stream',
+      title: 'GAZA',
+      artist: 'SNIK & Ivan Greko',
       description:
-        'Introducing artists shaping the modern Palestinian music scene.',
+        'Official music video for Gaza by SNIK and Ivan Greko.',
       artwork:
-        'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=1200&auto=format&fit=crop',
+        'https://img.youtube.com/vi/10HbaBKmGkI/hqdefault.jpg',
       url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
+        'https://www.youtube.com/watch?v=10HbaBKmGkI',
       type: MediaType.Video,
       provider: VideoProvider.YouTube,
-      duration: 356,
-      views: 52000,
-      releaseYear: 2026,
+      duration: 0,
+      views: 0,
+      releaseYear: 2024,
       mediaIcon: MediaIcon.Video,
     },
 
-    {
-      id: '6',
-      title: 'Gaza Music Showcase',
-      artist: 'Gaza Stream',
-      description:
-        'A showcase celebrating Palestinian musicians and performers.',
-      genre: 'Showcase',
-      artwork:
-        'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=1200&auto=format&fit=crop',
-      url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      type: MediaType.Video,
-      provider: VideoProvider.YouTube,
-      duration: 421,
-      views: 47000,
-      releaseYear: 2026,
-      mediaIcon: MediaIcon.Video,
-    },
-
-    {
-      id: '7',
-      title: 'Arabic Hip Hop',
-      artist: 'Gaza Stream',
-      description:
-        'The latest sounds from the Arabic hip-hop scene.',
-      artwork:
-        'https://images.unsplash.com/photo-1526478806334-5fd488fcaabc?w=1200&auto=format&fit=crop',
-      url:
-        'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
-      type: MediaType.Video,
-      provider: VideoProvider.YouTube,
-      duration: 295,
-      views: 43000,
-      releaseYear: 2026,
-      mediaIcon: MediaIcon.Video,
-    },
-
-    {
-      id: '8',
-      title: 'Palestinian Folk',
-      artist: 'Gaza Stream',
-      description:
-        'Traditional Palestinian sounds presented for a new generation.',
-      artwork:
-        'https://images.unsplash.com/photo-1521337581100-8ca9a73a5f79?w=1200&auto=format&fit=crop',
-      url:
-        'https://www.youtube.com/watch?v=dQXcWgGI_A',
-      type: MediaType.Video,
-      provider: VideoProvider.YouTube,
-      duration: 378,
-      views: 38000,
-      releaseYear: 2025,
-      mediaIcon: MediaIcon.Video,
-    },
   ];
 
+
+  /* ==========================================================
+     GET ALL VIDEOS
+     ========================================================== */
+
   getVideos(): MediaItem[] {
-    return [...this.videos];
-  }
 
-  getVideoById(id: string): MediaItem | undefined {
-    return this.videos.find(
-      video => video.id === id
+    return this.videos.map(video =>
+      this.withArtwork(video)
     );
+
   }
 
-  getTrendingVideos(limit = 4): MediaItem[] {
-    return [...this.videos]
-      .sort(
-        (a, b) =>
-          (b.views ?? 0) -
-          (a.views ?? 0)
-      )
-      .slice(0, limit);
-  }
 
-  getLatestVideos(limit = 6): MediaItem[] {
-    return [...this.videos]
-      .sort(
-        (a, b) =>
-          (b.releaseYear ?? 0) -
-          (a.releaseYear ?? 0)
-      )
-      .slice(0, limit);
-  }
+  /* ==========================================================
+     GET VIDEO BY ID
+     ========================================================== */
 
-  getGenres(): string[] {
-    return [
-      ...new Set(
-        this.videos
-          .map(video => video.genre?.trim())
-          .filter(
-            (genre): genre is string =>
-              !!genre
-          )
-      ),
-    ];
-  }
-
-  searchVideos(searchTerm: string): MediaItem[] {
-
-    const term =
-      searchTerm.trim().toLowerCase();
-
-    if (!term) {
-      return this.getVideos();
-    }
-
-    return this.videos.filter(video =>
-      video.title?.toLowerCase().includes(term) ||
-      video.artist?.toLowerCase().includes(term) ||
-      video.description?.toLowerCase().includes(term) ||
-      video.genre?.toLowerCase().includes(term)
-    );
-  }
-
-  getFavouriteVideos(): MediaItem[] {
-    return this.videos.filter(
-      video => video.isFavourite
-    );
-  }
-
-  toggleFavourite(id: string): void {
+  getVideoById(
+    id: string
+  ): MediaItem | undefined {
 
     const video =
       this.videos.find(
         item => item.id === id
       );
 
+    return video
+      ? this.withArtwork(video)
+      : undefined;
+
+  }
+
+
+  /* ==========================================================
+     TRENDING VIDEOS
+     ========================================================== */
+
+  getTrendingVideos(
+    limit = 4
+  ): MediaItem[] {
+
+    return [...this.videos]
+      .sort(
+        (a, b) =>
+          (b.views ?? 0) -
+          (a.views ?? 0)
+      )
+      .slice(0, limit)
+      .map(video =>
+        this.withArtwork(video)
+      );
+
+  }
+
+
+  /* ==========================================================
+     LATEST VIDEOS
+     ========================================================== */
+
+  getLatestVideos(
+    limit = 6
+  ): MediaItem[] {
+
+    return [...this.videos]
+      .sort(
+        (a, b) =>
+          (b.releaseYear ?? 0) -
+          (a.releaseYear ?? 0)
+      )
+      .slice(0, limit)
+      .map(video =>
+        this.withArtwork(video)
+      );
+
+  }
+
+
+  /* ==========================================================
+     GET GENRES
+     ========================================================== */
+
+  getGenres(): string[] {
+
+    return [
+      ...new Set(
+        this.videos
+          .map(
+            video =>
+              video.genre?.trim()
+          )
+          .filter(
+            (
+              genre
+            ): genre is string =>
+              !!genre
+          )
+      ),
+    ];
+
+  }
+
+
+  /* ==========================================================
+     SEARCH VIDEOS
+     ========================================================== */
+
+  searchVideos(
+    searchTerm: string
+  ): MediaItem[] {
+
+    const term =
+      searchTerm
+        .trim()
+        .toLowerCase();
+
+    if (!term) {
+
+      return this.getVideos();
+
+    }
+
+    return this.videos
+      .filter(video =>
+        video.title
+          ?.toLowerCase()
+          .includes(term) ||
+
+        video.artist
+          ?.toLowerCase()
+          .includes(term) ||
+
+        video.description
+          ?.toLowerCase()
+          .includes(term) ||
+
+        video.genre
+          ?.toLowerCase()
+          .includes(term)
+      )
+      .map(video =>
+        this.withArtwork(video)
+      );
+
+  }
+
+
+  /* ==========================================================
+     FAVOURITES
+     ========================================================== */
+
+  getFavouriteVideos(): MediaItem[] {
+
+    return this.videos
+      .filter(
+        video =>
+          video.isFavourite
+      )
+      .map(video =>
+        this.withArtwork(video)
+      );
+
+  }
+
+
+  /* ==========================================================
+     TOGGLE FAVOURITE
+     ========================================================== */
+
+  toggleFavourite(
+    id: string
+  ): void {
+
+    const video =
+      this.videos.find(
+        item =>
+          item.id === id
+      );
+
     if (video) {
+
       video.isFavourite =
         !video.isFavourite;
+
     }
+
   }
+
+
+  /* ==========================================================
+     YOUTUBE VIDEO ID
+     ========================================================== */
 
   getYoutubeVideoId(
     url?: string
   ): string | null {
 
     if (!url) {
+
       return null;
+
     }
 
-    const value = url.trim();
+    const value =
+      url.trim();
+
+    /*
+     * Direct YouTube ID.
+     */
 
     if (
-      /^[a-zA-Z0-9_-]{11}$/.test(value)
+      /^[a-zA-Z0-9_-]{11}$/.test(
+        value
+      )
     ) {
+
       return value;
+
     }
 
     try {
 
-      const parsed = new URL(value);
+      const parsed =
+        new URL(value);
 
       const hostname =
         parsed.hostname
           .toLowerCase()
-          .replace(/^www\./, '');
+          .replace(
+            /^www\./,
+            ''
+          );
+
+      /*
+       * youtube.com
+       */
 
       if (
         hostname === 'youtube.com' ||
         hostname === 'm.youtube.com'
       ) {
 
+        /*
+         * /watch?v=...
+         */
+
         if (
           parsed.pathname === '/watch'
         ) {
+
           return this.cleanYoutubeId(
             parsed.searchParams.get('v')
           );
+
         }
 
-        if (
-          parsed.pathname.startsWith('/embed/')
-        ) {
-          return this.cleanYoutubeId(
-            parsed.pathname.split('/')[2]
-          );
-        }
+        /*
+         * /embed/...
+         */
 
         if (
-          parsed.pathname.startsWith('/shorts/')
+          parsed.pathname.startsWith(
+            '/embed/'
+          )
         ) {
+
           return this.cleanYoutubeId(
-            parsed.pathname.split('/')[2]
+            parsed.pathname
+              .split('/')[2]
           );
+
         }
+
+        /*
+         * /shorts/...
+         */
+
+        if (
+          parsed.pathname.startsWith(
+            '/shorts/'
+          )
+        ) {
+
+          return this.cleanYoutubeId(
+            parsed.pathname
+              .split('/')[2]
+          );
+
+        }
+
       }
 
-      if (hostname === 'youtu.be') {
+      /*
+       * youtu.be/...
+       */
+
+      if (
+        hostname === 'youtu.be'
+      ) {
+
         return this.cleanYoutubeId(
           parsed.pathname
             .split('/')
             .filter(Boolean)[0]
         );
+
       }
 
     } catch {
+
       return null;
+
     }
 
     return null;
+
   }
+
+
+  /* ==========================================================
+     YOUTUBE EMBED URL
+     ========================================================== */
 
   getYoutubeEmbedUrl(
     video: MediaItem
   ): string | null {
 
     const videoId =
-      this.getYoutubeVideoId(video.url);
+      this.getYoutubeVideoId(
+        video.url
+      );
 
     if (!videoId) {
+
       return null;
+
     }
 
     return (
@@ -323,31 +451,102 @@ export class VideoService {
       '&playsinline=1' +
       '&rel=0'
     );
+
   }
+
+
+  /* ==========================================================
+     YOUTUBE THUMBNAIL
+     ========================================================== */
 
   getYoutubeThumbnail(
     video: MediaItem
   ): string | null {
 
     const videoId =
-      this.getYoutubeVideoId(video.url);
+      this.getYoutubeVideoId(
+        video.url
+      );
 
     if (!videoId) {
+
       return null;
+
     }
 
     return (
       `https://img.youtube.com/vi/` +
       `${videoId}/hqdefault.jpg`
     );
+
   }
+
+
+  /* ==========================================================
+     ENSURE ARTWORK
+     ========================================================== */
+
+  private withArtwork(
+    video: MediaItem
+  ): MediaItem {
+
+    /*
+     * Keep explicitly supplied artwork.
+     */
+
+    if (
+      video.artwork &&
+      video.artwork.trim()
+    ) {
+
+      return {
+        ...video,
+      };
+
+    }
+
+    /*
+     * Automatically generate YouTube artwork.
+     */
+
+    const youtubeArtwork =
+      this.getYoutubeThumbnail(
+        video
+      );
+
+    if (youtubeArtwork) {
+
+      return {
+        ...video,
+        artwork: youtubeArtwork,
+      };
+
+    }
+
+    /*
+     * No artwork available.
+     * VideoCardComponent will use its fallback.
+     */
+
+    return {
+      ...video,
+    };
+
+  }
+
+
+  /* ==========================================================
+     CLEAN YOUTUBE ID
+     ========================================================== */
 
   private cleanYoutubeId(
     id?: string | null
   ): string | null {
 
     if (!id) {
+
       return null;
+
     }
 
     const cleanId =
@@ -357,8 +556,12 @@ export class VideoService {
         .split('#')[0]
         .trim();
 
-    return /^[a-zA-Z0-9_-]{11}$/.test(cleanId)
+    return /^[a-zA-Z0-9_-]{11}$/.test(
+      cleanId
+    )
       ? cleanId
       : null;
+
   }
+
 }

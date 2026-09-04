@@ -1,3 +1,4 @@
+<div>
 <!-- ============================================================
      MOBILE MENU BUTTON
 ============================================================ -->
@@ -76,7 +77,7 @@
        YOUR LIBRARY
   =========================================================== -->
 
-  <div class="gaza-sidebar-playlists">
+  <div class="gaza-sidebar-playlists" *ngIf="isAuthenticated">
 
     <span class="gaza-nav-label">
       Your Library
@@ -118,3 +119,5 @@
   </div>
 
 </aside>
+
+</div>

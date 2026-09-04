@@ -1,64 +1,58 @@
-<div class="gaza-news">
+<section class="gaza-news">
 
-  <!-- ==========================================================
+  <!-- ============================================================
        HERO
-       ========================================================== -->
+       ============================================================ -->
 
   <section class="news-hero">
 
-    <div class="news-hero__grid"></div>
+    <div class="hero-grid"></div>
 
-    <div class="news-hero__glow news-hero__glow--cyan"></div>
-    <div class="news-hero__glow news-hero__glow--purple"></div>
+    <div class="hero-content">
 
-    <div class="news-hero__content">
+      <div class="hero-eyebrow">
 
-      <div class="news-hero__eyebrow">
-        <span class="news-hero__live-dot"></span>
-        <span>Live News</span>
-        <span class="news-hero__divider"></span>
-        <span>{{ currentDate }}</span>
+        <span class="eyebrow-line"></span>
+
+        <span>
+          LIVE • INDEPENDENT NEWS AGGREGATION
+        </span>
+
       </div>
+
 
       <h1>
-        Gaza Stream
-        <span>News</span>
+        Gaza News.
+        <span>Live &amp; In Focus.</span>
       </h1>
 
+
       <p>
-        Stay informed with the latest breaking news, politics,
-        business, finance, sport and entertainment from around
-        the world.
+        Follow the latest developments from Gaza and Palestine,
+        aggregated from international news sources in real time.
       </p>
 
-      <div class="news-hero__meta">
 
-        <span>
-          <i class="bi bi-broadcast-pin"></i>
-          Live Updates
+      <div class="hero-meta">
+
+        <div class="hero-live">
+
+          <span class="pulse"></span>
+
+          <span>
+            LIVE COVERAGE
+          </span>
+
+        </div>
+
+
+        <span class="hero-divider"></span>
+
+
+        <span class="updated-text">
+          {{ lastUpdated ? 'Updated ' + (lastUpdated | date:'HH:mm') : 'Updating...' }}
         </span>
 
-        <span>
-          <i class="bi bi-globe2"></i>
-          Global Coverage
-        </span>
-
-        <span>
-          <i class="bi bi-clock"></i>
-          Updated Regularly
-        </span>
-
-      </div>
-
-    </div>
-
-    <div class="news-hero__visual">
-
-      <div class="news-hero__ring news-hero__ring--one"></div>
-      <div class="news-hero__ring news-hero__ring--two"></div>
-
-      <div class="news-hero__icon">
-        <i class="bi bi-newspaper"></i>
       </div>
 
     </div>
@@ -66,247 +60,335 @@
   </section>
 
 
-  <!-- ==========================================================
-       CATEGORY NAVIGATION
-       ========================================================== -->
+  <!-- ============================================================
+       CONTROLS
+       ============================================================ -->
 
-  <nav class="news-categories" aria-label="News categories">
+  <section class="news-controls">
 
-    <button
-      type="button"
-      class="news-category news-category--all"
-      [class.active]="selectedCategory === 'all'"
-      (click)="selectCategory('all')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-grid-fill"></i>
-      </span>
-
-      <span>All News</span>
-    </button>
+    <div class="controls-inner">
 
 
-    <button
-      type="button"
-      class="news-category news-category--entertainment"
-      [class.active]="selectedCategory === 'entertainment'"
-      (click)="selectCategory('entertainment')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-stars"></i>
-      </span>
+      <!-- SEARCH -->
 
-      <span>Entertainment</span>
-    </button>
+      <div class="search-box">
+
+        <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+
+          <path d="M16.5 16.5L21 21"></path>
+        </svg>
 
 
-    <button
-      type="button"
-      class="news-category news-category--sport"
-      [class.active]="selectedCategory === 'sport'"
-      (click)="selectCategory('sport')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-trophy-fill"></i>
-      </span>
-
-      <span>Sport</span>
-    </button>
+        <input type="search" [(ngModel)]="searchTerm" (ngModelChange)="applyFilters()" placeholder="Search Gaza news..."
+          aria-label="Search Gaza news" autocomplete="off" />
 
 
-    <button
-      type="button"
-      class="news-category news-category--finance"
-      [class.active]="selectedCategory === 'finance'"
-      (click)="selectCategory('finance')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-graph-up-arrow"></i>
-      </span>
-
-      <span>Finance</span>
-    </button>
-
-
-    <button
-      type="button"
-      class="news-category news-category--business"
-      [class.active]="selectedCategory === 'business'"
-      (click)="selectCategory('business')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-briefcase-fill"></i>
-      </span>
-
-      <span>Business</span>
-    </button>
-
-
-    <button
-      type="button"
-      class="news-category news-category--politics"
-      [class.active]="selectedCategory === 'politics'"
-      (click)="selectCategory('politics')"
-    >
-      <span class="news-category__icon">
-        <i class="bi bi-bank2"></i>
-      </span>
-
-      <span>Politics</span>
-    </button>
-
-  </nav>
-
-
-  <!-- ==========================================================
-       ALL NEWS / TOP STORIES
-       ========================================================== -->
-
-  <section
-    class="news-section"
-    *ngIf="selectedCategory === 'all'"
-  >
-
-    <div class="news-section__header">
-
-      <div>
-
-        <div class="news-section__eyebrow">
-          <span></span>
-          Top Stories
-        </div>
-
-        <h2>Latest News</h2>
-
-        <p>
-          The most important stories making headlines right now.
-        </p>
+        <button *ngIf="searchTerm" type="button" class="clear-search" aria-label="Clear search"
+          (click)="searchTerm = ''; applyFilters()">
+          ×
+        </button>
 
       </div>
 
-      <a
-        href="#"
-        class="news-section__link"
-      >
-        View All
-        <i class="bi bi-arrow-right"></i>
-      </a>
+
+      <!-- CATEGORIES -->
+
+      <nav class="category-nav" aria-label="News categories">
+
+        <button *ngFor="let category of categories" type="button" class="category-button"
+          [class.active]="selectedCategory === category" [class.breaking-category]="category === 'Breaking'"
+          (click)="selectCategory(category)">
+
+          <span *ngIf="category === 'Breaking'" class="category-live-dot"></span>
+
+          {{ category }}
+
+        </button>
+
+      </nav>
 
     </div>
 
+  </section>
 
-    <div class="news-layout">
 
-      <!-- FEATURED STORY -->
+  <!-- ============================================================
+       MAIN CONTENT
+       ============================================================ -->
 
-      <article
-        class="news-featured"
-        *ngIf="visibleStories.length > 0"
-      >
+  <main class="news-main">
 
-        <div class="news-featured__image">
 
-          <img
-            [src]="visibleStories[0].image"
-            [alt]="visibleStories[0].title"
-            loading="eager"
-          >
+    <!-- ==========================================================
+         LOADING
+         ========================================================== -->
 
-          <span
-            class="news-badge"
-            [ngClass]="'news-badge--' + visibleStories[0].category"
-          >
-            {{ visibleStories[0].category }}
+    <section *ngIf="isLoading" class="news-loading" aria-live="polite">
+
+      <div class="loading-header">
+
+        <div class="skeleton skeleton-title"></div>
+
+        <div class="skeleton skeleton-small"></div>
+
+      </div>
+
+
+      <div class="loading-feature">
+
+        <div class="skeleton skeleton-image"></div>
+
+        <div class="skeleton-content">
+
+          <div class="skeleton skeleton-line"></div>
+
+          <div class="skeleton skeleton-line wide"></div>
+
+          <div class="skeleton skeleton-line medium"></div>
+
+          <div class="skeleton skeleton-button"></div>
+
+        </div>
+
+      </div>
+
+
+      <div class="loading-grid">
+
+        <div *ngFor="let item of [1,2,3]" class="loading-card">
+
+          <div class="skeleton skeleton-card-image"></div>
+
+          <div class="skeleton skeleton-line"></div>
+
+          <div class="skeleton skeleton-line wide"></div>
+
+          <div class="skeleton skeleton-line short"></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ==========================================================
+         ERROR
+         ========================================================== -->
+
+    <section *ngIf="!isLoading && errorMessage" class="news-error" aria-live="assertive">
+
+      <div class="error-icon">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+
+          <path d="M12 9v4"></path>
+
+          <path d="M12 17h.01"></path>
+
+          <path d="M10.3 3.7L2.5 17.2A2 2 0 0 0 4.2 20h15.6a2 2 0 0 0 1.7-2.8L13.7 3.7a2 2 0 0 0-3.4 0z"></path>
+
+        </svg>
+
+      </div>
+
+
+      <h2>
+        News temporarily unavailable
+      </h2>
+
+
+      <p>
+        {{ errorMessage }}
+      </p>
+
+
+      <button type="button" class="retry-button" (click)="loadNews()">
+        Try Again
+      </button>
+
+    </section>
+
+
+    <!-- ==========================================================
+         NO RESULTS
+         ========================================================== -->
+
+    <section *ngIf="
+        !isLoading &&
+        !errorMessage &&
+        filteredArticles.length === 0
+      " class="no-results">
+
+      <div class="no-results-icon">
+
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+
+          <circle cx="11" cy="11" r="7"></circle>
+
+          <path d="M16.5 16.5L21 21"></path>
+
+        </svg>
+
+      </div>
+
+
+      <h2>
+        No stories found
+      </h2>
+
+
+      <p>
+        Try another search term or category.
+      </p>
+
+
+      <button type="button" class="reset-button" (click)="searchTerm = ''; selectedCategory = 'All'; applyFilters()">
+        Show All News
+      </button>
+
+    </section>
+
+
+    <!-- ==========================================================
+         NEWS CONTENT
+         ========================================================== -->
+
+    <ng-container *ngIf="
+        !isLoading &&
+        !errorMessage &&
+        filteredArticles.length > 0
+      ">
+
+
+      <!-- ========================================================
+           SECTION HEADING
+           ======================================================== -->
+
+      <div class="section-heading">
+
+        <div>
+
+          <span class="section-kicker">
+            TOP STORIES
           </span>
 
+          <h2>
+            Latest Gaza News
+          </h2>
+
         </div>
 
 
-        <div class="news-featured__content">
+        <div class="story-count">
 
-          <div class="news-meta">
+          <span>
+            {{ filteredArticles.length }}
+          </span>
 
-            <span>
-              <i class="bi bi-building"></i>
-              {{ visibleStories[0].source }}
-            </span>
+          stories
 
-            <span>
-              <i class="bi bi-clock"></i>
-              {{ getTimeAgo(visibleStories[0].publishedAt) }}
-            </span>
+        </div>
+
+      </div>
+
+
+      <!-- ========================================================
+           FEATURED STORY
+           ======================================================== -->
+
+      <section *ngIf="featuredArticle as featured" class="featured-section">
+
+        <article class="featured-card" tabindex="0" role="button" [attr.aria-label]="'Read: ' + featured.title"
+          (click)="openArticle(featured)" (keydown.enter)="openArticle(featured)"
+          (keydown.space)="openArticle(featured); $event.preventDefault()">
+
+
+          <!-- FEATURED IMAGE -->
+
+          <div class="featured-image-wrap">
+
+            <img class="featured-image" [src]="featured.image" [alt]="featured.title" loading="eager" decoding="async"
+              (error)="handleImageError(featured)" />
+
+
+            <div class="featured-image-overlay"></div>
+
+
+            <div class="featured-badge">
+
+              <span class="live-dot"></span>
+
+              FEATURED
+
+            </div>
+
+
+            <div *ngIf="featured.breaking" class="breaking-badge">
+
+              <span></span>
+
+              BREAKING
+
+            </div>
 
           </div>
 
 
-          <h3>
-            {{ visibleStories[0].title }}
-          </h3>
+          <!-- FEATURED CONTENT -->
 
+          <div class="featured-content">
 
-          <p>
-            {{ visibleStories[0].description }}
-          </p>
+            <div class="article-topline">
 
+              <span class="article-category">
+                {{ featured.category }}
+              </span>
 
-          <a
-            [href]="visibleStories[0].url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="news-read"
-          >
-            Read Full Story
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
+              <span class="article-time">
+                {{ featured.publishedAt }}
+              </span>
 
-        </div>
-
-      </article>
-
-
-      <!-- SIDE STORIES -->
-
-      <div class="news-side-list">
-
-        <article
-          class="news-small-card"
-          *ngFor="
-            let article of visibleStories.slice(1, 4);
-            trackBy: trackByArticle
-          "
-        >
-
-          <div class="news-small-card__image">
-
-            <img
-              [src]="article.image"
-              [alt]="article.title"
-              loading="lazy"
-            >
-
-          </div>
-
-
-          <div class="news-small-card__content">
-
-            <span
-              class="news-label"
-              [ngClass]="'news-label--' + article.category"
-            >
-              {{ article.category }}
-            </span>
+            </div>
 
 
             <h3>
-              {{ article.title }}
+              {{ featured.title }}
             </h3>
 
 
-            <div class="news-small-card__time">
+            <p class="featured-description">
+              {{ featured.description }}
+            </p>
 
-              <i class="bi bi-clock"></i>
 
-              {{ getTimeAgo(article.publishedAt) }}
+            <div class="featured-footer">
+
+              <div class="source-info">
+
+                <span class="source-label">
+                  SOURCE
+                </span>
+
+                <strong>
+                  {{ featured.source }}
+                </strong>
+
+              </div>
+
+
+              <div class="read-info">
+
+                <span>
+                  {{ featured.readTime }} min read
+                </span>
+
+                <span class="read-arrow">
+                  →
+                </span>
+
+              </div>
 
             </div>
 
@@ -314,623 +396,428 @@
 
         </article>
 
-      </div>
+      </section>
 
-    </div>
 
-  </section>
+      <!-- ========================================================
+           LATEST STORIES
+           ======================================================== -->
 
+      <section class="latest-section">
 
-  <!-- ==========================================================
-       ENTERTAINMENT
-       ========================================================== -->
-
-  <section
-    class="news-section"
-    *ngIf="
-      selectedCategory === 'all' ||
-      selectedCategory === 'entertainment'
-    "
-  >
-
-    <div class="news-section__header">
-
-      <div>
-
-        <div class="news-section__eyebrow news-section__eyebrow--entertainment">
-          <span></span>
-          Entertainment
-        </div>
-
-        <h2>Entertainment</h2>
-
-        <p>
-          Celebrity news, movies, music and culture.
-        </p>
-
-      </div>
-
-      <a
-        href="#"
-        class="news-section__link"
-      >
-        More Stories
-        <i class="bi bi-arrow-right"></i>
-      </a>
-
-    </div>
-
-
-    <div class="news-card-grid">
-
-      <article
-        class="news-card"
-        *ngFor="
-          let article of entertainmentNews;
-          trackBy: trackByArticle
-        "
-      >
-
-        <div class="news-card__image">
-
-          <img
-            [src]="article.image"
-            [alt]="article.title"
-            loading="lazy"
-          >
-
-          <span class="news-badge news-badge--entertainment">
-            Entertainment
-          </span>
-
-        </div>
-
-
-        <div class="news-card__body">
-
-          <div class="news-meta">
-
-            <span>
-              <i class="bi bi-building"></i>
-              {{ article.source }}
-            </span>
-
-            <span>
-              <i class="bi bi-clock"></i>
-              {{ getTimeAgo(article.publishedAt) }}
-            </span>
-
-          </div>
-
-
-          <h3>
-            {{ article.title }}
-          </h3>
-
-
-          <p>
-            {{ article.description }}
-          </p>
-
-
-          <a
-            [href]="article.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="news-read"
-          >
-            Read Story
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==========================================================
-       SPORT
-       ========================================================== -->
-
-  <section
-    class="news-section"
-    *ngIf="
-      selectedCategory === 'all' ||
-      selectedCategory === 'sport'
-    "
-  >
-
-    <div class="news-section__header">
-
-      <div>
-
-        <div class="news-section__eyebrow news-section__eyebrow--sport">
-          <span></span>
-          Sport
-        </div>
-
-        <h2>Sport</h2>
-
-        <p>
-          The latest results, transfers and sporting headlines.
-        </p>
-
-      </div>
-
-      <a
-        href="#"
-        class="news-section__link"
-      >
-        More Stories
-        <i class="bi bi-arrow-right"></i>
-      </a>
-
-    </div>
-
-
-    <div class="news-card-grid">
-
-      <article
-        class="news-card"
-        *ngFor="
-          let article of sportNews;
-          trackBy: trackByArticle
-        "
-      >
-
-        <div class="news-card__image">
-
-          <img
-            [src]="article.image"
-            [alt]="article.title"
-            loading="lazy"
-          >
-
-          <span class="news-badge news-badge--sport">
-            Sport
-          </span>
-
-        </div>
-
-
-        <div class="news-card__body">
-
-          <div class="news-meta">
-
-            <span>
-              <i class="bi bi-building"></i>
-              {{ article.source }}
-            </span>
-
-            <span>
-              <i class="bi bi-clock"></i>
-              {{ getTimeAgo(article.publishedAt) }}
-            </span>
-
-          </div>
-
-
-          <h3>
-            {{ article.title }}
-          </h3>
-
-
-          <p>
-            {{ article.description }}
-          </p>
-
-
-          <a
-            [href]="article.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="news-read"
-          >
-            Read Story
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==========================================================
-       FINANCE + BUSINESS
-       ========================================================== -->
-
-  <div
-    class="news-dual"
-    *ngIf="
-      selectedCategory === 'all' ||
-      selectedCategory === 'finance' ||
-      selectedCategory === 'business'
-    "
-  >
-
-    <!-- FINANCE -->
-
-    <section
-      class="news-section"
-      *ngIf="
-        selectedCategory === 'all' ||
-        selectedCategory === 'finance'
-      "
-    >
-
-      <div class="news-section__header">
-
-        <div>
-
-          <div class="news-section__eyebrow news-section__eyebrow--finance">
-            <span></span>
-            Finance
-          </div>
-
-          <h2>Markets & Finance</h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="news-mini-list">
-
-        <article
-          class="news-mini-card"
-          *ngFor="
-            let article of financeNews;
-            trackBy: trackByArticle
-          "
-        >
-
-          <div class="news-mini-card__icon news-mini-card__icon--finance">
-            <i class="bi bi-graph-up-arrow"></i>
-          </div>
-
+        <div class="latest-heading">
 
           <div>
 
-            <span>
-              {{ article.source }}
+            <span class="section-kicker">
+              LIVE FEED
             </span>
 
-            <h3>
-              {{ article.title }}
-            </h3>
-
-            <small>
-              {{ getTimeAgo(article.publishedAt) }}
-            </small>
+            <h2>
+              Latest Stories
+            </h2>
 
           </div>
 
-        </article>
 
-      </div>
+          <div class="feed-status">
 
-    </section>
+            <span class="feed-dot"></span>
 
-
-    <!-- BUSINESS -->
-
-    <section
-      class="news-section"
-      *ngIf="
-        selectedCategory === 'all' ||
-        selectedCategory === 'business'
-      "
-    >
-
-      <div class="news-section__header">
-
-        <div>
-
-          <div class="news-section__eyebrow news-section__eyebrow--business">
-            <span></span>
-            Business
-          </div>
-
-          <h2>Business</h2>
-
-        </div>
-
-      </div>
-
-
-      <div class="news-mini-list">
-
-        <article
-          class="news-mini-card"
-          *ngFor="
-            let article of businessNews;
-            trackBy: trackByArticle
-          "
-        >
-
-          <div class="news-mini-card__icon news-mini-card__icon--business">
-            <i class="bi bi-briefcase-fill"></i>
-          </div>
-
-
-          <div>
-
-            <span>
-              {{ article.source }}
-            </span>
-
-            <h3>
-              {{ article.title }}
-            </h3>
-
-            <small>
-              {{ getTimeAgo(article.publishedAt) }}
-            </small>
+            LIVE
 
           </div>
-
-        </article>
-
-      </div>
-
-    </section>
-
-  </div>
-
-
-  <!-- ==========================================================
-       POLITICS
-       ========================================================== -->
-
-  <section
-    class="news-section"
-    *ngIf="
-      selectedCategory === 'all' ||
-      selectedCategory === 'politics'
-    "
-  >
-
-    <div class="news-section__header">
-
-      <div>
-
-        <div class="news-section__eyebrow news-section__eyebrow--politics">
-          <span></span>
-          Politics
-        </div>
-
-        <h2>Political Headlines</h2>
-
-        <p>
-          Important political developments from around the world.
-        </p>
-
-      </div>
-
-    </div>
-
-
-    <div class="news-politics-grid">
-
-      <article
-        class="news-politics-card"
-        *ngFor="
-          let article of politicsNews;
-          let i = index;
-          trackBy: trackByArticle
-        "
-      >
-
-        <div class="news-politics-card__number">
-
-          {{
-            (i + 1)
-              .toString()
-              .padStart(2, '0')
-          }}
 
         </div>
 
 
-        <div>
+        <div class="news-grid">
+
+
+          <article *ngFor="
+              let article of latestArticles;
+              trackBy: trackByArticleId
+            " class="news-card" tabindex="0" role="button" [attr.aria-label]="'Read: ' + article.title"
+            (click)="openArticle(article)" (keydown.enter)="openArticle(article)"
+            (keydown.space)="openArticle(article); $event.preventDefault()">
+
+
+            <!-- CARD IMAGE -->
+
+            <div class="card-image-wrap">
+
+              <img class="card-image" [src]="article.image" [alt]="article.title" loading="lazy" decoding="async"
+                (error)="handleImageError(article)" />
+
+
+              <div class="card-image-overlay"></div>
+
+
+              <div *ngIf="article.breaking" class="card-breaking">
+
+                <span class="card-breaking-dot"></span>
+
+                BREAKING
+
+              </div>
+
+
+              <span class="card-category">
+                {{ article.category }}
+              </span>
+
+            </div>
+
+
+            <!-- CARD BODY -->
+
+            <div class="card-body">
+
+
+              <div class="card-meta">
+
+                <span class="card-source">
+                  {{ article.source }}
+                </span>
+
+                <span class="meta-separator">
+                  •
+                </span>
+
+                <span>
+                  {{ article.publishedAt }}
+                </span>
+
+              </div>
+
+
+              <h3 class="card-title">
+                {{ article.title }}
+              </h3>
+
+
+              <p class="card-description">
+                {{ article.description }}
+              </p>
+
+
+              <div class="card-footer">
+
+                <span class="card-read-time">
+                  {{ article.readTime }} min read
+                </span>
+
+
+                <span class="card-arrow">
+                  →
+                </span>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+
+      <!-- ========================================================
+           LIVE SOURCE NOTICE
+           ======================================================== -->
+
+      <section class="source-notice">
+
+        <div class="source-notice-icon">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+
+            <circle cx="12" cy="12" r="9"></circle>
+
+            <path d="M12 8v5"></path>
+
+            <path d="M12 16h.01"></path>
+
+          </svg>
+
+        </div>
+
+
+        <div class="source-notice-content">
+
+          <strong>
+            News aggregated from the internet
+          </strong>
+
+          <p>
+            Gaza Stream provides links to original reporting
+            from external news publishers. Select a story to
+            read the complete article at its original source.
+          </p>
+
+        </div>
+
+      </section>
+
+    </ng-container>
+
+  </main>
+
+
+  <!-- ============================================================
+       ARTICLE READER
+       ============================================================ -->
+
+  <div *ngIf="selectedArticle as article" class="article-reader-backdrop" role="presentation" (click)="closeArticle()">
+
+    <article class="article-reader" role="dialog" aria-modal="true" [attr.aria-label]="article.title"
+      (click)="$event.stopPropagation()">
+
+
+      <!-- READER HEADER -->
+
+      <header class="reader-header">
+
+        <button type="button" class="reader-close" aria-label="Close article" (click)="closeArticle()">
+
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+
+            <path d="M6 6l12 12"></path>
+
+            <path d="M18 6L6 18"></path>
+
+          </svg>
+
+        </button>
+
+
+        <div class="reader-header-brand">
+
+          <span class="reader-brand-mark">
+            GS
+          </span>
 
           <span>
-            {{ article.source }}
-          </span>
-
-
-          <h3>
-            {{ article.title }}
-          </h3>
-
-
-          <p>
-            {{ article.description }}
-          </p>
-
-
-          <small>
-
-            <i class="bi bi-clock"></i>
-
-            {{ getTimeAgo(article.publishedAt) }}
-
-          </small>
-
-        </div>
-
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==========================================================
-       GAZA FOCUS
-       ========================================================== -->
-
-  <section
-    class="gaza-news-section"
-    *ngIf="
-      selectedCategory === 'all' ||
-      selectedCategory === 'politics'
-    "
-  >
-
-    <div class="gaza-header">
-
-      <div class="gaza-icon">
-        <i class="bi bi-globe-americas"></i>
-      </div>
-
-      <div>
-
-        <div class="news-section__eyebrow">
-          <span></span>
-          Gaza Focus
-        </div>
-
-        <h2>
-          Gaza & Middle East
-        </h2>
-
-      </div>
-
-    </div>
-
-
-    <div class="news-card-grid">
-
-      <article
-        class="news-card"
-        *ngFor="
-          let article of gazaNews;
-          trackBy: trackByArticle
-        "
-      >
-
-        <div class="news-card__image">
-
-          <img
-            [src]="article.image"
-            [alt]="article.title"
-            loading="lazy"
-          >
-
-          <span class="news-badge">
-            Gaza
+            GAZA STREAM
           </span>
 
         </div>
 
 
-        <div class="news-card__body">
+        <button type="button" class="reader-share" aria-label="Share article" (click)="shareArticle()">
 
-          <div class="news-meta">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
 
-            <span>
-              <i class="bi bi-building"></i>
-              {{ article.source }}
+            <circle cx="18" cy="5" r="2"></circle>
+
+            <circle cx="6" cy="12" r="2"></circle>
+
+            <circle cx="18" cy="19" r="2"></circle>
+
+            <path d="M8 11l8-5"></path>
+
+            <path d="M8 13l8 5"></path>
+
+          </svg>
+
+          <span>
+            Share
+          </span>
+
+        </button>
+
+      </header>
+
+
+      <!-- READER BODY -->
+
+      <div class="reader-scroll">
+
+        <div class="reader-content">
+
+
+          <!-- ARTICLE IMAGE -->
+
+          <div class="reader-image-wrap">
+
+            <img class="reader-image" [src]="article.image" [alt]="article.title" loading="eager" decoding="async"
+              (error)="handleImageError(article)" />
+
+
+            <div class="reader-image-overlay"></div>
+
+
+            <div *ngIf="article.breaking" class="reader-breaking">
+
+              <span></span>
+
+              BREAKING NEWS
+
+            </div>
+
+          </div>
+
+
+          <!-- ARTICLE META -->
+
+          <div class="reader-meta">
+
+            <span class="reader-category">
+              {{ article.category }}
             </span>
 
+
+            <span class="reader-meta-separator">
+              •
+            </span>
+
+
             <span>
-              <i class="bi bi-clock"></i>
-              {{ getTimeAgo(article.publishedAt) }}
+              {{ article.publishedAt }}
+            </span>
+
+
+            <span class="reader-meta-separator">
+              •
+            </span>
+
+
+            <span>
+              {{ article.readTime }} min read
             </span>
 
           </div>
 
 
-          <h3>
+          <!-- TITLE -->
+
+          <h1 class="reader-title">
             {{ article.title }}
-          </h3>
+          </h1>
 
 
-          <p>
+          <!-- DESCRIPTION -->
+
+          <p class="reader-description">
             {{ article.description }}
           </p>
 
 
-          <a
-            [href]="article.url"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="news-read"
-          >
-            Read Full Story
-            <i class="bi bi-arrow-up-right"></i>
-          </a>
+          <!-- AUTHOR / SOURCE -->
+
+          <div class="reader-byline">
+
+            <div class="author-avatar">
+              {{ article.source.charAt(0) }}
+            </div>
+
+
+            <div class="author-info">
+
+              <span>
+                Reported by
+              </span>
+
+              <strong>
+                {{ article.source }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <!-- ARTICLE CONTENT -->
+
+          <div class="reader-article-body">
+
+            <p *ngFor="
+                let paragraph
+                of article.content.split('\n\n')
+              ">
+              {{ paragraph }}
+            </p>
+
+          </div>
+
+
+          <!-- TAGS -->
+
+          <div *ngIf="article.tags?.length" class="reader-tags">
+
+            <span *ngFor="let tag of article.tags" class="reader-tag">
+              #{{ tag }}
+            </span>
+
+          </div>
+
+
+          <!-- ORIGINAL SOURCE -->
+
+          <div class="original-source">
+
+            <div class="original-source-top">
+
+              <div class="original-source-icon">
+
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                  <path d="M14 3h7v7"></path>
+
+                  <path d="M10 14L21 3"></path>
+
+                  <path d="M21 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5"></path>
+
+                </svg>
+
+              </div>
+
+
+              <div>
+
+                <span>
+                  ORIGINAL REPORT
+                </span>
+
+                <strong>
+                  {{ article.source }}
+                </strong>
+
+              </div>
+
+            </div>
+
+
+            <p>
+              Read the complete article, additional reporting
+              and source material directly from
+              {{ article.source }}.
+            </p>
+
+
+            <button *ngIf="article.url" type="button" class="original-button" (click)="openOriginal()">
+
+              Read Original Article
+
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+
+                <path d="M14 3h7v7"></path>
+
+                <path d="M10 14L21 3"></path>
+
+              </svg>
+
+            </button>
+
+          </div>
 
         </div>
 
-      </article>
-
-    </div>
-
-  </section>
-
-
-  <!-- ==========================================================
-       SOURCE NOTICE
-       ========================================================== -->
-
-  <div class="news-source-notice">
-
-    <div class="source-notice-inner">
-
-      <div class="source-notice-icon">
-        <i class="bi bi-info-circle"></i>
       </div>
 
-      <div>
-
-        <strong>
-          News Sources
-        </strong>
-
-        <p class="mb-0">
-          Stories are collected from publicly available news
-          sources. Click on a story to read the original article
-          from its publisher.
-        </p>
-
-      </div>
-
-    </div>
+    </article>
 
   </div>
 
-
-  <!-- ==========================================================
-       FOOTER CTA
-       ========================================================== -->
-
-  <section class="news-footer-cta">
-
-    <div class="news-section__eyebrow justify-content-center">
-      <span></span>
-      Gaza Stream News
-      <span></span>
-    </div>
-
-    <h2>
-      Stay Informed.
-    </h2>
-
-    <p>
-      Follow the stories that matter and stay up to date
-      with the latest developments.
-    </p>
-
-  </section>
-
-</div>
+</section>

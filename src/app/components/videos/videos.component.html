@@ -1,0 +1,188 @@
+<div class="gaza-videos">
+
+  <!-- =========================================================
+       PAGE HEADER
+  ========================================================== -->
+
+  <section class="gaza-videos__hero">
+
+    <div class="gaza-videos__hero-glow gaza-videos__hero-glow--one"></div>
+    <div class="gaza-videos__hero-glow gaza-videos__hero-glow--two"></div>
+
+    <div class="gaza-videos__hero-pattern"></div>
+
+    <div class="gaza-videos__hero-content">
+
+      <span class="gaza-videos__eyebrow">
+
+        <span class="gaza-videos__eyebrow-icon">
+          <i class="fa-solid fa-circle-play"></i>
+        </span>
+
+        WATCH
+
+      </span>
+
+      <h1>
+        All Videos
+      </h1>
+
+      <p>
+        Performances, interviews, music stories and more
+        from Gaza Stream.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- =========================================================
+       LOADING
+  ========================================================== -->
+
+  <section
+    *ngIf="isLoading"
+    class="gaza-videos__loading">
+
+    <div class="gaza-videos__spinner"></div>
+
+    <span>
+      Loading videos...
+    </span>
+
+  </section>
+
+
+  <!-- =========================================================
+       EMPTY
+  ========================================================== -->
+
+  <section
+    *ngIf="!isLoading && pagedVideos.length === 0"
+    class="gaza-videos__empty">
+
+    <div class="gaza-videos__empty-icon">
+
+      <i class="fa-solid fa-video-slash"></i>
+
+    </div>
+
+    <h2>
+      No Videos Found
+    </h2>
+
+    <p>
+      There are currently no videos available.
+    </p>
+
+  </section>
+
+
+  <!-- =========================================================
+       VIDEO GRID
+  ========================================================== -->
+
+  <section
+    *ngIf="!isLoading && pagedVideos.length > 0"
+    class="gaza-videos__content">
+
+    <div class="gaza-videos__grid">
+
+      <app-video-card
+        *ngFor="let video of pagedVideos; trackBy: trackByVideo"
+        [video]="video">
+      </app-video-card>
+
+    </div>
+
+
+    <!-- =======================================================
+         PAGINATION
+    ======================================================== -->
+
+    <nav
+      *ngIf="totalPages > 1"
+      class="gaza-videos__pagination"
+      aria-label="Video pagination">
+
+
+      <!-- Previous -->
+
+      <button
+        type="button"
+        class="gaza-videos__pagination-button gaza-videos__pagination-button--arrow"
+        [disabled]="currentPage === 1"
+        (click)="goToPreviousPage()"
+        aria-label="Previous page">
+
+        <i class="fa-solid fa-chevron-left"></i>
+
+      </button>
+
+
+      <!-- Page Numbers -->
+
+      <div class="gaza-videos__pagination-pages">
+
+        <button
+          *ngFor="let page of pages"
+          type="button"
+          class="gaza-videos__pagination-button"
+          [class.is-active]="page === currentPage"
+          (click)="goToPage(page)">
+
+          {{ page }}
+
+        </button>
+
+      </div>
+
+
+      <!-- Next -->
+
+      <button
+        type="button"
+        class="gaza-videos__pagination-button gaza-videos__pagination-button--arrow"
+        [disabled]="currentPage === totalPages"
+        (click)="goToNextPage()"
+        aria-label="Next page">
+
+        <i class="fa-solid fa-chevron-right"></i>
+
+      </button>
+
+    </nav>
+
+
+    <!-- =======================================================
+         PAGINATION INFO
+    ======================================================== -->
+
+    <div
+      *ngIf="totalPages > 1"
+      class="gaza-videos__pagination-info">
+
+      Showing
+      <strong>
+        {{ pageStart }}
+      </strong>
+
+      -
+      <strong>
+        {{ pageEnd }}
+      </strong>
+
+      of
+
+      <strong>
+        {{ totalVideos }}
+      </strong>
+
+      videos
+
+    </div>
+
+  </section>
+
+</div>

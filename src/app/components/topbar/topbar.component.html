@@ -1,4 +1,4 @@
-<header class="gaza-topbar">
+<header class="gaza-topbar" *ngIf="!hideDashboard() && isAuthenticated">
 
   <!-- ======================================================
        LEFT
@@ -17,7 +17,7 @@
 
     <!-- SEARCH -->
 
-    <form class="gaza-search" role="search" (ngSubmit)="search()">
+    <form *ngIf="!hideSearch()" class="gaza-search" role="search" (ngSubmit)="search()">
 
       <span class="gaza-search-icon">
         <i class="fa-solid fa-magnifying-glass"></i>

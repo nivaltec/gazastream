@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { MediaItem } from '../models/media-item';
-import { MediaType } from '../models/media-type-enum';
-import { MediaIcon } from '../models/media-icon-enum';
+import { MediaType } from '../enums/media-type-enum';
+import { MediaIcon } from '../enums/media-icon-enum';
 import { Genre } from '../models/genre';
 
 @Injectable({

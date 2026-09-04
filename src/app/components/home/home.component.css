@@ -1,12 +1,2664 @@
 /* ============================================================
-   GAZA STREAM
-   HOME
-   Premium Streaming UI
+   GAZA STREAM HOME
+   FULL COMPONENT STYLES
+   ============================================================ */
+
+.gaza-home {
+
+  width: 100%;
+  min-width: 0;
+
+  /* ==========================================================
+     THEME VARIABLES
+     ========================================================== */
+
+  --gaza-cyan: #08cfff;
+  --gaza-purple: #6c24ff;
+
+  --gaza-gradient:
+    linear-gradient(
+      135deg,
+      var(--gaza-cyan),
+      var(--gaza-purple)
+    );
+
+  --gaza-dark: #08080d;
+  --gaza-dark-2: #0d0d15;
+
+  --gaza-card: #11111a;
+  --gaza-card-hover: #151520;
+
+  --gaza-border:
+    rgba(255, 255, 255, 0.07);
+
+  --gaza-border-hover:
+    rgba(8, 207, 255, 0.22);
+
+  --gaza-text-primary: #ffffff;
+
+  --gaza-text-secondary:
+    rgba(255, 255, 255, 0.68);
+
+  --gaza-text-muted:
+    rgba(255, 255, 255, 0.45);
+
+  --gaza-transition:
+    0.2s ease;
+
+  --gaza-transition-slow:
+    0.4s ease;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.gaza-home .gaza-hero {
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+
+  width: 100%;
+  min-height: 285px;
+
+  margin: 20px 0 44px;
+  padding: 34px 42px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 78% 30%,
+      rgba(8, 207, 255, 0.12),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 65% 100%,
+      rgba(108, 36, 255, 0.14),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #08080d 0%,
+      #0c0c15 52%,
+      #111020 100%
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ============================================================
+   HERO GRID
+   ============================================================ */
+
+.gaza-home .gaza-hero__grid {
+
+  position: absolute;
+  inset: 0;
+
+  z-index: -3;
+
+  opacity: 0.13;
+
+  background-image:
+    linear-gradient(
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
+
+  background-size: 38px 38px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      #000 0%,
+      rgba(0, 0, 0, 0.55) 60%,
+      transparent 100%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   HERO GLOW
+   ============================================================ */
+
+.gaza-home .gaza-hero__glow {
+
+  position: absolute;
+
+  border-radius: 50%;
+
+  filter: blur(70px);
+
+  pointer-events: none;
+
+  z-index: -2;
+}
+
+
+.gaza-home .gaza-hero__glow--one {
+
+  width: 300px;
+  height: 300px;
+
+  top: -170px;
+  right: 60px;
+
+  background:
+    var(--gaza-cyan);
+
+  opacity: 0.10;
+}
+
+
+.gaza-home .gaza-hero__glow--two {
+
+  width: 270px;
+  height: 270px;
+
+  bottom: -190px;
+  right: 260px;
+
+  background:
+    var(--gaza-purple);
+
+  opacity: 0.12;
+}
+
+
+/* ============================================================
+   HERO CONTENT
+   ============================================================ */
+
+.gaza-home .gaza-hero__content {
+
+  position: relative;
+
+  z-index: 3;
+
+  width: 100%;
+  max-width: 590px;
+
+  min-width: 0;
+}
+
+
+/* ============================================================
+   HERO EYEBROW
+   ============================================================ */
+
+.gaza-home .gaza-hero__eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 8px;
+
+  margin-bottom: 12px;
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 9px;
+
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 1.7px;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-home .gaza-hero__eyebrow-icon {
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.20);
+
+  border-radius: 7px;
+
+  background:
+    rgba(8, 207, 255, 0.07);
+}
+
+
+.gaza-home .gaza-hero__eyebrow-icon i {
+  font-size: 10px;
+}
+
+
+.gaza-home .gaza-hero__eyebrow-dot {
+
+  width: 3px;
+  height: 3px;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.30);
+}
+
+
+.gaza-home .gaza-hero__eyebrow-status {
+
+  color:
+    var(--gaza-text-muted);
+
+  font-weight: 650;
+
+  letter-spacing: 1px;
+}
+
+
+/* ============================================================
+   HERO TITLE
+   ============================================================ */
+
+.gaza-home .gaza-hero__title {
+
+  max-width: 560px;
+
+  margin: 0;
+
+  color: #fff;
+
+  font-size:
+    clamp(38px, 4.4vw, 58px);
+
+  font-weight: 850;
+
+  line-height: 0.98;
+
+  letter-spacing: -2.8px;
+}
+
+
+.gaza-home .gaza-hero__title span {
+
+  display: block;
+
+  margin-top: 3px;
+
+  background:
+    var(--gaza-gradient);
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+}
+
+
+/* ============================================================
+   HERO DESCRIPTION
+   ============================================================ */
+
+.gaza-home .gaza-hero__description {
+
+  max-width: 465px;
+
+  margin: 14px 0 20px;
+
+  color:
+    var(--gaza-text-secondary);
+
+  font-size: 12px;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   HERO ACTIONS
+   ============================================================ */
+
+.gaza-home .gaza-hero__actions {
+
+  display: flex;
+
+  align-items: center;
+
+  flex-wrap: wrap;
+
+  gap: 9px;
+}
+
+
+/* ============================================================
+   BUTTON BASE
+   ============================================================ */
+
+.gaza-home .gaza-btn {
+
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 8px;
+
+  min-height: 39px;
+
+  padding: 0 14px;
+
+  box-sizing: border-box;
+
+  border-radius: 10px;
+
+  font-family: inherit;
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  line-height: 1;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+
+  transition:
+    transform var(--gaza-transition),
+    box-shadow var(--gaza-transition),
+    background var(--gaza-transition),
+    border-color var(--gaza-transition),
+    color var(--gaza-transition),
+    opacity var(--gaza-transition);
+}
+
+
+/* ============================================================
+   BUTTON HOVER
+   ============================================================ */
+
+.gaza-home .gaza-btn:hover {
+
+  transform:
+    translateY(-2px);
+}
+
+
+/* ============================================================
+   BUTTON ACTIVE
+   ============================================================ */
+
+.gaza-home .gaza-btn:active {
+
+  transform:
+    translateY(0);
+
+  transition-duration: 0.08s;
+}
+
+
+/* ============================================================
+   BUTTON FOCUS
+   ============================================================ */
+
+.gaza-home .gaza-btn:focus-visible {
+
+  outline: none;
+
+  box-shadow:
+    0 0 0 3px rgba(8, 207, 255, 0.18),
+    0 0 0 5px rgba(108, 36, 255, 0.10);
+}
+
+
+/* ============================================================
+   BUTTON ICON
+   ============================================================ */
+
+.gaza-home .gaza-btn__icon {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 7px;
+
+  transition:
+    transform var(--gaza-transition),
+    background var(--gaza-transition);
+}
+
+
+.gaza-home .gaza-btn:hover .gaza-btn__icon {
+
+  transform:
+    scale(1.04);
+}
+
+
+/* ============================================================
+   PRIMARY BUTTON
+   ============================================================ */
+
+.gaza-home .gaza-btn--primary {
+
+  border: 0;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 8px 25px rgba(108, 36, 255, 0.22);
+}
+
+
+.gaza-home .gaza-btn--primary:hover {
+
+  box-shadow:
+    0 12px 30px rgba(108, 36, 255, 0.30);
+}
+
+
+.gaza-home .gaza-btn--primary .gaza-btn__icon {
+
+  color: #fff;
+
+  background:
+    rgba(255, 255, 255, 0.14);
+}
+
+
+/* ============================================================
+   SECONDARY BUTTON
+   ============================================================ */
+
+.gaza-home .gaza-btn--secondary {
+
+  border:
+    1px solid rgba(255, 255, 255, 0.09);
+
+  color:
+    var(--gaza-text-primary);
+
+  background:
+    rgba(255, 255, 255, 0.035);
+}
+
+
+.gaza-home .gaza-btn--secondary:hover {
+
+  border-color:
+    rgba(8, 207, 255, 0.24);
+
+  background:
+    rgba(8, 207, 255, 0.055);
+
+  box-shadow:
+    0 8px 25px rgba(8, 207, 255, 0.07);
+}
+
+
+.gaza-home .gaza-btn--secondary .gaza-btn__icon {
+
+  color:
+    var(--gaza-cyan);
+
+  background:
+    rgba(8, 207, 255, 0.07);
+}
+
+
+/* ============================================================
+   SIGNUP BUTTON
+   Consistent with Gaza Stream design
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup {
+
+  border:
+    1px solid rgba(255, 255, 255, 0.90);
+
+  color:
+    #111827;
+
+  background:
+    #ffffff;
+
+  box-shadow:
+    0 8px 22px rgba(0, 0, 0, 0.16);
+}
+
+
+/* ============================================================
+   SIGNUP HOVER
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup:hover {
+
+  color:
+    #08080d;
+
+  background:
+    #f7fbff;
+
+  border-color:
+    rgba(8, 207, 255, 0.55);
+
+  box-shadow:
+    0 10px 28px rgba(8, 207, 255, 0.14),
+    0 6px 20px rgba(108, 36, 255, 0.08);
+}
+
+
+/* ============================================================
+   SIGNUP ICON
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup .gaza-btn__icon {
+
+  color:
+    #ffffff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 4px 12px rgba(108, 36, 255, 0.18);
+}
+
+
+/* ============================================================
+   SIGNUP ICON HOVER
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup:hover .gaza-btn__icon {
+
+  transform:
+    scale(1.06);
+}
+
+
+/* ============================================================
+   DISABLED BUTTON
+   ============================================================ */
+
+.gaza-home .gaza-btn:disabled,
+.gaza-home .gaza-btn.is-disabled {
+
+  opacity: 0.5;
+
+  cursor: not-allowed;
+
+  pointer-events: none;
+
+  transform: none;
+
+  box-shadow: none;
+}
+
+
+/* ============================================================
+   HERO VISUAL
+   ============================================================ */
+
+.gaza-home .gaza-hero__visual {
+
+  position: absolute;
+
+  z-index: 1;
+
+  top: 50%;
+  right: 5%;
+
+  width: 235px;
+  height: 235px;
+
+  transform:
+    translateY(-50%);
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   HERO DISC
+   ============================================================ */
+
+.gaza-home .gaza-hero__disc {
+
+  position: absolute;
+
+  top: 0;
+  right: 0;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 195px;
+  height: 195px;
+
+  border-radius: 50%;
+
+  background:
+    repeating-radial-gradient(
+      circle at center,
+      #0d0d14 0,
+      #0d0d14 4px,
+      #151522 5px,
+      #0a0a10 8px
+    );
+
+  box-shadow:
+    0 22px 45px rgba(0, 0, 0, 0.50),
+    0 0 65px rgba(108, 36, 255, 0.10);
+}
+
+
+.gaza-home .gaza-hero__disc::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.06);
+
+  border-radius: 50%;
+}
+
+
+.gaza-home .gaza-hero__disc-ring {
+
+  position: absolute;
+
+  inset: 27px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.045);
+
+  border-radius: 50%;
+}
+
+
+/* ============================================================
+   DISC CENTER
+   ============================================================ */
+
+.gaza-home .gaza-hero__disc-center {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 62px;
+  height: 62px;
+
+  border-radius: 50%;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 0 35px rgba(108, 36, 255, 0.25);
+}
+
+
+.gaza-home .gaza-hero__disc-center i {
+  font-size: 17px;
+}
+
+
+/* ============================================================
+   HERO WAVES
+   ============================================================ */
+
+.gaza-home .gaza-hero__waves {
+
+  position: absolute;
+
+  right: -4px;
+  bottom: 5px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 4px;
+
+  height: 58px;
+
+  opacity: 0;
+  visibility: hidden;
+
+  transform:
+    translateY(8px);
+
+  transition:
+    opacity var(--gaza-transition-slow),
+    visibility var(--gaza-transition-slow),
+    transform var(--gaza-transition-slow);
+}
+
+
+.gaza-home .gaza-hero__waves.is-playing {
+
+  opacity: 0.75;
+
+  visibility: visible;
+
+  transform:
+    translateY(0);
+}
+
+
+.gaza-home .gaza-hero__waves span {
+
+  display: block;
+
+  width: 3px;
+
+  border-radius: 99px;
+
+  background:
+    var(--gaza-gradient);
+}
+
+
+.gaza-home .gaza-hero__waves.is-playing span {
+
+  animation:
+    gaza-wave 1.1s ease-in-out infinite;
+}
+
+
+.gaza-home .gaza-hero__waves span:nth-child(1) {
+  height: 15px;
+  animation-delay: -0.8s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(2) {
+  height: 27px;
+  animation-delay: -0.6s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(3) {
+  height: 40px;
+  animation-delay: -0.4s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(4) {
+  height: 30px;
+  animation-delay: -0.2s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(5) {
+  height: 48px;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(6) {
+  height: 34px;
+  animation-delay: -0.3s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(7) {
+  height: 43px;
+  animation-delay: -0.5s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(8) {
+  height: 29px;
+  animation-delay: -0.7s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(9) {
+  height: 38px;
+  animation-delay: -0.9s;
+}
+
+.gaza-home .gaza-hero__waves span:nth-child(10) {
+  height: 19px;
+  animation-delay: -0.4s;
+}
+
+
+@keyframes gaza-wave {
+
+  0%,
+  100% {
+
+    transform:
+      scaleY(0.55);
+
+  }
+
+  50% {
+
+    transform:
+      scaleY(1);
+
+  }
+}
+
+
+/* ============================================================
+   GENERAL SECTIONS
+   ============================================================ */
+
+.gaza-home .gaza-section {
+
+  width: 100%;
+  min-width: 0;
+
+  margin-bottom: 48px;
+}
+
+
+.gaza-home .gaza-section__header {
+
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  margin-bottom: 17px;
+}
+
+
+.gaza-home .gaza-section__heading {
+
+  min-width: 0;
+}
+
+
+.gaza-home .gaza-section__eyebrow {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 6px;
+
+  margin-bottom: 6px;
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+
+  font-weight: 800;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-home .gaza-section__eyebrow i {
+  font-size: 9px;
+}
+
+
+.gaza-home .gaza-section__heading h2 {
+
+  margin: 0;
+
+  color:
+    var(--gaza-text-primary);
+
+  font-size:
+    clamp(20px, 2vw, 26px);
+
+  font-weight: 800;
+
+  line-height: 1.15;
+
+  letter-spacing: -0.8px;
+}
+
+
+.gaza-home .gaza-section__heading p {
+
+  margin: 5px 0 0;
+
+  color:
+    var(--gaza-text-muted);
+
+  font-size: 11px;
+
+  line-height: 1.5;
+}
+
+
+.gaza-home .gaza-section__link {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 7px;
+
+  flex: 0 0 auto;
+
+  color:
+    var(--gaza-text-secondary);
+
+  font-size: 10px;
+
+  font-weight: 750;
+
+  text-decoration: none;
+
+  transition:
+    color var(--gaza-transition),
+    transform var(--gaza-transition);
+}
+
+
+.gaza-home .gaza-section__link:hover {
+
+  color:
+    var(--gaza-cyan);
+
+  transform:
+    translateX(3px);
+}
+
+
+.gaza-home .gaza-section__link i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   AUDIO GRID
+   ============================================================ */
+
+.gaza-home .gaza-audio-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 17px;
+
+  width: 100%;
+}
+
+
+/* ============================================================
+   GENRE GRID
+   ============================================================ */
+
+.gaza-home .gaza-genre-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(5, minmax(0, 1fr));
+
+  gap: 14px;
+
+  width: 100%;
+}
+
+
+/* ============================================================
+   FEATURED VIDEOS
+   HORIZONTAL SCROLLER
+   ============================================================ */
+
+.gaza-home .gaza-video-scroll {
+
+  position: relative;
+
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-x: contain;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  touch-action: pan-x;
+}
+
+
+.gaza-home .gaza-video-scroll::-webkit-scrollbar {
+
+  display: none;
+
+  width: 0;
+  height: 0;
+}
+
+
+/* ============================================================
+   VIDEO TRACK
+   ============================================================ */
+
+.gaza-home .gaza-video-scroll__track {
+
+  display: flex;
+
+  align-items: stretch;
+
+  gap: 17px;
+
+  width: max-content;
+
+  min-width: 100%;
+
+  padding:
+    2px 2px 8px 1px;
+}
+
+
+/* ============================================================
+   VIDEO CARD HOST
+   ============================================================ */
+
+.gaza-home .gaza-video-scroll__track > app-video-card {
+
+  display: block;
+
+  flex:
+    0 0 calc((100vw - 51px) / 4);
+
+  width:
+    calc((100vw - 51px) / 4);
+
+  min-width:
+    calc((100vw - 51px) / 4);
+
+  max-width: none;
+}
+
+
+/* ============================================================
+   WATCH MORE VIDEO CARD
+   ============================================================ */
+
+.gaza-home .gaza-video-more {
+
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+
+  justify-content: center;
+
+  flex:
+    0 0 calc((100vw - 51px) / 4);
+
+  width:
+    calc((100vw - 51px) / 4);
+
+  min-width:
+    calc((100vw - 51px) / 4);
+
+  min-height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  color:
+    var(--gaza-text-primary);
+
+  text-decoration: none;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(8, 207, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(108, 36, 255, 0.16),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #0b0b12,
+      #111020
+    );
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform var(--gaza-transition),
+    border-color var(--gaza-transition),
+    box-shadow var(--gaza-transition);
+}
+
+
+.gaza-home .gaza-video-more::before {
+
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  right: -85px;
+  bottom: -90px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.10);
+
+  box-shadow:
+    0 0 0 20px rgba(8, 207, 255, 0.02),
+    0 0 0 40px rgba(108, 36, 255, 0.02);
+
+  pointer-events: none;
+}
+
+
+.gaza-home .gaza-video-more:hover {
+
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(8, 207, 255, 0.25);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+.gaza-home .gaza-video-more__icon {
+
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 20px;
+
+  border-radius: 13px;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 10px 28px rgba(108, 36, 255, 0.25);
+
+  transition:
+    transform var(--gaza-transition),
+    box-shadow var(--gaza-transition);
+}
+
+
+.gaza-home .gaza-video-more:hover .gaza-video-more__icon {
+
+  transform:
+    translateX(4px);
+}
+
+
+.gaza-home .gaza-video-more__icon i {
+  font-size: 14px;
+}
+
+
+.gaza-home .gaza-video-more__content {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: 100%;
+
+  min-width: 0;
+}
+
+
+.gaza-home .gaza-video-more__eyebrow {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-home .gaza-video-more h3 {
+
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 20px;
+
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.7px;
+}
+
+
+.gaza-home .gaza-video-more p {
+
+  margin: 7px 0 0;
+
+  color:
+    var(--gaza-text-muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   PODCAST BANNER
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+
+  width: 100%;
+
+  min-height: 175px;
+
+  margin-top: 5px;
+
+  padding: 28px 32px;
+
+  overflow: hidden;
+
+  isolation: isolate;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.07);
+
+  border-radius: 20px;
+
+  background:
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(8, 207, 255, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(108, 36, 255, 0.16),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #090910,
+      #10101b 55%,
+      #111020
+    );
+
+  box-shadow:
+    0 18px 50px rgba(0, 0, 0, 0.20);
+}
+
+
+/* ============================================================
+   PODCAST GLOW
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__glow {
+
+  position: absolute;
+
+  top: 50%;
+  left: 13%;
+
+  width: 230px;
+  height: 230px;
+
+  transform:
+    translate(-50%, -50%);
+
+  border-radius: 50%;
+
+  background:
+    var(--gaza-cyan);
+
+  opacity: 0.055;
+
+  filter:
+    blur(65px);
+
+  pointer-events: none;
+
+  z-index: -2;
+}
+
+
+/* ============================================================
+   PODCAST PATTERN
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__pattern {
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.15;
+
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      315deg,
+      rgba(255, 255, 255, 0.025) 25%,
+      transparent 25%
+    );
+
+  background-size:
+    26px 26px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      #000,
+      transparent 75%
+    );
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   PODCAST ICON
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__icon {
+
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 92px;
+
+  width: 92px;
+  height: 92px;
+
+  margin-right: 28px;
+
+  border-radius: 27px;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 15px 40px rgba(108, 36, 255, 0.23);
+}
+
+
+/* ============================================================
+   PODCAST ICON RING
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__icon-ring {
+
+  position: absolute;
+
+  inset: -9px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.17);
+
+  border-radius: 31px;
+
+  box-shadow:
+    0 0 0 7px rgba(8, 207, 255, 0.025);
+
+  pointer-events: none;
+}
+
+
+.gaza-home .gaza-podcast-banner__icon i {
+
+  position: relative;
+
+  z-index: 2;
+
+  font-size: 28px;
+}
+
+
+/* ============================================================
+   PODCAST CONTENT
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__content {
+
+  position: relative;
+
+  z-index: 2;
+
+  flex: 1 1 auto;
+
+  min-width: 0;
+}
+
+
+.gaza-home .gaza-podcast-banner__eyebrow {
+
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+
+  font-weight: 850;
+
+  letter-spacing: 1.7px;
+
+  line-height: 1.2;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-home .gaza-podcast-banner__content h2 {
+
+  margin: 0;
+
+  color: #fff;
+
+  font-size:
+    clamp(25px, 3vw, 36px);
+
+  font-weight: 850;
+
+  line-height: 1.05;
+
+  letter-spacing: -1.3px;
+}
+
+
+.gaza-home .gaza-podcast-banner__content p {
+
+  max-width: 580px;
+
+  margin: 8px 0 0;
+
+  color:
+    var(--gaza-text-secondary);
+
+  font-size: 11px;
+
+  line-height: 1.55;
+}
+
+
+/* ============================================================
+   PODCAST ACTION
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__action {
+
+  position: relative;
+
+  z-index: 3;
+
+  display: inline-flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  flex: 0 0 auto;
+
+  margin-left: 28px;
+
+  padding:
+    7px 7px 7px 14px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 11px;
+
+  color:
+    #fff;
+
+  background:
+    rgba(255, 255, 255, 0.035);
+
+  font-size: 9px;
+
+  font-weight: 750;
+
+  text-decoration: none;
+
+  white-space: nowrap;
+
+  transition:
+    transform var(--gaza-transition),
+    border-color var(--gaza-transition),
+    background var(--gaza-transition),
+    box-shadow var(--gaza-transition);
+}
+
+
+.gaza-home .gaza-podcast-banner__action:hover {
+
+  transform:
+    translateX(3px);
+
+  border-color:
+    rgba(8, 207, 255, 0.24);
+
+  background:
+    rgba(8, 207, 255, 0.06);
+
+  box-shadow:
+    0 8px 25px rgba(8, 207, 255, 0.07);
+}
+
+
+/* ============================================================
+   PODCAST ACTION ICON
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__action-icon {
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  border-radius: 8px;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+}
+
+
+.gaza-home .gaza-podcast-banner__action-icon i {
+  font-size: 9px;
+}
+
+
+/* ============================================================
+   LARGE TABLET
+   ============================================================ */
+
+@media (max-width: 1200px) {
+
+  .gaza-home .gaza-audio-grid,
+  .gaza-home .gaza-genre-grid {
+
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+  }
+
+
+  .gaza-home .gaza-video-scroll__track {
+
+    gap: 17px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+
+    flex:
+      0 0 calc((100vw - 34px) / 3);
+
+    width:
+      calc((100vw - 34px) / 3);
+
+    min-width:
+      calc((100vw - 34px) / 3);
+  }
+
+
+  .gaza-home .gaza-podcast-banner {
+
+    padding:
+      26px 28px;
+  }
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 992px) {
+
+  .gaza-home .gaza-hero {
+
+    min-height: 270px;
+
+    padding: 30px;
+  }
+
+
+  .gaza-home .gaza-hero__content {
+
+    max-width: 530px;
+  }
+
+
+  .gaza-home .gaza-hero__visual {
+
+    right: -20px;
+
+    opacity: 0.48;
+
+    transform:
+      translateY(-50%) scale(0.82);
+  }
+
+
+  .gaza-home .gaza-audio-grid,
+  .gaza-home .gaza-genre-grid {
+
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+  }
+
+
+  .gaza-home .gaza-video-scroll__track {
+
+    gap: 14px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+
+    flex:
+      0 0 calc((100vw - 14px) / 2);
+
+    width:
+      calc((100vw - 14px) / 2);
+
+    min-width:
+      calc((100vw - 14px) / 2);
+  }
+
+
+  .gaza-home .gaza-podcast-banner {
+
+    min-height: 155px;
+
+    padding: 24px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon {
+
+    flex-basis: 70px;
+
+    width: 70px;
+    height: 70px;
+
+    margin-right: 20px;
+
+    border-radius: 21px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+
+    border-radius: 25px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon i {
+
+    font-size: 21px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action {
+
+    margin-left: 20px;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .gaza-home .gaza-hero {
+
+    min-height: 255px;
+
+    margin-top: 14px;
+    margin-bottom: 36px;
+
+    padding: 27px 24px;
+
+    border-radius: 18px;
+  }
+
+
+  .gaza-home .gaza-hero__title {
+
+    font-size: 39px;
+
+    letter-spacing: -2.2px;
+  }
+
+
+  .gaza-home .gaza-hero__description {
+
+    max-width: 380px;
+
+    margin-top: 12px;
+
+    font-size: 11px;
+  }
+
+
+  .gaza-home .gaza-hero__visual {
+
+    right: -95px;
+
+    opacity: 0.22;
+
+    transform:
+      translateY(-50%) scale(0.72);
+  }
+
+
+  .gaza-home .gaza-section {
+
+    margin-bottom: 38px;
+  }
+
+
+  .gaza-home .gaza-section__header {
+
+    margin-bottom: 14px;
+  }
+
+
+  .gaza-home .gaza-audio-grid,
+  .gaza-home .gaza-genre-grid {
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: 11px;
+  }
+
+
+  /* ==========================================================
+     MOBILE VIDEO SCROLLER
+     ========================================================== */
+
+  .gaza-home .gaza-video-scroll {
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-bottom: 2px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track {
+
+    gap: 11px;
+
+    width: max-content;
+
+    min-width: 100%;
+
+    padding:
+      2px 16px 8px 1px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+
+    flex:
+      0 0 78vw;
+
+    width:
+      78vw;
+
+    min-width:
+      78vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+
+    padding: 20px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+
+    width: 43px;
+    height: 43px;
+
+    margin-bottom: 16px;
+
+    border-radius: 11px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 18px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 10px;
+  }
+
+
+  /* ==========================================================
+     PODCAST MOBILE
+     ========================================================== */
+
+  .gaza-home .gaza-podcast-banner {
+
+    display: grid;
+
+    grid-template-columns:
+      auto minmax(0, 1fr);
+
+    align-items: center;
+
+    min-height: auto;
+
+    padding: 22px;
+
+    gap: 16px;
+
+    border-radius: 17px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon {
+
+    grid-row:
+      span 2;
+
+    width: 62px;
+    height: 62px;
+
+    margin: 0;
+
+    border-radius: 18px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+
+    border-radius: 22px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon i {
+    font-size: 19px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content {
+    min-width: 0;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__eyebrow {
+
+    margin-bottom: 5px;
+
+    font-size: 7px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content h2 {
+    font-size: 25px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content p {
+
+    margin-top: 6px;
+
+    font-size: 10px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action {
+
+    grid-column: 2;
+
+    justify-self: start;
+
+    margin: 0;
+
+    margin-top: 1px;
+  }
+
+
+  /* ==========================================================
+     MOBILE BUTTONS
+     ========================================================== */
+
+  .gaza-home .gaza-btn {
+
+    min-height: 37px;
+
+    padding:
+      0 12px;
+
+    border-radius: 9px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-btn__icon {
+
+    width: 22px;
+    height: 22px;
+
+    border-radius: 6px;
+  }
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  .gaza-home .gaza-hero {
+
+    min-height: 235px;
+
+    padding: 23px 20px;
+
+    border-radius: 16px;
+  }
+
+
+  .gaza-home .gaza-hero__eyebrow {
+
+    margin-bottom: 10px;
+
+    font-size: 8px;
+
+    letter-spacing: 1.3px;
+  }
+
+
+  .gaza-home .gaza-hero__eyebrow-icon {
+
+    width: 21px;
+    height: 21px;
+
+    flex-basis: 21px;
+
+    border-radius: 6px;
+  }
+
+
+  .gaza-home .gaza-hero__eyebrow-status,
+  .gaza-home .gaza-hero__eyebrow-dot {
+
+    display: none;
+  }
+
+
+  .gaza-home .gaza-hero__title {
+
+    font-size: 33px;
+
+    letter-spacing: -1.7px;
+  }
+
+
+  .gaza-home .gaza-hero__description {
+
+    max-width: 280px;
+
+    margin: 11px 0 17px;
+
+    font-size: 10px;
+  }
+
+
+  .gaza-home .gaza-hero__visual {
+
+    right: -130px;
+
+    opacity: 0.16;
+
+    transform:
+      translateY(-50%) scale(0.62);
+  }
+
+
+  .gaza-home .gaza-section {
+
+    margin-bottom: 32px;
+  }
+
+
+  .gaza-home .gaza-section__header {
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+  }
+
+
+  .gaza-home .gaza-section__eyebrow {
+
+    font-size: 7px;
+
+    letter-spacing: 1.2px;
+  }
+
+
+  .gaza-home .gaza-section__heading h2 {
+
+    font-size: 18px;
+  }
+
+
+  .gaza-home .gaza-section__heading p {
+
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-section__link {
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-audio-grid,
+  .gaza-home .gaza-genre-grid {
+
+    gap: 8px;
+  }
+
+
+  /* ==========================================================
+     SMALL VIDEO
+     ========================================================== */
+
+  .gaza-home .gaza-video-scroll__track {
+
+    gap: 9px;
+
+    padding-right: 14px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+
+    flex:
+      0 0 82vw;
+
+    width:
+      82vw;
+
+    min-width:
+      82vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+
+    padding: 18px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+
+    width: 40px;
+    height: 40px;
+
+    margin-bottom: 14px;
+
+    border-radius: 10px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 17px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 9px;
+  }
+
+
+  /* ==========================================================
+     PODCAST SMALL MOBILE
+     ========================================================== */
+
+  .gaza-home .gaza-podcast-banner {
+
+    padding: 18px;
+
+    gap: 13px;
+
+    border-radius: 15px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon {
+
+    width: 53px;
+    height: 53px;
+
+    border-radius: 15px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+
+    inset: -6px;
+
+    border-radius: 19px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon i {
+    font-size: 17px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__eyebrow {
+
+    margin-bottom: 5px;
+
+    font-size: 7px;
+
+    letter-spacing: 1.2px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content h2 {
+
+    font-size: 21px;
+
+    letter-spacing: -0.7px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content p {
+
+    margin-top: 5px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action {
+
+    padding:
+      5px 5px 5px 10px;
+
+    border-radius: 8px;
+
+    font-size: 8px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action-icon {
+
+    width: 23px;
+    height: 23px;
+
+    border-radius: 6px;
+  }
+
+
+  /* ==========================================================
+     SMALL BUTTONS
+     ========================================================== */
+
+  .gaza-home .gaza-btn {
+
+    min-height: 35px;
+
+    padding:
+      0 10px;
+
+    font-size: 8.5px;
+
+    border-radius: 8px;
+  }
+
+
+  .gaza-home .gaza-btn__icon {
+
+    width: 21px;
+    height: 21px;
+
+    border-radius: 6px;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-home .gaza-hero {
+
+    min-height: 215px;
+
+    padding: 20px 17px;
+
+    margin-top: 10px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-home .gaza-hero__eyebrow {
+    font-size: 7px;
+  }
+
+
+  .gaza-home .gaza-hero__title {
+
+    font-size: 29px;
+
+    letter-spacing: -1.4px;
+  }
+
+
+  .gaza-home .gaza-hero__description {
+
+    max-width: 245px;
+
+    margin: 9px 0 14px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-btn {
+
+    min-height: 31px;
+
+    padding:
+      0 8px;
+
+    font-size: 8px;
+
+    border-radius: 7px;
+  }
+
+
+  .gaza-home .gaza-btn__icon {
+
+    width: 19px;
+    height: 19px;
+
+    border-radius: 5px;
+  }
+
+
+  .gaza-home .gaza-hero__visual {
+
+    right: -145px;
+
+    opacity: 0.11;
+  }
+
+
+  .gaza-home .gaza-section__heading h2 {
+    font-size: 16px;
+  }
+
+
+  .gaza-home .gaza-section__heading p {
+    font-size: 8px;
+  }
+
+
+  .gaza-home .gaza-section__link {
+    font-size: 8px;
+  }
+
+
+  /* ==========================================================
+     VERY SMALL VIDEO
+     ========================================================== */
+
+  .gaza-home .gaza-video-scroll__track {
+
+    gap: 8px;
+
+    padding-right: 12px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+
+    flex:
+      0 0 86vw;
+
+    width:
+      86vw;
+
+    min-width:
+      86vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+
+    padding: 16px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 12px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 16px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 8px;
+  }
+
+
+  /* ==========================================================
+     VERY SMALL PODCAST
+     ========================================================== */
+
+  .gaza-home .gaza-podcast-banner {
+
+    padding: 15px;
+
+    gap: 10px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon {
+
+    width: 46px;
+    height: 46px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+
+    inset: -5px;
+
+    border-radius: 17px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon i {
+    font-size: 15px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__eyebrow {
+
+    font-size: 6px;
+
+    letter-spacing: 1px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content h2 {
+    font-size: 18px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content p {
+    font-size: 8px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action {
+
+    padding:
+      4px 4px 4px 8px;
+
+    font-size: 7px;
+
+    gap: 6px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__action-icon {
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: 5px;
+  }
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-home .gaza-hero__waves span {
+
+    animation: none;
+  }
+
+
+  .gaza-home .gaza-btn,
+  .gaza-home .gaza-section__link,
+  .gaza-home .gaza-video-more,
+  .gaza-home .gaza-video-more__icon,
+  .gaza-home .gaza-podcast-banner__action {
+
+    transition: none;
+  }
+
+
+  .gaza-home .gaza-video-scroll {
+
+    scroll-behavior: auto;
+  }
+}
+
+
+
+
+/* ============================================================
+   GAZA STREAM HOME
+   FULL COMPONENT STYLES
    ============================================================ */
 
 .gaza-home {
   width: 100%;
   min-width: 0;
+
+  /* Main theme variables */
+  --gaza-cyan: #08cfff;
+  --gaza-purple: #6c24ff;
+
+  --gaza-gradient:
+    linear-gradient(
+      135deg,
+      var(--gaza-cyan),
+      var(--gaza-purple)
+    );
+
+  --gaza-dark: #08080d;
+  --gaza-dark-2: #0d0d15;
+  --gaza-card: #11111a;
+  --gaza-card-hover: #151520;
+
+  --gaza-border:
+    rgba(255, 255, 255, 0.07);
+
+  --gaza-border-hover:
+    rgba(8, 207, 255, 0.22);
 }
 
 
@@ -21,7 +2673,6 @@
   align-items: center;
 
   width: 100%;
-
   min-height: 285px;
 
   margin: 20px 0 44px;
@@ -36,16 +2687,22 @@
   border-radius: 22px;
 
   background:
-    radial-gradient(circle at 78% 30%,
+    radial-gradient(
+      circle at 78% 30%,
       rgba(8, 207, 255, 0.12),
-      transparent 25%),
-    radial-gradient(circle at 65% 100%,
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 65% 100%,
       rgba(108, 36, 255, 0.14),
-      transparent 35%),
-    linear-gradient(135deg,
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
       #08080d 0%,
       #0c0c15 52%,
-      #111020 100%);
+      #111020 100%
+    );
 
   box-shadow:
     0 20px 55px rgba(0, 0, 0, 0.20);
@@ -65,19 +2722,25 @@
   opacity: 0.13;
 
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px),
-    linear-gradient(90deg,
+    linear-gradient(
       rgba(255, 255, 255, 0.025) 1px,
-      transparent 1px);
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.025) 1px,
+      transparent 1px
+    );
 
   background-size: 38px 38px;
 
   mask-image:
-    linear-gradient(90deg,
+    linear-gradient(
+      90deg,
       #000 0%,
       rgba(0, 0, 0, 0.55) 60%,
-      transparent 100%);
+      transparent 100%
+    );
 
   pointer-events: none;
 }
@@ -107,7 +2770,8 @@
   top: -170px;
   right: 60px;
 
-  background: var(--gaza-cyan);
+  background:
+    var(--gaza-cyan);
 
   opacity: 0.10;
 }
@@ -120,7 +2784,8 @@
   bottom: -190px;
   right: 260px;
 
-  background: #6c24ff;
+  background:
+    var(--gaza-purple);
 
   opacity: 0.12;
 }
@@ -137,29 +2802,27 @@
 
   width: 100%;
   max-width: 590px;
-
   min-width: 0;
 }
 
 
 /* ============================================================
-   EYEBROW
+   HERO EYEBROW
    ============================================================ */
 
 .gaza-home .gaza-hero__eyebrow {
   display: inline-flex;
-
   align-items: center;
 
   gap: 8px;
 
   margin-bottom: 12px;
 
-  color: var(--gaza-cyan);
+  color:
+    var(--gaza-cyan);
 
   font-size: 9px;
   font-weight: 800;
-
   line-height: 1;
 
   letter-spacing: 1.7px;
@@ -184,9 +2847,6 @@
 
   background:
     rgba(8, 207, 255, 0.07);
-
-  box-shadow:
-    0 0 18px rgba(8, 207, 255, 0.06);
 }
 
 
@@ -201,12 +2861,14 @@
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.30);
+  background:
+    rgba(255, 255, 255, 0.30);
 }
 
 
 .gaza-home .gaza-hero__eyebrow-status {
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-weight: 650;
 
@@ -260,7 +2922,8 @@
 
   margin: 14px 0 20px;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
   font-size: 12px;
 
@@ -284,10 +2947,12 @@
 
 
 /* ============================================================
-   BUTTON
+   BUTTON BASE
    ============================================================ */
 
 .gaza-home .gaza-btn {
+  position: relative;
+
   display: inline-flex;
 
   align-items: center;
@@ -298,6 +2963,8 @@
   min-height: 39px;
 
   padding: 0 14px;
+
+  overflow: hidden;
 
   border-radius: 10px;
 
@@ -312,12 +2979,14 @@
     transform var(--transition),
     box-shadow var(--transition),
     background var(--transition),
-    border-color var(--transition);
+    border-color var(--transition),
+    color var(--transition);
 }
 
 
 .gaza-home .gaza-btn:hover {
-  transform: translateY(-2px);
+  transform:
+    translateY(-2px);
 }
 
 
@@ -329,6 +2998,8 @@
 
   width: 24px;
   height: 24px;
+
+  flex: 0 0 auto;
 
   border-radius: 7px;
 }
@@ -359,7 +3030,7 @@
 
 .gaza-home .gaza-btn--primary:hover {
   box-shadow:
-    0 12px 32px rgba(108, 36, 255, 0.34);
+    0 12px 32px rgba(108, 36, 255, 0.30);
 }
 
 
@@ -371,17 +3042,17 @@
   border:
     1px solid rgba(255, 255, 255, 0.09);
 
-  color: var(--text-primary);
+  color:
+    var(--text-primary);
 
   background:
     rgba(255, 255, 255, 0.035);
-
-  backdrop-filter: blur(10px);
 }
 
 
 .gaza-home .gaza-btn--secondary .gaza-btn__icon {
-  color: var(--gaza-cyan);
+  color:
+    var(--gaza-cyan);
 
   background:
     rgba(8, 207, 255, 0.07);
@@ -394,6 +3065,275 @@
 
   background:
     rgba(8, 207, 255, 0.055);
+}
+
+
+/* ============================================================
+   SIGNUP BUTTON
+   PREMIUM CTA
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup {
+  position: relative;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 9px;
+
+  min-height: 42px;
+
+  padding:
+    0 7px 0 16px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.88);
+
+  border-radius: 12px;
+
+  color: #08080d;
+
+  background:
+    #ffffff;
+
+  font-size: 10px;
+  font-weight: 800;
+
+  letter-spacing: 0.1px;
+
+  text-decoration: none;
+
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  isolation: isolate;
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    background 0.22s ease,
+    border-color 0.22s ease;
+}
+
+
+/* ============================================================
+   SIGNUP LIGHT SWEEP
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: -120%;
+
+  width: 70%;
+  height: 100%;
+
+  background:
+    linear-gradient(
+      110deg,
+      transparent,
+      rgba(255, 255, 255, 0.80),
+      transparent
+    );
+
+  transform:
+    skewX(-18deg);
+
+  transition:
+    left 0.55s ease;
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+/* ============================================================
+   SIGNUP GRADIENT BORDER
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup::after {
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  border-radius: inherit;
+
+  padding: 1px;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(8, 207, 255, 0.80),
+      rgba(108, 36, 255, 0.80)
+    );
+
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+
+  -webkit-mask-composite: xor;
+
+  mask-composite: exclude;
+
+  opacity: 0;
+
+  transition:
+    opacity 0.22s ease;
+
+  pointer-events: none;
+}
+
+
+/* ============================================================
+   SIGNUP TEXT
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup span {
+  position: relative;
+
+  z-index: 2;
+
+  color:
+    #08080d;
+
+  transition:
+    color 0.22s ease;
+}
+
+
+/* ============================================================
+   SIGNUP ICON
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup .gaza-btn__icon {
+  position: relative;
+
+  z-index: 2;
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 27px;
+  height: 27px;
+
+  flex:
+    0 0 27px;
+
+  border-radius: 8px;
+
+  color: #fff;
+
+  background:
+    linear-gradient(
+      135deg,
+      var(--gaza-cyan),
+      var(--gaza-purple)
+    );
+
+  box-shadow:
+    0 5px 15px rgba(108, 36, 255, 0.22);
+
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+
+.gaza-home .gaza-btn--signup .gaza-btn__icon i {
+  font-size: 9px;
+
+  transition:
+    transform 0.22s ease;
+}
+
+
+/* ============================================================
+   SIGNUP HOVER
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup:hover {
+  transform:
+    translateY(-3px);
+
+  border-color:
+    rgba(8, 207, 255, 0.45);
+
+  background:
+    linear-gradient(
+      135deg,
+      #ffffff 0%,
+      #f8fbff 100%
+    );
+
+  box-shadow:
+    0 12px 30px rgba(0, 0, 0, 0.22),
+    0 0 25px rgba(8, 207, 255, 0.10);
+}
+
+
+.gaza-home .gaza-btn--signup:hover::before {
+  left: 140%;
+}
+
+
+.gaza-home .gaza-btn--signup:hover::after {
+  opacity: 1;
+}
+
+
+.gaza-home .gaza-btn--signup:hover .gaza-btn__icon {
+  transform:
+    translateX(2px);
+
+  box-shadow:
+    0 7px 20px rgba(108, 36, 255, 0.32);
+}
+
+
+.gaza-home .gaza-btn--signup:hover .gaza-btn__icon i {
+  transform:
+    translateX(2px);
+}
+
+
+/* ============================================================
+   SIGNUP ACTIVE
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup:active {
+  transform:
+    translateY(-1px)
+    scale(0.98);
+
+  box-shadow:
+    0 6px 18px rgba(0, 0, 0, 0.18);
+}
+
+
+/* ============================================================
+   SIGNUP FOCUS
+   ============================================================ */
+
+.gaza-home .gaza-btn--signup:focus-visible {
+  outline: none;
+
+  box-shadow:
+    0 0 0 3px rgba(8, 207, 255, 0.16),
+    0 0 0 5px rgba(108, 36, 255, 0.10),
+    0 10px 28px rgba(0, 0, 0, 0.20);
 }
 
 
@@ -420,7 +3360,7 @@
 
 
 /* ============================================================
-   DISC
+   HERO DISC
    ============================================================ */
 
 .gaza-home .gaza-hero__disc {
@@ -440,25 +3380,19 @@
   border-radius: 50%;
 
   background:
-    repeating-radial-gradient(circle at center,
+    repeating-radial-gradient(
+      circle at center,
       #0d0d14 0,
       #0d0d14 4px,
       #151522 5px,
-      #0a0a10 8px);
+      #0a0a10 8px
+    );
 
   box-shadow:
     0 22px 45px rgba(0, 0, 0, 0.50),
     0 0 65px rgba(108, 36, 255, 0.10);
-
-  transition:
-    box-shadow var(--transition-slow),
-    transform var(--transition-slow);
 }
 
-
-/* ============================================================
-   DISC OUTER RING
-   ============================================================ */
 
 .gaza-home .gaza-hero__disc::before {
   content: "";
@@ -521,36 +3455,7 @@
 
 
 /* ============================================================
-   PLAYING
-   ============================================================ */
-
-.gaza-home .gaza-hero__visual.is-playing .gaza-hero__disc {
-  animation:
-    gaza-disc-pulse 2.4s ease-in-out infinite;
-
-  box-shadow:
-    0 22px 45px rgba(0, 0, 0, 0.50),
-    0 0 75px rgba(108, 36, 255, 0.23),
-    0 0 110px rgba(8, 207, 255, 0.08);
-}
-
-
-@keyframes gaza-disc-pulse {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  50% {
-    transform: scale(1.025);
-  }
-
-}
-
-
-/* ============================================================
-   WAVES
+   HERO WAVES
    ============================================================ */
 
 .gaza-home .gaza-hero__waves {
@@ -568,7 +3473,6 @@
   height: 58px;
 
   opacity: 0;
-
   visibility: hidden;
 
   transform:
@@ -600,10 +3504,6 @@
 
   background:
     var(--gaza-gradient);
-
-  transform-origin: center;
-
-  animation: none;
 }
 
 
@@ -673,21 +3573,21 @@
 
 
 @keyframes gaza-wave {
-
   0%,
   100% {
-    transform: scaleY(0.55);
+    transform:
+      scaleY(0.55);
   }
 
   50% {
-    transform: scaleY(1);
+    transform:
+      scaleY(1);
   }
-
 }
 
 
 /* ============================================================
-   SECTIONS
+   GENERAL SECTIONS
    ============================================================ */
 
 .gaza-home .gaza-section {
@@ -715,10 +3615,6 @@
 }
 
 
-/* ============================================================
-   SECTION EYEBROW
-   ============================================================ */
-
 .gaza-home .gaza-section__eyebrow {
   display: inline-flex;
 
@@ -728,7 +3624,8 @@
 
   margin-bottom: 6px;
 
-  color: var(--gaza-cyan);
+  color:
+    var(--gaza-cyan);
 
   font-size: 8px;
   font-weight: 800;
@@ -744,14 +3641,11 @@
 }
 
 
-/* ============================================================
-   SECTION TITLE
-   ============================================================ */
-
 .gaza-home .gaza-section__heading h2 {
   margin: 0;
 
-  color: var(--text-primary);
+  color:
+    var(--text-primary);
 
   font-size:
     clamp(20px, 2vw, 26px);
@@ -767,17 +3661,14 @@
 .gaza-home .gaza-section__heading p {
   margin: 5px 0 0;
 
-  color: var(--text-muted);
+  color:
+    var(--text-muted);
 
   font-size: 11px;
 
   line-height: 1.5;
 }
 
-
-/* ============================================================
-   SECTION LINK
-   ============================================================ */
 
 .gaza-home .gaza-section__link {
   display: inline-flex;
@@ -788,9 +3679,11 @@
 
   flex: 0 0 auto;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
   font-size: 10px;
+
   font-weight: 750;
 
   text-decoration: none;
@@ -802,7 +3695,8 @@
 
 
 .gaza-home .gaza-section__link:hover {
-  color: var(--gaza-cyan);
+  color:
+    var(--gaza-cyan);
 
   transform:
     translateX(3px);
@@ -847,18 +3741,279 @@
 
 
 /* ============================================================
-   VIDEO GRID
+   FEATURED VIDEOS
+   HORIZONTAL SCROLLER
    ============================================================ */
 
-.gaza-home .gaza-video-grid {
-  display: grid;
+.gaza-home .gaza-video-scroll {
+  position: relative;
 
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+
+  -webkit-overflow-scrolling: touch;
+
+  overscroll-behavior-x: contain;
+
+  scrollbar-width: none;
+
+  -ms-overflow-style: none;
+
+  touch-action: pan-x;
+}
+
+
+.gaza-home .gaza-video-scroll::-webkit-scrollbar {
+  display: none;
+
+  width: 0;
+  height: 0;
+}
+
+
+/* ============================================================
+   VIDEO TRACK
+   ============================================================ */
+
+.gaza-home .gaza-video-scroll__track {
+  display: flex;
+
+  align-items: stretch;
 
   gap: 17px;
 
+  width: max-content;
+
+  min-width: 100%;
+
+  padding:
+    2px 2px 8px 1px;
+}
+
+
+/* ============================================================
+   VIDEO CARD HOST
+   ============================================================ */
+
+.gaza-home .gaza-video-scroll__track > app-video-card {
+  display: block;
+
+  flex:
+    0 0 calc((100vw - 51px) / 4);
+
+  width:
+    calc((100vw - 51px) / 4);
+
+  min-width:
+    calc((100vw - 51px) / 4);
+
+  max-width: none;
+}
+
+
+/* ============================================================
+   WATCH MORE VIDEO CARD
+   ============================================================ */
+
+.gaza-home .gaza-video-more {
+  position: relative;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: flex-start;
+  justify-content: center;
+
+  flex:
+    0 0 calc((100vw - 51px) / 4);
+
+  width:
+    calc((100vw - 51px) / 4);
+
+  min-width:
+    calc((100vw - 51px) / 4);
+
+  min-height: 100%;
+
+  box-sizing: border-box;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: 16px;
+
+  color:
+    var(--text-primary);
+
+  text-decoration: none;
+
+  background:
+    radial-gradient(
+      circle at 90% 10%,
+      rgba(8, 207, 255, 0.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 10% 100%,
+      rgba(108, 36, 255, 0.16),
+      transparent 40%
+    ),
+    linear-gradient(
+      135deg,
+      #0b0b12,
+      #111020
+    );
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.15);
+
+  transition:
+    transform var(--transition),
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.gaza-home .gaza-video-more::before {
+  content: "";
+
+  position: absolute;
+
+  width: 170px;
+  height: 170px;
+
+  right: -85px;
+  bottom: -90px;
+
+  border-radius: 50%;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.10);
+
+  box-shadow:
+    0 0 0 20px rgba(8, 207, 255, 0.02),
+    0 0 0 40px rgba(108, 36, 255, 0.02);
+
+  pointer-events: none;
+}
+
+
+.gaza-home .gaza-video-more:hover {
+  transform:
+    translateY(-4px);
+
+  border-color:
+    rgba(8, 207, 255, 0.25);
+
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.25);
+}
+
+
+.gaza-home .gaza-video-more__icon {
+  position: relative;
+
+  z-index: 2;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  flex: 0 0 auto;
+
+  width: 48px;
+  height: 48px;
+
+  margin-bottom: 20px;
+
+  border-radius: 13px;
+
+  color: #fff;
+
+  background:
+    var(--gaza-gradient);
+
+  box-shadow:
+    0 10px 28px rgba(108, 36, 255, 0.25);
+
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition);
+}
+
+
+.gaza-home .gaza-video-more:hover
+.gaza-video-more__icon {
+  transform:
+    translateX(4px);
+}
+
+
+.gaza-home .gaza-video-more__icon i {
+  font-size: 14px;
+}
+
+
+.gaza-home .gaza-video-more__content {
+  position: relative;
+
+  z-index: 2;
+
   width: 100%;
+  min-width: 0;
+}
+
+
+.gaza-home .gaza-video-more__eyebrow {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color:
+    var(--gaza-cyan);
+
+  font-size: 8px;
+  font-weight: 850;
+
+  letter-spacing: 1.5px;
+
+  text-transform: uppercase;
+}
+
+
+.gaza-home .gaza-video-more h3 {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 20px;
+  font-weight: 800;
+
+  line-height: 1.1;
+
+  letter-spacing: -0.7px;
+}
+
+
+.gaza-home .gaza-video-more p {
+  margin: 7px 0 0;
+
+  color:
+    var(--text-muted);
+
+  font-size: 10px;
+
+  line-height: 1.5;
 }
 
 
@@ -875,13 +4030,14 @@
 
   width: 100%;
 
-  min-height: 170px;
+  min-height: 175px;
 
-  margin-bottom: 40px;
+  margin-top: 5px;
 
   padding: 28px 32px;
 
   overflow: hidden;
+
   isolation: isolate;
 
   border:
@@ -890,64 +4046,25 @@
   border-radius: 20px;
 
   background:
-    radial-gradient(circle at 80% 50%,
-      rgba(8, 207, 255, 0.11),
-      transparent 27%),
-    radial-gradient(circle at 20% 100%,
+    radial-gradient(
+      circle at 15% 50%,
+      rgba(8, 207, 255, 0.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 15%,
       rgba(108, 36, 255, 0.16),
-      transparent 35%),
-    linear-gradient(120deg,
-      #0b0b12,
-      #111020);
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #090910,
+      #10101b 55%,
+      #111020
+    );
 
   box-shadow:
-    0 18px 45px rgba(0, 0, 0, 0.16);
-
-  transition:
-    border-color var(--transition),
-    transform var(--transition),
-    box-shadow var(--transition);
-}
-
-
-.gaza-home .gaza-podcast-banner:hover {
-  border-color:
-    rgba(8, 207, 255, 0.16);
-
-  transform:
-    translateY(-2px);
-
-  box-shadow:
-    0 22px 55px rgba(0, 0, 0, 0.22);
-}
-
-
-/* ============================================================
-   PODCAST PATTERN
-   ============================================================ */
-
-.gaza-home .gaza-podcast-banner__pattern {
-  position: absolute;
-  inset: 0;
-
-  z-index: -2;
-
-  opacity: 0.10;
-
-  background-image:
-    radial-gradient(rgba(255, 255, 255, 0.22) 1px,
-      transparent 1px);
-
-  background-size: 18px 18px;
-
-  mask-image:
-    linear-gradient(90deg,
-      transparent,
-      #000 40%,
-      #000 70%,
-      transparent);
-
-  pointer-events: none;
+    0 18px 50px rgba(0, 0, 0, 0.20);
 }
 
 
@@ -958,22 +4075,65 @@
 .gaza-home .gaza-podcast-banner__glow {
   position: absolute;
 
-  z-index: -1;
+  top: 50%;
+  left: 13%;
 
-  width: 300px;
-  height: 300px;
+  width: 230px;
+  height: 230px;
 
-  right: 100px;
-  top: -170px;
+  transform:
+    translate(-50%, -50%);
 
   border-radius: 50%;
 
   background:
-    var(--gaza-gradient);
+    var(--gaza-cyan);
 
-  opacity: 0.10;
+  opacity: 0.055;
 
-  filter: blur(70px);
+  filter:
+    blur(65px);
+
+  pointer-events: none;
+
+  z-index: -2;
+}
+
+
+/* ============================================================
+   PODCAST PATTERN
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__pattern {
+  position: absolute;
+
+  inset: 0;
+
+  z-index: -1;
+
+  opacity: 0.15;
+
+  background-image:
+    linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.035) 25%,
+      transparent 25%
+    ),
+    linear-gradient(
+      315deg,
+      rgba(255, 255, 255, 0.025) 25%,
+      transparent 25%
+    );
+
+  background-size:
+    26px 26px;
+
+  mask-image:
+    linear-gradient(
+      90deg,
+      #000,
+      transparent 75%
+    );
 
   pointer-events: none;
 }
@@ -991,14 +4151,14 @@
   align-items: center;
   justify-content: center;
 
-  flex: 0 0 82px;
+  flex: 0 0 92px;
 
-  width: 82px;
-  height: 82px;
+  width: 92px;
+  height: 92px;
 
-  margin-right: 25px;
+  margin-right: 28px;
 
-  border-radius: 50%;
+  border-radius: 27px;
 
   color: #fff;
 
@@ -1006,7 +4166,28 @@
     var(--gaza-gradient);
 
   box-shadow:
-    0 12px 35px rgba(108, 36, 255, 0.25);
+    0 15px 40px rgba(108, 36, 255, 0.23);
+}
+
+
+/* ============================================================
+   PODCAST ICON RING
+   ============================================================ */
+
+.gaza-home .gaza-podcast-banner__icon-ring {
+  position: absolute;
+
+  inset: -9px;
+
+  border:
+    1px solid rgba(8, 207, 255, 0.17);
+
+  border-radius: 31px;
+
+  box-shadow:
+    0 0 0 7px rgba(8, 207, 255, 0.025);
+
+  pointer-events: none;
 }
 
 
@@ -1015,33 +4196,7 @@
 
   z-index: 2;
 
-  font-size: 25px;
-}
-
-
-.gaza-home .gaza-podcast-banner__icon-ring {
-  position: absolute;
-
-  inset: -9px;
-
-  border:
-    1px solid rgba(8, 207, 255, 0.15);
-
-  border-radius: 50%;
-}
-
-
-.gaza-home .gaza-podcast-banner__icon-ring::before {
-  content: "";
-
-  position: absolute;
-
-  inset: 7px;
-
-  border:
-    1px dashed rgba(255, 255, 255, 0.10);
-
-  border-radius: 50%;
+  font-size: 28px;
 }
 
 
@@ -1050,9 +4205,13 @@
    ============================================================ */
 
 .gaza-home .gaza-podcast-banner__content {
-  min-width: 0;
+  position: relative;
 
-  flex: 1;
+  z-index: 2;
+
+  flex: 1 1 auto;
+
+  min-width: 0;
 }
 
 
@@ -1061,12 +4220,15 @@
 
   margin-bottom: 7px;
 
-  color: var(--gaza-cyan);
+  color:
+    var(--gaza-cyan);
 
   font-size: 8px;
   font-weight: 850;
 
   letter-spacing: 1.7px;
+
+  line-height: 1.2;
 
   text-transform: uppercase;
 }
@@ -1078,22 +4240,23 @@
   color: #fff;
 
   font-size:
-    clamp(24px, 3vw, 34px);
+    clamp(25px, 3vw, 36px);
 
-  font-weight: 800;
+  font-weight: 850;
 
   line-height: 1.05;
 
-  letter-spacing: -1.2px;
+  letter-spacing: -1.3px;
 }
 
 
 .gaza-home .gaza-podcast-banner__content p {
-  max-width: 520px;
+  max-width: 580px;
 
   margin: 8px 0 0;
 
-  color: var(--text-secondary);
+  color:
+    var(--text-secondary);
 
   font-size: 11px;
 
@@ -1106,49 +4269,68 @@
    ============================================================ */
 
 .gaza-home .gaza-podcast-banner__action {
+  position: relative;
+
+  z-index: 3;
+
   display: inline-flex;
 
   align-items: center;
+  justify-content: center;
 
   gap: 10px;
 
   flex: 0 0 auto;
 
-  margin-left: 25px;
+  margin-left: 28px;
 
-  padding: 7px 7px 7px 16px;
+  padding:
+    7px 7px 7px 14px;
 
   border:
     1px solid rgba(255, 255, 255, 0.08);
 
   border-radius: 11px;
 
-  color: #fff;
+  color:
+    #fff;
 
   background:
-    rgba(255, 255, 255, 0.045);
+    rgba(255, 255, 255, 0.035);
 
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 750;
 
   text-decoration: none;
 
-  backdrop-filter: blur(10px);
+  white-space: nowrap;
 
   transition:
+    transform var(--transition),
+    border-color var(--transition),
     background var(--transition),
-    border-color var(--transition);
+    box-shadow var(--transition);
 }
 
 
 .gaza-home .gaza-podcast-banner__action:hover {
+  transform:
+    translateX(3px);
+
   border-color:
-    rgba(8, 207, 255, 0.20);
+    rgba(8, 207, 255, 0.24);
 
   background:
-    rgba(8, 207, 255, 0.07);
+    rgba(8, 207, 255, 0.06);
+
+  box-shadow:
+    0 8px 25px rgba(8, 207, 255, 0.07);
 }
 
+
+/* ============================================================
+   PODCAST ACTION ICON
+   ============================================================ */
 
 .gaza-home .gaza-podcast-banner__action-icon {
   display: flex;
@@ -1186,11 +4368,28 @@
   }
 
 
-  .gaza-home .gaza-video-grid {
-    grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+  .gaza-home .gaza-video-scroll__track {
+    gap: 17px;
   }
 
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+    flex:
+      0 0 calc((100vw - 34px) / 3);
+
+    width:
+      calc((100vw - 34px) / 3);
+
+    min-width:
+      calc((100vw - 34px) / 3);
+  }
+
+
+  .gaza-home .gaza-podcast-banner {
+    padding:
+      26px 28px;
+  }
 }
 
 
@@ -1229,11 +4428,27 @@
   }
 
 
-  .gaza-home .gaza-video-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  .gaza-home .gaza-video-scroll__track {
+    gap: 14px;
   }
 
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+    flex:
+      0 0 calc((100vw - 14px) / 2);
+
+    width:
+      calc((100vw - 14px) / 2);
+
+    min-width:
+      calc((100vw - 14px) / 2);
+  }
+
+
+  /* ==========================================================
+     PODCAST TABLET
+     ========================================================== */
 
   .gaza-home .gaza-podcast-banner {
     min-height: 155px;
@@ -1249,6 +4464,13 @@
     height: 70px;
 
     margin-right: 20px;
+
+    border-radius: 21px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+    border-radius: 25px;
   }
 
 
@@ -1256,6 +4478,10 @@
     font-size: 21px;
   }
 
+
+  .gaza-home .gaza-podcast-banner__action {
+    margin-left: 20px;
+  }
 }
 
 
@@ -1322,18 +4548,113 @@
   }
 
 
-  .gaza-home .gaza-video-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+  /* ==========================================================
+     MOBILE VIDEO SCROLLER
+     ========================================================== */
 
-    gap: 11px;
+  .gaza-home .gaza-video-scroll {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    padding-bottom: 2px;
   }
 
+
+  .gaza-home .gaza-video-scroll__track {
+    gap: 11px;
+
+    width: max-content;
+
+    min-width: 100%;
+
+    padding:
+      2px 16px 8px 1px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+    flex:
+      0 0 78vw;
+
+    width:
+      78vw;
+
+    min-width:
+      78vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+    padding: 20px;
+
+    border-radius: 14px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+    width: 43px;
+    height: 43px;
+
+    margin-bottom: 16px;
+
+    border-radius: 11px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 18px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 10px;
+  }
+
+
+  /* ==========================================================
+     SIGNUP MOBILE
+     ========================================================== */
+
+  .gaza-home .gaza-btn--signup {
+    min-height: 39px;
+
+    padding:
+      0 6px 0 14px;
+
+    gap: 7px;
+
+    border-radius: 10px;
+
+    font-size: 9px;
+  }
+
+
+  .gaza-home .gaza-btn--signup .gaza-btn__icon {
+    width: 25px;
+    height: 25px;
+
+    flex-basis: 25px;
+
+    border-radius: 7px;
+  }
+
+
+  /* ==========================================================
+     PODCAST MOBILE
+     ========================================================== */
 
   .gaza-home .gaza-podcast-banner {
     display: grid;
 
-    grid-template-columns: auto 1fr;
+    grid-template-columns:
+      auto minmax(0, 1fr);
+
+    align-items: center;
 
     min-height: auto;
 
@@ -1346,17 +4667,39 @@
 
 
   .gaza-home .gaza-podcast-banner__icon {
-    grid-row: span 2;
+    grid-row:
+      span 2;
 
     width: 62px;
     height: 62px;
 
     margin: 0;
+
+    border-radius: 18px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+    border-radius: 22px;
   }
 
 
   .gaza-home .gaza-podcast-banner__icon i {
     font-size: 19px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__content {
+    min-width: 0;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__eyebrow {
+    margin-bottom: 5px;
+
+    font-size: 7px;
+
+    letter-spacing: 1.3px;
   }
 
 
@@ -1366,6 +4709,8 @@
 
 
   .gaza-home .gaza-podcast-banner__content p {
+    margin-top: 6px;
+
     font-size: 10px;
   }
 
@@ -1379,7 +4724,6 @@
 
     margin-top: 1px;
   }
-
 }
 
 
@@ -1417,11 +4761,7 @@
   }
 
 
-  .gaza-home .gaza-hero__eyebrow-status {
-    display: none;
-  }
-
-
+  .gaza-home .gaza-hero__eyebrow-status,
   .gaza-home .gaza-hero__eyebrow-dot {
     display: none;
   }
@@ -1437,35 +4777,10 @@
   .gaza-home .gaza-hero__description {
     max-width: 280px;
 
-    margin: 11px 0 17px;
+    margin:
+      11px 0 17px;
 
     font-size: 10px;
-
-    line-height: 1.55;
-  }
-
-
-  .gaza-home .gaza-hero__actions {
-    gap: 6px;
-  }
-
-
-  .gaza-home .gaza-btn {
-    min-height: 34px;
-
-    padding: 0 10px;
-
-    border-radius: 8px;
-
-    font-size: 9px;
-  }
-
-
-  .gaza-home .gaza-btn__icon {
-    width: 21px;
-    height: 21px;
-
-    border-radius: 6px;
   }
 
 
@@ -1521,12 +4836,93 @@
   }
 
 
-  .gaza-home .gaza-video-grid {
-    grid-template-columns: 1fr;
+  /* ==========================================================
+     SMALL VIDEO
+     ========================================================== */
 
-    gap: 11px;
+  .gaza-home .gaza-video-scroll__track {
+    gap: 9px;
+
+    padding-right: 14px;
   }
 
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+    flex:
+      0 0 82vw;
+
+    width:
+      82vw;
+
+    min-width:
+      82vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+    padding: 18px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+    width: 40px;
+    height: 40px;
+
+    margin-bottom: 14px;
+
+    border-radius: 10px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 17px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 9px;
+  }
+
+
+  /* ==========================================================
+     SIGNUP SMALL MOBILE
+     ========================================================== */
+
+  .gaza-home .gaza-btn--signup {
+    min-height: 36px;
+
+    padding:
+      0 5px 0 12px;
+
+    gap: 6px;
+
+    border-radius: 9px;
+
+    font-size: 8px;
+  }
+
+
+  .gaza-home .gaza-btn--signup .gaza-btn__icon {
+    width: 23px;
+    height: 23px;
+
+    flex-basis: 23px;
+
+    border-radius: 6px;
+  }
+
+
+  .gaza-home .gaza-btn--signup .gaza-btn__icon i {
+    font-size: 8px;
+  }
+
+
+  /* ==========================================================
+     PODCAST SMALL MOBILE
+     ========================================================== */
 
   .gaza-home .gaza-podcast-banner {
     padding: 18px;
@@ -1540,16 +4936,20 @@
   .gaza-home .gaza-podcast-banner__icon {
     width: 53px;
     height: 53px;
-  }
 
-
-  .gaza-home .gaza-podcast-banner__icon i {
-    font-size: 17px;
+    border-radius: 15px;
   }
 
 
   .gaza-home .gaza-podcast-banner__icon-ring {
     inset: -6px;
+
+    border-radius: 19px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon i {
+    font-size: 17px;
   }
 
 
@@ -1577,7 +4977,8 @@
 
 
   .gaza-home .gaza-podcast-banner__action {
-    padding: 5px 5px 5px 10px;
+    padding:
+      5px 5px 5px 10px;
 
     border-radius: 8px;
 
@@ -1591,7 +4992,6 @@
 
     border-radius: 6px;
   }
-
 }
 
 
@@ -1627,7 +5027,8 @@
   .gaza-home .gaza-hero__description {
     max-width: 245px;
 
-    margin: 9px 0 14px;
+    margin:
+      9px 0 14px;
 
     font-size: 9px;
   }
@@ -1645,6 +5046,39 @@
   .gaza-home .gaza-btn__icon {
     width: 19px;
     height: 19px;
+  }
+
+
+  /* ==========================================================
+     VERY SMALL SIGNUP
+     ========================================================== */
+
+  .gaza-home .gaza-btn--signup {
+    min-height: 32px;
+
+    padding:
+      0 4px 0 9px;
+
+    gap: 5px;
+
+    border-radius: 8px;
+
+    font-size: 7.5px;
+  }
+
+
+  .gaza-home .gaza-btn--signup .gaza-btn__icon {
+    width: 20px;
+    height: 20px;
+
+    flex-basis: 20px;
+
+    border-radius: 5px;
+  }
+
+
+  .gaza-home .gaza-btn--signup .gaza-btn__icon i {
+    font-size: 7px;
   }
 
 
@@ -1670,6 +5104,57 @@
   }
 
 
+  /* ==========================================================
+     VERY SMALL VIDEO
+     ========================================================== */
+
+  .gaza-home .gaza-video-scroll__track {
+    gap: 8px;
+
+    padding-right: 12px;
+  }
+
+
+  .gaza-home .gaza-video-scroll__track > app-video-card,
+  .gaza-home .gaza-video-more {
+    flex:
+      0 0 86vw;
+
+    width:
+      86vw;
+
+    min-width:
+      86vw;
+  }
+
+
+  .gaza-home .gaza-video-more {
+    padding: 16px;
+  }
+
+
+  .gaza-home .gaza-video-more__icon {
+    width: 38px;
+    height: 38px;
+
+    margin-bottom: 12px;
+  }
+
+
+  .gaza-home .gaza-video-more h3 {
+    font-size: 16px;
+  }
+
+
+  .gaza-home .gaza-video-more p {
+    font-size: 8px;
+  }
+
+
+  /* ==========================================================
+     VERY SMALL PODCAST
+     ========================================================== */
+
   .gaza-home .gaza-podcast-banner {
     padding: 15px;
 
@@ -1680,11 +5165,27 @@
   .gaza-home .gaza-podcast-banner__icon {
     width: 46px;
     height: 46px;
+
+    border-radius: 13px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__icon-ring {
+    inset: -5px;
+
+    border-radius: 17px;
   }
 
 
   .gaza-home .gaza-podcast-banner__icon i {
     font-size: 15px;
+  }
+
+
+  .gaza-home .gaza-podcast-banner__eyebrow {
+    font-size: 6px;
+
+    letter-spacing: 1px;
   }
 
 
@@ -1699,9 +5200,21 @@
 
 
   .gaza-home .gaza-podcast-banner__action {
+    padding:
+      4px 4px 4px 8px;
+
     font-size: 7px;
+
+    gap: 6px;
   }
 
+
+  .gaza-home .gaza-podcast-banner__action-icon {
+    width: 20px;
+    height: 20px;
+
+    border-radius: 5px;
+  }
 }
 
 
@@ -1711,16 +5224,26 @@
 
 @media (prefers-reduced-motion: reduce) {
 
-  .gaza-home .gaza-hero__waves span,
-  .gaza-home .gaza-hero__visual.is-playing .gaza-hero__disc {
+  .gaza-home .gaza-hero__waves span {
     animation: none;
   }
 
 
   .gaza-home .gaza-btn,
+  .gaza-home .gaza-btn--signup,
+  .gaza-home .gaza-btn--signup::before,
+  .gaza-home .gaza-btn--signup::after,
+  .gaza-home .gaza-btn--signup .gaza-btn__icon,
+  .gaza-home .gaza-btn--signup .gaza-btn__icon i,
   .gaza-home .gaza-section__link,
-  .gaza-home .gaza-podcast-banner {
+  .gaza-home .gaza-video-more,
+  .gaza-home .gaza-video-more__icon,
+  .gaza-home .gaza-podcast-banner__action {
     transition: none;
   }
 
+
+  .gaza-home .gaza-video-scroll {
+    scroll-behavior: auto;
+  }
 }

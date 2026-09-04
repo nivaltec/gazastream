@@ -1,5 +1,5 @@
-import { MediaIcon } from './media-icon-enum';
-import { MediaType } from './media-type-enum';
+import { MediaIcon } from '../enums/media-icon-enum';
+import { MediaType } from '../enums/media-type-enum';
 import { VideoProvider } from './video-provider-enum';
 
 export interface MediaItem {

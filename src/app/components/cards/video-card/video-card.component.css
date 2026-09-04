@@ -1,89 +1,120 @@
 /* ============================================================
-   GAZA STREAM VIDEO CARD
-============================================================ */
+   GAZA STREAM
+   VIDEO CARD
+   ============================================================ */
+
+:host {
+  display: block;
+  width: 100%;
+  min-width: 0;
+}
+
+
+/* ============================================================
+   CARD
+   ============================================================ */
 
 .gaza-video-card {
+  --video-radius: 16px;
+  --video-transition: 220ms ease;
 
   position: relative;
-
   display: flex;
-
   flex-direction: column;
 
   width: 100%;
-
   min-width: 0;
 
   overflow: hidden;
 
-  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--video-radius);
 
-  background: #111827;
+  background:
+    linear-gradient(145deg,
+      rgba(22, 22, 32, 0.98),
+      rgba(10, 10, 16, 0.98));
+
+  box-shadow:
+    0 12px 35px rgba(0, 0, 0, 0.18);
 
   cursor: pointer;
 
   transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
+    transform var(--video-transition),
+    border-color var(--video-transition),
+    box-shadow var(--video-transition);
 
-  border: 1px solid rgba(255, 255, 255, 0.08);
-
+  isolation: isolate;
 }
 
 
 /* ============================================================
    HOVER
-============================================================ */
+   ============================================================ */
 
-.gaza-video-card:hover {
+@media (hover: hover) and (pointer: fine) {
 
-  transform: translateY(-3px);
+  .gaza-video-card:hover {
+    transform: translateY(-5px);
 
-  box-shadow:
-    0 12px 30px
-    rgba(0, 0, 0, 0.30);
+    border-color:
+      rgba(8, 207, 255, 0.35);
+
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.28),
+      0 0 0 1px rgba(8, 207, 255, 0.04);
+  }
+
+  .gaza-video-card:hover .gaza-video-card__image {
+    transform: scale(1.055);
+  }
+
+  .gaza-video-card:hover .gaza-video-card__overlay {
+    opacity: 0.62;
+  }
+
+  .gaza-video-card:hover .gaza-video-card__play {
+    transform:
+      translate(-50%, -50%) scale(1.08);
+  }
 
 }
 
 
 /* ============================================================
    ACTIVE
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card.is-active {
-
   border-color:
-    rgba(45, 127, 249, 0.75);
+    rgba(8, 207, 255, 0.42);
 
   box-shadow:
-    0 0 0 1px
-    rgba(45, 127, 249, 0.25);
-
+    0 0 0 1px rgba(8, 207, 255, 0.08),
+    0 16px 42px rgba(0, 0, 0, 0.25);
 }
 
 
 /* ============================================================
    PLAYING
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card.is-playing {
+  border-color:
+    rgba(108, 36, 255, 0.5);
 
   box-shadow:
-    0 0 0 2px
-    rgba(38, 168, 246, 0.55),
-    0 12px 30px
-    rgba(0, 0, 0, 0.35);
-
+    0 0 0 1px rgba(108, 36, 255, 0.08),
+    0 18px 45px rgba(0, 0, 0, 0.28);
 }
 
 
 /* ============================================================
    MEDIA
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__media {
-
   position: relative;
 
   width: 100%;
@@ -92,177 +123,305 @@
 
   overflow: hidden;
 
-  background: #0b1120;
-
+  background:
+    linear-gradient(135deg,
+      #10101a,
+      #171329);
 }
 
 
 /* ============================================================
    IMAGE
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__image {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
 
   display: block;
 
-  width: 100%;
-
-  height: 100%;
-
   object-fit: cover;
+  object-position: center;
+
+  user-select: none;
+  -webkit-user-drag: none;
 
   transition:
-    transform 0.35s ease,
-    filter 0.35s ease;
-
-}
-
-
-/* ============================================================
-   IMAGE HOVER
-============================================================ */
-
-.gaza-video-card:hover
-.gaza-video-card__image {
-
-  transform: scale(1.04);
-
-  filter: brightness(0.85);
-
-}
-
-
-/* ============================================================
-   FALLBACK
-============================================================ */
-
-.gaza-video-card__fallback {
-
-  display: flex;
-
-  align-items: center;
-
-  justify-content: center;
-
-  width: 100%;
-
-  height: 100%;
-
-  color: rgba(255, 255, 255, 0.65);
-
-  font-size: 2rem;
-
-  background:
-    linear-gradient(
-      135deg,
-      #071d49,
-      #153a8a
-    );
-
+    transform 500ms cubic-bezier(0.2, 0.65, 0.3, 1);
 }
 
 
 /* ============================================================
    OVERLAY
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__overlay {
-
   position: absolute;
-
   inset: 0;
 
+  z-index: 1;
+
   background:
-    linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.05),
-      rgba(0, 0, 0, 0.60)
-    );
+    linear-gradient(180deg,
+      rgba(0, 0, 0, 0.18) 0%,
+      rgba(0, 0, 0, 0.02) 38%,
+      rgba(0, 0, 0, 0.45) 100%);
+
+  opacity: 0.78;
 
   pointer-events: none;
 
+  transition:
+    opacity var(--video-transition);
+}
+
+
+/* ============================================================
+   ARTWORK FALLBACK
+   ============================================================ */
+
+.gaza-video-card__fallback {
+  position: absolute;
+  inset: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 10px;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at 20% 20%,
+      rgba(8, 207, 255, 0.18),
+      transparent 34%),
+    radial-gradient(circle at 80% 80%,
+      rgba(108, 36, 255, 0.22),
+      transparent 38%),
+    linear-gradient(135deg,
+      #0a0a12,
+      #151124);
+
+  color: rgba(255, 255, 255, 0.7);
+}
+
+
+.gaza-video-card__fallback-glow {
+  position: absolute;
+
+  width: 180px;
+  height: 180px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(circle,
+      rgba(8, 207, 255, 0.12),
+      transparent 70%);
+
+  filter: blur(8px);
+
+  pointer-events: none;
+}
+
+
+.gaza-video-card__fallback-icon {
+  position: relative;
+
+  z-index: 1;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 64px;
+  height: 64px;
+
+  border-radius: 50%;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(135deg,
+      rgba(8, 207, 255, 0.18),
+      rgba(108, 36, 255, 0.28));
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+.gaza-video-card__fallback-icon i {
+  font-size: 24px;
+}
+
+
+.gaza-video-card__fallback span {
+  position: relative;
+
+  z-index: 1;
+
+  font-size: 9px;
+  font-weight: 800;
+
+  letter-spacing: 0.2em;
+
+  color:
+    rgba(255, 255, 255, 0.45);
+}
+
+
+/* ============================================================
+   PROVIDER BADGE
+   ============================================================ */
+
+.gaza-video-card__type {
+  position: absolute;
+
+  top: 12px;
+  left: 12px;
+
+  z-index: 3;
+
+  display: inline-flex;
+
+  align-items: center;
+  gap: 6px;
+
+  max-width: calc(100% - 24px);
+
+  padding: 6px 9px;
+
+  border:
+    1px solid rgba(255, 255, 255, 0.1);
+
+  border-radius: 999px;
+
+  color: #ffffff;
+
+  background:
+    rgba(5, 5, 10, 0.72);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-size: 9px;
+  font-weight: 800;
+
+  line-height: 1;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+
+  white-space: nowrap;
+}
+
+
+.gaza-video-card__type i {
+  font-size: 11px;
 }
 
 
 /* ============================================================
    PLAY BUTTON
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__play {
-
   position: absolute;
 
   top: 50%;
-
   left: 50%;
 
-  transform:
-    translate(-50%, -50%);
+  z-index: 4;
 
   display: flex;
 
   align-items: center;
-
   justify-content: center;
 
-  width: 56px;
+  width: 58px;
+  height: 58px;
 
-  height: 56px;
+  padding: 0;
 
   border: 0;
 
   border-radius: 50%;
 
-  color: #fff;
+  color: #ffffff;
 
   background:
-    rgba(45, 127, 249, 0.95);
+    linear-gradient(135deg,
+      #08cfff,
+      #6c24ff);
 
   box-shadow:
-    0 8px 24px
-    rgba(0, 0, 0, 0.30);
+    0 10px 30px rgba(0, 0, 0, 0.35),
+    0 0 0 5px rgba(255, 255, 255, 0.08);
+
+  transform:
+    translate(-50%, -50%) scale(1);
 
   cursor: pointer;
 
   transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-
-  z-index: 3;
-
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    filter 180ms ease;
 }
 
 
 .gaza-video-card__play:hover {
+  filter: brightness(1.08);
 
-  transform:
-    translate(-50%, -50%)
-    scale(1.08);
+  box-shadow:
+    0 14px 38px rgba(0, 0, 0, 0.4),
+    0 0 0 7px rgba(8, 207, 255, 0.08);
+}
 
-  background:
-    rgba(38, 168, 246, 1);
 
+.gaza-video-card__play:focus-visible {
+  outline: 3px solid rgba(8, 207, 255, 0.45);
+
+  outline-offset: 4px;
 }
 
 
 .gaza-video-card__play i {
+  margin-left: 2px;
 
-  font-size: 1rem;
+  font-size: 18px;
+}
 
+
+/* Playing icon */
+.gaza-video-card__play.is-playing i {
+  margin-left: 0;
 }
 
 
 /* ============================================================
-   PLAYING INDICATOR
-============================================================ */
+   PLAYING BARS
+   ============================================================ */
 
 .gaza-video-card__playing {
-
   position: absolute;
 
-  left: 12px;
-
+  right: 12px;
   bottom: 12px;
+
+  z-index: 4;
 
   display: flex;
 
@@ -270,61 +429,57 @@
 
   gap: 3px;
 
-  height: 18px;
+  height: 17px;
 
-  z-index: 4;
+  padding: 5px 7px;
 
+  border-radius: 7px;
+
+  background:
+    rgba(5, 5, 10, 0.7);
+
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 
 .gaza-video-card__playing span {
+  display: block;
 
   width: 3px;
 
-  height: 8px;
+  height: 6px;
 
-  border-radius: 3px;
+  border-radius: 999px;
 
-  background: #fff;
+  background:
+    #08cfff;
 
   animation:
-    gazaVideoBars 0.8s
-    ease-in-out
-    infinite alternate;
-
+    gazaVideoPlaying 0.85s ease-in-out infinite alternate;
 }
 
 
 .gaza-video-card__playing span:nth-child(2) {
-
-  height: 14px;
-
-  animation-delay: 0.15s;
-
+  height: 13px;
+  animation-delay: -0.25s;
 }
 
 
 .gaza-video-card__playing span:nth-child(3) {
-
-  height: 10px;
-
-  animation-delay: 0.3s;
-
+  height: 9px;
+  animation-delay: -0.5s;
 }
 
 
-@keyframes gazaVideoBars {
+@keyframes gazaVideoPlaying {
 
   from {
-
-    transform: scaleY(0.5);
-
+    transform: scaleY(0.55);
   }
 
   to {
-
-    transform: scaleY(1);
-
+    transform: scaleY(1.15);
   }
 
 }
@@ -332,244 +487,318 @@
 
 /* ============================================================
    DURATION
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__duration {
-
   position: absolute;
 
-  right: 10px;
+  right: 12px;
+  bottom: 12px;
 
-  bottom: 10px;
+  z-index: 3;
 
-  z-index: 4;
+  padding: 5px 7px;
 
-  padding: 4px 7px;
+  border-radius: 6px;
 
-  border-radius: 5px;
-
-  color: #fff;
+  color: #ffffff;
 
   background:
-    rgba(0, 0, 0, 0.75);
+    rgba(0, 0, 0, 0.78);
 
-  font-size: 0.72rem;
+  font-size: 10px;
+  font-weight: 700;
 
-  font-weight: 600;
+  line-height: 1;
 
+  font-variant-numeric: tabular-nums;
+
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+
+  pointer-events: none;
 }
 
 
-/* ============================================================
-   TYPE
-============================================================ */
-
-.gaza-video-card__type {
-
-  position: absolute;
-
-  top: 10px;
-
-  left: 10px;
-
-  z-index: 4;
-
-  display: inline-flex;
-
-  align-items: center;
-
-  gap: 5px;
-
-  padding: 5px 8px;
-
-  border-radius: 5px;
-
-  color: #fff;
-
-  background:
-    rgba(0, 0, 0, 0.65);
-
-  font-size: 0.7rem;
-
-  font-weight: 600;
-
-  text-transform: uppercase;
-
-  letter-spacing: 0.04em;
-
-}
-
-
-.gaza-video-card__type i {
-
-  font-size: 0.65rem;
-
+/*
+   When playing, move duration slightly so that
+   the equalizer has its own space.
+*/
+.gaza-video-card.is-playing .gaza-video-card__duration {
+  right: 54px;
 }
 
 
 /* ============================================================
    CONTENT
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__content {
-
   display: flex;
-
   flex-direction: column;
 
   min-width: 0;
 
   padding: 14px 15px 16px;
-
 }
 
 
 /* ============================================================
    TITLE
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__title {
-
   margin: 0;
+
+  min-width: 0;
 
   overflow: hidden;
 
-  color: #fff;
+  color:
+    var(--text-primary, #ffffff);
 
-  font-size: 0.98rem;
-
-  font-weight: 700;
+  font-size: 15px;
+  font-weight: 750;
 
   line-height: 1.35;
 
-  text-overflow: ellipsis;
+  letter-spacing: -0.01em;
 
   white-space: nowrap;
-
+  text-overflow: ellipsis;
 }
 
 
 /* ============================================================
    ARTIST
-============================================================ */
+   ============================================================ */
 
 .gaza-video-card__artist {
-
   margin: 5px 0 0;
 
+  min-width: 0;
+
   overflow: hidden;
 
-  color: rgba(255, 255, 255, 0.65);
+  color:
+    var(--text-secondary, rgba(255, 255, 255, 0.58));
 
-  font-size: 0.82rem;
+  font-size: 12px;
+  font-weight: 500;
 
-  text-overflow: ellipsis;
+  line-height: 1.35;
 
   white-space: nowrap;
-
+  text-overflow: ellipsis;
 }
 
 
 /* ============================================================
-   DESCRIPTION
-============================================================ */
-
-.gaza-video-card__description {
-
-  display: -webkit-box;
-
-  margin: 7px 0 0;
-
-  overflow: hidden;
-
-  color: rgba(255, 255, 255, 0.48);
-
-  font-size: 0.76rem;
-
-  line-height: 1.4;
-
-  -webkit-box-orient: vertical;
-
-  -webkit-line-clamp: 2;
-
-}
-
-
-/* ============================================================
-   RESPONSIVE
-============================================================ */
+   TABLET
+   ============================================================ */
 
 @media (max-width: 768px) {
 
   .gaza-video-card {
-
-    border-radius: 12px;
-
+    --video-radius: 14px;
   }
 
+  .gaza-video-card__type {
+    top: 9px;
+    left: 9px;
+
+    padding: 5px 8px;
+
+    font-size: 8px;
+  }
 
   .gaza-video-card__play {
-
-    width: 48px;
-
-    height: 48px;
-
+    width: 52px;
+    height: 52px;
   }
 
+  .gaza-video-card__play i {
+    font-size: 16px;
+  }
+
+  .gaza-video-card__duration {
+    right: 9px;
+    bottom: 9px;
+  }
+
+  .gaza-video-card.is-playing .gaza-video-card__duration {
+    right: 49px;
+  }
+
+  .gaza-video-card__playing {
+    right: 9px;
+    bottom: 9px;
+  }
 
   .gaza-video-card__content {
-
-    padding:
-      12px 13px 14px;
-
+    padding: 12px 13px 14px;
   }
-
 
   .gaza-video-card__title {
-
-    font-size: 0.9rem;
-
+    font-size: 14px;
   }
 
-
-  .gaza-video-card__description {
-
-    display: none;
-
+  .gaza-video-card__artist {
+    font-size: 11px;
   }
 
 }
 
 
 /* ============================================================
-   SMALL DEVICES
-============================================================ */
+   SMALL PHONES
+   ============================================================ */
 
-@media (max-width: 380px) {
+@media (max-width: 480px) {
 
-  .gaza-video-card__play {
-
-    width: 44px;
-
-    height: 44px;
-
+  .gaza-video-card {
+    --video-radius: 12px;
   }
 
-
   .gaza-video-card__type {
+    top: 7px;
+    left: 7px;
+
+    padding: 5px 7px;
+
+    font-size: 7px;
+  }
+
+  .gaza-video-card__type i {
+    font-size: 9px;
+  }
+
+  .gaza-video-card__play {
+    width: 46px;
+    height: 46px;
+
+    box-shadow:
+      0 8px 24px rgba(0, 0, 0, 0.32),
+      0 0 0 4px rgba(255, 255, 255, 0.07);
+  }
+
+  .gaza-video-card__play i {
+    font-size: 14px;
+  }
+
+  .gaza-video-card__duration {
+    right: 7px;
+    bottom: 7px;
 
     padding: 4px 6px;
 
-    font-size: 0.62rem;
-
+    font-size: 9px;
   }
 
+  .gaza-video-card.is-playing .gaza-video-card__duration {
+    right: 45px;
+  }
+
+  .gaza-video-card__playing {
+    right: 7px;
+    bottom: 7px;
+  }
 
   .gaza-video-card__content {
+    padding: 10px 11px 12px;
+  }
 
-    padding:
-      10px 11px 12px;
+  .gaza-video-card__title {
+    font-size: 13px;
+  }
 
+  .gaza-video-card__artist {
+    margin-top: 3px;
+    font-size: 10px;
+  }
+
+}
+
+
+/* ============================================================
+   VERY SMALL DEVICES
+   3.5" / SMALL WIDTH
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .gaza-video-card {
+    --video-radius: 10px;
+  }
+
+  .gaza-video-card__type {
+    top: 6px;
+    left: 6px;
+
+    padding: 4px 6px;
+
+    font-size: 7px;
+  }
+
+  .gaza-video-card__play {
+    width: 42px;
+    height: 42px;
+  }
+
+  .gaza-video-card__play i {
+    font-size: 13px;
+  }
+
+  .gaza-video-card__duration {
+    right: 6px;
+    bottom: 6px;
+
+    font-size: 8px;
+  }
+
+  .gaza-video-card__content {
+    padding: 9px 10px 10px;
+  }
+
+  .gaza-video-card__title {
+    font-size: 12px;
+  }
+
+  .gaza-video-card__artist {
+    font-size: 9px;
+  }
+
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) {
+
+  .gaza-video-card:active {
+    transform: scale(0.985);
+  }
+
+}
+
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gaza-video-card,
+  .gaza-video-card__image,
+  .gaza-video-card__overlay,
+  .gaza-video-card__play {
+    transition: none;
+  }
+
+  .gaza-video-card__playing span {
+    animation: none;
   }
 
 }

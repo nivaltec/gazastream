@@ -16,29 +16,37 @@
        FEATURED PODCAST
   ========================================================== -->
 
-  <section class="gaza-podcast-featured" *ngIf="podcasts.length > 0">
+  <section class="gaza-podcast-featured" *ngIf="featuredPodcast">
 
     <!-- Background artwork -->
+
     <div class="gaza-podcast-featured__background">
-      <img [src]="podcasts[0].artwork" alt="" aria-hidden="true" />
+
+      <img [src]="featuredPodcast.artwork" [alt]="" aria-hidden="true" (error)="handleImageError($event)" />
+
     </div>
 
 
     <!-- Overlay -->
+
     <div class="gaza-podcast-featured__overlay"></div>
 
 
-    <!-- Decorative glow -->
+    <!-- Glow -->
+
     <div class="gaza-podcast-featured__glow"></div>
 
 
     <!-- Content -->
+
     <div class="gaza-podcast-featured__content">
 
       <span class="gaza-podcast-featured__eyebrow">
 
         <span class="gaza-podcast-featured__eyebrow-icon">
+
           <i class="fa-solid fa-podcast"></i>
+
         </span>
 
         Featured Podcast
@@ -47,25 +55,32 @@
 
 
       <h1>
-        {{ podcasts[0].title }}
+        {{ featuredPodcast.title }}
       </h1>
 
 
-      <p *ngIf="podcasts[0].description">
-        {{ podcasts[0].description }}
+      <p *ngIf="featuredPodcast.description">
+        {{ featuredPodcast.description }}
       </p>
 
 
       <div class="gaza-podcast-featured__meta">
 
-        <span *ngIf="podcasts[0].artist">
+        <span *ngIf="featuredPodcast.artist">
+
           <i class="fa-solid fa-microphone"></i>
-          {{ podcasts[0].artist }}
+
+          {{ featuredPodcast.artist }}
+
         </span>
 
+
         <span>
+
           <i class="fa-solid fa-headphones"></i>
+
           Podcast
+
         </span>
 
       </div>
@@ -98,11 +113,14 @@
 
 
     <!-- Foreground artwork -->
+
     <div class="gaza-podcast-featured__artwork">
 
       <div class="gaza-podcast-featured__artwork-glow"></div>
 
-      <img [src]="podcasts[0].artwork" [alt]="podcasts[0].title" />
+
+      <img [src]="featuredPodcast.artwork" [alt]="featuredPodcast.title" (error)="handleImageError($event)" />
+
 
       <div class="gaza-podcast-featured__artwork-shine"></div>
 
@@ -110,6 +128,7 @@
 
 
     <!-- Decorative waveform -->
+
     <div class="gaza-podcast-featured__waves" aria-hidden="true">
 
       <span></span>
@@ -131,24 +150,33 @@
 
 
   <!-- =========================================================
-       ALL PODCASTS
+       PODCAST GENRES
   ========================================================== -->
 
-  <section class="gaza-podcast-section">
+  <section class="gaza-podcast-section" *ngIf="podcastGenres.length > 0">
 
-    <!-- Section heading -->
+
+    <!-- =======================================================
+         SECTION HEADER
+    ======================================================== -->
+
     <div class="gaza-podcast-section__header">
 
       <div class="gaza-podcast-section__heading">
 
         <span class="gaza-podcast-section__eyebrow">
+
           <i class="fa-solid fa-podcast"></i>
+
           GAZA STREAM
+
         </span>
+
 
         <h2>
           Explore Podcasts
         </h2>
+
 
         <p>
           Discover shows, conversations and stories worth hearing.
@@ -157,9 +185,10 @@
       </div>
 
 
-      <span *ngIf="podcasts.length > 0" class="gaza-podcast-section__count">
+      <span class="gaza-podcast-section__count">
 
         {{ podcasts.length }}
+
         {{ podcasts.length === 1 ? 'show' : 'shows' }}
 
       </span>
@@ -168,47 +197,126 @@
 
 
     <!-- =======================================================
-         PODCAST GRID
+         GENRE ROWS
     ======================================================== -->
 
-    <div *ngIf="podcasts.length > 0" class="gaza-podcast-grid">
-
-      <app-podcast-card *ngFor="let podcast of podcasts" [podcast]="podcast">
-      </app-podcast-card>
-
-    </div>
+    <section class="gaza-podcast-genre" *ngFor="let genre of podcastGenres">
 
 
-    <!-- =======================================================
-         EMPTY STATE
-    ======================================================== -->
+      <!-- =====================================================
+           GENRE HEADER
+      ====================================================== -->
 
-    <div *ngIf="podcasts.length === 0" class="gaza-podcast-empty">
+      <div class="gaza-podcast-genre__header">
 
-      <div class="gaza-podcast-empty__icon">
-        <i class="fa-solid fa-podcast"></i>
+        <div class="gaza-podcast-genre__title">
+
+          <div class="gaza-podcast-genre__icon" [ngClass]="getGenreClass(genre.name)">
+
+            <i class="fa-solid" [ngClass]="getGenreIcon(genre.name)">
+            </i>
+
+          </div>
+
+
+          <div>
+
+            <h3>
+              {{ genre.name }}
+            </h3>
+
+            <p>
+              {{ genre.description }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="gaza-podcast-genre__controls">
+
+          <span>
+            {{ genre.podcasts.length }}
+            {{ genre.podcasts.length === 1 ? 'show' : 'shows' }}
+          </span>
+
+
+          <span class="gaza-podcast-genre__scroll-hint">
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Scroll
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+          </span>
+
+        </div>
+
       </div>
 
 
-      <div class="gaza-podcast-empty__content">
+      <!-- =====================================================
+           HORIZONTAL PODCAST ROW
+      ====================================================== -->
 
-        <span>
-          GAZA STREAM PODCASTS
-        </span>
+      <div class="gaza-podcast-row" tabindex="0" role="region" [attr.aria-label]="genre.name + ' podcasts'">
 
-        <h3>
-          No podcasts yet
-        </h3>
 
-        <p>
-          New shows and conversations will appear here
-          when they become available.
-        </p>
+        <div class="gaza-podcast-row__track">
+
+          <div class="gaza-podcast-row__card" *ngFor="
+              let podcast of genre.podcasts;
+              trackBy: trackByPodcast
+            ">
+
+            <app-podcast-card [podcast]="podcast">
+            </app-podcast-card>
+
+          </div>
+
+        </div>
 
       </div>
 
-    </div>
+    </section>
 
   </section>
+
+
+  <!-- =========================================================
+       EMPTY STATE
+  ========================================================== -->
+
+  <div *ngIf="podcasts.length === 0" class="gaza-podcast-empty">
+
+    <div class="gaza-podcast-empty__icon">
+
+      <i class="fa-solid fa-podcast"></i>
+
+    </div>
+
+
+    <div class="gaza-podcast-empty__content">
+
+      <span>
+        GAZA STREAM PODCASTS
+      </span>
+
+
+      <h3>
+        No podcasts yet
+      </h3>
+
+
+      <p>
+        New shows and conversations will appear here
+        when they become available.
+      </p>
+
+    </div>
+
+  </div>
 
 </main>
